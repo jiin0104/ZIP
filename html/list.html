@@ -1,0 +1,367 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="lib/jquery-3.6.4.min.js"></script>
+  <script src="https://kit.fontawesome.com/4ff07a03f7.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <style>
+    .card .img-box{
+  width: 100%;
+  height: 12em;
+  background-color: gray;
+  overflow: hidden;
+  }
+  .card .img-box>img{
+    width: 100%;
+  }
+  </style>
+</head>
+
+<body class="pc">
+    <div id="wrap">
+        <header class="bg-success">
+            <div class="container d-flex justify-content-between align-items-center h-100">
+              <h1>
+                <a href="#">
+                  집탈출
+                  <!-- <img src="로고주소" alt=""> -->
+                </a>
+              </h1>
+              <div class="dropdown text-end">
+                <div class="profile dropdown-toggle d-flex align-items-center gap-2" data-bs-toggle="dropdown">
+                  <div class="user-img">
+                  </div>
+                  <div class="login-check">
+                    <a href="#">로그인</a>
+                  </div>
+                  <div class="toggle-btn">
+                    <span class="stick1"></span>
+                    <span class="stick2"></span>
+                    <span class="stick3"></span>
+                  </div>
+                </div>
+                <ul class="dropdown-menu text-small mt-2">
+                  <li><a href="#" class="dropdown-item">내정보</a></li>
+                  <li><a href="#" class="dropdown-item">예약 내역</a></li>
+                  <li><a href="#" class="dropdown-item">이용 내역</a></li>
+                  <li><a href="#" class="dropdown-item">내 찜 목록</a></li>
+                </ul>
+              </div>
+            </div>
+          </header>
+
+          <section class="container">
+            <div class="form-wrap bg-success rounded-2 mt-2 px-4">
+              <form action="#" method="post" class="w-100 h-100 d-flex justify-content-between align-items-center">
+                <div class="part1 d-flex justify-content-between align-items-center rounded-2 px-5">
+                  <label for="where-input"><i class="fa-solid fa-house"></i></label>
+                  <input disabled class="d-block w-100 ms-2 h-75" id="where-input" placeholder="어디로 향하시나요?">
+                  <div id="where" class="rounded-2 overflow-hidden overflow-y-auto">
+                    <h3 class="fs-5 mb-2 py-2 px-2">주변 인기 여행지</h3>
+                    <ul class="where-list h-100 w-100 p-0 ">
+                      <li class="d-flex align-items-center border-bottom w-100 px-3">
+                        <i class="fa-solid fa-location-dot me-4 fs-4"></i>
+                        <div class="d-flex flex-column">
+                          <span class="place fs-4">제주도</span>
+                          <span class="nation fs-6">대한민국</span>
+                        </div>
+                      </li>
+                      <li class="d-flex align-items-center border-bottom w-100 px-3">
+                        <i class="fa-solid fa-location-dot me-4 fs-4"></i>
+                        <div class="d-flex flex-column">
+                          <span class="place fs-5">강릉</span>
+                          <span class="nation fs-6">대한민국</span>
+                        </div>
+                      </li>
+                      <li class="d-flex align-items-center border-bottom w-100 px-3">
+                        <i class="fa-solid fa-location-dot me-4 fs-4"></i>
+                        <div class="d-flex flex-column">
+                          <span class="place fs-5">서울</span>
+                          <span class="nation fs-6">대한민국</span>
+                        </div>
+                      </li>
+                      
+                    </ul>
+                  </div>
+                </div>
+                <div class="part2 d-flex justify-content-between align-items-center rounded-2 px-5">
+                  <label for="when-input"><i class="fa-regular fa-calendar"></i></label>
+                  <input disabled class="when-input d-block w-100 ms-2 h-75" id="when-input" placeholder="체크인 날짜 / 체크아웃 날짜">
+                  <div id="when">
+                    <div class="when-box"></div>
+                  </div>
+                </div>
+                <div class="part3 d-flex justify-content-between align-items-center rounded-2 px-5">
+                  <label for="who-input"><i class="fa-solid fa-user"></i></label>
+                  <input disabled class="who-input d-block w-100 ms-2 h-75" id="who-input" value="성인 2명 / 아동 0명 / 객실 1개">
+                </div>
+                <button type="submit" class="btn btn-primary">검색</button>
+              </form>
+            </div>
+          </section>
+
+    </div>
+
+
+    <div class="wrap show">
+
+        <link rel="stylesheet" href="list.css?rand=1687214136">
+
+        <form id="product_filter_form" method="get" action=""
+            data-sel_date="2023-06-22" data-sel_date2="2023-06-23">
+            <div class="listpage">
+                <div id="content" class="sub_wrap">
+                    <!-- Filter -->
+                    <div class="filter_wrap"> 
+                        <section><h3>숙소유형</h3>
+                            <ul>
+                                <li><input type="checkbox" id="adcno_0" name="adcno[]" class="inp_chk" value="1"><label
+                                        for="adcno_0" class="label_chk">호텔</label></li>
+                                <li><input type="checkbox" id="adcno_1" name="adcno[]" class="inp_chk" value="2"><label
+                                        for="adcno_1" class="label_chk">모텔</label></li>
+                                <li><input type="checkbox" id="adcno_2" name="adcno[]" class="inp_chk" value="3"><label
+                                        for="adcno_2" class="label_chk">펜션</label></li>
+                                        
+                            </ul>
+                        </section>
+                        <section><h3>가격</h3>
+                            <ul>
+                                <li><input type="checkbox" id="adcno_0" name="adcno[]" class="inp_chk" value="1"><label
+                                        for="adcno_0" class="label_chk">50,000원 미만</label></li>
+                                <li><input type="checkbox" id="adcno_1" name="adcno[]" class="inp_chk" value="2"><label
+                                        for="adcno_1" class="label_chk">50,000원 ~ 100,000원</label></li>
+                                <li><input type="checkbox" id="adcno_2" name="adcno[]" class="inp_chk" value="3"><label
+                                        for="adcno_2" class="label_chk">100,000원 이상</label></li>
+                            </ul>
+                        </section>
+                        <section><h3>옵션</h3>
+                            <ul>
+                                <li><input type="checkbox" id="adcno_0" name="adcno[]" class="inp_chk" value="1"><label
+                                        for="adcno_0" class="label_chk">와이파이</label></li>
+                                <li><input type="checkbox" id="adcno_1" name="adcno[]" class="inp_chk" value="2"><label
+                                        for="adcno_1" class="label_chk">조식</label></li>
+                                <li><input type="checkbox" id="adcno_2" name="adcno[]" class="inp_chk" value="3"><label
+                                        for="adcno_2" class="label_chk">TV</label></li>
+                                <li><input type="checkbox" id="adcno_3" name="adcno[]" class="inp_chk" value="4"><label
+                                        for="adcno_3" class="label_chk">주차장</label></li>
+                                <li><input type="checkbox" id="adcno_4" name="adcno[]" class="inp_chk" value="5"><label
+                                        for="adcno_4" class="label_chk">에어컨</label></li>
+                                <li><input type="checkbox" id="adcno_5" name="adcno[]" class="inp_chk" value="6"><label
+                                        for="adcno_5" class="label_chk">냉장고</label></li>
+                            </ul>
+                        </section>
+                    </div>
+                    <div class="list_wrap">
+                        <div class="top_sort">
+                            <div class="pc">
+                                <div class="btn_wrap width_2">
+                                    <button type="button" data-sort="DISTANCE" class=""><span>높은 가격 순</span></button><button type="button" data-sort="LOWPRICE"
+                                        class=""><span>낮은 가격 순</span></button>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                        <div id="poduct_list_area">
+                            <ul>
+                                <li class="list_4 adcno2">
+                                    <a href=""
+                                        data-ano="69744" data-adcno="2" data-alat="37.889287313835"
+                                        data-alng="128.82544134942" data-distance="" data-affiliate="1">
+                                        <p class="pic">
+                                            <img class="lazy"
+                                                data-original="//image.goodchoice.kr/resize_1000X500x0/affiliate/2023/06/16/648c25cfa5a22.jpg"
+                                                src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2023/06/16/648c25cfa5a22.jpg"
+                                                alt="SL 호텔 강릉" style="margin-left: -170px; display: block;">
+                                        </p>
+                                        <div class="stage">
+                                            <div class="right_badges">
+                                                <div class="badge"><span class="build_badge"
+                                                        style="color: rgba(255,255,255,0.8); background-color: rgba(62,76,103,1);">호텔</span>
+                                                </div>
+                                            </div>
+                                            <div class="name">
+
+                                                <strong>
+                                                    <div class="badge"><span class="build_badge"
+                                                            style="color: rgba(255,255,255,1); background-color: rgba(103,101,201,1);">특급</span>
+                                                    </div> SL 호텔 강릉
+                                                </strong>
+                                                <p class="score">
+                                                    <span><em>9.0</em>&nbsp;추천해요</span>&nbsp;(744)
+                                                </p>
+                                                <p>
+                                                    주문진터미널 차량 4분 </p>
+                                            </div>
+                                            <div class="price">
+                                                <div class="map_html">
+                                                    <p><b>99,000원</b></p>
+                                                </div>
+                                                <p><b style="color: rgba(0,0,0,1);">99,000원</b></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="list_4 adcno2">
+                                    <a href=""
+                                        data-ano="49688" data-adcno="2" data-alat="37.803810157635"
+                                        data-alng="128.90824356707" data-distance="" data-affiliate="1">
+                                        <p class="pic">
+                                            <img class="lazy"
+                                                data-original="//image.goodchoice.kr/resize_1000X500x0/affiliate/2019/02/22/5c6fbd4c90939.jpg"
+                                                src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2019/02/22/5c6fbd4c90939.jpg"
+                                                alt="스카이베이호텔 경포" style="margin-left: -190px; display: block;">
+                                        </p>
+                                        <div class="stage">
+                                            <div class="right_badges">
+                                                <div class="badge"><span class="build_badge"
+                                                        style="color: rgba(255,255,255,0.8); background-color: rgba(62,76,103,1);">호텔</span>
+                                                </div>
+                                            </div>
+                                            <div class="name">
+
+                                                <strong>
+                                                    <div class="badge"><span class="build_badge"
+                                                            style="color: rgba(255,255,255,1); background-color: rgba(103,101,201,1);">특급</span>
+                                                    </div> 스카이베이호텔 경포
+                                                </strong>
+                                                <p class="score">
+                                                    <span><em>9.1</em>&nbsp;추천해요</span>&nbsp;(4190)
+                                                </p>
+                                                <p>
+                                                    강문해변 차량 2분 </p>
+                                            </div>
+                                            <div class="price">
+                                                <div class="map_html">
+                                                    <p><em class="mark"><span><b>남은 객실
+                                                                    1개</b><i>&nbsp;</i></span></em><b>198,000원</b></p>
+                                                </div>
+                                                <p><em class="mark"><span><b>남은 객실 1개</b><i>&nbsp;</i></span></em><b
+                                                        style="color: rgba(0,0,0,1);">198,000원</b></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="list_4 adcno2">
+                                    <a href=""
+                                        data-ano="49688" data-adcno="2" data-alat="37.803810157635"
+                                        data-alng="128.90824356707" data-distance="" data-affiliate="1">
+                                        <p class="pic">
+                                            <img class="lazy"
+                                                data-original="//image.goodchoice.kr/resize_1000X500x0/affiliate/2019/02/22/5c6fbd4c90939.jpg"
+                                                src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2019/02/22/5c6fbd4c90939.jpg"
+                                                alt="스카이베이호텔 경포" style="margin-left: -190px; display: block;">
+                                        </p>
+                                        <div class="stage">
+                                            <div class="right_badges">
+                                                <div class="badge"><span class="build_badge"
+                                                        style="color: rgba(255,255,255,0.8); background-color: rgba(62,76,103,1);">호텔</span>
+                                                </div>
+                                            </div>
+                                            <div class="name">
+
+                                                <strong>
+                                                    <div class="badge"><span class="build_badge"
+                                                            style="color: rgba(255,255,255,1); background-color: rgba(103,101,201,1);">특급</span>
+                                                    </div> 스카이베이호텔 경포
+                                                </strong>
+                                                <p class="score">
+                                                    <span><em>9.1</em>&nbsp;추천해요</span>&nbsp;(4190)
+                                                </p>
+                                                <p>
+                                                    강문해변 차량 2분 </p>
+                                            </div>
+                                            <div class="price">
+                                                <div class="map_html">
+                                                    <p><em class="mark"><span><b>남은 객실
+                                                                    1개</b><i>&nbsp;</i></span></em><b>198,000원</b></p>
+                                                </div>
+                                                <p><em class="mark"><span><b>남은 객실 1개</b><i>&nbsp;</i></span></em><b
+                                                        style="color: rgba(0,0,0,1);">198,000원</b></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="list_4 adcno2">
+                                    <a href=""
+                                        data-ano="49688" data-adcno="2" data-alat="37.803810157635"
+                                        data-alng="128.90824356707" data-distance="" data-affiliate="1">
+                                        <p class="pic">
+                                            <img class="lazy"
+                                                data-original="//image.goodchoice.kr/resize_1000X500x0/affiliate/2019/02/22/5c6fbd4c90939.jpg"
+                                                src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2019/02/22/5c6fbd4c90939.jpg"
+                                                alt="스카이베이호텔 경포" style="margin-left: -190px; display: block;">
+                                        </p>
+                                        <div class="stage">
+                                            <div class="right_badges">
+                                                <div class="badge"><span class="build_badge"
+                                                        style="color: rgba(255,255,255,0.8); background-color: rgba(62,76,103,1);">호텔</span>
+                                                </div>
+                                            </div>
+                                            <div class="name">
+
+                                                <strong>
+                                                    <div class="badge"><span class="build_badge"
+                                                            style="color: rgba(255,255,255,1); background-color: rgba(103,101,201,1);">특급</span>
+                                                    </div> 스카이베이호텔 경포
+                                                </strong>
+                                                <p class="score">
+                                                    <span><em>9.1</em>&nbsp;추천해요</span>&nbsp;(4190)
+                                                </p>
+                                                <p>
+                                                    강문해변 차량 2분 </p>
+                                            </div>
+                                            <div class="price">
+                                                <div class="map_html">
+                                                    <p><em class="mark"><span><b>남은 객실
+                                                                    1개</b><i>&nbsp;</i></span></em><b>198,000원</b></p>
+                                                </div>
+                                                <p><em class="mark"><span><b>남은 객실 1개</b><i>&nbsp;</i></span></em><b
+                                                        style="color: rgba(0,0,0,1);">198,000원</b></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <!-- //List -->
+
+                </div>
+
+            </div>
+            <!-- //Content  -->
+        </form>
+
+    </div>
+
+
+    <script>
+        $('.part1').click(function(){
+          $('#where').toggle()
+        })
+        $('.where-list li').each(function(){
+          $(this).click(function(){
+            $('#where-input').val($(this).find('span.place').text())
+          })
+        })
+        
+        $('.item-list').slick({
+          infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        nextArrow:$('.next'),
+        prevArrow:$('.prev')
+    
+        });
+      </script>
+</body>
+
+</html>
