@@ -1,0 +1,36 @@
+#content.sub_wrap {
+  font-family: "Noto Sans KR", sans-serif;
+  box-sizing: border-box;
+  width: 1900px;
+  height: 1500px;
+  margin: 100px 0px 100px 0px;
+  background-color: fff;
+}
+
+.mypage-form {
+  font-family: "Noto Sans KR", sans-serif;
+  width: 300px;
+  height: 800px;
+  margin: 100px 0px 100px 100px;
+  border-radius: 9px;
+  border: 1px solid gainsboro;
+  background-color: fff;
+  position: relative;
+}
+
+#mypage_button {
+  width: 200px;
+  margin: 50px 50px 20px 50px;
+  text-align: center;
+  line-height: 50px;
+  border: none;
+  background-color: fff;
+  color: grey;
+}
+
+.mypage-info {
+  font-family: "Noto Sans KR", sans-serif;
+  height: 300px;
+  width: 500px;
+  background-color: fff;
+}
