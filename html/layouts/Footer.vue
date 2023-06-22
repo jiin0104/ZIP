@@ -11,13 +11,6 @@
                 href="https://github.com/Dogonem/ZIP" target="_blank">전과자들</a>
             </p>
           </div>
-          <div class="footer-social-btns">
-            <a href="#"><i class="fa fa-linkedin" aria-haspopup="true"></i></a>
-            <a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-twitter" aria-haspopup="true"></i></a>
-            <a href="#"><i class="fa fa-facebook" aria-haspopup="true"></i></a>
-          </div>
         </div>
       </div>
     </div>
