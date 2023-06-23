@@ -1,0 +1,35 @@
+.form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    font-weight: bold;
+  }
+
+  .form-group input[type="text"],
+  .form-group select {
+    width: 200px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .form-group select {
+    width: 100px;
+    margin-left: 10px;
+  }
+
+  .form-group input[type="submit"] {
+    width: auto;
+    padding: 10px 20px;
+    background-color: #ccc;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .custom-email-domain {
+    display: none;
+    margin-top: 10px;
+  }
