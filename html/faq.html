@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>자주 묻는 질문</title>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header_area" id="header">
+      <div>
+        <a href="로고 홈 리다이렉트">집탈출</a>
+      </div>
+      <nav class="menu">
+        <details>
+          <summary>메뉴</summary>
+          <ul>
+            <a href="#">내 정보</a>
+            <a href="#">예약 내역</a>
+            <a href="#">이용 내역</a>
+            <a href="#">내 찜 목록</a>
+          </ul>
+        </details>
+      </nav>
+      <div class="zip-signin-btn">
+        <a href="#">로그인</a>
+      </div>
+    </header>
+    
+  <!-- Content -->
+  <div>
+    <nav class="side-menu">
+      <ul>
+        <li>
+          <a href="#">공지사항</a>
+        </li>
+        <li>
+          <a href="#" class="active">자주 묻는 질문</a>
+        </li>
+        <li>
+          <a href="#">1:1 문의</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="faq_list">
+    <!-- Tab -->
+    <div class="tab">
+      <span class="tab_btn">자주 묻는 질문</span>
+    </div>
+    <div class="faq_tab_each">
+      <ul id="faqs" class="show_faq_list open_faq_list" style="overflow:auto; height: 400px;">
+        <li>
+          <a href="javascript:doDisplay();" class="faq_list_que">
+            <p>제목</p>
+          </a>
+          <div id="faq_tab" style="display: none;">
+            <span>
+              내용
+            </span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var bDisplay = true; function doDisplay() {
+      var con = document.getElementById("faq_tab");
+      if (con.style.display == 'none') {
+        con.style.display = 'block';
+      } else {
+        con.style.display = 'none';
+      }
+    }
+  </script>
+
+</body>
+
+</html>
