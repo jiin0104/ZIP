@@ -147,6 +147,8 @@ img[src$="jpg"] {
 img[class="room-image"] {
   padding: 10px;
   margin-bottom: 20px;
+  border-radius: 9px;
+  border: 1px solid gainsboro;
 }
 
 .res-content {
@@ -156,11 +158,66 @@ img[class="room-image"] {
   text-align: center;
   font-size: 30px;
   padding: 60px;
-  border: 1px solid;
   border-radius: 9px;
+  border: 1px solid gainsboro;
   float: left;
   width: 354px;
   height: auto;
   margin: 10px 0 0 30px;
   padding: 20px;
+}
+
+.user-like-wrap {
+  float: left;
+  width: 500px;
+  height: 500px;
+  background-color: #0b5394;
+}
+
+.like-content {
+  height: 200px;
+  width: 400px;
+  background-color: fff;
+  text-align: center;
+  font-size: 25px;
+  padding: 60px;
+  border-radius: 9px;
+  border: 1px solid gainsboro;
+  width: 354px;
+  margin: 10px 0 0 30px;
+  padding: 20px;
+  transform: translate(100%, -580%);
+}
+
+.like-content img {
+  float: left;
+  margin-right: 20px;
+  width: 140px;
+  height: 140px;
+}
+
+.like-content p {
+  font-size: 20px;
+  color: black;
+  float: inherit;
+  overflow: auto;
+  margin: 15px 15px 15px 10px;
+}
+
+.like-content div {
+  font-size: 15px;
+  overflow: auto;
+  float: auto;
+  background-color: fff;
+  width: 150px;
+  height: 80px;
+}
+
+.like-content span {
+  font-size: 20px;
+  font-weight: 700;
+  text-align: right;
+  font-family: "Noto Sans KR", sans-serif;
+  overflow: auto;
+  float: right;
 }
