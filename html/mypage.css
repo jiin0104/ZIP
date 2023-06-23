@@ -111,6 +111,31 @@ input[type="submit3"] {
   width: 100px;
   float: right;
 }
+input[type="submit4"] {
+  background-color: #0b5394;
+  color: white;
+  padding: 10px 20px;
+  margin: 23px;
+  border: none;
+  border-radius: 9px;
+  font-size: 16px;
+  height: 45px;
+  width: 100px;
+  float: right;
+}
+
+input[type="submit5"] {
+  background-color: gray;
+  color: white;
+  padding: 10px 20px;
+  margin: 23px;
+  border: none;
+  border-radius: 9px;
+  font-size: 16px;
+  height: 45px;
+  width: 100px;
+  float: left;
+}
 
 img[src$="jpg"] {
   border: 1px solid grey;
