@@ -1,0 +1,74 @@
+.custom-select2 {
+  width: 40%;
+}
+.save-btn {
+  min-width: 105px;
+  height: 52px;
+  background-color: #30c0a3;
+  border-radius: 0;
+  padding: 0 15px;
+  line-height: 50px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+}
+.add-acco-btn {
+  min-width: 105px;
+  height: 52px;
+  background-color: blue;
+  border-radius: 0;
+  padding: 0 15px;
+  line-height: 50px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+}
+.dorne-btn1 {
+  min-width: 150px;
+  height: 52px;
+  background-color: #0b5394;
+  border-radius: 0;
+  padding: 0 15px;
+  line-height: 50px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+}
+.save-btn1 {
+  min-width: 187px;
+  height: 52px;
+  background-color: #30c0a3;
+  border-radius: 0;
+  padding: 0 15px;
+  line-height: 50px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+}
+.addressfind {
+  min-width: 150px;
+  height: 35px;
+  background-color: #0b5394;
+  border-radius: 0;
+  padding: 0 15px;
+  line-height: 30px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+}
+.h2-size {
+  text-indent: 35px;
+}
+.h3-size {
+  text-indent: 105px;
+}
