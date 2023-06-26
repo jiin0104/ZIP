@@ -132,7 +132,7 @@
           <!-- Hero Search Form -->
           <div class="hero-search-form">
             <!-- Tabs -->
-            <form action="#" method="get">
+            <form action="">
               <div class="nav nav-tabs" id="heroTab" role="tablist">
                 <a class="nav-item nav-link active" id="nav-places-tab" data-toggle="tab" href="#nav-places" role="tab"
                   aria-controls="nav-places" aria-selected="true">객실</a>
@@ -168,25 +168,26 @@
                         })
                       }
                     </script>
-                    <br />
-                    <p style="color: white;">항목</p>
-                    <div>
-                      <select class="custom-select">
-                        <option selected>숙소이름</option>
-                        <option value="1"></option>
-                      </select>
-                    </div>
-                    <div style="margin-right: 5px;">
-                      <input type="text" placeholder="검색어를 입력해주세요"
-                        style="width:  300px; height: 52px; font-size: 12px; font-weight: 600;">
-                    </div>
-                    <button type="submit" class="btn dorne-btn1" style="margin-right: 5px;">
-                      <i class="fa fa-search pr-2" aria-hidden="true"></i>
-                      검색
-                    </button>
-                    <button type="button" class="btn save-btn" style="margin-right: 5px;">저장</button>
-                    <button type="button" class="btn add-acco-btn">상품등록</button>
             </form>
+            <br />
+            <p style="color: white;">항목</p>
+            <form action="#" method="get">
+              <div>
+                <select class="custom-select">
+                  <option selected>숙소이름</option>
+                  <option value="1"></option>
+                </select>
+              </div>
+              <div style="margin-right: 5px;">
+                <input type="text" placeholder="검색어를 입력해주세요"
+                  style="width:  300px; height: 52px; font-size: 12px; font-weight: 600;">
+              </div>
+              <button type="submit" class="btn dorne-btn1" style="margin-right: 5px;">
+                <i class="fa fa-search pr-2" aria-hidden="true"></i>
+                검색
+              </button>
+              <button type="button" class="btn save-btn" style="margin-right: 5px;">저장</button>
+              <button type="button" class="btn add-acco-btn">상품등록</button>
           </div>
           <table>
             <th>숙소코드</th>
@@ -239,6 +240,7 @@
     </div>
     </div>
   </section>
+
 
   <!-- ****** Footer Area Start ****** -->
   <footer class="dorne-footer-area">

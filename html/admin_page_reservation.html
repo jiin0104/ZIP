@@ -129,12 +129,12 @@
           <!-- Hero Search Form -->
           <div class="hero-search-form">
             <!-- Tabs -->
-            <form method="post">
-              <div class="nav nav-tabs" id="heroTab" role="tablist">
-                <a class="nav-item nav-link active" id="nav-places-tab" data-toggle="tab" href="#nav-places" role="tab"
-                  aria-controls="nav-places" aria-selected="true">회원검색</a>
-              </div>
-              <!-- Tabs Content -->
+            <div class="nav nav-tabs" id="heroTab" role="tablist">
+              <a class="nav-item nav-link active" id="nav-places-tab" data-toggle="tab" href="#nav-places" role="tab"
+                aria-controls="nav-places" aria-selected="true">회원검색</a>
+            </div>
+            <!-- Tabs Content -->
+            <form action="">
               <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-places" role="tabpanel" aria-labelledby="nav-places-tab">
                   <div class="form-check">
@@ -161,71 +161,71 @@
                         })
                       }
                     </script>
-                    <br />
-                    <p style="color: white;">항목</p>
-                    <form action="#" method="get">
-                      <div>
-                        <select class="custom-select">
-                          <option selected>예약자</option>
-                          <option value="1"></option>
-                        </select>
-                      </div>
-                      <div style="margin-right: 10px;">
-                        <input type="text" placeholder="검색어를 입력해주세요"
-                          style="width:  300px; height: 52px; font-size: 12px; font-weight: 600;">
-
-                      </div>
-                      <button type="submit" class="btn dorne-btn" style="margin-right: 10px;">
-                        <i class="fa fa-search pr-2" aria-hidden="true"></i>
-                        검색
-                      </button>
-                      <button type="button" class="btn save-btn1">저장</button>
-                    </form>
-                  </div>
-                  <table>
-                    <th>예약번호</th>
-                    <th>체크인날짜</th>
-                    <th>체크아웃날짜</th>
-                    <th>회원코드</th>
-                    <th>객실코드</th>
-                    <th>숙소코드</th>
-                    <th>예약한숙소코드</th>
-                    <th>예약한숙소전화번호</th>
-                    <tr>
-                      <td>1</td>
-                      <td>2</td>
-                      <td>3</td>
-                      <td>4</td>
-                      <td>5</td>
-                      <td>6</td>
-                      <td>7</td>
-                      <td>8</td>
-                    </tr>
             </form>
-            </table>
-            <br>
-            <br>
-            <script>
-              //DB 데이터 완료되면 테이블에 추가
-              const table = document.querySelector('table');
-              const tbody = document.querySelector('tbody');
+            <p style="color: white;">항목</p>
+            <form action="#" method="get">
+              <br />
+              <div>
+                <select class="custom-select">
+                  <option selected>예약자</option>
+                  <option value="1"></option>
+                </select>
+              </div>
+              <div style="margin-right: 10px;">
+                <input type="text" placeholder="검색어를 입력해주세요"
+                  style="width:  300px; height: 52px; font-size: 12px; font-weight: 600;">
 
-              const tr_01 = document.createElement('tr');
-
-            </script>
-            <nav aria-label="...">
-              <ul class="pagination justify-content-center">
-                <li class="page-item"><a class="page-link" href="#">이전</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">다음</a></li>
-              </ul>
-            </nav>
+              </div>
+              <button type="submit" class="btn dorne-btn" style="margin-right: 10px;">
+                <i class="fa fa-search pr-2" aria-hidden="true"></i>
+                검색
+              </button>
+              <button type="button" class="btn save-btn1">저장</button>
             </form>
           </div>
+          <table>
+            <th>예약번호</th>
+            <th>체크인날짜</th>
+            <th>체크아웃날짜</th>
+            <th>회원코드</th>
+            <th>객실코드</th>
+            <th>숙소코드</th>
+            <th>예약한숙소코드</th>
+            <th>예약한숙소전화번호</th>
+            <tr>
+              <td>1</td>
+              <td>2</td>
+              <td>3</td>
+              <td>4</td>
+              <td>5</td>
+              <td>6</td>
+              <td>7</td>
+              <td>8</td>
+            </tr>
+          </table>
+          <br>
+          <br>
+          <script>
+            //DB 데이터 완료되면 테이블에 추가
+            const table = document.querySelector('table');
+            const tbody = document.querySelector('tbody');
+
+            const tr_01 = document.createElement('tr');
+
+          </script>
+          <nav aria-label="...">
+            <ul class="pagination justify-content-center">
+              <li class="page-item"><a class="page-link" href="#">이전</a></li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">다음</a></li>
+            </ul>
+          </nav>
+          </form>
         </div>
       </div>
+    </div>
     </div>
     </div>
     </div>
