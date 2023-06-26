@@ -64,7 +64,6 @@
           formSwitchBtn.style.display = "none";
         }
       }
-
       // end
     </script>
   </head>
@@ -93,12 +92,12 @@
 
             <div class="center mt-20">
               <!-- 클릭시 이벤트 발생하게 -->
-              <input
-                class="Submit-Btn"
-                type="submit"
-                value="아이디 찾기"
-                id="FindIdBtn"
-              />
+              <button class="Submit-Btn" id="FindIdBtn">
+                <a href="#"
+                  ><p onclick="alert('전화번호를 확인해주세요')">아이디 찾기</p>
+                  <p></p
+                ></a>
+              </button>
             </div>
           </form>
         </div>
@@ -120,12 +119,14 @@
             </div>
             <div class="center mt-20">
               <!-- 클릭시 이벤트 발생하게 -->
-              <input
-                class="Submit-Btn"
-                type="submit"
-                value="비밀번호 찾기"
-                id="FindPWBtn"
-              />
+              <button class="Submit-Btn" id="FindPWBtn">
+                <a href="#"
+                  ><p onclick="alert('인증번호를 확인해주세요')">
+                    비밀번호 찾기
+                  </p>
+                  <p></p
+                ></a>
+              </button>
             </div>
           </form>
         </div>
