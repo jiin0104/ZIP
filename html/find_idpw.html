@@ -1,44 +1,135 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>아이디/비밀번호 찾기 폼</title>
-    <link rel="stylesheet" href="find_id_pw.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="find_idpw.css" />
+    <script>
+      function ShowFindIdForm() {
+        SetTitle("아이디 찾기");
+
+        ShowHideForm("FindIdFrom", "Show");
+        ShowHideForm("FindPWFrom", "Hide");
+
+        ActiveInactiveBtn("ShowFindIdBtn", "Active");
+        ActiveInactiveBtn("ShowFindPWBtn", "Inactive");
+
+        ShowHideFromSwitchBtn("Show");
+      }
+
+      function ShowFindPWForm() {
+        debugger;
+        SetTitle("비밀번호 찾기");
+
+        ShowHideForm("FindPWFrom", "Show");
+        ShowHideForm("FindIdFrom", "Hide");
+
+        ActiveInactiveBtn("ShowFindIdBtn", "Inactive");
+        ActiveInactiveBtn("ShowFindPwBtn", "Active");
+
+        ShowHideFromSwitchBtn("Show");
+      }
+
+      function SetTitle(Title) {
+        var formTitle = document.getElementById("formTitle");
+        formTitle.innerHTML = Title;
+      }
+
+      function ShowHideForm(FormID, ShowOrHide) {
+        var Form = document.getElementById(FormID);
+
+        if (ShowOrHide == "Show") {
+          Form.style.display = "block";
+        } else {
+          Form.style.display = "none";
+        }
+      }
+
+      function ActiveInactiveBtn(ButtonID, ActiveORInactive) {
+        debugger;
+        var Button = document.getElementById(ButtonID);
+
+        if (ActiveORInactive == "Active") {
+          Button.classList.add("active");
+        } else {
+          Button.classList.remove("active");
+        }
+      }
+
+      function ShowHideFromSwitchBtn(ShowOrHide) {
+        var formSwitchBtn = document.getElementById("formSwitchBtn");
+        if (ShowOrHide == "Show") {
+          formSwitchBtn.style.display = "";
+        } else {
+          formSwitchBtn.style.display = "none";
+        }
+      }
+
+      // end
+    </script>
   </head>
   <body>
-    <!-- 아이디찾기 -->
-    <div class="member">
-      <div class="card-heading">
-        <h2 class="title">아이디 찾기</h2>
-      </div>
-      <div class="field tel-number">
-        <b>휴대전화</b>
-        <div>
-          <input type="tel" placeholder="전화번호 입력" />
+    <div class="container">
+      <div id="FindIdPWForm">
+        <h1 id="formTitle">로그인</h1>
+        <div id="formSwitchBtn">
+          <button onclick="ShowFindIdForm()" id="ShowFindIdBtn" class="active">
+            아이디 찾기
+          </button>
+          <button onclick="ShowFindPWForm()" id="ShowFindPWBtn">
+            비밀번호 찾기
+          </button>
+        </div>
+        <div id="FindIdFrom">
+          <form action="#">
+            <div class="center">
+              <input
+                id="FindIdTel"
+                class="input-text"
+                type="text"
+                placeholder="전화번호"
+              />
+            </div>
+
+            <div class="center mt-20">
+              <!-- 클릭시 이벤트 발생하게 -->
+              <input
+                class="Submit-Btn"
+                type="submit"
+                value="아이디 찾기"
+                id="FindIdBtn"
+              />
+            </div>
+          </form>
+        </div>
+        <div id="FindPWFrom">
+          <form action="#">
+            <div class="center">
+              <input
+                id="FindPWEmail"
+                class="input-text"
+                type="text"
+                placeholder="아이디(이메일)"
+              />
+              <input
+                id="FindPWNum"
+                class="mt-10 input-text"
+                type="password"
+                placeholder="인증번호"
+              />
+            </div>
+            <div class="center mt-20">
+              <!-- 클릭시 이벤트 발생하게 -->
+              <input
+                class="Submit-Btn"
+                type="submit"
+                value="비밀번호 찾기"
+                id="FindPWBtn"
+              />
+            </div>
+          </form>
         </div>
       </div>
-      <input type="submit" value="아이디 찾기" />
-      <input type="submit" value="취소" />
-    </div>
-    <!-- 비밀번호 찾기 -->
-    <div class="member">
-      <div class="card-heading">
-        <h2 class="title">비밀번호 찾기</h2>
-      </div>
-      <div class="field tel-number">
-        <b>아이디</b>
-        <div>
-          <input type="email" placeholder="아이디 입력" />
-        </div>
-      </div>
-      <input type="submit" value="인증" />
-      <div>
-        <input type="text" placeholder="인증코드" />
-      </div>
-      <input type="submit" value="비밀번호 찾기" />
-      <input type="submit" value="취소" />
     </div>
   </body>
 </html>

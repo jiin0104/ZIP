@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+.center {
+  text-align: center;
+}
+.mt-10 {
+  margin-top: 10px;
+}
+.mt-20 {
+  margin-top: 20px;
+}
+.container {
+  height: 100vh;
+  width: 100%;
+  float: left;
+  background: #f8f8f8;
+}
+#FindIdPWForm {
+  width: 500px;
+  background: rgb(11, 83, 148);
+  margin: 100px auto;
+  border-radius: 10px;
+  padding: 15px;
+  transform: scale(1.2);
+}
+
+#formTitle {
+  text-align: center;
+  padding-top: 10px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: bolder;
+  letter-spacing: 1px;
+  font-size: 25px;
+}
+
+#formSwitchBtn {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0px;
+}
+#formSwitchBtn button {
+  font-size: 17px;
+  letter-spacing: 1px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: bolder;
+  width: 160px;
+  height: 40px;
+  border: 0px;
+  cursor: pointer;
+  position: relative;
+  background: transparent;
+  border: 1px solid #747474;
+  transition: 0.4s;
+}
+#formSwitchBtn .active {
+  color: black;
+  background: rgb(11, 83, 148);
+}
+.input-text {
+  width: 100%;
+  height: 38px;
+  border: 0px;
+  border: 1px solid #747474;
+  box-sizing: border-box;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 17px;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.input-text:focus {
+  outline: none;
+}
+
+.Submit-Btn {
+  width: 100%;
+  height: 42px;
+  border: 0px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 17px;
+  letter-spacing: 1px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: bolder;
+  transition: 0.4s;
+  background-color: #747474;
+  color: #fff;
+}
+.Submit-Btn:hover {
+  background-color: #444444;
+  color: #fff;
+}
