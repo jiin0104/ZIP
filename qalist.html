@@ -116,26 +116,65 @@
       <div class="container h-100">
         <div class="row h-100 align-items-center justify-content-center">
           <div class="col-12 col-md-10">
-            <div class="hero-content">
-              <h4>관리자페이지</h4>
-              <br>
-              <h4>공지 작성</h4>
-            </div>
+            <div id="content" class="sub_wrap">
+              <h4>공지사항</h4>
+
             <!-- Hero Search Form -->
             <div class="hero-search-form">
+              
+            </div>
 
-	<!-- 내용 -->
-	<div class="edit-title">
-		<label for="txt1" style="color: #fff;">제목</label>
-		<input type="text" name="return" id="txt1">
-	</div><br />
+  <!-- Content -->
+  <div class="hero-search-form">
+    <div class="mypage-form">
+      <button type="button" id="mypage_button">공지사항</button>
+      <button type="button" id="mypage_button">자주 묻는 질문</button>
+      <button type="button" id="mypage_button">1:1 문의</button>
+    </div>
+  </div>
+  <div>
+    <div class="tab_each">
+      <ul id="notices" class="show_list open_list">
+        <li>
+          <a href="javascript:doDisplay();" class="list_que">
+            <p style="color: #fff;">공지 제목</p>
+            <button class="update-btn" href="#">수정</button>
+            <button class="delete-btn" href="#">삭제</button>
+          </a>
 
-	<div id="classic">
-		<p>여기에 내용을 입력해주세요.</p>
-	</div><br />
+          <div id="notive_tab" style="display: none;">
+            <span style="color: #fff;">
+              공지내용
+            </span>
+          </div>
+        </li>
+      </ul>
+  </div>
+  <div>
+    <div class="align">
+      <div class="notice">
+        <!-- Tab -->
+        <div class="tab">
+          <span class="tab_btn">공지사항</span>
+        </div>
 
-	<div class="edit-btn" style="float: right;">
-		<button>등록</button>
+          <div class="upload-btn" style="float: right;">
+            <button>작성</button>
+          </div>
+          <div>
+            <nav aria-label="...">
+              <ul class="pagination justify-content-center">
+                <li class="page-item"><a class="page-link" href="#">이전</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">다음</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ****** Footer Area Start ****** -->
@@ -172,7 +211,19 @@
 			.catch(error => {
 				console.error(error);
 			});
+
 	</script>
+    <script type="text/javascript">
+      var bDisplay = true; function doDisplay() {
+        var con = document.getElementById("notive_tab");
+        if (con.style.display == 'none') {
+          con.style.display = 'block';
+        } else {
+          con.style.display = 'none';
+        }
+      }
+  
+    </script>
 
   <!-- jQuery-2.2.4 js -->
   <script src="js/jquery/jquery-2.2.4.min.js"></script>
