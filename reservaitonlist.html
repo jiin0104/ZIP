@@ -1,54 +1,44 @@
-<div data-v-3c130066="" class="align_rt">
-  <div data-v-3c130066="" class="reserve_detail">
-    <!---->
-    <div>
-      <div data-v-3c130066="">
-        <i data-v-3c130066="" class=""> 이용완료 </i>
-        <strong data-v-3c130066="">(숙소명)</strong>
-        <span data-v-3c130066="">(방타입)</span>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reservation Result</title>
+  <body>
+    <div class="popup">
+      <h2>이용완료 내역</h2>
+      <div>
+        <strong>(숙소명)</strong>
+        <span>(방타입)</span>
       </div>
-    </div>
-    <section data-v-3c130066="">
-      <div data-v-3c130066="">
-        <p data-v-3c130066="">
-          <strong data-v-3c130066="">체크인</strong>(년.월.일.요일.체크인시간)
-        </p>
-        <p data-v-3c130066="">
-          <strong data-v-3c130066="">체크아웃</strong
-          >(년.월.일.요일.체크아웃시간)
-        </p>
-      </div>
-      <div data-v-3c130066="">
-        <p data-v-3c130066="">
-          <strong data-v-3c130066="">예약번호</strong>(예약번호나열)
-        </p>
-        <p data-v-3c130066="">
-          <strong data-v-3c130066="">예약자 이름</strong>(예약자 이름)
-        </p>
-      </div>
-      <div data-v-3c130066="" class="total" style="border-bottom: none">
-        <div data-v-3c130066="" class="payment-info-mobile">
-          <div data-v-3c130066="" class="payment-info-mobile__top">
-            <p data-v-3c130066="">
-              <strong data-v-3c130066="">총 결제 금액</strong>
+      <section>
+        <div>
+          <p><strong>체크인</strong> (년.월.일.요일.체크인시간)</p>
+          <p><strong>체크아웃</strong> (년.월.일.요일.체크아웃시간)</p>
+        </div>
+        <div>
+          <p><strong>예약번호</strong> (예약번호나열)</p>
+          <p><strong>예약자 이름</strong> (예약자 이름)</p>
+        </div>
+      </section>
+      <div class="total">
+        <div class="payment-info-mobile">
+          <div class="payment-info-mobile__top">
+            <p>
+              <strong>총 결제 금액</strong>
             </p>
           </div>
-          <div data-v-3c130066="" class="payment-info-mobile__middle">
-            <p data-v-3c130066=""><b data-v-3c130066="">(****,***원)</b></p>
+          <div class="payment-info-mobile__middle">
+            <p><b>(****,***원)</b></p>
           </div>
         </div>
       </div>
-    </section>
-    <a data-v-3c130066="" href="tel:(전화번호)" class="btn_call"
-      >전화문의하기</a
-    >
-    <section data-v-3c130066="">
-      <!---->
-      <p data-v-3c130066="">
-        <button data-v-3c130066="" type="button" class="base-button">
-          닫기
-        </button>
-      </p>
-    </section>
-  </div>
-</div>
+      <a href="tel:(전화번호)" class="btn-call">전화문의하기</a>
+      <section>
+        <p>
+          <button type="button" class="close-btn">닫기</button>
+        </p>
+      </section>
+    </div>
+  </body>
+</html>
