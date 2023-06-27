@@ -160,35 +160,63 @@
     <!-- ***** Breadcumb Area End ***** -->
 
     <!-- ***** Contact Area Start ***** -->
-    <div id="content" class="sub_wrap">
-      <div class="mypage-form">
-        <button type="button" id="mypage_button">내 정보</button>
-        <button type="button" id="mypage_button">예약 내역</button>
-        <button type="button" id="mypage_button">이용 내역</button>
-        <button type="button" id="mypage_button">내 찜 목록</button>
-        <button type="button" id="mypage_button">회원 탈퇴</button>
-        <div class="mypage_title"><h1>예약내역</h1></div>
-        <div class="user-res-wrap">
-          <div class="res-content">
-            <img class="room-image" src="room1.jpg" alt="객실 사진" />
-            <h6><strong>이젠호텔</strong></h6>
-            <input type="submit2" value="상세내역" />
-            <input
-              type="submit3"
-              onclick="showConfirmation()"
-              value="예약취소"
-            />
-            <div id="popup" class="popup" style="display: none">
-              <p class="popup-message">예약을 취소하시겠습니까?</p>
-              <div class="popup-buttons">
-                <button onclick="hideConfirmation()">Cancel</button>
-                <button onclick="alert('예약이 취소되었습니다!')">OK</button>
+    <div
+      class="dorne-contact-area d-md-flex container"
+      style="padding-top: 43px"
+      id="contact"
+    >
+      <!-- 버튼부분-->
+      <div style="width: 20%">
+        <div class="leftsidebar" style="width: 20%; padding-top: 30%">
+          <button type="button" id="mypage_button" style="max-width: 20px">
+            내정보
+          </button>
+          <button type="button" id="mypage_button" style="max-width: 20px">
+            예약내역
+          </button>
+          <button type="button" id="mypage_button" style="max-width: 20px">
+            이용내역
+          </button>
+          <button type="button" id="mypage_button" style="max-width: 20px">
+            내 찜 목록</button
+          ><button type="button" id="mypage_button" style="max-width: 20px">
+            회원 탈퇴
+          </button>
+        </div>
+      </div>
+      <!-- 여기가 오른쪽에 있는 내용 -->
+      <div
+        class="contact-form-area equal-height container"
+        style="padding-top: 6%"
+      >
+        <div class="contact-text">
+          <h1>예약내역</h1>
+          <div>
+            <div class="res-content" style="width: 100%; padding: 10%">
+              <img class="room-image" src="room1.jpg" alt="객실 사진" />
+              <h6><strong>이젠호텔</strong></h6>
+
+                <input type="submit2" value="상세내역" style="display: inline-block" />
+                <input
+                  type="submit3"
+                  onclick="showConfirmation()"
+                  value="예약취소"
+                  style="display: inline-block"
+                />
+              </div>
+              <div id="popup" class="popup" style="display: none">
+                <p class="popup-message">예약을 취소하시겠습니까?</p>
+                <div class="popup-buttons">
+                  <button onclick="hideConfirmation()">Cancel</button>
+                  <button onclick="alert('예약이 취소되었습니다!')">OK</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
     <!-- ****** Footer Area Start ****** -->
     <footer class="dorne-footer-area">
       <div class="container-fluid">

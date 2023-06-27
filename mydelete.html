@@ -175,38 +175,65 @@
     <!-- ***** Breadcumb Area End ***** -->
 
     <!-- ***** Contact Area Start ***** -->
-    <div id="content" class="sub_wrap">
-      <div class="mypage-form">
-        <button type="button" id="mypage_button">내 정보</button>
-        <button type="button" id="mypage_button">예약 내역</button>
-        <button type="button" id="mypage_button">이용 내역</button>
-        <button type="button" id="mypage_button">내 찜 목록</button>
-        <button type="button" id="mypage_button">회원 탈퇴</button>
-        <div class="mypage_title"><h1>회원탈퇴</h1></div>
-        <div class="user-res-wrap">
+    <div
+      class="dorne-contact-area d-md-flex container"
+      style="padding-top: 43px"
+      id="contact"
+    >
+      <!-- 버튼부분-->
+      <div style="width: 20%">
+        <div class="leftsidebar" style="width: 20%; padding-top: 30%">
+          <button type="button" id="mypage_button" style="max-width: 20px">
+            내정보
+          </button>
+          <button type="button" id="mypage_button" style="max-width: 20px">
+            예약내역
+          </button>
+          <button type="button" id="mypage_button" style="max-width: 20px">
+            이용내역
+          </button>
+          <button type="button" id="mypage_button" style="max-width: 20px">
+            내 찜 목록</button
+          ><button type="button" id="mypage_button" style="max-width: 20px">
+            회원 탈퇴
+          </button>
+        </div>
+      </div>
+      <!-- 여기가 오른쪽에 있는 내용 -->
+      <div
+        class="contact-form-area equal-height container"
+        style="padding-top: 6%"
+      >
+        <div class="contact-text">
+          <h1>회원 탈퇴</h1>
           <div class="really">
             입력하신 정보는 회원탈퇴 이외의 목적으로 사용하지 않습니다<br />
             탈퇴 후 리뷰 및 모든 정보는 삭제됩니다<br /><br />
             <br /><br />
           </div>
-          <div class="col-auto">
-            <label for="inputPassword6" class="col-form-label">Password</label>
+          <div class="delete-check">
+            <div class="col-auto">
+              <label for="inputPassword6" class="col-form-label"
+                >Password</label
+              >
+            </div>
+            <div class="col-auto">
+              <input
+                type="password"
+                id="inputPassword6"
+                class="form-control"
+                aria-describedby="passwordHelpInline"
+              />
+            </div>
+            <button
+              type="submit"
+              onclick="showConfirmation()"
+              class="btn btn-primary"
+              style="position: relative; left: 390px; top: 30px"
+            >
+              확인
+            </button>
           </div>
-          <div class="col-auto">
-            <input
-              type="password"
-              id="inputPassword6"
-              class="form-control"
-              aria-describedby="passwordHelpInline"
-            />
-          </div>
-          <button
-            type="submit"
-            onclick="showConfirmation()"
-            class="btn btn-primary"
-          >
-            확인
-          </button>
           <div id="popup" class="popup" style="display: none">
             <p class="popup-message">정말 탈퇴하시겠습니까?</p>
             <div class="popup-buttons">

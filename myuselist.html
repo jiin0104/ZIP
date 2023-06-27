@@ -160,23 +160,50 @@
     <!-- ***** Breadcumb Area End ***** -->
 
     <!-- ***** Contact Area Start ***** -->
-    <div id="content" class="sub_wrap">
-      <div class="mypage-form">
-        <button type="button" id="mypage_button">내 정보</button>
-        <button type="button" id="mypage_button">예약 내역</button>
-        <button type="button" id="mypage_button">이용 내역</button>
-        <button type="button" id="mypage_button">내 찜 목록</button>
-        <button type="button" id="mypage_button">회원 탈퇴</button>
-        <div class="mypage_title"><h1>이용내역</h1></div>
-        <div class="user-res-wrap">
-          <div class="res-content">
+    <div
+      class="dorne-contact-area d-md-flex container"
+      style="padding-top: 43px"
+      id="contact"
+    >
+      <!-- 버튼부분-->
+      <div style="width: 20%">
+        <div class="leftsidebar" style="width: 20%; padding-top: 30%">
+          <button type="button" id="mypage_button" style="max-width: 20px">
+            내정보
+          </button>
+          <button type="button" id="mypage_button" style="max-width: 20px">
+            예약내역
+          </button>
+          <button type="button" id="mypage_button" style="max-width: 20px">
+            이용내역
+          </button>
+          <button type="button" id="mypage_button" style="max-width: 20px">
+            내 찜 목록</button
+          ><button type="button" id="mypage_button" style="max-width: 20px">
+            회원 탈퇴
+          </button>
+        </div>
+      </div>
+      <!-- 여기가 오른쪽에 있는 내용 -->
+      <div
+        class="contact-form-area equal-height container"
+        style="padding-top: 6%"
+      >
+        <div class="contact-text">
+          <h1>이용내역</h1>
+          <div class="res-content" style="width: 100%; padding: 10%">
             <img class="room-image" src="room1.jpg" alt="객실 사진" />
             <h6><strong>이젠호텔</strong></h6>
-            <input type="submit5" value="이용완료" />
+            <input
+              type="submit5"
+              value="이용완료"
+              style="display: inline-block"
+            />
             <input
               type="submit4"
               onclick="showConfirmation()"
               value="다시예약"
+              style="display: inline-block"
             />
             <div id="popup" class="popup" style="display: none">
               <p class="popup-message">다시 예약하시겠습니까?</p>
@@ -280,15 +307,15 @@
       }
     </script>
 
-      <script>
-        function showConfirmation() {
-          var popup = document.getElementById("popup");
-          popup.style.display = "block";
-        }
-        function hideConfirmation() {
-          var popup = document.getElementById("popup");
-          popup.style.display = "none";
-        }
+    <script>
+      function showConfirmation() {
+        var popup = document.getElementById("popup");
+        popup.style.display = "block";
+      }
+      function hideConfirmation() {
+        var popup = document.getElementById("popup");
+        popup.style.display = "none";
+      }
     </script>
   </body>
 </html>
