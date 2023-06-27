@@ -1483,3 +1483,21 @@ li {
 .h3-size {
   text-indent: 105px;
 }
+
+/*버튼*/
+#mypage_button {
+  margin: 0px;
+  min-width: 200px;
+  height: 52px;
+  margin-left: 45px;
+  background-color: #eff1f3;
+  border-radius: 0;
+  padding: 0 15px;
+  line-height: 50px;
+  color: #72728c;
+  font-weight: 600;
+  font-size: 15px;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+  border: none;
+}
