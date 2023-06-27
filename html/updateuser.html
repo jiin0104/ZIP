@@ -122,106 +122,44 @@
     </div>
 
     <!-- ***** Header Area Start ***** -->
-    <header class="header_area" id="header">
-      <div class="container-fluid h-100">
-        <div class="row h-100">
+<header class="header_area" id="header">
+  <div class="container h-100">
+      <div class="row h-100">
           <div class="col-12 h-100">
-            <nav class="h-100 navbar navbar-expand-lg">
-              <a class="navbar-brand" href="index.html"
-                ><img src="img/core-img/logo.png" alt=""
-              /></a>
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#dorneNav"
-                aria-controls="dorneNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span class="fa fa-bars"></span>
-              </button>
-              <!-- Nav -->
-              <div class="collapse navbar-collapse" id="dorneNav">
-                <ul class="navbar-nav mr-auto" id="dorneMenu">
-                  <li class="nav-item">
-                    <a class="nav-link" href="index.html"
-                      >Home <span class="sr-only">(current)</span></a
-                    >
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a
-                      class="nav-link dropdown-toggle"
-                      href="#"
-                      id="navbarDropdown"
-                      role="button"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                      >Explore
-                      <i class="fa fa-angle-down" aria-hidden="true"></i
-                    ></a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="index.html">Home</a>
-                      <a class="dropdown-item" href="explore.html">Explore</a>
-                      <a class="dropdown-item" href="listing.html">Listing</a>
-                      <a class="dropdown-item" href="single-listing.html"
-                        >Single Listing</a
-                      >
-                      <a class="dropdown-item" href="contact.html">Contact</a>
-                    </div>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a
-                      class="nav-link dropdown-toggle"
-                      href="#"
-                      id="navbarDropdown2"
-                      role="button"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                      >Listings
-                      <i class="fa fa-angle-down" aria-hidden="true"></i
-                    ></a>
-                    <div
-                      class="dropdown-menu"
-                      aria-labelledby="navbarDropdown2"
-                    >
-                      <a class="dropdown-item" href="index.html">Home</a>
-                      <a class="dropdown-item" href="explore.html">Explore</a>
-                      <a class="dropdown-item" href="listing.html">Listing</a>
-                      <a class="dropdown-item" href="single-listing.html"
-                        >Single Listing</a
-                      >
-                      <a class="dropdown-item" href="contact.html">Contact</a>
-                    </div>
-                  </li>
-                  <li class="nav-item active">
-                    <a class="nav-link" href="contact.html">Contact</a>
-                  </li>
-                </ul>
-                <!-- Search btn -->
-                <div class="dorne-search-btn">
-                  <a id="search-btn" href="#"
-                    ><i class="fa fa-search" aria-hidden="true"></i> Search</a
-                  >
-                </div>
-                <!-- Signin btn -->
-                <div class="dorne-signin-btn">
-                  <a href="#">Sign in or Register</a>
-                </div>
-                <!-- Add listings btn -->
-                <div class="dorne-add-listings-btn">
-                  <a href="#" class="btn dorne-btn">+ Add Listings</a>
-                </div>
-              </div>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </header>
-    <!-- ***** Header Area End ***** -->
+              <nav class="h-100 navbar navbar-expand-lg">
+                  <a class="navbar-brand" href=""><img src="img/core-img/logo.png" alt=""></a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav"
+                      aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation"><span
+                          class="fa fa-bars"></span></button>
+                  <!-- Nav -->
+                  <div class="collapse navbar-collapse" id="dorneNav">
+                      <ul class="navbar-nav mr-auto" id="dorneMenu">
 
+                      </ul>
+                      <!-- Signin btn -->
+                      <div class="dorne-signin-btn">
+                          <a href="#">로그인</a>
+                      </div>
+                      <div class="zip-dropdown-menu">
+                          <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                  style="color: #fff;"><i class="fa fa-bars" aria-hidden="true"></i></a>
+                              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                  <a class="dropdown-item" href="">내 정보</a>
+                                  <a class="dropdown-item" href="">예약 내역</a>
+                                  <a class="dropdown-item" href="">이용 내역</a>
+                                  <a class="dropdown-item" href="">내 찜 목록</a>
+                              </div>
+                          </li>
+                      </div>
+                  </div>
+              </nav>
+          </div>
+      </div>
+  </div>
+</header>
+<!-- ***** Header Area End ***** -->
     <!-- ***** Breadcumb Area Start ***** -->
     <div
       class="breadcumb-area bg-img bg-overlay"
@@ -242,23 +180,23 @@
           <!-- 2. 필드 -->
           <div class="field2">
             <b>닉네임</b>
-            <br /><input type="text" /><button type="button" id="crosscheck">
+            <br /><input type="text" role="textbox"/><button type="button" id="crosscheck">
               중복확인
             </button>
           </div>
           <div class="field2">
             <b>비밀번호</b>
-            <br /><input class="userpw" type="password" />
+            <br /><input class="userpw" type="password" role="textbox" />
           </div>
           <div class="field2">
             <b>비밀번호 재확인</b>
-            <input class="userpw-confirm" type="password" />
+            <br><input class="userpw-confirm" type="password" role="textbox"/>
           </div>
           <!-- 5. 이메일_전화번호 -->
           <div class="field2 tel-number">
             <b>휴대전화</b>
             <div>
-              <input type="tel" placeholder="전화번호 입력" />
+              <input type="tel" placeholder="전화번호 입력" role="textbox"/>
             </div>
           </div>
           <div class="field2">
@@ -266,20 +204,27 @@
             <input
               type="text"
               id="sample6_postcode"
-              placeholder="우편번호"
+              placeholder="우편번호" role="textbox"
             /><input
               type="button"
               id="findad"
               onclick="sample6_execDaumPostcode()"
               value="우편번호 찾기"
             /><br />
-            <input type="text" id="sample6_address" placeholder="주소" /><br />
+            <input type="text" id="sample6_address" placeholder="주소" role="textbox"/><br />
             <input
               type="text"
               id="sample6_detailAddress"
-              placeholder="상세주소"
+              placeholder="상세주소" role="textbox"
             />
-            <button type="button" id="addallow">수정</button>
+            <button type="button" id="addallow" onclick="showConfirmation()">
+              수정
+            </button>
+            <div id="popup" class="popup" style="display: none">
+              <p class="popup-message">정보를 수정하시겠습니까?</p>
+              <div class="popup-buttons">
+                <button onclick="hideConfirmation()">Cancel</button>
+                <button onclick="alert('수정되었습니다!')">OK</button>
           </div>
         </div>
       </div>
