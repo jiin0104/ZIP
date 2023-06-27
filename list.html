@@ -3,13 +3,16 @@
     <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-  <link rel="stylesheet" href="list.css">
-  <script src="lib/jquery-3.6.4.min.js"></script>
-  <script src="https://kit.fontawesome.com/4ff07a03f7.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <link href="list.css" rel="stylesheet" />
+  
+  
+
+  <!-- Responsive CSS -->
+  <link href="css/responsive/responsive.css" rel="stylesheet" />
+  <link rel="stylesheet" href="./air-datepicker/dist/css/datepicker.min.css">
+  <script src="./jquery-3.1.1.min.js"></script>
+  <script src="./air-datepicker/dist/js/datepicker.min.js"></script>
+  <script src="./air-datepicker/dist/js/i18n/datepicker.ko.js"></script>
   <style>
     .card .img-box{
   width: 100%;
@@ -23,95 +26,231 @@
   </style>
 </head>
 
-<body class="pc">
-    <div id="wrap">
-        <header class="bg-success">
-            <div class="container d-flex justify-content-between align-items-center h-100">
-              <h1>
-                <a href="#">
-                  집탈출
-                  <!-- <img src="로고주소" alt=""> -->
-                </a>
-              </h1>
-              <div class="dropdown text-end">
-                <div class="profile dropdown-toggle d-flex align-items-center gap-2" data-bs-toggle="dropdown">
-                  <div class="user-img">
+<body>
+   <!-- Preloader -->
+  <div id="preloader">
+    <div class="dorne-load"></div>
+  </div>
+
+  <!-- ***** Search Form Area ***** -->
+  <div class="dorne-search-form d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="search-close-btn" id="closeBtn">
+            <i class="pe-7s-close-circle" aria-hidden="true"></i>
+          </div>
+          <form action="#" method="get">
+            <input type="search" name="caviarSearch" id="search"
+              placeholder="Search Your Desire Destinations or Events" />
+            <input type="submit" class="d-none" value="submit" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header_area" id="header">
+    <div class="container h-100">
+      <div class="row h-100">
+        <div class="col-12 h-100">
+          <nav class="h-100 navbar navbar-expand-lg">
+            <a class="navbar-brand" href=""><img src="img/core-img/logo.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav"
+              aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="fa fa-bars"></span></button>
+            <!-- Nav -->
+            <div class="collapse navbar-collapse" id="dorneNav">
+              <ul class="navbar-nav mr-auto" id="dorneMenu">
+
+              </ul>
+              <!-- Signin btn -->
+              <div class="dorne-signin-btn">
+                <a href="#">로그아웃</a>
+              </div>
+              <div class="zip-dropdown-menu">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" style="color: #fff;"><i class="fa fa-bars"
+                      aria-hidden="true"></i></a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="">공지게시판관리</a>
+                    <a class="dropdown-item" href="">회원관리</a>
+                    <a class="dropdown-item" href="">예약관리</a>
+                    <a class="dropdown-item" href="">숙소관리</a>
+                    <a class="dropdown-item" href="">객실관리</a>
                   </div>
-                  <div class="login-check">
-                    <a href="#">로그인</a>
-                  </div>
-                  <div class="toggle-btn">
-                    <span class="stick1"></span>
-                    <span class="stick2"></span>
-                    <span class="stick3"></span>
-                  </div>
-                </div>
-                <ul class="dropdown-menu text-small mt-2">
-                  <li><a href="#" class="dropdown-item">내정보</a></li>
-                  <li><a href="#" class="dropdown-item">예약 내역</a></li>
-                  <li><a href="#" class="dropdown-item">이용 내역</a></li>
-                  <li><a href="#" class="dropdown-item">내 찜 목록</a></li>
-                </ul>
+                </li>
               </div>
             </div>
-          </header>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
 
-          <section class="container">
-            <div class="form-wrap bg-success rounded-2 mt-2 px-4">
-              <form action="#" method="post" class="w-100 h-100 d-flex justify-content-between align-items-center">
-                <div class="part1 d-flex justify-content-between align-items-center rounded-2 px-5">
-                  <label for="where-input"><i class="fa-solid fa-house"></i></label>
-                  <input disabled class="d-block w-100 ms-2 h-75" id="where-input" placeholder="어디로 향하시나요?">
-                  <div id="where" class="rounded-2 overflow-hidden overflow-y-auto">
-                    <h3 class="fs-5 mb-2 py-2 px-2">주변 인기 여행지</h3>
-                    <ul class="where-list h-100 w-100 p-0 ">
-                      <li class="d-flex align-items-center border-bottom w-100 px-3">
-                        <i class="fa-solid fa-location-dot me-4 fs-4"></i>
-                        <div class="d-flex flex-column">
-                          <span class="place fs-4">제주도</span>
-                          <span class="nation fs-6">대한민국</span>
-                        </div>
-                      </li>
-                      <li class="d-flex align-items-center border-bottom w-100 px-3">
-                        <i class="fa-solid fa-location-dot me-4 fs-4"></i>
-                        <div class="d-flex flex-column">
-                          <span class="place fs-5">강릉</span>
-                          <span class="nation fs-6">대한민국</span>
-                        </div>
-                      </li>
-                      <li class="d-flex align-items-center border-bottom w-100 px-3">
-                        <i class="fa-solid fa-location-dot me-4 fs-4"></i>
-                        <div class="d-flex flex-column">
-                          <span class="place fs-5">서울</span>
-                          <span class="nation fs-6">대한민국</span>
-                        </div>
-                      </li>
-                      
-                    </ul>
+  <!-- ***** Welcome Area Start ***** -->
+  <section class="dorne-welcome-area bg-img bg-overlay" style="background-image: url(img/bg-img/hero-1.jpg)">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center justify-content-center">
+        <div class="col-12 col-md-10">
+          
+          <!-- Hero Search Form -->
+          <div class="hero-search-form">
+            <!-- Tabs -->
+            <div class="nav nav-tabs" id="heroTab" role="tablist">
+              <a class="nav-item nav-link active" id="nav-places-tab" data-toggle="tab" href="#nav-places" role="tab"
+                aria-controls="nav-places" aria-selected="true">Places</a>
+            </div>
+            <!-- Tabs Content -->
+            <div class="tab-content" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="nav-places" role="tabpanel" aria-labelledby="nav-places-tab">
+                <h6>What are you looking for?</h6>
+                <form action="#" method="get">
+                  <select class="custom-select">
+                    <option selected>어디로 향하시나요?</option>
+                    <option value="1">서울</option>
+                    <option value="2">경기</option>
+                    <option value="3">충청</option>
+                    <option value="4">강원</option>
+                    <option value="5">경상</option>
+                    <option value="6">전라</option>
+                    <option value="7">제주</option>
+                  </select>
+
+                  <!-- 달력 집어넣기 -->
+                  <div class="double" style="color: #72728c;
+                  font-size: 12px;
+                  font-weight: 600;
+                  border: none;">
+                    <input id="datepicker1" type="text" placeholder="체크인날짜"
+                      style="color: #72728c; height: 26px; margin-right: 10px;">
+                    <input id="datepicker2" type="text" placeholder="체크아웃날짜"
+                      style="color: #72728c; height: 26px; margin-right: 10px;">
+                    <script>
+
+                      $("#datepicker").datepicker({
+                        language: 'ko'
+                      });
+
+                      datePickerSet($("#datepicker1"), $("#datepicker2"), true);
+
+                      function datePickerSet(sDate, eDate, flag) {
+
+
+                        if (!isValidStr(sDate) && !isValidStr(eDate) && sDate.length > 0 && eDate.length > 0) {
+                          var sDay = sDate.val();
+                          var eDay = eDate.val();
+
+                          if (flag && !isValidStr(sDay) && !isValidStr(eDay)) {
+                            var sdp = sDate.datepicker().data("datepicker");
+                            sdp.selectDate(new Date(sDay.replace(/-/g, "/")));
+
+                            var edp = eDate.datepicker().data("datepicker");
+                            edp.selectDate(new Date(eDay.replace(/-/g, "/")));
+                          }
+
+
+                          if (!isValidStr(eDay)) {
+                            sDate.datepicker({
+                              maxDate: new Date(eDay.replace(/-/g, "/"))
+                            });
+                          }
+                          sDate.datepicker({
+                            language: 'ko',
+                            autoClose: true,
+                            onSelect: function () {
+                              datePickerSet(sDate, eDate);
+                            }
+                          });
+
+
+                          if (!isValidStr(sDay)) {
+                            eDate.datepicker({
+                              minDate: new Date(sDay.replace(/-/g, "/"))
+                            });
+                          }
+                          eDate.datepicker({
+                            language: 'ko',
+                            autoClose: true,
+                            onSelect: function () {
+                              datePickerSet(sDate, eDate);
+                            }
+                          });
+
+                        } else if (!isValidStr(sDate)) {
+                          var sDay = sDate.val();
+                          if (flag && !isValidStr(sDay)) {
+                            var sdp = sDate.datepicker().data("datepicker");
+                            sdp.selectDate(new Date(sDay.replace(/-/g, "/")));
+                          }
+
+                          sDate.datepicker({
+                            language: 'ko',
+                            autoClose: true
+                          });
+                        }
+
+
+                        function isValidStr(str) {
+                          if (str == null || str == undefined || str == "")
+                            return true;
+                          else
+                            return false;
+                        }
+                      }
+                    </script>
                   </div>
-                </div>
-                <div class="part2 d-flex justify-content-between align-items-center rounded-2 px-5">
-                  <label for="when-input"><i class="fa-regular fa-calendar"></i></label>
-                  <input disabled class="when-input d-block w-100 ms-2 h-75" id="when-input" placeholder="체크인 날짜 / 체크아웃 날짜">
-                  <div id="when">
-                    <div class="when-box"></div>
-                  </div>
-                </div>
-                <div class="part3 d-flex justify-content-between align-items-center rounded-2 px-5">
-                  <label for="who-input"><i class="fa-solid fa-user"></i></label>
-                  <input disabled class="who-input d-block w-100 ms-2 h-75" id="who-input" value="성인 2명 / 아동 0명 / 객실 1개">
-                </div>
-                <button type="submit" class="btn btn-primary">검색</button>
+
+                  <!-- 인원 설정하기 -->
+                  <select class="custom-select1" style="height: 52px; color: #72728c;
+                  font-size: 12px;
+                  font-weight: 600;
+                  border: none;
+                  margin-right: 10px;
+                  width: 40%;">
+                    <option selected>인원선택</option>
+                    <option value="1">1명</option>
+                    <option value="2">2명</option>
+                    <option value="3">3명</option>
+                    <option value="4">4명</option>
+                    <option value="5">5명</option>
+                  </select>
+                  <select class="custom-select2" style="height: 52px; color: #72728c;
+                  font-size: 12px;
+                  font-weight: 600;
+                  border: none;
+                  margin-right: 10px;">
+                    <option selected>객실선택</option>
+                    <option value="1">1개</option>
+                    <option value="2">2개</option>
+                    <option value="3">3개</option>
+                    <option value="4">4개</option>
+                    <option value="5">5개</option>
+                  </select>
+
+
+
+                  <button type="submit" class="btn dorne-btn" style="height: 52px;">
+                    <i class="fa fa-search pr-2" aria-hidden="true"></i>
+                    검색
+                  </button>
+
+              </div>
               </form>
             </div>
-          </section>
-
+          </div>
+        </div>
+      </div>
     </div>
-
+    </div>
+  </section>
 
     <div class="wrap show">
 
-        <link rel="stylesheet" href="list.css?rand=1687214136">
+       
 
         <form id="product_filter_form" method="get" action=""
             data-sel_date="2023-06-22" data-sel_date2="2023-06-23">
@@ -343,25 +482,38 @@
     </div>
 
 
-    <script>
-        $('.part1').click(function(){
-          $('#where').toggle()
+    <script type="text/javascript">
+      ClassicEditor
+        .create(document.querySelector('#classic'), {
+          language: 'ko'
         })
-        $('.where-list li').each(function(){
-          $(this).click(function(){
-            $('#where-input').val($(this).find('span.place').text())
-          })
-        })
-        
-        $('.item-list').slick({
-          infinite: true,
-        slidesToShow: 4,
-        slidesToScroll: 4,
-        nextArrow:$('.next'),
-        prevArrow:$('.prev')
-    
+        .catch(error => {
+          console.error(error);
         });
+  
+    </script>
+      <script type="text/javascript">
+        var bDisplay = true; function doDisplay() {
+          var con = document.getElementById("notive_tab");
+          if (con.style.display == 'none') {
+            con.style.display = 'block';
+          } else {
+            con.style.display = 'none';
+          }
+        }
+    
       </script>
+<!-- jQuery-2.2.4 js -->
+<script src="js/jquery/jquery-2.2.4.min.js"></script>
+<!-- Popper js -->
+<script src="js/bootstrap/popper.min.js"></script>
+<!-- Bootstrap-4 js -->
+<script src="js/bootstrap/bootstrap.min.js"></script>
+<!-- All Plugins js -->
+<script src="js/others/plugins.js"></script>
+<!-- Active JS -->
+<script src="js/active.js"></script>
+
 </body>
 
 </html>
