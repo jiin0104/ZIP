@@ -293,14 +293,11 @@ img[class="room-image"] {
   padding: 10px;
 }
 
-.field2 {
-  margin: 20px;
-}
-
 .member2 {
   width: 350px;
   height: 500px;
-  margin: 50px 50px 50px 120px; /*중앙 정렬*/
+  padding: auto;
+  margin: 50px 50px 100px 120px; /*중앙 정렬*/
   transform: translate(150%, -240%);
 }
 
@@ -359,7 +356,7 @@ img[class="room-image"] {
   font-size: 19px;
 }
 
-.member2 [role="textbox"] {
+.field2 [role="textbox"] {
   font-family: "Noto Sans KR", sans-serif;
   width: 180px;
   height: 32px;
@@ -367,15 +364,34 @@ img[class="room-image"] {
   border: 0;
   border-radius: 15px;
   outline: none;
-  margin: 7px 10px 0px 0px;
+  margin: 7px 7px 0px 0px;
   padding: 10px;
   background-color: rgb(233, 233, 233);
 }
-
-.member2 #sample6_address {
-  width: 280px;
+.field2 [role="textbox2"] {
+  font-family: "Noto Sans KR", sans-serif;
+  width: 60px;
+  height: 32px;
+  font-size: 15px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  margin: 7px 0px 0px 0px;
+  padding: 10px;
+  background-color: rgb(233, 233, 233);
+}
+.field2 #sample6_address {
+  width: 300px;
 }
 
-.member2 #sample6_detailAddress {
-  width: 280px;
+.field2 #sample6_detailAddress {
+  width: 300px;
+}
+
+.field2 #sample6_extraAddress {
+  width: 300px;
+}
+
+h1 {
+  margin-bottom: 60px;
 }
