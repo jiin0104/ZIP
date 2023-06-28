@@ -5,110 +5,211 @@
   <meta charset="UTF-8">
   <meta name="description" content="">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-  <title>공지사항</title>
+  <!-- Title -->
+  <title>집탈출</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="img/core-img/favicon.ico">
+
+  <!-- Core Stylesheet -->
+  <link href="style.css" rel="stylesheet">
+
+  <!-- Responsive CSS -->
+  <link href="css/responsive/responsive.css" rel="stylesheet">
+  <link href="css/responsive/responsive.css" rel="stylesheet" />
+  <link rel="stylesheet" href="./air-datepicker/dist/css/datepicker.min.css">
+  <script src="./jquery-3.1.1.min.js"></script>
+  <script src="./air-datepicker/dist/js/datepicker.min.js"></script>
+  <script src="./air-datepicker/dist/js/i18n/datepicker.ko.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: "Noto Sans KR", sans-serif;
+    }
+
+    .double div {
+      float: left;
+    }
+
+    @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap");
+  </style>
 </head>
 
 <body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="dorne-load"></div>
+  </div>
 
-  <!-- Header -->
-  <header class="header_area" id="header">
-    <div>
-      <a href="로고 홈 리다이렉트">집탈출</a>
+  <!-- ***** Search Form Area ***** -->
+  <div class="dorne-search-form d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="search-close-btn" id="closeBtn">
+            <i class="pe-7s-close-circle" aria-hidden="true"></i>
+          </div>
+          <form action="#" method="get">
+            <input type="search" name="caviarSearch" id="search"
+              placeholder="Search Your Desire Destinations or Events">
+            <input type="submit" class="d-none" value="submit">
+          </form>
+        </div>
+      </div>
     </div>
-    <nav class="menu">
-      <details>
-        <summary>메뉴</summary>
-        <ul>
-          <a href="#">내 정보</a>
-          <a href="#">예약 내역</a>
-          <a href="#">이용 내역</a>
-          <a href="#">내 찜 목록</a>
-        </ul>
-      </details>
-    </nav>
-    <div class="zip-signin-btn">
-      <a href="#">로그인</a>
+  </div>
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header_area" id="header">
+    <div class="container h-100">
+      <div class="row h-100">
+        <div class="col-12 h-100">
+          <nav class="h-100 navbar navbar-expand-lg">
+            <a class="navbar-brand" href=""><img src="img/core-img/logo.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav"
+              aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="fa fa-bars"></span></button>
+            <!-- Nav -->
+            <div class="collapse navbar-collapse" id="dorneNav">
+              <ul class="navbar-nav mr-auto" id="dorneMenu">
+
+              </ul>
+              <!-- Signin btn -->
+              <div class="dorne-signin-btn">
+                <a href="#">로그아웃</a>
+              </div>
+              <div class="zip-dropdown-menu">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" style="color: #fff;"><i class="fa fa-bars"
+                      aria-hidden="true"></i></a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">내 정보</a>
+                    <a class="dropdown-item" href="#">예약 내역</a>
+                    <a class="dropdown-item" href="#">이용 내역</a>
+                    <a class="dropdown-item" href="#">내 찜 목록</a>
+                  </div>
+                </li>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
     </div>
   </header>
+  <!-- ***** Header Area End ***** -->
 
-  <!-- Content -->
-  <div>
-    <nav class="side-menu">
-      <ul>
-        <li>
-          <a href="#" class="active">공지사항</a>
-        </li>
-        <li>
-          <a href="#">자주 묻는 질문</a>
-        </li>
-        <li>
-          <a href="#">1:1 문의</a>
-        </li>
-      </ul>
-    </nav>
-    <div class="notice">
-      <!-- Tab -->
-      <div class="tab">
-        <span class="tab_btn">공지사항</span>
+  <!-- ***** Breadcumb Area Start ***** -->
+  <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/hero-1.jpg)">
+  </div>
+  <!-- ***** Breadcumb Area End ***** -->
+
+  <!-- ***** Contact Area Start ***** -->
+  <div class="dorne-contact-area d-md-flex container" id="contact" style="padding-top: 43px; padding-bottom: 43px; height: auto;">
+    <!-- 버튼부분-->
+    <div style="width: 35%; padding-top: 60px;">
+      <div class="leftsidebar" style="width: 20%;">
+        <button type="button" id="mypage_button" style="max-width: 20px; color: red;">공지사항</button>
       </div>
-      <div class="tab_each">
-        <ul id="notices" class="show_list open_list">
-          <li>
-            <a href="javascript:doDisplay();" class="list_que">
-              <p>공지 제목</p>
-            </a>
-            <div id="notive_tab" style="display: none;">
-              <span>
-                공지내용
-              </span>
-            </div>
-          </li>
-        </ul>
-        <div class="paging">
-          <button class="on">1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
-          <button>5</button>
-          <button class="next">다음</button>
-        </div>
+      <div class="leftsidebar" style="width: 20%;">
+        <button type="button" id="mypage_button" style="max-width: 20px;" onclick=location.href="faq.html";>자주 묻는 질문</button>
+      </div>
+      <div class="leftsidebar" style="width: 20%;">
+        <button type="button" id="mypage_button" style="max-width: 20px;" onclick=location.href="qalist.html";>1:1
+          문의</button>
       </div>
     </div>
-    <!-- Footer -->
-    <footer class="zip-footer-area">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12 d-md-flex align-items-center justify-content-between">
-            <div class="footer-text">
-              <p>
-                Copyright ©
-                <script>
-                  document.write(new Date().getFullYear());
-                </script> All rights reserved | Made with by <a href="https://github.com/Dogonem/ZIP"
-                  target="_blank">전과자들</a>
+    <!-- 여기가 오른쪽에 있는 내용 -->
+    <div style=" padding-top: 54px; width: 724px; margin-right: 31px;">
+      <!-- 리스트 상단 -->
+      <div class="top"
+        style=" overflow: visible; height: 80px; border-top: none; border-bottom: 1px solid rgba(0, 0, 0, 0.2);">
+        <h3>공지사항</h3>
+      </div>
+      <!-- 리스트 -->
+      <div style="width: 724px; margin-right: 31px;">
+        <div class="list" style="display: block; width: 100%; margin-top: 0; padding: 0; clear: both;">
+          <ul>
+            <li>
+              <p class="link on"
+                style="position: relative; height: auto; padding: 34px 0; font-size: 18px; line-height: normal;">
+                <span>제목</span>
               </p>
-            </div>
-          </div>
+              <div class="ans on"
+                style="margin-bottom: 0; padding: 35px 32px; border-radius: 0; background: rgba(0,0,0,0.08); font-size: 16px; line-height: 26px;">
+                <div>
+                  <span style="font-size: 13px;">내용</span>
+                </div>
+              </div>
+            </li>
+            <li>
+              <p class="link"
+                style="position: relative; height: auto; padding: 34px 0; font-size: 18px; line-height: normal; border-bottom: 1px solid #e6e6e6;">
+                <span>제목</span>
+              </p>
+            </li>
+            <li>
+              <p class="link"
+                style="position: relative; height: auto; padding: 34px 0; font-size: 18px; line-height: normal; border-bottom: 1px solid #e6e6e6;">
+                <span>제목</span>
+              </p>
+            </li>
+            <li>
+              <p class="link"
+                style="position: relative; height: auto; padding: 34px 0; font-size: 18px; line-height: normal; border-bottom: 1px solid #e6e6e6;">
+                <span>제목</span>
+              </p>
+            </li>
+            <li>
+              <p class="link"
+                style="position: relative; height: auto; padding: 34px 0; font-size: 18px; line-height: normal; border-bottom: 1px solid #e6e6e6;">
+                <span>제목</span>
+              </p>
+            </li>
+            <li>
+              <p class="link"
+                style="position: relative; height: auto; padding: 34px 0; font-size: 18px; line-height: normal; border-bottom: 1px solid #e6e6e6;">
+                <span>제목</span>
+              </p>
+            </li>
+          </ul>
         </div>
       </div>
-    </footer>
-  </div>
-  <!-- 상단으로 가는 버튼 -->
-  <button class="btn_go_top" onclick="moveTop();" style="display: block;">상단으로</button>
+      <nav aria-label="...">
+        <ul class="pagination justify-content-center">
+          <li class="page-item"><a class="page-link" href="#">이전</a></li>
+          <li class="page-item"><a class="page-link" href="#" style="background: rgba(0,0,0,0.08);">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">다음</a></li>
+        </ul>
+      </nav>
+    </div>
+    
 
-  <script type="text/javascript">
-    var bDisplay = true; function doDisplay() {
-      var con = document.getElementById("notive_tab");
-      if (con.style.display == 'none') {
-        con.style.display = 'block';
-      } else {
-        con.style.display = 'none';
-      }
-    }
+    <!-- ***** Contact Area End ***** -->
 
-  </script>
+    <!-- ****** Footer Area Start ****** -->
 
+    <!-- ****** Footer Area End ****** -->
+
+    <!-- jQuery-2.2.4 js -->
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap-4 js -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="js/others/plugins.js"></script>
+    <!-- Google Maps js -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk9KNSL1jTv4MY9Pza6w8DJkpI_nHyCnk"></script>
+    <script src="js/google-map/map-active.js"></script>
+    <!-- Active JS -->
+    <script src="js/active.js"></script>
 </body>
 
 </html>
