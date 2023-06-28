@@ -23,7 +23,6 @@
     <link href="responsive.css" rel="stylesheet" />
   </head>
 
-  <body>
     <!-- Preloader -->
     <div id="preloader">
       <div class="dorne-load"></div>
@@ -51,106 +50,45 @@
       </div>
     </div>
 
-    <!-- ***** Header Area Start ***** -->
-    <header class="header_area" id="header">
-      <div class="container-fluid h-100">
-        <div class="row h-100">
-          <div class="col-12 h-100">
-            <nav class="h-100 navbar navbar-expand-lg">
-              <a class="navbar-brand" href="index.html"
-                ><img src="img/core-img/logo.png" alt=""
-              /></a>
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#dorneNav"
-                aria-controls="dorneNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span class="fa fa-bars"></span>
-              </button>
-              <!-- Nav -->
-              <div class="collapse navbar-collapse" id="dorneNav">
-                <ul class="navbar-nav mr-auto" id="dorneMenu">
-                  <li class="nav-item">
-                    <a class="nav-link" href="index.html"
-                      >Home <span class="sr-only">(current)</span></a
-                    >
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a
-                      class="nav-link dropdown-toggle"
-                      href="#"
-                      id="navbarDropdown"
-                      role="button"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                      >Explore
-                      <i class="fa fa-angle-down" aria-hidden="true"></i
-                    ></a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="index.html">Home</a>
-                      <a class="dropdown-item" href="explore.html">Explore</a>
-                      <a class="dropdown-item" href="listing.html">Listing</a>
-                      <a class="dropdown-item" href="single-listing.html"
-                        >Single Listing</a
-                      >
-                      <a class="dropdown-item" href="contact.html">Contact</a>
-                    </div>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a
-                      class="nav-link dropdown-toggle"
-                      href="#"
-                      id="navbarDropdown2"
-                      role="button"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                      >Listings
-                      <i class="fa fa-angle-down" aria-hidden="true"></i
-                    ></a>
-                    <div
-                      class="dropdown-menu"
-                      aria-labelledby="navbarDropdown2"
-                    >
-                      <a class="dropdown-item" href="index.html">Home</a>
-                      <a class="dropdown-item" href="explore.html">Explore</a>
-                      <a class="dropdown-item" href="listing.html">Listing</a>
-                      <a class="dropdown-item" href="single-listing.html"
-                        >Single Listing</a
-                      >
-                      <a class="dropdown-item" href="contact.html">Contact</a>
-                    </div>
-                  </li>
-                  <li class="nav-item active">
-                    <a class="nav-link" href="contact.html">Contact</a>
-                  </li>
-                </ul>
-                <!-- Search btn -->
-                <div class="dorne-search-btn">
-                  <a id="search-btn" href="#"
-                    ><i class="fa fa-search" aria-hidden="true"></i> Search</a
-                  >
-                </div>
-                <!-- Signin btn -->
-                <div class="dorne-signin-btn">
-                  <a href="#">Sign in or Register</a>
-                </div>
-                <!-- Add listings btn -->
-                <div class="dorne-add-listings-btn">
-                  <a href="#" class="btn dorne-btn">+ Add Listings</a>
-                </div>
+<!-- ***** Header Area Start ***** -->
+  <header class="header_area" id="header">
+    <div class="container h-100">
+      <div class="row h-100">
+        <div class="col-12 h-100">
+          <nav class="h-100 navbar navbar-expand-lg">
+            <a class="navbar-brand" href=""><img src="img/core-img/logo.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav"
+              aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="fa fa-bars"></span></button>
+            <!-- Nav -->
+            <div class="collapse navbar-collapse" id="dorneNav">
+              <ul class="navbar-nav mr-auto" id="dorneMenu">
+
+              </ul>
+              <!-- Signin btn -->
+              <div class="dorne-signin-btn">
+                <a href="#">로그아웃</a>
               </div>
-            </nav>
-          </div>
+              <div class="zip-dropdown-menu">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" style="color: #fff;"><i class="fa fa-bars"
+                      aria-hidden="true"></i></a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">내 정보</a>
+                    <a class="dropdown-item" href="#">예약 내역</a>
+                    <a class="dropdown-item" href="#">이용 내역</a>
+                    <a class="dropdown-item" href="#">내 찜 목록</a>
+                  </div>
+                </li>
+              </div>
+            </div>
+          </nav>
         </div>
       </div>
-    </header>
-    <!-- ***** Header Area End ***** -->
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
 
     <!-- ***** Breadcumb Area Start ***** -->
     <div
@@ -166,43 +104,20 @@
       id="contact"
     >
       <!-- 버튼부분-->
-      <button
-            type="button"
-            id="mypage_button"
-            style="max-width: 20px;"
-            onclick="location.href='mypage.html'"
-          >
+      <div style="width: 20%">
+        <div class="leftsidebar" style="width: 20%; padding-top: 30%">
+          <button type="button" id="mypage_button" style="max-width: 20px" onclick=location.href="mypage.html";>
             내정보
           </button>
-          <button
-            type="button"
-            id="mypage_button"
-            style="max-width: 20px"
-            onclick="location.href='reservation.html'"
-          >
+          <button type="button" id="mypage_button" style="max-width: 20px" onclick=location.href="reservation.html";>
             예약내역
           </button>
-          <button
-            type="button"
-            id="mypage_button"
-            style="max-width: 20px"
-            onclick="location.href='myuselist.html'"
-          >
+          <button type="button" id="mypage_button" style="max-width: 20px" onclick=location.href="myuselist.html";>
             이용내역
           </button>
-          <button
-            type="button"
-            id="mypage_button"
-            style="max-width: 20px; color:red;"
-            onclick="location.href='likelist.html'"
-          >
+          <button type="button" id="mypage_button" style="max-width: 20px; color: red;" onclick=location.href="likelist.html";>
             내 찜 목록</button
-          ><button
-            type="button"
-            id="mypage_button"
-            style="max-width: 20px;"
-            onclick="location.href='mydelete.html'"
-          >
+          ><button type="button" id="mypage_button" style="max-width: 20px" onclick=location.href="mydelete.html";>
             회원 탈퇴
           </button>
         </div>
@@ -228,10 +143,13 @@
             >
               지금 바로 숙소 등록하기
             </button>
+            </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+  
 
     <!-- ****** Footer Area Start ****** -->
     <footer class="dorne-footer-area">
