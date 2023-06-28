@@ -1,1 +1,78 @@
-으ㅏ아ㅏㅇㅁㅎㄹ
+/* findidresult.css */
+
+/* Reset default styles */
+body,
+h2,
+p,
+ul,
+li,
+label,
+a {
+  margin: 0;
+  padding: 0;
+  border: none;
+  list-style: none;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Container styles */
+body {
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 400px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styles */
+h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* List styles */
+.list_id li {
+  margin-bottom: 5px;
+}
+
+/* Button styles */
+.btn_area {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn_area a {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn_login2 {
+  background-color: #007bff;
+}
+
+.btn_findpw {
+  background-color: #dc3545;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 480px) {
+  .container {
+    width: 90%;
+  }
+}

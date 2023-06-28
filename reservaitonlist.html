@@ -4,8 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reservation Result</title>
+    <link rel="stylesheet" href="reservationlist.css" />
+  </head>
   <body>
-    <div class="popup">
+    <div class="reslistpopup">
       <h2>이용완료 내역</h2>
       <div>
         <strong>(숙소명)</strong>
@@ -22,13 +24,11 @@
         </div>
       </section>
       <div class="total">
-        <div class="payment-info-mobile">
-          <div class="payment-info-mobile__top">
-            <p>
-              <strong>총 결제 금액</strong>
-            </p>
+        <div class="payment-info">
+          <div class="payment-info-top">
+            <p><strong>총 결제 금액</strong></p>
           </div>
-          <div class="payment-info-mobile__middle">
+          <div class="payment-info-middle">
             <p><b>(****,***원)</b></p>
           </div>
         </div>
@@ -36,7 +36,7 @@
       <a href="tel:(전화번호)" class="btn-call">전화문의하기</a>
       <section>
         <p>
-          <button type="button" class="close-btn">닫기</button>
+          <input type="button" value="닫기" onClick="self.close()" />
         </p>
       </section>
     </div>

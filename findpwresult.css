@@ -1,0 +1,66 @@
+/* findpwresult.css */
+
+/* 전체 페이지 스타일 */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+  padding: 20px;
+}
+
+/* 컨테이너 스타일 */
+div {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 400px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 스타일 */
+h2 {
+  color: #333;
+  font-size: 24px;
+  margin: 0 0 20px;
+}
+
+/* 문구 스타일 */
+p {
+  color: #777;
+  font-size: 16px;
+  margin: 0 0 20px;
+}
+
+/* 비밀번호 표시 스타일 */
+.list_id {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list_id li {
+  margin-bottom: 10px;
+}
+
+.list_id strong {
+  font-weight: bold;
+}
+
+/* 로그인 버튼 스타일 */
+.btn_area {
+  text-align: center;
+}
+
+.btn_login {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.btn_login:hover {
+  background-color: #0056b3;
+}
