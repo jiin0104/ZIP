@@ -168,18 +168,53 @@
       <!-- 버튼부분-->
       <div style="width: 20%">
         <div class="leftsidebar" style="width: 20%; padding-top: 30%">
-          <button type="button" id="mypage_button" style="max-width: 20px">
+          <button
+            type="button"
+            id="mypage_button"
+            style="max-width: 20px"
+            onclick="location.href"
+            ="mypage.html"
+            ;
+          >
             내정보
           </button>
-          <button type="button" id="mypage_button" style="max-width: 20px">
+          <button
+            type="button"
+            id="mypage_button"
+            style="max-width: 20px"
+            onclick="location.href"
+            ="reservation.html"
+            ;
+          >
             예약내역
           </button>
-          <button type="button" id="mypage_button" style="max-width: 20px">
+          <button
+            type="button"
+            id="mypage_button"
+            style="max-width: 20px; color: red"
+            onclick="location.href"
+            ="myuselist.html"
+            ;
+          >
             이용내역
           </button>
-          <button type="button" id="mypage_button" style="max-width: 20px">
+          <button
+            type="button"
+            id="mypage_button"
+            style="max-width: 20px"
+            onclick="location.href"
+            ="likelist.html"
+            ;
+          >
             내 찜 목록</button
-          ><button type="button" id="mypage_button" style="max-width: 20px">
+          ><button
+            type="button"
+            id="mypage_button"
+            style="max-width: 20px"
+            onclick="location.href"
+            ="mydelete.html"
+            ;
+          >
             회원 탈퇴
           </button>
         </div>
@@ -194,17 +229,13 @@
           <div class="res-content" style="width: 100%; padding: 10%">
             <img class="room-image" src="room1.jpg" alt="객실 사진" />
             <h6><strong>이젠호텔</strong></h6>
-            <input
-              type="submit5"
-              value="이용완료"
-              style="display: inline-block"
-            />
-            <input
-              type="submit4"
+            <button id="button5" style="display: inline-block">이용완료</button>
+          </button>
+            <button
+              id="button4"
               onclick="showConfirmation()"
-              value="다시예약"
               style="display: inline-block"
-            />
+            >다시예약</button>
             <div id="popup" class="popup" style="display: none">
               <p class="popup-message">다시 예약하시겠습니까?</p>
               <div class="popup-buttons">

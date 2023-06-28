@@ -168,18 +168,18 @@
       <!-- 버튼부분-->
       <div style="width: 20%">
         <div class="leftsidebar" style="width: 20%; padding-top: 30%">
-          <button type="button" id="mypage_button" style="max-width: 20px">
+          <button type="button" id="mypage_button" style="max-width: 20px; color: red;" onclick=location.href="mypage.html";>
             내정보
           </button>
-          <button type="button" id="mypage_button" style="max-width: 20px">
+          <button type="button" id="mypage_button" style="max-width: 20px" onclick=location.href="reservation.html";>
             예약내역
           </button>
-          <button type="button" id="mypage_button" style="max-width: 20px">
+          <button type="button" id="mypage_button" style="max-width: 20px" onclick=location.href="myuselist.html";>
             이용내역
           </button>
-          <button type="button" id="mypage_button" style="max-width: 20px">
+          <button type="button" id="mypage_button" style="max-width: 20px" onclick=location.href="likelist.html";>
             내 찜 목록</button
-          ><button type="button" id="mypage_button" style="max-width: 20px">
+          ><button type="button" id="mypage_button" style="max-width: 20px" onclick=location.href="mydelete.html";>
             회원 탈퇴
           </button>
         </div>
@@ -192,11 +192,14 @@
         <div class="contact-text">
           <h1>내 정보</h1>
             <div class="user-info">
-              <p><strong>이름:</strong> John Doe</p>
-              <p><strong>이메일:</strong> johndoe@example.com</p>
-              <p><strong>전화번호:</strong> 123-456-7890</p>
-              <p><strong>주소:</strong> 123 Main Street, City, Country</p>
-              <br><input type="submit" value="정보 수정" />
+              <!-- 폼전송시 전달되는 data target element -->
+              <input aria-hidden="true" type="hidden" name="uno" value="" />
+              <p><strong>이름:</strong><input type="text" name="uname" style="border-style: hidden; color: gray; position: relative; left: 5%;"  aria-hidden="true" value="john" /></p>
+              <p><strong>닉네임:</strong><input type="text" name="unick" style="border-style: hidden; color: gray; position: relative; left: 5%;"aria-hidden="true" value="존" /></p>
+              <p><strong>이메일:</strong><input type="email" name="uemail" style="border-style: hidden; color: gray; position: relative; left: 5%;"aria-hidden="true" value="john@naver.com" /></p>
+              <p><strong>전화번호:</strong><input type="tel" name="uphone" style="border-style: hidden; color: gray; position: relative; left: 5%;"aria-hidden="true" value="0101111111" /></p>
+              <p><strong>주소:</strong><input type="adress" name="uadress" style="border-style: hidden; color: gray; position: relative; left: 5%;"aria-hidden="true" value="서울시종로구" /></p>
+              <br><button id="infobutton" style="display: inline-block" onclick=location.href="mypagecheck.html";>정보수정</button>
             </div>
           </div>
         </div>
