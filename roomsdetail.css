@@ -1,47 +1,53 @@
-/* 전체 스타일 */
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  padding: 0;
-}
-
-h3 {
+.modal .modal-content h3 {
   color: black;
 }
 
-ul {
+.modal .modal-content ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
   color: gray;
 }
 
-/* 강조 텍스트 스타일 */
-strong {
-  font-weight: bold;
-}
-
 /* 객실 기본 정보 스타일 */
-ul:first-child {
+.modal .modal-content ul:first-child {
   margin-bottom: 20px;
 }
 
 /* 편의시설 스타일 */
-ul:nth-child(2) {
+.modal .modal-content ul:nth-child(2) {
   margin-bottom: 20px;
 }
 
 /* 특별옵션 및 패키지 스타일 */
-ul:last-child {
+.modal .modal-content ul:last-child {
   margin-bottom: 40px;
 }
 
 /* 리스트 아이템 스타일 */
-li {
+.modal .modal-content .basicinfo li {
   margin-bottom: 5px;
 }
 
-li::marker {
+.modal .modal-content .covenient li {
+  margin-bottom: 5px;
+}
+
+.modal .modal-content .special li {
+  margin-bottom: 5px;
+}
+
+.modal .modal-content .basicinfo li::marker {
+  content: "-";
+  color: grey;
+}
+
+.modal .modal-content .covenient li::marker {
+  content: "-";
+  color: grey;
+}
+
+.modal .modal-content .special li::marker {
   content: "-";
   color: grey;
 }
@@ -50,7 +56,7 @@ li::marker {
 .modal {
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 99999;
   left: 0;
   top: 0;
   width: 100%;

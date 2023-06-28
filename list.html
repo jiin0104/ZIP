@@ -4,8 +4,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link href="list.css" rel="stylesheet" />
-  
-  
 
   <!-- Responsive CSS -->
   <link href="css/responsive/responsive.css" rel="stylesheet" />
@@ -309,6 +307,7 @@
 
                         <div id="poduct_list_area">
                             <ul>
+                              <!-- 기준 되는 숙소리스트코드 -->
                                 <li class="list_4 adcno2">
                                     <a href=""
                                         data-ano="69744" data-adcno="2" data-alat="37.889287313835"
@@ -321,32 +320,93 @@
                                         </p>
                                         <div class="stage">
                                             <div class="right_badges">
-                                                <div class="badge"><span class="build_badge"
-                                                        style="color: rgba(255,255,255,0.8); background-color: rgba(62,76,103,1);">호텔</span>
+                                                <div class="badge">
+                                                  <span class="build_badge" style="color: rgba(255,255,255,0.8); background-color: rgba(62,76,103,1);">호텔</span>
                                                 </div>
                                             </div>
                                             <div class="name">
-
                                                 <strong>
-                                                    <div class="badge" style="padding: 0;"><span class="build_badge"
-                                                            style="color: rgba(255,255,255,1); background-color: rgba(103,101,201,1);">특급</span>
+                                                    <div class="badge" style="padding: 0;">
+                                                      <span class="build_badge" style="color: rgba(255,255,255,1); background-color: rgba(103,101,201,1);">특급</span>
                                                     </div> SL 호텔 강릉
                                                 </strong>
                                                 <p class="score">
                                                     <span><em>9.0</em>&nbsp;추천해요</span>&nbsp;(744)
                                                 </p>
-                                                <p>
-                                                    주문진터미널 차량 4분 </p>
+                                                <p>주문진터미널 차량 4분 </p>
                                             </div>
                                             <div class="price">
-                                                <div class="map_html">
-                                                    <p><b>99,000원</b></p>
-                                                </div>
-                                                <p><b style="color: rgba(0,0,0,1);">99,000원</b></p>
+                                              <p>
+                                                <em class="mark">
+                                                  <span>
+                                                    <b>남은 객실 1개</b>
+                                                    <i>&nbsp;</i>
+                                                  </span>
+                                                </em>
+                                                <b style="color: rgba(0,0,0,1);">98,000원</b>
+                                                <br><br>
+    <button id="modalButton">객실 이용 안내</button>
+    <div id="modal" class="modal" data-backdrop="static">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3>객실이용안내</h3>
+        <ul class="basicinfo">
+          <strong>기본정보</strong>
+          <li>(객실의 수용인원)</li>
+          <li>(객실의 침대 타입과 개수)</li>
+          <li>(객실의 구조)</li>
+        </ul>
+
+        <div class="jb-division-line"></div>
+
+        <ul class="convenient">
+          <strong>편의시설</strong>
+          <li>(침구류,tv,에어컨,옷장,냉장고,헤어드라이기 등등 객실의옵션)</li>
+        </ul>
+
+        <div class="jb-division-line"></div>
+
+        <ul class="special">
+          <strong>특별옵션 및 패키지</strong>
+          <li>(특별 어메니티,이벤트 물품, 증정품 등)</li>
+        </ul>
+        <div class="jb-division-line"></div>
+      </div>
+    </div>
+    <script>
+      // 모달 열기
+      var modalButton = document.getElementById("modalButton");
+      var modal = document.getElementById("modal");
+      var close = document.getElementsByClassName("close")[0];
+
+      modalButton.onclick = function () {
+        modal.style.display = "block";
+      };
+
+      // 모달 닫기
+      function closeModal() {
+        var modal = document.getElementById("modal");
+        modal.style.display = "none";
+      }
+
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
+    </script>
+    
+                                              </p>
                                             </div>
                                         </div>
                                     </a>
                                 </li>
+
+
+
+
+
+
                                 <li class="list_4 adcno2">
                                     <a href=""
                                         data-ano="49688" data-adcno="2" data-alat="37.803810157635"
@@ -377,10 +437,6 @@
                                                     강문해변 차량 2분 </p>
                                             </div>
                                             <div class="price">
-                                                <div class="map_html">
-                                                    <p><em class="mark"><span><b>남은 객실
-                                                                    1개</b><i>&nbsp;</i></span></em><b>198,000원</b></p>
-                                                </div>
                                                 <p><em class="mark"><span><b>남은 객실 1개</b><i>&nbsp;</i></span></em><b
                                                         style="color: rgba(0,0,0,1);">198,000원</b></p>
                                             </div>
