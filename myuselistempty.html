@@ -23,7 +23,7 @@
     <link href="responsive.css" rel="stylesheet" />
   </head>
 
-  <body>
+  <>
     <!-- Preloader -->
     <div id="preloader">
       <div class="dorne-load"></div>
@@ -166,7 +166,9 @@
       id="contact"
     >
       <!-- 버튼부분-->
-      <button
+      <div style="width: 20%">
+        <div class="leftsidebar" style="width: 20%; padding-top: 30%">
+          <button
             type="button"
             id="mypage_button"
             style="max-width: 20px;"
@@ -185,7 +187,7 @@
           <button
             type="button"
             id="mypage_button"
-            style="max-width: 20px"
+            style="max-width: 20px; color: red;"
             onclick="location.href='myuselist.html'"
           >
             이용내역
@@ -193,7 +195,7 @@
           <button
             type="button"
             id="mypage_button"
-            style="max-width: 20px; color:red;"
+            style="max-width: 20px; color:"
             onclick="location.href='likelist.html'"
           >
             내 찜 목록</button
@@ -213,26 +215,17 @@
         style="padding-top: 6%"
       >
         <div class="contact-text">
-          <h1>내 찜 목록</h1>
-          <div class="reslistempty">
-            <div class="really2">
-              찜한 목록이 없습니다<br />관심있는 숙소를 등록해주세요
-            </div>
-            <br />
-            <button
-              type="button"
-              id="main"
-              onclick="location.href"
-              ="index_230625.html"
-              ;
-            >
-              지금 바로 숙소 등록하기
-            </button>
+          <h1>이용내역</h1>
+          <div class="reslistempty" style="position: relative; left: 30px">
+          <div class="really2">
+            이용 내역이 없습니다<br />
           </div>
+
+        </div>
         </div>
       </div>
     </div>
-
+    
     <!-- ****** Footer Area Start ****** -->
     <footer class="dorne-footer-area">
       <div class="container-fluid">
