@@ -230,7 +230,7 @@
               <p class="popup-message">다시 예약하시겠습니까?</p>
               <div class="popup-buttons">
                 <button onclick="hideConfirmation()">Cancel</button>
-                <button onclick="alert('객실을 선택해주세요')">OK</button>
+                <button onclick="cancelReservation()">OK</button>
               </div>
             </div>
           </div>
@@ -336,6 +336,11 @@
       function hideConfirmation() {
         var popup = document.getElementById("popup");
         popup.style.display = "none";
+      }
+
+      function cancelReservation() {
+        alert("객실을 선택해주세요");
+        hideConfirmation();
       }
     </script>
   </body>
