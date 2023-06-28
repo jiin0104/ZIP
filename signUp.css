@@ -1,204 +1,346 @@
-/* Google web font CDN*/
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap");
 
-* {
-  box-sizing: border-box; /*전체에 박스사이징*/
-  outline: none; /*focus 했을때 테두리 나오게 */
+/*내정보(공통) 사이드바 버튼들*/
+#mypage_button {
+  margin: 0px;
+  min-width: 200px;
+  height: 52px;
+  margin-left: 45px;
+  background-color: #eff1f3;
+  border-radius: 0;
+  padding: 0 15px;
+  line-height: 50px;
+  color: #72728c;
+  font-weight: 600;
+  font-size: 15px;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+  border: none;
+}
+/*마이페이지(공통) 타이틀*/
+h1 {
+  margin-bottom: 60px;
+  text-align: center;
 }
 
-body {
+/*마이페이지.mypage.html*/
+
+.user-info {
   font-family: "Noto Sans KR", sans-serif;
-  font-size: 14px;
-  background-color: #fff;
-  line-height: 1.5em;
-  color: #222;
-  margin: 0;
-}
-/*member sign in*/
-.member {
-  width: 400px;
-  /* border: 1px solid #000; */
-  margin: auto; /*중앙 정렬*/
-  padding: 0 20px;
-  margin-bottom: 20px;
-}
-
-.member .field {
-  margin: 5px 0; /*상하로 좀 띄워주기*/
-}
-
-.member b {
-  /* border: 1px solid #000; */
-  display: block; /*수직 정렬하기 */
-  margin-bottom: 5px;
-}
-
-/*input 중 radio 는 width 가 100%면 안되니까 */
-.member input:not(input[type="radio"]),
-.member select {
-  border: 1px solid rgb(11, 83, 148);
-  
-  width: 100%;
-  margin-bottom: 5px;
-}
-
-.member input[type="button"],
-.member input[type="submit"] {
-  background-color: rgb(11, 83, 148);
-  color: #fff;
-}
-
-.field.tel-number div {
-  display: flex;
-}
-
-.field.tel-number div input:nth-child(1) {
-  flex: 2;
-}
-
-.field.tel-number div input:nth-child(2) {
-  flex: 1;
-}
-
-.placehold-text {
-  display: block; /*span 으로 감싸서 크기영역을 블록요소로 만들어ㅜ저야한다*/
-  position: relative;
-  /* border: 1px solid #000; */
-}
-
-.userpw {
-  background: url(./images/images2/icon-01.png) no-repeat center right 15px;
-  background-size: 20px;
-  background-color: #fff;
-}
-
-.userpw-confirm {
-  background: url(./images/images2/icon-02.png) no-repeat center right 15px;
-  background-size: 20px;
-  background-color: #fff;
-}
-
-@media (max-width: 768px) {
-  .member {
-    width: 100%;
-  }
-}
-
-.error_message {
-  font-size: 12px;
-  line-height: 16px;
-  color: #ff003e;
-  vertical-align: middle;
-}
-
-.field {
-  margin-top: 50px;
-}
-
-input{
-  border: 1px solid black;
-  border-radius: 3px;
-  line-height: 35px;
-  font-size: 12px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-
-.wrapper {
-  padding: 10px;
-}
-
-div {
-  padding-top: 3px;
-  padding-bottom: 3px;
-}
-
-.title {
+  height: 300px;
+  width: 500px;
+  background-color: fff;
   text-align: center;
-  font-weight: 700;
+  font-size: 30px;
 }
 
-.email input {
-  width: 100%;
+.user-info[role="textbox"] {
+  border-style: hidden;
 }
 
-.name input {
-  width: 100%;
+.user-info p {
+  font-size: 20px;
 }
 
-.password input {
-  width: 100%;
-}
-
-.passwordCheck input {
-  width: 100%;
-}
-
-.phone {
-  display: flex;
-  justify-content: space-between;
-  line-height: 35px;
-}
-
-#phone1 {
-  width: 18%;
-}
-
-#phone2 {
-  width: 30%;
-}
-
-#phone3 {
-  width: 30%;
-}
-
-.auth {
-  display: flex;
-  justify-content: space-between;
-}
-
-.timer {
-  display: flex;
-  justify-content: space-between;
-}
-
-.auth div {
-  width: 30%;
-  text-align: center;
-  font-weight: 700;
-  font-size: 15px;
-}
-
-.auth button {
-  width: 70%;
-}
-
-.timer div {
-  width: 30%;
-  text-align: center;
-  font-weight: 700;
-  font-size: 15px;
-}
-
-.timer button {
-  width: 70%;
-}
-
-
-.signUp button {
-  width: 100%;
-  cursor:pointer;
-}
-
-button{
+input[type="submit"] {
+  background-color: #0b5394;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 9px;
   cursor: pointer;
-  height: 30px;
+  font-size: 18px;
 }
 
-.error{
-  font-size: 1px;
-  height: 20px;
-  color:red;
+/*예약내역.reservation.html*/
+
+.res-content {
+  /*이용내역과 겹침*/
+  height: 280px;
+  width: 400px;
+  background-color: fff;
+  text-align: center;
+  font-size: 30px;
+  border-radius: 9px;
+  border: 1px solid gainsboro;
+  width: 355px;
+  height: 300px;
+}
+
+#button2 {
+  background-color: #0b5394;
+  color: white;
+  text-align: center;
+  border: none;
+  border-radius: 9px;
+  font-size: 16px;
+  height: 45px;
+  width: 100px;
+}
+
+#button3 {
+  background-color: red;
+  color: white;
+  position: relative;
+  left: 5%;
+  border: none;
+  border-radius: 9px;
+  text-align: center;
+  font-size: 16px;
+  height: 45px;
+  width: 100px;
+}
+
+img[src$="jpg"] {
+  border: 1px solid grey;
+  border-radius: 9px;
+  overflow: hidden;
+  position: relative;
+}
+
+img[class="room-image"] {
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 9px;
+  border: 1px solid gainsboro;
+}
+
+.really2 {
+  font-size: 20px;
+}
+
+/*예약내역없을때.reservationempty.html*/
+
+.reslistempty {
+  /*내찜목록 없을때랑 겹침*/
+  text-align: center;
+  width: 400px;
+  height: 400px;
+  position: relative;
+  top: 30px;
+  left: 5%;
+}
+
+/*이용내역.myuselist.html*/
+
+input[type="submit4"] {
+  background-color: #0b5394;
+  color: white;
+  padding: 15px;
+  border: none;
+  border-radius: 9px;
+  font-size: 16px;
+  height: 45px;
+  width: 100px;
+}
+
+input[type="submit5"] {
+  background-color: gray;
+  color: white;
+  padding: 15px;
+  border: none;
+  border-radius: 9px;
+  font-size: 16px;
+  height: 45px;
+  width: 100px;
+}
+
+/*내 찜 목록.likelist*/
+.like-content-list {
+  display: inline;
+}
+
+.like-content {
+  height: 200px;
+  width: 400px;
+  background-color: fff;
+  text-align: center;
+  font-size: 25px;
+  border-radius: 9px;
+  border: 1px solid gainsboro;
+}
+
+.like-content img {
+  float: left;
+  width: 140px;
+  height: 140px;
+  position: relative;
+  left: 30px;
+  top: 30px;
+}
+
+.like-content p {
+  font-size: 20px;
+  color: black;
+  position: relative;
+  left: 10px;
+  top: 30px;
+}
+
+.like-content div {
+  font-size: 15px;
+  overflow: auto;
+  position: relative;
+  left: 30px;
+  top: 30px;
+  background-color: fff;
+  width: 150px;
+  height: 80px;
+}
+
+.like-content span {
+  font-size: 20px;
   font-weight: 700;
+  text-align: right;
+  font-family: "Noto Sans KR", sans-serif;
+  overflow: auto;
+  float: right;
+  position: relative;
+  top: 30px;
+  right: 10px;
+}
+
+/*내 찜 목록 없을때. likelistempty*/
+
+#main {
+  width: 300px;
+  height: 50px;
+  background-color: #0b5394;
+  color: #fff;
+  padding: 3px 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 19px;
+}
+
+/*회원탈퇴. mydelete.html*/
+.really {
+  font-size: 16px;
+}
+
+.btn-primary {
+  background-color: #0b5394;
+}
+
+/*회원정보수정*/
+.field2 [role="textbox"] {
+  font-family: "Noto Sans KR", sans-serif;
+  width: 180px;
+  height: 32px;
+  font-size: 15px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  margin: 7px 7px 0px 0px;
+  padding: 10px;
+  background-color: rgb(233, 233, 233);
+}
+.field2 [role="textbox2"] {
+  font-family: "Noto Sans KR", sans-serif;
+  width: 60px;
+  height: 32px;
+  font-size: 15px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  margin: 7px 0px 0px 0px;
+  padding: 10px;
+  background-color: rgb(233, 233, 233);
+}
+.field2 #sample6_address {
+  width: 300px;
+}
+
+.field2 #sample6_detailAddress {
+  width: 300px;
+}
+
+.field2 #sample6_extraAddress {
+  width: 300px;
+}
+
+.member2 #sample6_postcode {
+  width: 100px;
+}
+
+#crosscheck {
+  background-color: #0b5394;
+  color: #fff;
+  padding: 3px 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+#findad {
+  /*margin: 5px 0px 5px 125px;*/
+  border: none;
+  background-color: #0b5394;
+  color: #fff;
+  padding: 3px 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 15px;
+}
+#addallow {
+  background-color: #0b5394;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 17px;
+  width: 80px;
+  height: 35px;
+  text-align: center;
+}
+
+/*팝업창들*/
+.popup {
+  width: 300px;
+  height: 200px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 40%;
+  left: 25%;
+  text-align: center;
+}
+
+.popup-message {
+  width: 170px;
+  height: 30px;
+  position: absolute;
+  top: 30%;
+  left: 23%;
+  text-align: center;
+}
+
+.popup-buttons {
+  display: contents;
+  justify-content: center;
+  position: absolute;
+  top: 70%;
+  left: 34%;
+  text-align: center;
+}
+
+.popup-buttons button {
+  background-color: #ccc;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100px;
+  height: 40px;
+  position: relative;
+  top: 60%;
+  margin: 3%;
+}
+
+.popup-buttons button:hover {
+  background-color: #999;
 }

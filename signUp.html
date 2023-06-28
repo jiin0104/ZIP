@@ -8,10 +8,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
+  <!-- Title -->
+  <title>Dorne - Directory &amp; Listing Template | Contact</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="img/core-img/favicon.ico" />
+
+  <!-- Core Stylesheet -->
+  <link href="style.css" rel="stylesheet" />
+  <link href="signUp.css" rel="stylesheet" />
+
+  <!-- Responsive CSS -->
+  <link href="responsive.css" rel="stylesheet" />
+  <link href="css/responsive/responsive.css" rel="stylesheet" />
+  <link rel="stylesheet" href="./air-datepicker/dist/css/datepicker.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+    integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+    crossorigin="anonymous"></script>
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script>
-
-
-
     function sample6_execDaumPostcode() {
       new daum.Postcode({
         oncomplete: function (data) {
@@ -66,19 +84,19 @@
 
     // 휴대폰 번호 입력 부분
     function changePhone1() {
-      const phone1 = document.getElementById("phone1").value // 010
+      const phone1 = document.getElementById("phone1").value; // 010
       if (phone1.length === 3) {
         document.getElementById("phone2").focus();
       }
     }
     function changePhone2() {
-      const phone2 = document.getElementById("phone2").value // 010
+      const phone2 = document.getElementById("phone2").value; // 010
       if (phone2.length === 4) {
         document.getElementById("phone3").focus();
       }
     }
     function changePhone3() {
-      const phone3 = document.getElementById("phone3").value // 010
+      const phone3 = document.getElementById("phone3").value; // 010
       if (phone3.length === 4) {
         document.getElementById("sendMessage").focus();
 
@@ -92,20 +110,28 @@
       document.getElementById("completion").disabled = true;
       document.getElementById("certificationNumber").innerHTML = "000000";
       document.getElementById("timeLimit").innerHTML = "03:00";
-      document.getElementById("sendMessage").setAttribute("style", "background-color:none;")
-      document.getElementById("completion").setAttribute("style", "background-color:none;")
+      document
+        .getElementById("sendMessage")
+        .setAttribute("style", "background-color:none;");
+      document
+        .getElementById("completion")
+        .setAttribute("style", "background-color:none;");
     }
 
     let processID = -1;
 
     const getToken = () => {
-
       // 인증확인 버튼 활성화
-      document.getElementById("completion").setAttribute("style", "background-color:yellow;")
+      document
+        .getElementById("completion")
+        .setAttribute("style", "background-color:yellow;");
       document.getElementById("completion").disabled = false;
 
       if (processID != -1) clearInterval(processID);
-      const token = String(Math.floor(Math.random() * 1000000)).padStart(6, "0");
+      const token = String(Math.floor(Math.random() * 1000000)).padStart(
+        6,
+        "0"
+      );
       document.getElementById("certificationNumber").innerText = token;
       let time = 180;
       processID = setInterval(function () {
@@ -123,13 +149,13 @@
     };
 
     function checkCompletion() {
-      alert("문자 인증이 완료되었습니다.")
+      alert("문자 인증이 완료되었습니다.");
       initButton();
-      document.getElementById("completion").innerHTML = "인증완료"
-      document.getElementById("signUpButton").disabled = false;
-      document.getElementById("signUpButton").setAttribute("style", "background-color:yellow;")
+      document.getElementById("completion").innerHTML = "인증완료";
+      document.getElementById("addallow").disabled = false;
+      document
+        .getElementById("addallow")
     }
-
 
     // 가입부분 체크
 
@@ -139,6 +165,10 @@
       let nickname = document.getElementById("nickname").value
       let password = document.getElementById("password").value
       let passwordCheck = document.getElementById("passwordCheck").value
+      let sample6_address = document.getElementById("sample6_address").value;
+      let phone1 = document.getElementById("phone1").value;
+      let phone2 = document.getElementById("phone2").value;
+      let phone3 = document.getElementById("phone3").value;
       let check = true;
 
       // 이메일확인
@@ -160,81 +190,82 @@
 
       // 닉네임확인
       if (nickname === "") {
-        document.getElementById("nickError").innerHTML = "이름이 올바르지 않습니다."
-        check = false
+        document.getElementById("nickError").innerHTML =
+          "닉네임을 입력해주세요";
+        check = false;
       } else {
-        document.getElementById("nickError").innerHTML = ""
+        document.getElementById("nickError").innerHTML = "";
       }
-
 
       // 비밀번호 확인
       if (password !== passwordCheck) {
-        document.getElementById("passwordError").innerHTML = ""
-        document.getElementById("passwordCheckError").innerHTML = "비밀번호가 동일하지 않습니다."
-        check = false
+        document.getElementById("passwordError").innerHTML = "";
+        document.getElementById("passwordCheckError").innerHTML =
+          "비밀번호가 동일하지 않습니다.";
+        check = false;
       } else {
-        document.getElementById("passwordError").innerHTML = ""
-        document.getElementById("passwordCheckError").innerHTML = ""
+        document.getElementById("passwordError").innerHTML = "";
+        document.getElementById("passwordCheckError").innerHTML = "";
       }
 
       if (password === "") {
-        document.getElementById("passwordError").innerHTML = "비밀번호를 입력해주세요."
-        check = false
+        document.getElementById("passwordError").innerHTML =
+          "비밀번호를 입력해주세요.";
+        check = false;
       } else {
         //document.getElementById("passwordError").innerHTML=""
       }
       if (passwordCheck === "") {
-        document.getElementById("passwordCheckError").innerHTML = "비밀번호를 다시 입력해주세요."
-        check = false
+        document.getElementById("passwordCheckError").innerHTML =
+          "비밀번호를 다시 입력해주세요.";
+        check = false;
       } else {
         //document.getElementById("passwordCheckError").innerHTML=""
       }
 
-
-      // 주소 확인
-      if (address === "주소를 입력하세요") {
-        document.getElementById("addressError").innerHTML = "주소를 입력해주세요"
-        check = false
+      // 전화번호 확인
+      if (phone1 === "" || phone2 === "" || phone3 === "") {
+        document.getElementById("phoneError").innerHTML =
+          "전화번호를 입력해주세요";
+        check = false;
       } else {
-        document.getElementById("addressError").innerHTML = ""
+        document.getElementById("phoneError").innerHTML = "";
       }
 
 
+      // 주소 확인
+      if (sample6_address === "") {
+        document.getElementById("addressError").innerHTML =
+          "주소를 입력해주세요";
+        check = false;
+      } else {
+        document.getElementById("addressError").innerHTML = "";
+      }
+
       if (check) {
         document.getElementById("emailError").innerHTML = ""
-        document.getElementById("nickError").innerHTML = ""
-        document.getElementById("passwordError").innerHTML = ""
-        document.getElementById("passwordCheckError").innerHTML = ""
-        document.getElementById("addressError").innerHTML = ""
-
+        document.getElementById("nickError").innerHTML = "";
+        document.getElementById("passwordError").innerHTML = "";
+        document.getElementById("passwordCheckError").innerHTML = "";
+        document.getElementById("addressError").innerHTML = "";
+        document.getElementById("phoneError").innerHTML = "";
 
         //비동기 처리이벤트
         setTimeout(function () {
           alert("가입이 완료되었습니다.")
-        }, 0);
+          onclick = location.href = "login.html";
+        });
       }
     }
   </script>
-  <!-- Title -->
-  <title>Dorne - Directory &amp; Listing Template | Contact</title>
-
-  <!-- Favicon -->
-  <link rel="icon" href="img/core-img/favicon.ico" />
-
-  <!-- Core Stylesheet -->
-  <link href="style.css" rel="stylesheet" />
-  <link rel="stylesheet" href="signUp.css" />
-  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-  <!-- Responsive CSS -->
-  <link href="responsive.css" rel="stylesheet" />
-  <link href="css/responsive/responsive.css" rel="stylesheet" />
-  <link rel="stylesheet" href="./air-datepicker/dist/css/datepicker.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-    integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
-    crossorigin="anonymous"></script>
+  <style>
+    .error {
+      font-size: 1px;
+      height: 20px;
+      color: red;
+      font-weight: 700;
+    }
+  </style>
 </head>
 
 <body>
@@ -263,60 +294,34 @@
 
   <!-- ***** Header Area Start ***** -->
   <header class="header_area" id="header">
-    <div class="container-fluid h-100">
+    <div class="container h-100">
       <div class="row h-100">
         <div class="col-12 h-100">
           <nav class="h-100 navbar navbar-expand-lg">
-            <a class="navbar-brand" href="index.html"><img src="img/core-img/logo.png" alt="" /></a>
+            <a class="navbar-brand" href=""><img src="img/core-img/logo.png" alt="" /></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav"
               aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="fa fa-bars"></span>
             </button>
             <!-- Nav -->
             <div class="collapse navbar-collapse" id="dorneNav">
-              <ul class="navbar-nav mr-auto" id="dorneMenu">
-                <li class="nav-item">
-                  <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">Explore
-                    <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="index.html">Home</a>
-                    <a class="dropdown-item" href="explore.html">Explore</a>
-                    <a class="dropdown-item" href="listing.html">Listing</a>
-                    <a class="dropdown-item" href="single-listing.html">Single Listing</a>
-                    <a class="dropdown-item" href="contact.html">Contact</a>
-                  </div>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">Listings
-                    <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                    <a class="dropdown-item" href="index.html">Home</a>
-                    <a class="dropdown-item" href="explore.html">Explore</a>
-                    <a class="dropdown-item" href="listing.html">Listing</a>
-                    <a class="dropdown-item" href="single-listing.html">Single Listing</a>
-                    <a class="dropdown-item" href="contact.html">Contact</a>
-                  </div>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="contact.html">Contact</a>
-                </li>
-              </ul>
-              <!-- Search btn -->
-              <div class="dorne-search-btn">
-                <a id="search-btn" href="#"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
-              </div>
+              <ul class="navbar-nav mr-auto" id="dorneMenu"></ul>
               <!-- Signin btn -->
               <div class="dorne-signin-btn">
-                <a href="#">Sign in or Register</a>
+                <a href="#">로그인</a>
               </div>
-              <!-- Add listings btn -->
-              <div class="dorne-add-listings-btn">
-                <a href="#" class="btn dorne-btn">+ Add Listings</a>
+              <div class="zip-dropdown-menu">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" style="color: #fff"><i class="fa fa-bars"
+                      aria-hidden="true"></i></a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="">내 정보</a>
+                    <a class="dropdown-item" href="">예약 내역</a>
+                    <a class="dropdown-item" href="">이용 내역</a>
+                    <a class="dropdown-item" href="">내 찜 목록</a>
+                  </div>
+                </li>
               </div>
             </div>
           </nav>
@@ -325,82 +330,82 @@
     </div>
   </header>
   <!-- ***** Header Area End ***** -->
-
   <!-- ***** Breadcumb Area Start ***** -->
   <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/hero-1.jpg)"></div>
   <!-- ***** Breadcumb Area End ***** -->
 
   <!-- ***** Contact Area Start ***** -->
-  <div id="content" class="sub_wrap">
-    <div class="mypage-form">
-      <div class="member">
-        <div class="card-heading" style="margin-top: 50px; display: flex; justify-content: center;">
-          <h2 class="title">회원가입</h2>
+  <div class="dorne-contact-area d-md-flex container" style="padding-top: 43px" id="contact">
+    <!-- 버튼부분-->
 
-        </div>
-        <!-- 2. 필드 -->
-        <div class="field" id="sign">
-          <b>이메일(아이디)</b>
-          <input id="email" type="text" placeholder="이메일을 입력해 주세요.">
+    <!-- 여기가 오른쪽에 있는 내용 -->
+    <div class="contact-form-area equal-height container" style="padding-top: 6%">
+      <div class="contact-text">
+        <h1 class="title">회원 가입</h1>
+        <div class="field2" id="sign">
+          <b>이메일(아이디)</b><br>
+          <input id="email" type="text" role="textbox" placeholder="이메일을 입력해 주세요.">
           <div id="emailError" class="error"></div>
-          </section>
-        </div>
-        <div class="field" id="sign">
-          <b>비밀번호</b>
-          <input id="password" type="password" placeholder="비밀번호를 입력해 주세요.">
-          <div id="passwordError" class="error"></div>
         </div>
 
-        <div class="field" id="sign">
-          <b>비밀번호 재확인</b>
-          <input id="passwordCheck" type="password" placeholder="비밀번호를 다시 입력해 주세요.">
-          <div id="passwordCheckError" class="error"></div>
-        </div>
-
-        <div class="field" id="sign">
-          <b>닉네임</b>
-          <input id="nickname" type="text" placeholder="닉네임을 입력해 주세요.">
-          <div id="nickError" class="error"></div>
-        </div>
-
-        <!-- 5. 이메일_전화번호 -->
-        <div class="phone">
-          <b>전화번호</b>
-          <input id="phone1" type="text" size="1" maxlength="3" oninput="changePhone1()"> -
-          <input id="phone2" type="text" size="3" maxlength="4" oninput="changePhone2()"> -
-          <input id="phone3" type="text" size="3" maxlength="4" oninput="changePhone3()">
-        </div>
-        
-        <div class="auth">
-          <div id="certificationNumber">000000</div>
-          <button disabled id="sendMessage" onclick="getToken()">인증번호 전송</button>
-        </div>
-
-        <div class="timer">
-          <div id="timeLimit">03:00</div>
-          <button disabled id="completion" onclick="checkCompletion()">인증확인</button>
-        </div>
-        <br>
         <div>
-          <b>주소</b>
-          <input type="text" id="sample6_postcode" placeholder="우편번호" />
-          <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" /><br />
-          <input type="text" id="sample6_address" placeholder="주소" /><br />
-          <input type="text" id="sample6_detailAddress" placeholder="상세주소" />
-          <input type="text" id="sample6_extraAddress" placeholder="참고항목" />
-          <div id="addressError" class="error"></div>
-        </div>
+          <div class="field2" id="sign">
+            <b>닉네임</b><br />
+            <input type="text" id="nickname" role="textbox" placeholder="닉네임을 입력해 주세요." />
+            <input type="button" id="crosscheck" value="중복 확인">
+            <div id="nickError" class="error"></div>
+          </div>
+          <div class="field2">
+            <b>비밀번호</b><br />
+            <input class="userpw" id="password" type="password" role="textbox" placeholder="비밀번호를 입력해 주세요." />
+            <div id="passwordError" class="error"></div>
+          </div>
+          <div class="field2">
+            <b>비밀번호 재확인</b><br />
+            <input class="userpw-confirm" id="passwordCheck" type="password" role="textbox"
+              placeholder="비밀번호를 입력해 주세요." />
+            <div id="passwordCheckError" class="error"></div>
+          </div>
+          <!-- 5. 이메일_전화번호 -->
+          <div class="field2 tel-number">
+            <b>휴대전화</b>
+            <div>
+              <input id="phone1" type="text" size="1" maxlength="3" oninput="changePhone1()" role="textbox2" />-
+              <input id="phone2" type="text" size="3" maxlength="4" oninput="changePhone2()" role="textbox2" />-
+              <input id="phone3" type="text" size="3" maxlength="4" oninput="changePhone3()" role="textbox2" />
+              <div id="phoneError" class="error"></div>
+            </div>
+            <div class="auth">
+              <div id="certificationNumber">000000</div>
+              <button disabled id="sendMessage" onclick="getToken()">
+                인증번호 전송
+              </button>
+            </div>
+            <div class="timer">
+              <div id="timeLimit">03:00</div>
+              <button disabled id="completion" onclick="checkCompletion()">
+                인증확인
+              </button>
+            </div>
+          </div>
+          <div class="field2">
+            <b>주소</b><br />
+            <input type="text" id="sample6_postcode" placeholder="우편번호" role="textbox" />
+            <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" id="findad" /><br />
+            <input type="text" id="sample6_address" placeholder="주소" role="textbox2" /><br />
+            <input type="text" id="sample6_detailAddress" placeholder="상세주소" role="textbox" /><br />
+            <input type="text" id="sample6_extraAddress" placeholder="참고항목" role="textbox" />
+            <div id="addressError" class="error"></div>
+          </div>
 
-        <!-- 6. 가입하기 버튼 -->
-        <div class="signUp">
-          <input type="button" id="signUpButton" onclick="signUpCheck()" value="가입하기"></input>
+          <div style="position: relative; left: 125px; top: 30px" class="signUp">
+            <input type="button" id="addallow" onclick="signUpCheck()" value="가입하기" style="">
+          </div>
         </div>
       </div>
-
-
-
     </div>
   </div>
+  <div class="main" style="width: 20%"></div>
   <!-- ****** Footer Area Start ****** -->
   <footer class="dorne-footer-area">
     <div class="container-fluid">
