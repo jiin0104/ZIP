@@ -24,6 +24,8 @@
   <script src="./jquery-3.1.1.min.js"></script>
   <script src="./air-datepicker/dist/js/datepicker.min.js"></script>
   <script src="./air-datepicker/dist/js/i18n/datepicker.ko.js"></script>
+  <script type="text/javascript" src="./ckeditor/ckeditor.js" charset="utf-8"></script>
+  <script src="./ckeditor/translations/ko.js"></script>
   <style>
     * {
       margin: 0;
@@ -59,6 +61,35 @@
     .board-list tbody tr:nth-child(even) {
       background-color: #f9f9f9;
     }
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: "Noto Sans KR", sans-serif;
+    }
+
+    .double div {
+      float: left;
+    }
+
+    table {
+      width: 100%;
+      border: 1px solid greenyellow;
+    }
+
+    th,
+    td {
+      color: white;
+      border: 1px solid greenyellow;
+    }
+
+    .ck.ck-editor {
+			max-width: 1000px;
+		}
+
+		.ck-editor__editable {
+			min-height: 300px;
+		}
+  </style>
   </style>
 
 </head>
@@ -140,10 +171,10 @@
         <button type="button" id="mypage_button" style="max-width: 20px;" onclick=location.href="notification.html";>공지사항</button>
       </div>
       <div class="leftsidebar" style="width: 20%;">
-        <button type="button" id="mypage_button" style="max-width: 20px;" onclick=location.href="faq.html";>자주 묻는 질문</button>
+        <button type="button" id="mypage_button" style="max-width: 20px; color: red;" onclick=location.href="faq.html";>자주 묻는 질문</button>
       </div>
       <div class="leftsidebar" style="width: 20%;">
-        <button type="button" id="mypage_button" style="max-width: 20px; color: red;">1:1 문의</button>
+        <button type="button" id="mypage_button" style="max-width: 20px;" onclick=location.href="qa_list.html";>1:1 문의</button>
       </div>
     </div>
     <!-- 여기가 오른쪽에 있는 내용 -->
@@ -151,55 +182,24 @@
       <!-- 리스트 상단 -->
       <div class="top"
         style="overflow: visible; height: 80px; border-top: none; border-bottom: 1px solid rgba(0, 0, 0, 0.2);">
-        <h3>1:1 문의</h3>
+        <h3>자주 묻는 질문 작성</h3>
       </div>
 
-      <div class="board-list" style="width: 724px; margin-right: 31px; margin-bottom: 1rem;">
-        <table>
-          <thead>
-            <tr>
-              <th>No.</th>
-              <th>답변 여부</th>
-              <th>구분</th>
-              <th>제목</th>
-              <th>작성자</th>
-              <th>등록일자</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr onclick="location.href='#';">
-              <td>1</td>
-              <td>답변 완료</td>
-              <td>예약</td>
-              <td>질문 내용 1</td>
-              <td>작성자 1</td>
-              <td>2023-06-27</td>
-            </tr>
-            <tr onclick="location.href='#';">
-              <td>2</td>
-              <td>미답변</td>
-              <td>환불</td>
-              <td>질문 내용 2</td>
-              <td>작성자 2</td>
-              <td>2023-06-28</td>
-            </tr>
-          </tbody>
-        </table>
-        
-        
-    <div class="write-button" style="float: right;">
-      <button onclick="location.href='qaedit.html';">글 작성</button>
-    </div>
+      <div class="board-list" style="width: 724px; margin-right: 31px;"><br />
+
+	<!-- 내용 -->
+	<div class="edit-title">
+		<label for="txt1">제목</label>
+		<input type="text" name="return" id="txt1">
+	</div><br />
+
+	<div id="classic">
+		<p>여기에 내용을 입력해주세요.</p>
+	</div><br />
+
+	<div class="edit-btn" style="float: right;">
+		<button>등록</button>
       </div>
-      <nav aria-label="...">
-        <ul class="pagination justify-content-center">
-          <li class="page-item"><a class="page-link" href="#">이전</a></li>
-          <li class="page-item"><a class="page-link" href="#" style="background: rgba(0,0,0,0.08);">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">다음</a></li>
-        </ul>
-      </nav>
     </div>
   </div>
   <!-- ***** Contact Area End ***** -->
@@ -221,6 +221,17 @@
   <script src="js/google-map/map-active.js"></script>
   <!-- Active JS -->
   <script src="js/active.js"></script>
+
+  <script type="text/javascript">
+		ClassicEditor
+			.create(document.querySelector('#classic'), {
+				language: 'ko'
+			})
+			.catch(error => {
+				console.error(error);
+			});
+	</script>
+
 </body>
 
 </html>
