@@ -263,7 +263,7 @@
             <p class="popup-message">정말 탈퇴하시겠습니까?</p>
             <div class="popup-buttons">
               <button onclick="hideConfirmation()">Cancel</button>
-              <button onclick="alert('탈퇴가 완료되었습니다')">OK</button>
+              <button onclick="cancelReservation()">OK</button>
             </div>
           </div>
         </div>
@@ -368,6 +368,11 @@
       function hideConfirmation() {
         var popup = document.getElementById("popup");
         popup.style.display = "none";
+      }
+
+      function cancelReservation() {
+        alert("탈퇴가 완료되었습니다!");
+        hideConfirmation();
       }
     </script>
   </body>
