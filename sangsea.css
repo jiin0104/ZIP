@@ -1,3 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap");
+
+/*헤더와 떨어지게*/
+#sangsea.sub_wrap {
+  font-family: "Noto Sans KR", sans-serif;
+  box-sizing: border-box;
+  width: 1900px;
+  height: 1500px;
+  margin: 100px 0px 100px 0px;
+  background-color: fff;
+}
+
 .form-group {
     margin-bottom: 20px;
   }
@@ -33,3 +45,23 @@
     display: none;
     margin-top: 10px;
   }
+
+  .contact-form {
+    width: 300px;
+    height: auto;
+    margin-top: 100px;
+    float: right;
+  }
+
+  .contact-text {
+    float: left;
+    margin-top: 100px;
+    margin-left: 20px;
+  }
+
+  .showConfirmation-button {
+    position: bottom;
+    margin-top: 200px;
+    margin-left: 200px;
+  }
+  

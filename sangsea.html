@@ -18,78 +18,60 @@
 
     <!-- Core Stylesheet -->
     <link href="style.css" rel="stylesheet" />
-    <link href="mypage.css" rel="stylesheet" />
-    <!-- Responsive CSS -->
-    <link href="responsive.css" rel="stylesheet" />
-  </head>
+    <link href="sangsea.css" rel="stylesheet" />
 
-  <!-- Preloader -->
-  <div id="preloader">
-    <div class="dorne-load"></div>
-  </div>
 
-  <!-- ***** Search Form Area ***** -->
-  <div class="dorne-search-form d-flex align-items-center">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <div class="search-close-btn" id="closeBtn">
-            <i class="pe-7s-close-circle" aria-hidden="true"></i>
+    <!-- Preloader -->
+    <div id="preloader">
+      <div class="dorne-load"></div>
+    </div>
+
+    <!-- ***** Search Form Area ***** -->
+    <div class="dorne-search-form d-flex align-items-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="search-close-btn" id="closeBtn">
+              <i class="pe-7s-close-circle" aria-hidden="true"></i>
+            </div>
+            <form action="#" method="get">
+              <input
+                type="search"
+                name="caviarSearch"
+                id="search"
+                placeholder="Search Your Desire Destinations or Events"
+              />
+              <input type="submit" class="d-none" value="submit" />
+            </form>
           </div>
-          <form action="#" method="get">
-            <input
-              type="search"
-              name="caviarSearch"
-              id="search"
-              placeholder="Search Your Desire Destinations or Events"
-            />
-            <input type="submit" class="d-none" value="submit" />
-          </form>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- ***** Header Area Start ***** -->
+<!-- ***** Header Area Start ***** -->
   <header class="header_area" id="header">
     <div class="container h-100">
       <div class="row h-100">
         <div class="col-12 h-100">
           <nav class="h-100 navbar navbar-expand-lg">
-            <a class="navbar-brand" href=""
-              ><img src="img/core-img/logo.png" alt=""
-            /></a>
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#dorneNav"
-              aria-controls="dorneNav"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="fa fa-bars"></span>
-            </button>
+            <a class="navbar-brand" href=""><img src="img/core-img/logo.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav"
+              aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="fa fa-bars"></span></button>
             <!-- Nav -->
             <div class="collapse navbar-collapse" id="dorneNav">
-              <ul class="navbar-nav mr-auto" id="dorneMenu"></ul>
+              <ul class="navbar-nav mr-auto" id="dorneMenu">
+
+              </ul>
               <!-- Signin btn -->
               <div class="dorne-signin-btn">
                 <a href="#">로그아웃</a>
               </div>
               <div class="zip-dropdown-menu">
                 <li class="nav-item dropdown">
-                  <a
-                    class="nav-link dropdown-toggle"
-                    href="#"
-                    id="navbarDropdown"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    style="color: #fff"
-                    ><i class="fa fa-bars" aria-hidden="true"></i
-                  ></a>
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" style="color: #fff;"><i class="fa fa-bars"
+                      aria-hidden="true"></i></a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">내 정보</a>
                     <a class="dropdown-item" href="#">예약 내역</a>
@@ -106,71 +88,103 @@
   </header>
   <!-- ***** Header Area End ***** -->
 
-  <!-- ***** Breadcumb Area Start ***** -->
-  <div
-    class="breadcumb-area bg-img bg-overlay"
-    style="background-image: url(img/bg-img/hero-1.jpg)"
-  ></div>
-  <!-- ***** Breadcumb Area End ***** -->
+    <!-- ***** Breadcumb Area Start ***** -->
+    <div
+      class="breadcumb-area bg-img bg-overlay"
+      style="background-image: url(img/bg-img/hero-1.jpg)"
+    ></div>
+    <!-- ***** Breadcumb Area End ***** -->
 
-  <body>
-    <h4 class="card-title">상세 정보 기입</h4>
-    <form>
-      <div class="form-group">
-        <label for="name">예약자 이름:</label>
-        <input type="text" id="name" name="name" required />
-      </div>
-
-      <div class="form-group">
-        <label for="phone">휴대폰 번호:</label>
-        <input type="tel" id="phone" name="phone" required />
-      </div>
-
-      <div class="form-group">
-        <label for="email">이메일 주소:</label>
-        <input type="text" id="email-front" name="email-front" required />
-        <span>@</span>
-        <input
-          type="text"
-          id="email-back"
-          name="email-back"
-          list="email-domain-list"
-          required
-        />
-        <datalist id="email-domain-list">
-          <option value="daum.net"></option>
-          <option value="nate.com"></option>
-          <option value="naver.com"></option>
-          <option value="gmail.com"></option>
-          <option value="직접입력"></option>
-        </datalist>
-        <input
-          type="text"
-          id="custom-email-domain"
-          name="custom-email-domain"
-          class="custom-email-domain"
-        />
-      </div>
-    </form>
-
-    <div style="background-color: #f2f2f2; padding: 10px">
-      <p style="color: black; font-weight: bold">숙소이름</p>
-      <br />
-      <p style="color: black">객실타입/기간</p>
-      <br />
-      <p style="color: black">체크인</p>
-      <br />
-      <p style="color: black">체크아웃</p>
-      <br />
-      <hr />
-      <p style="color: black; font-weight: bold">총결제금액(VAT 포함)</p>
-      <p style="color: red; font-weight: bold">100,000원</p>
-      <p style="color: black">해당객실가는 세금, 봉사액 포함 금액입니다.</p>
-    </div>
-
-    <div class="form-group">
-      <input type="submit" value="예약 결제하기" />
-    </div>
+<!-- ***** 상세 정보 기입 ***** -->
+  <div class="col-8">
+	<div class="card">
+		<h4 class="card-title">상세 정보 기입</h4>
+		<div class="card-body">
+			<div class="row"  >
+				<div class="col-7">
+					<div class="row"  >
+						<form>
+							<div class="form-group">
+							  <label for="name">예약자 이름:</label>
+							  <input type="text" id="name" name="name" required>
+							</div>
+							<div class="form-group">
+							  <label for="phone">휴대폰 번호:</label>
+							  <input type="tel" id="phone" name="phone" required>
+							</div>    
+							<div class="form-group">
+							  <label for="email">이메일 주소:</label>
+							  <input type="text" id="email-front" name="email-front" required>
+							  <span>@</span>
+							  <input type="text" id="email-back" name="email-back" list="email-domain-list" required>
+							  <datalist id="email-domain-list">
+								<option value="daum.net"></option>
+								<option value="nate.com"></option>
+								<option value="naver.com"></option>
+								<option value="gmail.com"></option>
+								<option value="직접입력"></option>
+							  </datalist>
+							  <input type="text" id="custom-email-domain" name="custom-email-domain" class="custom-email-domain">
+							</div>
+						</form>
+					</div>
+					<div class="row px-1 mt-4" >
+						<button onclick="showConfirmation()">예약 결제하기</button>
+					</div>
+					
+				</div>
+				<div class="col-5">
+					<div class="card-body" style="background-color: #f2f2f2; ">
+					  <div class="row">
+						  <h6>예약 내역</h6>
+					  </div>
+					  <div class="row" >
+						<div class="col-5">
+							<p style="color: black;">숙소이름</p>
+						</div>
+						<div class="col-6">
+							<input type="text" class="textbox" placeholder="서울 이젠 호텔">
+						</div>
+					  </div>      	
+					  <div class="row" >
+						<div class="col-5">
+							<p style="color: black;">객실타입/기간</p>
+						</div>
+						<div class="col-6">
+							<input type="text" class="textbox" placeholder="디럭스 마운틴뷰/2박">
+						</div>
+					  </div>      	
+					  <div class="row" >
+						<div class="col-5">
+							<p style="color: black;">체크인</p>
+						</div>
+						<div class="col-6">
+							<input type="text" class="textbox" placeholder="2023년 9월 11일">
+						</div>
+					  </div>      
+					  <div class="row" >
+						<div class="col-5">
+							<p style="color: black;">체크아웃</p>
+						</div>
+						<div class="col-6">
+							<input type="text" class="textbox" placeholder="2023년 9월 13일">
+						</div>
+					  </div>      
+					  <div class="row" >
+						<p style="color: black; font-weight: bold;">총결제금액(VAT 포함)</p>
+					  </div>	
+					  <div class="row" >
+						<p style="color: red; font-weight: bold;">100,000원</p>
+					  </div>	
+					  <div class="row" >	
+						<p style="color: black;">해당객실가는 세금, 봉사액 포함 금액입니다.</p>
+					  </div>      
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    
 
     <!-- ****** Footer Area Start ****** -->
     <footer class="dorne-footer-area">
@@ -224,23 +238,7 @@
     <script src="js/google-map/map-active.js"></script>
     <!-- Active JS -->
     <script src="js/active.js"></script>
+	
+</body>
 
-    <script>
-      var emailFrontInput = document.getElementById("email-front");
-      var emailBackInput = document.getElementById("email-back");
-      var customEmailDomainInput = document.getElementById(
-        "custom-email-domain"
-      );
-
-      emailBackInput.addEventListener("input", function () {
-        if (emailBackInput.value === "직접입력") {
-          emailFrontInput.disabled = true;
-          customEmailDomainInput.style.display = "block";
-        } else {
-          emailFrontInput.disabled = false;
-          customEmailDomainInput.style.display = "none";
-        }
-      });
-    </script>
-  </body>
 </html>
