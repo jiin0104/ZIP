@@ -196,19 +196,16 @@
               <img class="room-image" src="room1.jpg" alt="객실 사진" />
               <h6><strong>이젠호텔</strong></h6>
 
-                <input type="submit2" value="상세내역" style="display: inline-block" />
-                <input
-                  type="submit3"
+                <button id="button2" style="display: inline-block">상세내역</button>
+                <button id="button3"
                   onclick="showConfirmation()"
-                  value="예약취소"
-                  style="display: inline-block"
-                />
+                  style="display: inline-block">예약내역</button>
               </div>
               <div id="popup" class="popup" style="display: none">
                 <p class="popup-message">예약을 취소하시겠습니까?</p>
                 <div class="popup-buttons">
                   <button onclick="hideConfirmation()">Cancel</button>
-                  <button onclick="alert('예약이 취소되었습니다!')">OK</button>
+                  <button onclick="cancelReservation()" >OK</button>
                 </div>
               </div>
             </div>
@@ -317,6 +314,11 @@
       function hideConfirmation() {
         var popup = document.getElementById("popup");
         popup.style.display = "none";
+      }
+
+      function cancelReservation() {
+        alert('예약이 취소되었습니다!');
+        hideConfirmation();
       }
     </script>
   </body>
