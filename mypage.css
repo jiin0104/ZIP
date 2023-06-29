@@ -253,6 +253,8 @@ img[class="room-image"] {
   font-size: 25px;
   border-radius: 9px;
   border: 1px solid gainsboro;
+  position: relative;
+  left: 8%;
 }
 
 .like-content img {
@@ -267,9 +269,6 @@ img[class="room-image"] {
 .like-content p {
   font-size: 20px;
   color: black;
-  position: relative;
-  left: 10px;
-  top: 30px;
 }
 
 .like-content div {
@@ -360,7 +359,7 @@ img[class="room-image"] {
   justify-content: center;
   position: absolute;
   top: 70%;
-  left: 34%;
+  left: 32%;
   text-align: center;
 }
 
@@ -396,6 +395,23 @@ img[class="room-image"] {
   position: relative;
   bottom: -60%;
   left: 5%;
+  text-align: center;
+}
+
+.popup-buttons #button9 {
+  background-color: #0b5394;
+  min-width: 70px;
+  height: 40px;
+  border-radius: 0;
+  line-height: 20px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+  border: none;
+  position: relative;
+  bottom: -60%;
   text-align: center;
 }
 

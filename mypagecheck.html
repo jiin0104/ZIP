@@ -186,7 +186,7 @@
       >
         <div class="contact-text">
           <h1>내 정보 수정</h1>
-          <div style="height: 300px">
+          <div style="height: 300px; position: relative; left: 20%">
             <div class="col-auto">
               <label for="inputPassword6" class="col-form-label"
                 >비밀번호 확인</label
@@ -204,18 +204,17 @@
               type="submit"
               onclick="showConfirmation()"
               class="btn btn-primary"
-              style="position: relative"
+              style="position: relative; background-color: #0b5394"
             >
               확인
             </button>
           </div>
           <div id="popup" class="popup" style="display: none">
-            <p class="popup-message">
-              비밀번호가<br />
-              일치하지 않습니다
+            <p class="popup-message" style="font-size: 18px">
+              비밀번호가 틀렸습니다
             </p>
             <div class="popup-buttons">
-              <button onclick="hideConfirmation()">OK</button>
+              <button id="button9" onclick="cancelReservation()">확인</button>
             </div>
           </div>
         </div>
@@ -329,6 +328,10 @@
       function showConfirmation() {
         var popup = document.getElementById("popup");
         popup.style.display = "block";
+      }
+
+      function cancelReservation() {
+        hideConfirmation();
       }
     </script>
   </body>
