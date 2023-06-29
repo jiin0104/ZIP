@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap");
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group select {
+  width: 200px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group select {
+  width: 100px;
+  margin-left: 10px;
+}
+
+.form-group input[type="submit"] {
+  width: auto;
+  padding: 10px 20px;
+  background-color: #ccc;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.custom-email-domain {
+  display: none;
+  margin-top: 10px;
+}
+
+.contact-form {
+  width: 300px;
+  height: auto;
+  margin-top: 100px;
+  float: right;
+}
+
+.contact-text {
+  float: left;
+  margin-top: 100px;
+  margin-left: 20px;
+}
+
+.showConfirmation-button {
+  position: bottom;
+  margin-top: 200px;
+  margin-left: 200px;
+}
+
+.card {
+  width: 1000px;
+  height: 700px;
+  border-color: white;
+}
