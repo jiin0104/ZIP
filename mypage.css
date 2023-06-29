@@ -149,26 +149,32 @@ h1 {
 
 #button2 {
   background-color: #0b5394;
-  color: white;
-  text-align: center;
+  min-width: 100px;
+  height: 50px;
+  border-radius: 0;
+  line-height: 50px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
   border: none;
-  border-radius: 9px;
-  font-size: 16px;
-  height: 45px;
-  width: 100px;
 }
 
 #button3 {
-  background-color: red;
-  color: white;
-  position: relative;
-  left: 5%;
+  background-color: #dc3545;
+  min-width: 100px;
+  height: 50px;
+  border-radius: 0;
+  line-height: 50px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
   border: none;
-  border-radius: 9px;
-  text-align: center;
-  font-size: 16px;
-  height: 45px;
-  width: 100px;
+  position: relative;
+  left: 10%;
 }
 
 img[src$="jpg"] {
@@ -205,28 +211,33 @@ img[class="room-image"] {
 
 #button4 {
   background-color: #0b5394;
-  color: white;
-  position: relative;
-  left: 5%;
+  min-width: 100px;
+  height: 50px;
+  border-radius: 0;
+  line-height: 50px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
   border: none;
-  border-radius: 9px;
-  text-align: center;
-  font-size: 16px;
-  height: 45px;
-  width: 100px;
+  position: relative;
+  left: 10%;
 }
 
 #button5 {
   background-color: gray;
-  color: white;
-  position: relative;
-  left: 5%;
+  min-width: 100px;
+  height: 50px;
+  border-radius: 0;
+  line-height: 50px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
   border: none;
-  border-radius: 9px;
-  text-align: center;
-  font-size: 16px;
-  height: 45px;
-  width: 100px;
+  position: relative;
 }
 
 /*내 찜 목록.likelist*/
@@ -303,8 +314,22 @@ img[class="room-image"] {
   font-size: 16px;
 }
 
-.btn-primary {
+#button6 {
   background-color: #0b5394;
+  min-width: 70px;
+  height: 40px;
+  border-radius: 0;
+  line-height: 20px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+  border: none;
+  position: relative;
+  left: 45%;
+  top: 10px;
+  text-align: center;
 }
 
 /*팝업창들*/
@@ -322,11 +347,11 @@ img[class="room-image"] {
 }
 
 .popup-message {
-  width: 170px;
+  width: 230px;
   height: 30px;
   position: absolute;
-  top: 30%;
-  left: 23%;
+  top: 27%;
+  left: 13%;
   text-align: center;
 }
 
@@ -339,16 +364,39 @@ img[class="room-image"] {
   text-align: center;
 }
 
-.popup-buttons button {
-  background-color: #ccc;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 100px;
+.popup-buttons #button7 {
+  background-color: gray;
+  min-width: 70px;
   height: 40px;
+  border-radius: 0;
+  line-height: 20px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+  border: none;
   position: relative;
-  top: 60%;
-  margin: 3%;
+  bottom: -60%;
+  text-align: center;
+}
+
+.popup-buttons #button8 {
+  background-color: #0b5394;
+  min-width: 70px;
+  height: 40px;
+  border-radius: 0;
+  line-height: 20px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+  border: none;
+  position: relative;
+  bottom: -60%;
+  left: 5%;
+  text-align: center;
 }
 
 .popup-buttons button:hover {
