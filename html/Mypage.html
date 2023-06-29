@@ -20,8 +20,9 @@
     <link href="style.css" rel="stylesheet" />
     <link href="mypage.css" rel="stylesheet" />
     <!-- Responsive CSS -->
-    <link href="responsive.css" rel="stylesheet" />
+    <link href="css/responsive/responsive.css" rel="stylesheet" />
   </head>
+
   <body>
     <!-- Preloader -->
     <div id="preloader">
@@ -51,60 +52,44 @@
     </div>
 
     <!-- ***** Header Area Start ***** -->
-    <header class="header_area" id="header">
-      <div class="container h-100">
-        <div class="row h-100">
-          <div class="col-12 h-100">
-            <nav class="h-100 navbar navbar-expand-lg">
-              <a class="navbar-brand" href=""
-                ><img src="img/core-img/logo.png" alt=""
-              /></a>
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#dorneNav"
-                aria-controls="dorneNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span class="fa fa-bars"></span>
-              </button>
-              <!-- Nav -->
-              <div class="collapse navbar-collapse" id="dorneNav">
-                <ul class="navbar-nav mr-auto" id="dorneMenu"></ul>
-                <!-- Signin btn -->
-                <div class="dorne-signin-btn">
-                  <a href="#">로그아웃</a>
-                </div>
-                <div class="zip-dropdown-menu">
-                  <li class="nav-item dropdown">
-                    <a
-                      class="nav-link dropdown-toggle"
-                      href="#"
-                      id="navbarDropdown"
-                      role="button"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                      style="color: #fff"
-                      ><i class="fa fa-bars" aria-hidden="true"></i
-                    ></a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">내 정보</a>
-                      <a class="dropdown-item" href="#">예약 내역</a>
-                      <a class="dropdown-item" href="#">이용 내역</a>
-                      <a class="dropdown-item" href="#">내 찜 목록</a>
-                    </div>
-                  </li>
-                </div>
+  <header class="header_area" id="header">
+    <div class="container h-100">
+      <div class="row h-100">
+        <div class="col-12 h-100">
+          <nav class="h-100 navbar navbar-expand-lg">
+            <a class="navbar-brand" href=""><img src="img/core-img/logo.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav"
+              aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="fa fa-bars"></span></button>
+            <!-- Nav -->
+            <div class="collapse navbar-collapse" id="dorneNav">
+              <ul class="navbar-nav mr-auto" id="dorneMenu">
+
+              </ul>
+              <!-- Signin btn -->
+              <div class="dorne-signin-btn">
+                <a href="#">로그아웃</a>
               </div>
-            </nav>
-          </div>
+              <div class="zip-dropdown-menu">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" style="color: #fff;"><i class="fa fa-bars"
+                      aria-hidden="true"></i></a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">내 정보</a>
+                    <a class="dropdown-item" href="#">예약 내역</a>
+                    <a class="dropdown-item" href="#">이용 내역</a>
+                    <a class="dropdown-item" href="#">내 찜 목록</a>
+                  </div>
+                </li>
+              </div>
+            </div>
+          </nav>
         </div>
       </div>
-    </header>
-    <!-- ***** Header Area End ***** -->
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
 
     <!-- ***** Breadcumb Area Start ***** -->
     <div
@@ -125,10 +110,8 @@
           <button
             type="button"
             id="mypage_button"
-            style="max-width: 20px"
-            onclick="location.href"
-            ="mypage.html"
-            ;
+            style="max-width: 20px; color: red;"
+            onclick="location.href='mypage.html'"
           >
             내정보
           </button>
@@ -136,9 +119,7 @@
             type="button"
             id="mypage_button"
             style="max-width: 20px"
-            onclick="location.href"
-            ="reservation.html"
-            ;
+            onclick="location.href='my_reservation.html'"
           >
             예약내역
           </button>
@@ -146,28 +127,22 @@
             type="button"
             id="mypage_button"
             style="max-width: 20px"
-            onclick="location.href"
-            ="myuselist.html"
-            ;
+            onclick="location.href='my_uselist.html'"
           >
             이용내역
           </button>
           <button
             type="button"
             id="mypage_button"
-            style="max-width: 20px; color: red"
-            onclick="location.href"
-            ="likelist.html"
-            ;
+            style="max-width: 20px"
+            onclick="location.href='my_likelist.html'"
           >
             내 찜 목록</button
           ><button
             type="button"
             id="mypage_button"
-            style="max-width: 20px"
-            onclick="location.href"
-            ="mydelete.html"
-            ;
+            style="max-width: 20px;"
+            onclick="location.href='my_delete.html'"
           >
             회원 탈퇴
           </button>
@@ -179,41 +154,21 @@
         style="padding-top: 6%"
       >
         <div class="contact-text">
-          <h1>내 찜 목록</h1>
-          <div class="like-content-list">
-            <div>
-            <div class="like-content">
-              <img id="ezenhotel" src="hotel.jpg" />
-              <p>김김호텔</p>
-              <div id="like-content-content">
-                내용~~~<br />내용~~~<br />내용~~~<br />
-              </div>
-              <span id="ezenhotelprice">99,000원</span>
+          <h1>내 정보</h1>
+            <div class="user-info">
+              <!-- 폼전송시 전달되는 data target element -->
+              <input aria-hidden="true" type="hidden" name="uno" value="" />
+              <p><strong>이름:</strong><input type="text" name="uname" style="font-size: 22px;  border-style: hidden; color: gray; position: relative; left: 5%;"  aria-hidden="true" value="john" /></p>
+              <p><strong>닉네임:</strong><input type="text" name="unick" style="font-size: 22px; border-style: hidden; color: gray; position: relative; left: 5%;"aria-hidden="true" value="존" /></p>
+              <p><strong>이메일:</strong><input type="email" name="uemail" style="font-size: 22px; border-style: hidden; color: gray; position: relative; left: 5%;"aria-hidden="true" value="john@naver.com" /></p>
+              <p><strong>전화번호:</strong><input type="tel" name="uphone" style="font-size: 22px; border-style: hidden; color: gray; position: relative; left: 5%;"aria-hidden="true" value="0101111111" /></p>
+              <p><strong>주소:</strong><input type="adress" name="uadress" style="font-size: 22px; border-style: hidden; color: gray; position: relative; left: 5%;"aria-hidden="true" value="서울시종로구" /></p>
+              <br><button id="infobutton" style="display: inline-block" onclick=location.href="mypage_Pw_check.html";>정보수정</button>
             </div>
-              <span id="ezenhotelprice" value="1000원"></span>
-            </div>
-            <div class="like-content">
-              <img id="ezenhotel" src="hotel.jpg" />
-              <p>김김호텔</p>
-              <div id="like-content-content">
-                내용~~~<br />내용~~~<br />내용~~~<br />
-              </div>
-              <span id="ezenhotelprice">99,000원</span>
-            </div>
-            <div class="like-content">
-              <img id="ezenhotel" src="hotel.jpg" />
-              <p>이젠호텔</p>
-              <div id="like-content-content">
-                내용~~~<br />내용~~~<br />내용~~~<br />
-              </div>
-              <span id="ezenhotelprice">239,000원</span>
-            </div>
-          </div>
           </div>
         </div>
       </div>
     </div>
-
     <!-- ****** Footer Area Start ****** -->
     <footer class="dorne-footer-area">
       <div class="container-fluid">

@@ -24,6 +24,8 @@
   <script src="./jquery-3.1.1.min.js"></script>
   <script src="./air-datepicker/dist/js/datepicker.min.js"></script>
   <script src="./air-datepicker/dist/js/i18n/datepicker.ko.js"></script>
+  <script type="text/javascript" src="./ckeditor/ckeditor.js" charset="utf-8"></script>
+  <script src="./ckeditor/translations/ko.js"></script>
   <style>
     * {
       margin: 0;
@@ -40,7 +42,7 @@
 
   <style>
     .board-list table {
-      width: 104%;
+      width: 100%;
       border-collapse: collapse;
       margin-top: 20px;
     }
@@ -59,6 +61,35 @@
     .board-list tbody tr:nth-child(even) {
       background-color: #f9f9f9;
     }
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: "Noto Sans KR", sans-serif;
+    }
+
+    .double div {
+      float: left;
+    }
+
+    table {
+      width: 100%;
+      border: 1px solid greenyellow;
+    }
+
+    th,
+    td {
+      color: white;
+      border: 1px solid greenyellow;
+    }
+
+    .ck.ck-editor {
+			max-width: 1000px;
+		}
+
+		.ck-editor__editable {
+			min-height: 300px;
+		}
+  </style>
   </style>
 
 </head>
@@ -133,16 +164,14 @@
   <!-- ***** Breadcumb Area End ***** -->
 
   <!-- ***** Contact Area Start ***** -->
-  <div class="dorne-contact-area d-md-flex container" id="contact" style="padding-top: 43px; padding-bottom: 43px;">
+  <div class="dorne-contact-area d-md-flex container" id="contact" style="padding-top: 43px;">
     <!-- 버튼부분-->
     <div style="width: 35%; padding-top: 60px;">
       <div class="leftsidebar" style="width: 20%;">
-        <button type="button" id="mypage_button" style="max-width: 20px;" onclick=location.href="notification.html"
-          ;>공지사항</button>
+        <button type="button" id="mypage_button" style="max-width: 20px;" onclick=location.href="notify.html";>공지사항</button>
       </div>
       <div class="leftsidebar" style="width: 20%;">
-        <button type="button" id="mypage_button" style="max-width: 20px;" onclick=location.href="faq.html" ;>자주 묻는
-          질문</button>
+        <button type="button" id="mypage_button" style="max-width: 20px;" onclick=location.href="Admin_faq_list.html";>자주 묻는 질문</button>
       </div>
       <div class="leftsidebar" style="width: 20%;">
         <button type="button" id="mypage_button" style="max-width: 20px; color: red;" onclick=location.href="qa_list.html";>1:1 문의</button>
@@ -153,106 +182,56 @@
       <!-- 리스트 상단 -->
       <div class="top"
         style="overflow: visible; height: 80px; border-top: none; border-bottom: 1px solid rgba(0, 0, 0, 0.2);">
-        <h3>1:1 문의</h3>
-        <button style="float: right; margin: 0 10px;">삭제</button>
-        <button style="float: right; margin: 0 10px;">수정</button>
-        <button style="float: right; margin: 0 10px;" onclick=location.href="qa_comment.html";>답변</button>
+        <h3>1:1 문의 답변 작성</h3>
       </div>
-      <!-- 게시글 상세 -->
-      <div>
-        <!-- 질문 -->
-        <div class="board-list" style="width: 724px; margin-right: 31px; margin-bottom: 1rem;">
-          <table class="board_detail">
-            <colgroup>
-              <col width="15%" />
-              <col width="35%" />
-              <col width="15%" />
-              <col width="35%" />
-            </colgroup>
-            <tbody>
-              <tr>
-                <th scope="row">No.</th>
-                <td>1</td>
-                <th scope="row">구분</th>
-                <td>예약</td>
-              </tr>
-              <tr>
-                <th scope="row">작성자</th>
-                <td>작성자 1</td>
-                <th scope="row">등록일자</th>
-                <td>2023-06-27</td>
-              </tr>
-              <tr>
-                <th scope="row">제목</th>
-                <td colspan="3">
-                  제목입니다.
-                </td>
-              </tr>
-              <tr>
-                <th>내용</th>
-                <td colspan="4">
-                  내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <!-- 답변 -->
-          <div class="board-list" style="width: 724px; margin-right: 31px; margin-bottom: 1rem;">
-            <table class="board_detail">
-              <colgroup>
-                <col width="15%" />
-                <col width="35%" />
-                <col width="15%" />
-                <col width="35%" />
-              </colgroup>
-              <tbody>
-                <tr>
-                  <th scope="row">작성자</th>
-                  <td>admin</td>
-                  <th scope="row">등록일자</th>
-                  <td>2023-06-28</td>
-                </tr>
-                <tr>
-                  <th scope="row">제목</th>
-                  <td colspan="3">
-                    답변 제목입니다.
-                  </td>
-                </tr>
-                <tr>
-                  <th>내용</th>
-                  <td colspan="4">
-                    답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
 
-        </div>
-        <ul class="pagination justify-content-end">
-          <li class="page-item"><a class="page-link" href="qa_list.html">목록</a></li>
-        </ul>
+      <div class="board-list" style="width: 724px; margin-right: 31px;"><br />
+
+	<!-- 내용 -->
+	<div class="edit-title">
+		<label for="txt1">제목</label>
+		<input type="text" name="return" id="txt1">
+	</div><br />
+
+	<div id="classic">
+		<p>여기에 내용을 입력해주세요.</p>
+	</div><br />
+
+	<div class="edit-btn" style="float: right;">
+		<button>등록</button>
       </div>
     </div>
-    <!-- ***** Contact Area End ***** -->
+  </div>
+  <!-- ***** Contact Area End ***** -->
 
-    <!-- ****** Footer Area Start ****** -->
+  <!-- ****** Footer Area Start ****** -->
 
-    <!-- ****** Footer Area End ****** -->
+  <!-- ****** Footer Area End ****** -->
 
-    <!-- jQuery-2.2.4 js -->
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
-    <script src="js/bootstrap/popper.min.js"></script>
-    <!-- Bootstrap-4 js -->
-    <script src="js/bootstrap/bootstrap.min.js"></script>
-    <!-- All Plugins js -->
-    <script src="js/others/plugins.js"></script>
-    <!-- Google Maps js -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk9KNSL1jTv4MY9Pza6w8DJkpI_nHyCnk"></script>
-    <script src="js/google-map/map-active.js"></script>
-    <!-- Active JS -->
-    <script src="js/active.js"></script>
+  <!-- jQuery-2.2.4 js -->
+  <script src="js/jquery/jquery-2.2.4.min.js"></script>
+  <!-- Popper js -->
+  <script src="js/bootstrap/popper.min.js"></script>
+  <!-- Bootstrap-4 js -->
+  <script src="js/bootstrap/bootstrap.min.js"></script>
+  <!-- All Plugins js -->
+  <script src="js/others/plugins.js"></script>
+  <!-- Google Maps js -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk9KNSL1jTv4MY9Pza6w8DJkpI_nHyCnk"></script>
+  <script src="js/google-map/map-active.js"></script>
+  <!-- Active JS -->
+  <script src="js/active.js"></script>
+
+  <script type="text/javascript">
+		ClassicEditor
+			.create(document.querySelector('#classic'), {
+				language: 'ko'
+			})
+			.catch(error => {
+				console.error(error);
+			});
+	</script>
+
 </body>
 
 </html>

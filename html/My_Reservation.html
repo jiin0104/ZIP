@@ -23,6 +23,7 @@
     <link href="responsive.css" rel="stylesheet" />
   </head>
 
+  <body>
     <!-- Preloader -->
     <div id="preloader">
       <div class="dorne-load"></div>
@@ -50,45 +51,61 @@
       </div>
     </div>
 
-<!-- ***** Header Area Start ***** -->
-  <header class="header_area" id="header">
-    <div class="container h-100">
-      <div class="row h-100">
-        <div class="col-12 h-100">
-          <nav class="h-100 navbar navbar-expand-lg">
-            <a class="navbar-brand" href=""><img src="img/core-img/logo.png" alt=""></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav"
-              aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation"><span
-                class="fa fa-bars"></span></button>
-            <!-- Nav -->
-            <div class="collapse navbar-collapse" id="dorneNav">
-              <ul class="navbar-nav mr-auto" id="dorneMenu">
-
-              </ul>
-              <!-- Signin btn -->
-              <div class="dorne-signin-btn">
-                <a href="#">로그아웃</a>
+    <!-- ***** Header Area Start ***** -->
+    <header class="header_area" id="header">
+      <div class="container h-100">
+        <div class="row h-100">
+          <div class="col-12 h-100">
+            <nav class="h-100 navbar navbar-expand-lg">
+              <a class="navbar-brand" href=""
+                ><img src="img/core-img/logo.png" alt=""
+              /></a>
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#dorneNav"
+                aria-controls="dorneNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="fa fa-bars"></span>
+              </button>
+              <!-- Nav -->
+              <div class="collapse navbar-collapse" id="dorneNav">
+                <ul class="navbar-nav mr-auto" id="dorneMenu"></ul>
+                <!-- Signin btn -->
+                <div class="dorne-signin-btn">
+                  <a href="#">로그아웃</a>
+                </div>
+                <div class="zip-dropdown-menu">
+                  <li class="nav-item dropdown">
+                    <a
+                      class="nav-link dropdown-toggle"
+                      href="#"
+                      id="navbarDropdown"
+                      role="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                      style="color: #fff"
+                      ><i class="fa fa-bars" aria-hidden="true"></i
+                    ></a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">내 정보</a>
+                      <a class="dropdown-item" href="#">예약 내역</a>
+                      <a class="dropdown-item" href="#">이용 내역</a>
+                      <a class="dropdown-item" href="#">내 찜 목록</a>
+                    </div>
+                  </li>
+                </div>
               </div>
-              <div class="zip-dropdown-menu">
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false" style="color: #fff;"><i class="fa fa-bars"
-                      aria-hidden="true"></i></a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">내 정보</a>
-                    <a class="dropdown-item" href="#">예약 내역</a>
-                    <a class="dropdown-item" href="#">이용 내역</a>
-                    <a class="dropdown-item" href="#">내 찜 목록</a>
-                  </div>
-                </li>
-              </div>
-            </div>
-          </nav>
+            </nav>
+          </div>
         </div>
       </div>
-    </div>
-  </header>
-  <!-- ***** Header Area End ***** -->
+    </header>
+    <!-- ***** Header Area End ***** -->
 
     <!-- ***** Breadcumb Area Start ***** -->
     <div
@@ -118,7 +135,7 @@
             type="button"
             id="mypage_button"
             style="max-width: 20px; color: red"
-            onclick="location.href='reservation.html'"
+            onclick="location.href='my_reservation.html'"
           >
             예약내역
           </button>
@@ -126,7 +143,7 @@
             type="button"
             id="mypage_button"
             style="max-width: 20px"
-            onclick="location.href='myuselist.html'"
+            onclick="location.href='my_uselist.html'"
           >
             이용내역
           </button>
@@ -134,14 +151,14 @@
             type="button"
             id="mypage_button"
             style="max-width: 20px"
-            onclick="location.href='likelist.html'"
+            onclick="location.href='my_likelist.html'"
           >
             내 찜 목록</button
           ><button
             type="button"
             id="mypage_button"
             style="max-width: 20px"
-            onclick="location.href='mydelete.html'"
+            onclick="location.href='my_delete.html'"
           >
             회원 탈퇴
           </button>
@@ -154,17 +171,84 @@
       >
         <div class="contact-text">
           <h1>예약내역</h1>
-          <div class="reslistempty" style="position: relative; left: 30px">
-          <div class="really2">
-            예약 내역이 없습니다<br />관심있는 숙소를 등록해주세요
+          <div>
+            <div class="res-content" style="width: 100%; padding: 10%">
+              <img class="room-image" src="room1.jpg" alt="객실 사진" />
+              <h6><strong>이젠호텔</strong></h6>
+              <div style="position: relative; top: 15%">
+                <button
+                  id="button2"
+                  style="display: inline-block"
+                  onclick="openModal()"
+                >
+                  상세내역
+                </button>
+                <button
+                  id="button3"
+                  onclick="showConfirmation()"
+                  style="display: inline-block"
+                >
+                  예약취소
+                </button>
+              </div>
+              <div id="popup" class="popup" style="display: none">
+                <p class="popup-message" style="font-size: 18px">
+                  예약을 취소하시겠습니까?
+                </p>
+                <div class="popup-buttons">
+                  <button id="button7" onclick="hideConfirmation()">
+                    취소
+                  </button>
+                </div>
+                <div class="popup-buttons">
+                  <button id="button8" onclick="cancelReservation()">
+                    확인
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
-          <br />
-          <button type="button" id="main" onclick=location.href="index_230625.html";>지금 바로 숙소 등록하기</button>
         </div>
+        <div id="modal" class="modal">
+          <div class="modal-content">
+            <div class="reslistpopup">
+              <h2>이용완료 내역</h2>
+              <div>
+                <strong>(숙소명)</strong>
+                <span>(방타입)</span>
+              </div>
+              <section>
+                <div>
+                  <p><strong>체크인</strong> (년.월.일.요일.체크인시간)</p>
+                  <p><strong>체크아웃</strong> (년.월.일.요일.체크아웃시간)</p>
+                </div>
+                <div>
+                  <p><strong>예약번호</strong> (예약번호나열)</p>
+                  <p><strong>예약자 이름</strong> (예약자 이름)</p>
+                </div>
+              </section>
+              <div class="total">
+                <div class="payment-info">
+                  <div class="payment-info-top">
+                    <p><strong>총 결제 금액</strong></p>
+                  </div>
+                  <div class="payment-info-middle">
+                    <p><b>(****,***원)</b></p>
+                  </div>
+                </div>
+              </div>
+              <a href="tel:(전화번호)" class="btn-call">전화문의하기</a>
+              <section>
+                <p>
+                  <input type="button" value="닫기" onclick="closeModal()" />
+                </p>
+              </section>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    
+
     <!-- ****** Footer Area Start ****** -->
     <footer class="dorne-footer-area">
       <div class="container-fluid">
@@ -265,6 +349,22 @@
       function hideConfirmation() {
         var popup = document.getElementById("popup");
         popup.style.display = "none";
+      }
+
+      function cancelReservation() {
+        alert("예약이 취소되었습니다!");
+        hideConfirmation();
+      }
+    </script>
+    <script>
+      function openModal() {
+        var modal = document.getElementById("modal");
+        modal.style.display = "block";
+      }
+
+      function closeModal() {
+        var modal = document.getElementById("modal");
+        modal.style.display = "none";
       }
     </script>
   </body>
