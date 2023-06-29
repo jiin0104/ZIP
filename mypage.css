@@ -253,8 +253,6 @@ img[class="room-image"] {
   font-size: 25px;
   border-radius: 9px;
   border: 1px solid gainsboro;
-  position: relative;
-  left: 8%;
 }
 
 .like-content img {
@@ -269,6 +267,9 @@ img[class="room-image"] {
 .like-content p {
   font-size: 20px;
   color: black;
+  position: relative;
+  left: 10px;
+  top: 30px;
 }
 
 .like-content div {
