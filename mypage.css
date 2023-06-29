@@ -242,12 +242,11 @@ img[class="room-image"] {
 
 /*내 찜 목록.likelist*/
 .like-content-list {
-  display: inline;
+  width: auto;
 }
 
 .like-content {
   height: 200px;
-  width: 400px;
   background-color: fff;
   text-align: center;
   font-size: 25px;
