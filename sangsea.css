@@ -6,6 +6,7 @@
 }
 
 .form-group input[type="text"],
+.form-group input[type="tel"],
 .form-group select {
   width: 200px;
   padding: 5px;
@@ -13,19 +14,6 @@
   border-radius: 5px;
 }
 
-.form-group select {
-  width: 100px;
-  margin-left: 10px;
-}
-
-.form-group input[type="submit"] {
-  width: auto;
-  padding: 10px 20px;
-  background-color: #ccc;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
 
 .custom-email-domain {
   display: none;
@@ -51,8 +39,100 @@
   margin-left: 200px;
 }
 
-.card {
-  width: 1000px;
-  height: 700px;
-  border-color: white;
+.col-5 {  
+  width: 100px;
+  height: 70px;
+  border-color: burlywood;
 }
+
+
+
+/*팝업창들*/
+
+#button4 {
+  background-color: #0b5394;
+  min-width: 100px;
+  height: 50px;
+  border-radius: 0;
+  line-height: 50px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+  border: none;
+  position: relative;
+  left: 10%;
+  margin-top: 10px;
+}
+
+.popup {
+  width: 300px;
+  height: 200px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 40%;
+  left: 25%;
+  text-align: center;
+}
+
+.popup-message {
+  width: 230px;
+  height: 30px;
+  position: absolute;
+  top: 27%;
+  left: 13%;
+  text-align: center;
+}
+
+.popup-buttons {
+  display: contents;
+  justify-content: center;
+  position: absolute;
+  top: 70%;
+  left: 34%;
+  text-align: center;
+}
+
+.popup-buttons #button7 {
+  background-color: gray;
+  min-width: 70px;
+  height: 40px;
+  border-radius: 0;
+  line-height: 20px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+  border: none;
+  position: relative;
+  bottom: -60%;
+  text-align: center;
+}
+
+.popup-buttons #button8 {
+  background-color: #0b5394;
+  min-width: 70px;
+  height: 40px;
+  border-radius: 0;
+  line-height: 20px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+  border: none;
+  position: relative;
+  bottom: -60%;
+  left: 5%;
+  text-align: center;
+}
+
+.popup-buttons button:hover {
+  background-color: #999;
+}
+

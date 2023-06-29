@@ -1,54 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <!-- Title -->
-    <title>Dorne - Directory &amp; Listing Template | Contact</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <!-- Favicon -->
-    <link rel="icon" href="img/core-img/favicon.ico" />
+  <!-- Title -->
+  <title>Dorne - Directory &amp; Listing Template | Contact</title>
 
-    <!-- Core Stylesheet -->
-    <link href="style.css" rel="stylesheet" />
-    <link href="sangsea.css" rel="stylesheet" />
+  <!-- Favicon -->
+  <link rel="icon" href="img/core-img/favicon.ico" />
+
+  <!-- Core Stylesheet -->
+  <link href="style.css" rel="stylesheet" />
+  <link href="sangsea.css" rel="stylesheet" />
 
 
-    <!-- Preloader -->
-    <div id="preloader">
-      <div class="dorne-load"></div>
-    </div>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="dorne-load"></div>
+  </div>
 
-    <!-- ***** Search Form Area ***** -->
-    <div class="dorne-search-form d-flex align-items-center">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <div class="search-close-btn" id="closeBtn">
-              <i class="pe-7s-close-circle" aria-hidden="true"></i>
-            </div>
-            <form action="#" method="get">
-              <input
-                type="search"
-                name="caviarSearch"
-                id="search"
-                placeholder="Search Your Desire Destinations or Events"
-              />
-              <input type="submit" class="d-none" value="submit" />
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
 
-<!-- ***** Header Area Start ***** -->
+  <!-- ***** Header Area Start ***** -->
   <header class="header_area" id="header">
     <div class="container h-100">
       <div class="row h-100">
@@ -88,162 +65,204 @@
   </header>
   <!-- ***** Header Area End ***** -->
 
-    <!-- ***** Breadcumb Area Start ***** -->
-    <div
-      class="breadcumb-area bg-img bg-overlay"
-      style="background-image: url(img/bg-img/hero-1.jpg)"
-    ></div>
-    <!-- ***** Breadcumb Area End ***** -->
-<!-- ***** Contact Area Start ***** -->
-<div
-class="dorne-contact-area d-md-flex container"
-style="padding-top: 43px"
-id="contact"
->
-<!-- ***** 상세 정보 기입 ***** -->
-  <div class="col-8">
-	<div class="card" >
-		<h4 class="card-title">상세 정보 기입</h4>
-		<div class="card-body" >
-			<div class="row"  >
-				<div class="col-7">
-					<div class="row"  >
-						<form>
-							<div class="form-group" >
-							  <label for="name">예약자 이름:</label>
-							  <input type="text" id="name" name="name" required>
-							</div>
-							<div class="form-group">
-							  <label for="phone">휴대폰 번호:</label>
-							  <input type="tel" id="phone" name="phone" required>
-							</div>    
-							<div class="form-group">
-							  <label for="email">이메일 주소:</label>
-							  <input type="text" id="email-front" name="email-front" required>
-							  <span>@</span>
-							  <input type="text" id="email-back" name="email-back" list="email-domain-list" required>
-							  <datalist id="email-domain-list">
-								<option value="daum.net"></option>
-								<option value="nate.com"></option>
-								<option value="naver.com"></option>
-								<option value="gmail.com"></option>
-								<option value="직접입력"></option>
-							  </datalist>
-							  <input type="text" id="custom-email-domain" name="custom-email-domain" class="custom-email-domain">
-							</div>
-						</form>
-					</div>
-					<div class="row px-1 mt-4" >
-						<button onclick="showConfirmation()">예약 결제하기</button>
-					</div>
-					
-				</div>
-				<div class="col-5">
-					<div class="card-body" style="background-color: #f2f2f2; ">
-					  <div class="row">
-						  <h6>예약 내역</h6>
-					  </div>
-					  <div class="row" >
-						<div class="col-5">
-							<p style="color: black;">숙소이름</p>
-						</div>
-						<div class="col-6">
-							<input type="text" class="textbox" placeholder="서울 이젠 호텔">
-						</div>
-					  </div>      	
-					  <div class="row" >
-						<div class="col-5">
-							<p style="color: black;">객실타입/기간</p>
-						</div>
-						<div class="col-6">
-							<input type="text" class="textbox" placeholder="디럭스 마운틴뷰/2박">
-						</div>
-					  </div>      	
-					  <div class="row" >
-						<div class="col-5">
-							<p style="color: black;">체크인</p>
-						</div>
-						<div class="col-6">
-							<input type="text" class="textbox" placeholder="2023년 9월 11일">
-						</div>
-					  </div>      
-					  <div class="row" >
-						<div class="col-5">
-							<p style="color: black;">체크아웃</p>
-						</div>
-						<div class="col-6">
-							<input type="text" class="textbox" placeholder="2023년 9월 13일">
-						</div>
-					  </div>      
-					  <div class="row" >
-						<p style="color: black; font-weight: bold;">총결제금액(VAT 포함)</p>
-					  </div>	
-					  <div class="row" >
-						<p style="color: red; font-weight: bold;">100,000원</p>
-					  </div>	
-					  <div class="row" >	
-						<p style="color: black;">해당객실가는 세금, 봉사액 포함 금액입니다.</p>
-					  </div>      
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-    
+  <!-- ***** Breadcumb Area Start ***** -->
+  <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/hero-1.jpg)"></div>
+  <!-- ***** Breadcumb Area End ***** -->
+  <!-- ***** Contact Area Start ***** -->
+  <div class="dorne-contact-area d-md-flex container"
+    style="padding-top: 43px; padding-bottom: 43px; height: auto; justify-content: center;" id="contact">
+    <!-- ***** 상세 정보 기입 ***** -->
+    <div style="margin-right: 150px;">
+      <div>
+        <h4 class="card-title">상세 정보 기입</h4>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-7">
+              <div class="row">
+                <form>
+                  <div class="form-group">
+                    <label for="name">예약자 이름:</label>
+                    <input type="text" id="name" name="name" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="phone">휴대폰 번호:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="email-prefix">이메일 주소:</label>
+                    <input type="text" id="email-prefix" name="email-prefix">
 
-    <!-- ****** Footer Area Start ****** -->
-    <footer class="dorne-footer-area">
-      <div class="container-fluid">
-        <div class="row">
-          <div
-            class="col-12 d-md-flex align-items-center justify-content-between"
-          >
-            <div class="footer-text">
-              <p>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                Copyright &copy;
-                <script>
-                  document.write(new Date().getFullYear());
-                </script>
-                All rights reserved | Made with
-                <i class="fa fa-heart-o" aria-hidden="true"></i> by
-                <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                &amp; distributed by
-                <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-              </p>
-            </div>
-            <div class="footer-social-btns">
-              <a href="#"
-                ><i class="fa fa-linkedin" aria-haspopup="true"></i
-              ></a>
-              <a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a>
-              <a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
-              <a href="#"><i class="fa fa-twitter" aria-haspopup="true"></i></a>
-              <a href="#"
-                ><i class="fa fa-facebook" aria-haspopup="true"></i
-              ></a>
+                    <label for="domain">@</label>
+                    <select id="domain" name="domain" onchange="handleDropdownChange()">
+                      <option value="daum.net">daum.net</option>
+                      <option value="gmail.com">gmail.com</option>
+                      <option value="nate.com">nate.com</option>
+                      <option value="naver.com">naver.com</option>
+                      <option value="직접입력">직접입력</option>
+                    </select>
+
+                    <input type="text" id="email-input" name="email-input" style="display: none;">
+
+                    <br>
+
+                    <input type="text" id="custom-email-domain" name="custom-email-domain" class="custom-email-domain">
+                  </div>
+                </form>
+              </div>
+              <div class="row px-1 mt-4">
+                <button id="button4" onclick="showConfirmation()" style="display: inline-block">예약 결제하기</button>
+              </div>
+              <div id="popup" class="popup" style="display: none">
+                <p class="popup-message" style="font-size: 18px">
+                  정말 결제하시겠습니까?
+                </p>
+                <div class="popup-buttons">
+                  <button id="button7" onclick="hideConfirmation()">
+                    취소
+                  </button>
+                </div>
+                <div class="popup-buttons">
+                  <button id="button8" onclick="cancelReservation()">
+                    확인
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </footer>
-    <!-- ****** Footer Area End ****** -->
+    </div>
+    <div class="col-5">
+      <div class="card-body" style="background-color: #f2f2f2; ">
+        <div class="row">
+          <h6 style="margin: 10px;">예약 내역</h6>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-5">
+            <p style="color: black;">숙소이름</p>
+          </div>
+          <div class="col-6">
+            <input type="text" class="textbox" placeholder="서울 이젠 호텔">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-5">
+            <p style="color: black;">객실타입/기간</p>
+          </div>
+          <div class="col-6">
+            <input type="text" class="textbox" placeholder="디럭스 마운틴뷰/2박">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-5">
+            <p style="color: black;">체크인</p>
+          </div>
+          <div class="col-6">
+            <input type="text" class="textbox" placeholder="2023년 9월 11일">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-5">
+            <p style="color: black;">체크아웃</p>
+          </div>
+          <div class="col-6">
+            <input type="text" class="textbox" placeholder="2023년 9월 13일">
+          </div>
+        </div>
+        <div style="margin: 10px;">
+          <div class="row">
+            <p style="color: black; font-weight: bold;">총결제금액(VAT 포함)</p>
+          </div>
+          <div class="row">
+            <p style="color: red; font-size: 20px; font-weight: bold;">100,000원</p>
+          </div>
+          <div class="row">
+            <p style="color: black;">해당객실가는 세금, 봉사액 포함 금액입니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <!-- jQuery-2.2.4 js -->
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
-    <script src="js/bootstrap/popper.min.js"></script>
-    <!-- Bootstrap-4 js -->
-    <script src="js/bootstrap/bootstrap.min.js"></script>
-    <!-- All Plugins js -->
-    <script src="js/others/plugins.js"></script>
-    <!-- Google Maps js -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk9KNSL1jTv4MY9Pza6w8DJkpI_nHyCnk"></script>
-    <script src="js/google-map/map-active.js"></script>
-    <!-- Active JS -->
-    <script src="js/active.js"></script>
-	
-</body>
+
+  <!-- ****** Footer Area Start ****** -->
+  <footer class="dorne-footer-area">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 d-md-flex align-items-center justify-content-between">
+          <div class="footer-text">
+            <p>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              Copyright &copy;
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+              All rights reserved | Made with
+              <i class="fa fa-heart-o" aria-hidden="true"></i> by
+              <a href="https://colorlib.com" target="_blank">Colorlib</a>
+              &amp; distributed by
+              <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+          </div>
+          <div class="footer-social-btns">
+            <a href="#"><i class="fa fa-linkedin" aria-haspopup="true"></i></a>
+            <a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-twitter" aria-haspopup="true"></i></a>
+            <a href="#"><i class="fa fa-facebook" aria-haspopup="true"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- ****** Footer Area End ****** -->
+
+  <!-- jQuery-2.2.4 js -->
+  <script src="js/jquery/jquery-2.2.4.min.js"></script>
+  <!-- Popper js -->
+  <script src="js/bootstrap/popper.min.js"></script>
+  <!-- Bootstrap-4 js -->
+  <script src="js/bootstrap/bootstrap.min.js"></script>
+  <!-- All Plugins js -->
+  <script src="js/others/plugins.js"></script>
+  <!-- Google Maps js -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk9KNSL1jTv4MY9Pza6w8DJkpI_nHyCnk"></script>
+  <script src="js/google-map/map-active.js"></script>
+  <!-- Active JS -->
+  <script src="js/active.js"></script>
+
+  <script>
+    function showConfirmation() {
+      var popup = document.getElementById("popup");
+      popup.style.display = "block";
+    }
+    function hideConfirmation() {
+      var popup = document.getElementById("popup");
+      popup.style.display = "none";
+    }
+
+    function cancelReservation() {
+      alert("여기에 결제시스템 페이지를 넣어주세요");
+      hideConfirmation();
+    }
+  </script>
+
+  <script>
+    function handleDropdownChange() {
+      var selectBox = document.getElementById("domain");
+      var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+      var emailInput = document.getElementById("email-input");
+
+      if (selectedValue === "직접입력") {
+        emailInput.style.display = "block";
+      } else {
+        emailInput.style.display = "none";
+        emailInput.value = selectedValue;
+      }
+    }
+  </script>
+  </body>
 
 </html>
