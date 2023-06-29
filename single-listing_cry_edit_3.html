@@ -82,24 +82,101 @@
       margin-left: 60px;
     }
 
-    tr,
-    th,
-    thead {
-      width: 200px;
-    }
 
     th {
       background-color: #72728c;
       border: solid 1px;
     }
 
-    liked.active-color {
-      background-color: palevioletred
+    #popup {
+      width: 300px;
+      height: 200px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      position: absolute;
+      top: 40%;
+      left: 25%;
+      text-align: center;
     }
+
+    .popup-buttons #button7 {
+      background-color: gray;
+      min-width: 70px;
+      height: 40px;
+      border-radius: 0;
+      line-height: 20px;
+      color: #fff;
+      font-weight: 600;
+      font-size: 15px;
+      -webkit-transition-duration: 500ms;
+      transition-duration: 500ms;
+      border: none;
+      position: relative;
+      bottom: -60%;
+      text-align: center;
+    }
+
+    .popup-buttons #button8 {
+      background-color: #0b5394;
+      min-width: 70px;
+      height: 40px;
+      border-radius: 0;
+      line-height: 20px;
+      color: #fff;
+      font-weight: 600;
+      font-size: 15px;
+      -webkit-transition-duration: 500ms;
+      transition-duration: 500ms;
+      border: none;
+      position: relative;
+      bottom: -60%;
+      left: 5%;
+      text-align: center;
+    }
+
+    .popup-message {
+      width: 230px;
+      height: 30px;
+      position: absolute;
+      top: 27%;
+      left: 13%;
+      text-align: center;
+    }
+
+    .popup-buttons {
+      display: contents;
+      justify-content: center;
+      position: absolute;
+      top: 70%;
+      left: 34%;
+      text-align: center;
+    }
+
+    #popup-buttons button:hover {
+      background-color: #999;
+    }
+
+    .save-btn2 {
+      min-width: 50px;
+      height: 30px;
+      width: 80px;
+      background-color: #dc3545;
+      border-radius: 0;
+      margin-top: 3px;
+      line-height: 25px;
+      color: #fff;
+      font-weight: 600;
+      font-size: 15px;
+      -webkit-transition-duration: 500ms;
+      transition-duration: 500ms;
+      border: 0px;
+    }
+
 
     @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap");
   </style>
-
 </head>
 
 <!-- Preloader -->
@@ -218,10 +295,21 @@
                   <br>
                   <p>전객실 야외 온천 수영장 무료 <br> 이용 재미있는 놀이 <br>속초 고속버스 터미널과 접근성 우수</p>
                   <br><br><br>
-                  <button type="button" class="save-btn1" id="liked"
-                    style="border: none; background-color: #72728c; min-width: 150px; margin-left: 250px;">♡찜하기</button>
-                  <button type="button" class="save-btn1"
-                    style="border: none; min-width: 150px; margin-left: 15px;">예약하기</button>
+                  <div>
+                    <button type="button" class="save-btn1" id="liked"
+                      style="border: none; background-color: #72728c; min-width: 150px; margin-left: 250px;"
+                      onclick="changebtn()">♡찜하기</button>
+                    <button type="button" class="save-btn1"
+                      style="border: none; min-width: 150px; margin-left: 15px; display: inline-block;"
+                      onclick="showConfirmation()">예약하기</button>
+                  </div>
+                </div>
+                <div id="popup" class="save-btn1" style="display: none">
+                  <p class="popup-message" style="font-size: 18px;">예약 하시겠습니까?</p>
+                  <div class="popup-buttons">
+                    <button id="button7" onclick="hideConfirmation()">취소</button>
+                    <button id="button8" onclick="cancelReservation()">확인</button>
+                  </div>
                 </div>
             </div>
           </div>
@@ -271,9 +359,10 @@
             <table>
               <thead>
                 <tr>
-                  <th>리뷰어</th>
+                  <th style="width: 150px;">리뷰어</th>
                   <th style="width: 600px;">리뷰</th>
                   <th style="width: 130px;">작성일</th>
+                  <th>댓글관리</th>
                 </tr>
               </thead>
               <tbody>
@@ -281,11 +370,14 @@
                   <td>닉네임1</td>
                   <td>리뷰1</td>
                   <td>2023-06-27</td>
+                  <td><button type="button" class="save-btn2">삭제</button>
+                  </td>
                 </tr>
                 <tr>
                   <td>닉네임1</td>
                   <td>리뷰2</td>
                   <td>2023-06-28</td>
+                  <td><button type="button" class="save-btn2">삭제</button>
                 </tr>
               </tbody>
             </table>
@@ -313,6 +405,9 @@
           $('#' + activeTab).addClass('on');
         })
       });
+    </script>
+    <script>
+
     </script>
 
   </form>
@@ -356,7 +451,6 @@
   </div>
 </footer>
 <!-- ****** Footer Area End ****** -->
-
 <!-- jQuery-2.2.4 js -->
 <script src="js/jquery/jquery-2.2.4.min.js"></script>
 <!-- Popper js -->
@@ -370,6 +464,16 @@
 <script src="js/google-map/map-active.js"></script>
 <!-- Active JS -->
 <script src="js/active.js"></script>
+<script>
+  function showConfirmation() {
+    var popup = document.getElementById("popup");
+    popup.style.display = "block";
+  }
+  function hideConfirmation() {
+    var popup = document.getElementById("popup");
+    popup.style.display = "none";
+  }
+</script>
 </body>
 
 </html>
