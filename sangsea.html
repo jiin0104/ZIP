@@ -17,6 +17,7 @@
   <!-- Core Stylesheet -->
   <link href="style.css" rel="stylesheet" />
   <link href="sangsea.css" rel="stylesheet" />
+  <link href="signUp.css" rel="stylesheet" />
 
 
   <!-- Preloader -->
@@ -70,9 +71,9 @@
   <!-- ***** Breadcumb Area End ***** -->
   <!-- ***** Contact Area Start ***** -->
   <div class="dorne-contact-area d-md-flex container"
-    style="padding-top: 43px; padding-bottom: 43px; height: auto; justify-content: center;" id="contact">
+    style="padding-top: 43px; padding-bottom: 150px; height: auto; justify-content: center;" id="contact">
     <!-- ***** 상세 정보 기입 ***** -->
-    <div style="margin-right: 150px;">
+    <div style="width: 500px;">
       <div>
         <h4 class="card-title">상세 정보 기입</h4>
         <div class="card-body">
@@ -80,30 +81,31 @@
             <div class="col-7">
               <div class="row">
                 <form>
-                  <div class="form-group">
-                    <label for="name">예약자 이름:</label>
-                    <input type="text" id="name" name="name" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="phone">휴대폰 번호:</label>
-                    <input type="tel" id="phone" name="phone" required>
-                  </div>
-                  <div class="form-group">
+                  <div class="field2" id="sign">
+                    <b>예약자 이름</b><br />
+                    <input type="text" id="nickname" role="textbox" placeholder="" />
+                  </div><br />
+                  <div class="field2">
+                    <b>전화번호</b><br />
+                    <input id="phone1" type="text" size="1" maxlength="3" oninput="changePhone1()" role="textbox2" />-
+                    <input id="phone2" type="text" size="3" maxlength="4" oninput="changePhone2()" role="textbox2" />-
+                    <input id="phone3" type="text" size="3" maxlength="4" oninput="changePhone3()" role="textbox2" />
+                  </div><br />
+                  <div class="form-group" style="width: 300%;">
                     <label for="email-prefix">이메일 주소:</label>
-                    <input type="text" id="email-prefix" name="email-prefix">
+                    <div class="field2">
+                      <input class="field2" role="emailbox" placeholder="" />
+                      @
+                      <input id="email-input" name="email-input" role="emailbox" style="display: none;">
+                      <select id="domain" name="domain" onchange="handleDropdownChange()" style="width: 140px;">
+                        <option value="daum.net">daum.net</option>
+                        <option value="gmail.com">gmail.com</option>
+                        <option value="nate.com">nate.com</option>
+                        <option value="naver.com">naver.com</option>
+                        <option value="직접입력">직접입력</option>
+                      </select>
 
-                    <label for="domain">@</label>
-                    <select id="domain" name="domain" onchange="handleDropdownChange()">
-                      <option value="daum.net">daum.net</option>
-                      <option value="gmail.com">gmail.com</option>
-                      <option value="nate.com">nate.com</option>
-                      <option value="naver.com">naver.com</option>
-                      <option value="직접입력">직접입력</option>
-                    </select>
-
-                    <input type="text" id="email-input" name="email-input" style="display: none;">
-
-                    <br>
+                    </div>
 
                     <input type="text" id="custom-email-domain" name="custom-email-domain" class="custom-email-domain">
                   </div>
@@ -135,39 +137,39 @@
     <div class="col-5">
       <div class="card-body" style="background-color: #f2f2f2; ">
         <div class="row">
-          <h6 style="margin: 10px;">예약 내역</h6>
+          <h4 style="margin: 10px;">예약 내역</h4>
         </div>
         <br>
         <div class="row">
           <div class="col-5">
-            <p style="color: black;">숙소이름</p>
+            <p class="checkfont" style="color: black;">숙소이름</p>
           </div>
           <div class="col-6">
-            <input type="text" class="textbox" placeholder="서울 이젠 호텔">
+            <p class="checkfont">서울 이젠 호텔</p>
           </div>
         </div>
         <div class="row">
           <div class="col-5">
-            <p style="color: black;">객실타입/기간</p>
+            <p class="checkfont" style="color: black;">객실타입/기간</p>
           </div>
           <div class="col-6">
-            <input type="text" class="textbox" placeholder="디럭스 마운틴뷰/2박">
+            <p class="checkfont">디럭스 마운틴뷰/2박</p>
           </div>
         </div>
         <div class="row">
           <div class="col-5">
-            <p style="color: black;">체크인</p>
+            <p class="checkfont" style="color: black;">체크인</p>
           </div>
           <div class="col-6">
-            <input type="text" class="textbox" placeholder="2023년 9월 11일">
+            <p class="checkfont">2023년 9월 11일</p>
           </div>
         </div>
         <div class="row">
           <div class="col-5">
-            <p style="color: black;">체크아웃</p>
+            <p class="checkfont" style="color: black;">체크아웃</p>
           </div>
           <div class="col-6">
-            <input type="text" class="textbox" placeholder="2023년 9월 13일">
+            <p class="checkfont">2023년 9월 13일</p>
           </div>
         </div>
         <div style="margin: 10px;">
@@ -256,7 +258,7 @@
       var emailInput = document.getElementById("email-input");
 
       if (selectedValue === "직접입력") {
-        emailInput.style.display = "block";
+        emailInput.style.display = "";
       } else {
         emailInput.style.display = "none";
         emailInput.value = selectedValue;

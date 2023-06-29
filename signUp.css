@@ -248,6 +248,18 @@ input[type="submit5"] {
   padding: 10px;
   background-color: rgb(233, 233, 233);
 }
+.field2 [role="emailbox"] {
+  font-family: "Noto Sans KR", sans-serif;
+  width: 130px;
+  height: 32px;
+  font-size: 15px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  margin: 7px 7px 0px 0px;
+  padding: 10px;
+  background-color: rgb(233, 233, 233);
+}
 .field2 #sample6_address {
   width: 300px;
 }

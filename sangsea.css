@@ -14,6 +14,9 @@
   border-radius: 5px;
 }
 
+.checkfont {
+  font-size: 18px;
+}
 
 .custom-email-domain {
   display: none;
