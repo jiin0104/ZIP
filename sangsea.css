@@ -1,67 +1,58 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap");
 
-/*헤더와 떨어지게*/
-#sangsea.sub_wrap {
-  font-family: "Noto Sans KR", sans-serif;
-  box-sizing: border-box;
-  width: 1900px;
-  height: 1500px;
-  margin: 100px 0px 100px 0px;
-  background-color: fff;
+.form-group label {
+  display: block;
+  font-weight: bold;
 }
 
-.form-group {
-    margin-bottom: 20px;
-  }
+.form-group input[type="text"],
+.form-group select {
+  width: 200px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 
-  .form-group label {
-    display: block;
-    font-weight: bold;
-  }
+.form-group select {
+  width: 100px;
+  margin-left: 10px;
+}
 
-  .form-group input[type="text"],
-  .form-group select {
-    width: 200px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
+.form-group input[type="submit"] {
+  width: auto;
+  padding: 10px 20px;
+  background-color: #ccc;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
-  .form-group select {
-    width: 100px;
-    margin-left: 10px;
-  }
+.custom-email-domain {
+  display: none;
+  margin-top: 10px;
+}
 
-  .form-group input[type="submit"] {
-    width: auto;
-    padding: 10px 20px;
-    background-color: #ccc;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+.contact-form {
+  width: 300px;
+  height: auto;
+  margin-top: 100px;
+  float: right;
+}
 
-  .custom-email-domain {
-    display: none;
-    margin-top: 10px;
-  }
+.contact-text {
+  float: left;
+  margin-top: 100px;
+  margin-left: 20px;
+}
 
-  .contact-form {
-    width: 300px;
-    height: auto;
-    margin-top: 100px;
-    float: right;
-  }
+.showConfirmation-button {
+  position: bottom;
+  margin-top: 200px;
+  margin-left: 200px;
+}
 
-  .contact-text {
-    float: left;
-    margin-top: 100px;
-    margin-left: 20px;
-  }
-
-  .showConfirmation-button {
-    position: bottom;
-    margin-top: 200px;
-    margin-left: 200px;
-  }
-  
+.card {
+  width: 1000px;
+  height: 700px;
+  border-color: white;
+}
