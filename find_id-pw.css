@@ -23,7 +23,7 @@ a {
   text-decoration: none;
 }
 
-.login-wrap {
+.find-wrap {
   width: 100%;
   margin: auto;
   max-width: 525px;
@@ -32,15 +32,15 @@ a {
   box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
-.login-html {
+.findid-html {
   width: 100%;
   height: 100%;
   position: absolute;
   padding: 90px 70px 50px 70px;
   background: rgba(40, 57, 101, 0.9);
 }
-.login-html .sign-in-htm,
-.login-html .sign-up-htm {
+.findid-html .findid-htm,
+.findid-html .findpw-htm {
   top: 0;
   left: 0;
   right: 0;
@@ -50,17 +50,17 @@ a {
   backface-visibility: hidden;
   transition: all 0.4s linear;
 }
-.login-html .sign-in,
-.login-html .sign-up,
-.login-form .group .check {
+.findid-html .findid,
+.findid-html .findpw,
+.findid-html .group .check {
   display: none;
 }
-.login-html .tab,
-.login-form .group .label,
-.login-form .group .button {
+.findid-html .tab,
+.findid-form .group .label,
+.findid-form .group .button {
   text-transform: uppercase;
 }
-.login-html .tab {
+.findid-html .tab {
   font-size: 22px;
   margin-right: 15px;
   padding-bottom: 5px;
@@ -68,45 +68,45 @@ a {
   display: inline-block;
   border-bottom: 2px solid transparent;
 }
-.login-html .sign-in:checked + .tab,
-.login-html .sign-up:checked + .tab {
+.findid-html .findid:checked + .tab,
+.findid-html .findpw:checked + .tab {
   color: #fff;
   border-color: #1161ee;
 }
-.login-form {
+.findid-form {
   min-height: 345px;
   position: relative;
   perspective: 1000px;
   transform-style: preserve-3d;
 }
-.login-form .group {
+.findid-form .group {
   margin-bottom: 15px;
 }
-.login-form .group .label,
-.login-form .group .input,
-.login-form .group .button {
+.findid-form .group .label,
+.findid-form .group .input,
+.findid-form .group .button {
   width: 100%;
   color: #fff;
   display: block;
 }
-.login-form .group .input,
-.login-form .group .button {
+.findid-form .group .input,
+.findid-form .group .button {
   border: none;
   padding: 15px 20px;
   border-radius: 25px;
   background: rgba(255, 255, 255, 0.1);
 }
-.login-form .group input[data-type="password"] {
+.findid-form .group input[data-type="password"] {
   -webkit-text-security: circle;
 }
-.login-form .group .label {
+.findid-form .group .label {
   color: #aaa;
   font-size: 12px;
 }
-.login-form .group .button {
+.findid-form .group .button {
   background: #1161ee;
 }
-.login-form .group label .icon {
+.findid-form .group label .icon {
   width: 15px;
   height: 15px;
   border-radius: 2px;
@@ -114,8 +114,8 @@ a {
   display: inline-block;
   background: rgba(255, 255, 255, 0.1);
 }
-.login-form .group label .icon:before,
-.login-form .group label .icon:after {
+.findid-form .group label .icon:before,
+.findid-form .group label .icon:after {
   content: "";
   width: 10px;
   height: 2px;
@@ -123,39 +123,39 @@ a {
   position: absolute;
   transition: all 0.2s ease-in-out 0s;
 }
-.login-form .group label .icon:before {
+.findid-form .group label .icon:before {
   left: 3px;
   width: 5px;
   bottom: 6px;
   transform: scale(0) rotate(0);
 }
-.login-form .group label .icon:after {
+.findid-form .group label .icon:after {
   top: 6px;
   right: 0;
   transform: scale(0) rotate(0);
 }
-.login-form .group .check:checked + label {
+.findid-form .group .check:checked + label {
   color: #fff;
 }
-.login-form .group .check:checked + label .icon {
+.findid-form .group .check:checked + label .icon {
   background: #1161ee;
 }
-.login-form .group .check:checked + label .icon:before {
+.findid-form .group .check:checked + label .icon:before {
   transform: scale(1) rotate(45deg);
 }
-.login-form .group .check:checked + label .icon:after {
+.findid-form .group .check:checked + label .icon:after {
   transform: scale(1) rotate(-45deg);
 }
-.login-html
-  .sign-in:checked
+.findid-html
+  .findid:checked
   + .tab
-  + .sign-up
+  + .findpw
   + .tab
-  + .login-form
-  .sign-in-htm {
+  + .findid-form
+  .findid-htm {
   transform: rotate(0);
 }
-.login-html .sign-up:checked + .tab + .login-form .sign-up-htm {
+.findid-html .findpw:checked + .tab + .findid-form .findpw-htm {
   transform: rotate(0);
 }
 
