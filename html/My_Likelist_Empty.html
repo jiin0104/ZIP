@@ -21,24 +21,8 @@
     <link href="mypage.css" rel="stylesheet" />
     <!-- Responsive CSS -->
     <link href="responsive.css" rel="stylesheet" />
-    <link href="css/responsive/responsive.css" rel="stylesheet" />
-    <link
-      rel="stylesheet"
-      href="./air-datepicker/dist/css/datepicker.min.css"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-      integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
-      crossorigin="anonymous"
-    ></script>
   </head>
 
-  <body>
     <!-- Preloader -->
     <div id="preloader">
       <div class="dorne-load"></div>
@@ -66,61 +50,45 @@
       </div>
     </div>
 
-    <!-- ***** Header Area Start ***** -->
-    <header class="header_area" id="header">
-      <div class="container h-100">
-        <div class="row h-100">
-          <div class="col-12 h-100">
-            <nav class="h-100 navbar navbar-expand-lg">
-              <a class="navbar-brand" href=""
-                ><img src="img/core-img/logo.png" alt=""
-              /></a>
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#dorneNav"
-                aria-controls="dorneNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span class="fa fa-bars"></span>
-              </button>
-              <!-- Nav -->
-              <div class="collapse navbar-collapse" id="dorneNav">
-                <ul class="navbar-nav mr-auto" id="dorneMenu"></ul>
-                <!-- Signin btn -->
-                <div class="dorne-signin-btn">
-                  <a href="#">로그아웃</a>
-                </div>
-                <div class="zip-dropdown-menu">
-                  <li class="nav-item dropdown">
-                    <a
-                      class="nav-link dropdown-toggle"
-                      href="#"
-                      id="navbarDropdown"
-                      role="button"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                      style="color: #fff"
-                      ><i class="fa fa-bars" aria-hidden="true"></i
-                    ></a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">내 정보</a>
-                      <a class="dropdown-item" href="#">예약 내역</a>
-                      <a class="dropdown-item" href="#">이용 내역</a>
-                      <a class="dropdown-item" href="#">내 찜 목록</a>
-                    </div>
-                  </li>
-                </div>
+<!-- ***** Header Area Start ***** -->
+  <header class="header_area" id="header">
+    <div class="container h-100">
+      <div class="row h-100">
+        <div class="col-12 h-100">
+          <nav class="h-100 navbar navbar-expand-lg">
+            <a class="navbar-brand" href=""><img src="img/core-img/logo.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav"
+              aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="fa fa-bars"></span></button>
+            <!-- Nav -->
+            <div class="collapse navbar-collapse" id="dorneNav">
+              <ul class="navbar-nav mr-auto" id="dorneMenu">
+
+              </ul>
+              <!-- Signin btn -->
+              <div class="dorne-signin-btn">
+                <a href="#">로그아웃</a>
               </div>
-            </nav>
-          </div>
+              <div class="zip-dropdown-menu">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" style="color: #fff;"><i class="fa fa-bars"
+                      aria-hidden="true"></i></a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">내 정보</a>
+                    <a class="dropdown-item" href="#">예약 내역</a>
+                    <a class="dropdown-item" href="#">이용 내역</a>
+                    <a class="dropdown-item" href="#">내 찜 목록</a>
+                  </div>
+                </li>
+              </div>
+            </div>
+          </nav>
         </div>
       </div>
-    </header>
-    <!-- ***** Header Area End ***** -->
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
 
     <!-- ***** Breadcumb Area Start ***** -->
     <div
@@ -138,43 +106,18 @@
       <!-- 버튼부분-->
       <div style="width: 20%">
         <div class="leftsidebar" style="width: 20%; padding-top: 30%">
-          <button
-            type="button"
-            id="mypage_button"
-            style="max-width: 20px"
-            onclick="location.href='mypage.html'"
-          >
+          <button type="button" id="mypage_button" style="max-width: 20px" onclick=location.href="mypage.html";>
             내정보
           </button>
-          <button
-            type="button"
-            id="mypage_button"
-            style="max-width: 20px"
-            onclick="location.href='reservation.html'"
-          >
+          <button type="button" id="mypage_button" style="max-width: 20px" onclick=location.href="My_reservation.html";>
             예약내역
           </button>
-          <button
-            type="button"
-            id="mypage_button"
-            style="max-width: 20px"
-            onclick="location.href='myuselist.html'"
-          >
+          <button type="button" id="mypage_button" style="max-width: 20px" onclick=location.href="my_uselist.html";>
             이용내역
           </button>
-          <button
-            type="button"
-            id="mypage_button"
-            style="max-width: 20px"
-            onclick="location.href='likelist.html'"
-          >
+          <button type="button" id="mypage_button" style="max-width: 20px; color: red;" onclick=location.href="my_likelist_empty.html";>
             내 찜 목록</button
-          ><button
-            type="button"
-            id="mypage_button"
-            style="max-width: 20px; color: red"
-            onclick="location.href='mydelete.html'"
-          >
+          ><button type="button" id="mypage_button" style="max-width: 20px" onclick=location.href="my_delete.html";>
             회원 탈퇴
           </button>
         </div>
@@ -185,44 +128,23 @@
         style="padding-top: 6%"
       >
         <div class="contact-text">
-          <h1>회원 탈퇴</h1>
-          <div class="really">
-            입력하신 정보는 회원탈퇴 이외의 목적으로 사용하지 않습니다<br />
-            탈퇴 후 리뷰 및 모든 정보는 삭제됩니다<br /><br />
-            <br /><br />
-          </div>
-          <div class="delete-check">
-            <div class="col-auto">
-              <label for="inputPassword6" class="col-form-label"
-                >Password</label
-              >
+          <h1>내 찜 목록</h1>
+          <div class="reslistempty">
+            <div class="really2">
+              찜한 목록이 없습니다<br />관심있는 숙소를 등록해주세요
             </div>
-            <div class="col-auto">
-              <input
-                type="password"
-                id="inputPassword6"
-                class="form-control"
-                aria-describedby="passwordHelpInline"
-              />
-            </div>
-            <button type="submit" onclick="showConfirmation()" id="button6">
-              확인
+            <br />
+            <button type="button" id="main" onclick=location.href="main.html";>
+              지금 바로 숙소 등록하기
             </button>
-          </div>
-          <div id="popup" class="popup" style="display: none">
-            <p class="popup-message" style="font-size: 18px">
-              정말 탈퇴하시겠습니까?
-            </p>
-            <div class="popup-buttons">
-              <button id="button7" onclick="hideConfirmation()">취소</button>
             </div>
-            <div class="popup-buttons">
-              <button id="button8" onclick="cancelReservation()">확인</button>
             </div>
           </div>
         </div>
       </div>
     </div>
+  
+
     <!-- ****** Footer Area Start ****** -->
     <footer class="dorne-footer-area">
       <div class="container-fluid">
@@ -275,6 +197,7 @@
     <script src="js/google-map/map-active.js"></script>
     <!-- Active JS -->
     <script src="js/active.js"></script>
+
     <!--추가한script-->
     <script>
       var slideIndex = 0;
@@ -322,11 +245,6 @@
       function hideConfirmation() {
         var popup = document.getElementById("popup");
         popup.style.display = "none";
-      }
-
-      function cancelReservation() {
-        alert("탈퇴가 완료되었습니다!");
-        hideConfirmation();
       }
     </script>
   </body>

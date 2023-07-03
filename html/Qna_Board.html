@@ -37,6 +37,30 @@
 
     @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap");
   </style>
+
+  <style>
+    .board-list table {
+      width: 104%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .board-list th,
+    .board-list td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .board-list thead th {
+      background-color: #f2f2f2;
+    }
+
+    .board-list tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -109,101 +133,107 @@
   <!-- ***** Breadcumb Area End ***** -->
 
   <!-- ***** Contact Area Start ***** -->
-  <div class="dorne-contact-area d-md-flex container" id="contact" style="padding-top: 43px; padding-bottom: 43px; height: auto;">
+  <div class="dorne-contact-area d-md-flex container" id="contact" style="padding-top: 43px; padding-bottom: 43px;">
     <!-- 버튼부분-->
     <div style="width: 35%; padding-top: 60px;">
       <div class="leftsidebar" style="width: 20%;">
-        <button type="button" id="mypage_button" style="max-width: 20px;" onclick=location.href="notification.html";>공지사항</button>
+        <button type="button" id="mypage_button" style="max-width: 20px;" onclick=location.href="notify.html"
+          ;>공지사항</button>
       </div>
       <div class="leftsidebar" style="width: 20%;">
-        <button type="button" id="mypage_button" style="max-width: 20px; color: red;">자주 묻는 질문</button>
+        <button type="button" id="mypage_button" style="max-width: 20px;" onclick=location.href="Admin_faq_list.html" ;>자주 묻는
+          질문</button>
       </div>
       <div class="leftsidebar" style="width: 20%;">
-        <button type="button" id="mypage_button" style="max-width: 20px;" onclick=location.href="qa_list.html" ;>1:1
-          문의</button>
+        <button type="button" id="mypage_button" style="max-width: 20px; color: red;" onclick=location.href="qna_list.html";>1:1 문의</button>
       </div>
     </div>
     <!-- 여기가 오른쪽에 있는 내용 -->
-    <div style=" padding-top: 54px; width: 724px; margin-right: 31px;">
+    <div style="padding-top: 54px;">
       <!-- 리스트 상단 -->
       <div class="top"
-        style=" overflow: visible; height: 80px; border-top: none; border-bottom: 1px solid rgba(0, 0, 0, 0.2);">
-        <h3>자주 묻는 질문</h3>
-        <button style="float: right; margin: 0 10px;" onclick=location.href="faq_edit.html";>글쓰기</button>
+        style="overflow: visible; height: 80px; border-top: none; border-bottom: 1px solid rgba(0, 0, 0, 0.2);">
+        <h3>1:1 문의</h3>
+        <button style="float: right; margin: 0 10px;">삭제</button>
+        <button style="float: right; margin: 0 10px;">수정</button>
+        <button style="float: right; margin: 0 10px;" onclick=location.href="Admin_qa_comment.html";>답변</button>
       </div>
-      <!-- 리스트 -->
-      <div style="width: 724px; margin-right: 31px; margin-bottom: 1rem;">
-        <div class="list" style="display: block; width: 100%; margin-top: 0; padding: 0; clear: both;">
-          <ul>
-            <li>
-              <p class="link on"
-                style="position: relative; height: auto; padding: 34px 0; font-size: 18px; line-height: normal;">
-                <span>제목</span>
-                <button style="float: right; margin: 0 10px;">삭제</button>
-                <button style="float: right; margin: 0 10px;">수정</button>
-              </p>
-              <div class="ans on"
-                style="margin-bottom: 0; padding: 35px 32px; border-radius: 0; background: rgba(0,0,0,0.08); font-size: 16px; line-height: 26px;">
-                <div>
-                  <span style="font-size: 13px;">내용</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <p class="link"
-                style="position: relative; height: auto; padding: 34px 0; font-size: 18px; line-height: normal; border-bottom: 1px solid #e6e6e6;">
-                <span>제목</span>
-                <button style="float: right; margin: 0 10px;">삭제</button>
-                <button style="float: right; margin: 0 10px;">수정</button>
-              </p>
-            </li>
-            <li>
-              <p class="link"
-                style="position: relative; height: auto; padding: 34px 0; font-size: 18px; line-height: normal; border-bottom: 1px solid #e6e6e6;">
-                <span>제목</span>
-                <button style="float: right; margin: 0 10px;">삭제</button>
-                <button style="float: right; margin: 0 10px;">수정</button>
-              </p>
-            </li>
-            <li>
-              <p class="link"
-                style="position: relative; height: auto; padding: 34px 0; font-size: 18px; line-height: normal; border-bottom: 1px solid #e6e6e6;">
-                <span>제목</span>
-                <button style="float: right; margin: 0 10px;">삭제</button>
-                <button style="float: right; margin: 0 10px;">수정</button>
-              </p>
-            </li>
-            <li>
-              <p class="link"
-                style="position: relative; height: auto; padding: 34px 0; font-size: 18px; line-height: normal; border-bottom: 1px solid #e6e6e6;">
-                <span>제목</span>
-                <button style="float: right; margin: 0 10px;">삭제</button>
-                <button style="float: right; margin: 0 10px;">수정</button>
-              </p>
-            </li>
-            <li>
-              <p class="link"
-                style="position: relative; height: auto; padding: 34px 0; font-size: 18px; line-height: normal; border-bottom: 1px solid #e6e6e6;">
-                <span>제목</span>
-                <button style="float: right; margin: 0 10px;">삭제</button>
-                <button style="float: right; margin: 0 10px;">수정</button>
-              </p>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <nav aria-label="...">
-        <ul class="pagination justify-content-center">
-          <li class="page-item"><a class="page-link" href="#">이전</a></li>
-          <li class="page-item"><a class="page-link" href="#" style="background: rgba(0,0,0,0.08);">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">다음</a></li>
-        </ul>
-      </nav>
-    </div>
-    
+      <!-- 게시글 상세 -->
+      <div>
+        <!-- 질문 -->
+        <div class="board-list" style="width: 724px; margin-right: 31px; margin-bottom: 1rem;">
+          <table class="board_detail">
+            <colgroup>
+              <col width="15%" />
+              <col width="35%" />
+              <col width="15%" />
+              <col width="35%" />
+            </colgroup>
+            <tbody>
+              <tr>
+                <th scope="row">No.</th>
+                <td>1</td>
+                <th scope="row">구분</th>
+                <td>예약</td>
+              </tr>
+              <tr>
+                <th scope="row">작성자</th>
+                <td>작성자 1</td>
+                <th scope="row">등록일자</th>
+                <td>2023-06-27</td>
+              </tr>
+              <tr>
+                <th scope="row">제목</th>
+                <td colspan="3">
+                  제목입니다.
+                </td>
+              </tr>
+              <tr>
+                <th>내용</th>
+                <td colspan="4">
+                  내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- 답변 -->
+          <div class="board-list" style="width: 724px; margin-right: 31px; margin-bottom: 1rem;">
+            <table class="board_detail">
+              <colgroup>
+                <col width="15%" />
+                <col width="35%" />
+                <col width="15%" />
+                <col width="35%" />
+              </colgroup>
+              <tbody>
+                <tr>
+                  <th scope="row">작성자</th>
+                  <td>admin</td>
+                  <th scope="row">등록일자</th>
+                  <td>2023-06-28</td>
+                </tr>
+                <tr>
+                  <th scope="row">제목</th>
+                  <td colspan="3">
+                    답변 제목입니다.
+                  </td>
+                </tr>
+                <tr>
+                  <th>내용</th>
+                  <td colspan="4">
+                    답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.답변입니다.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
+        </div>
+        <ul class="pagination justify-content-end">
+          <li class="page-item"><a class="page-link" href="qa_list.html">목록</a></li>
+        </ul>
+      </div>
+    </div>
     <!-- ***** Contact Area End ***** -->
 
     <!-- ****** Footer Area Start ****** -->
