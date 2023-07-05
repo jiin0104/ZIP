@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <Header/>
     <div>
       
@@ -16,26 +15,6 @@ components: { Header, Footer}
 }
 </script>
 
-=======
-  <div>
-  <Header />
-  <router-view/>
-  <Footer />
-  </div>
-</template>
-<script>
-import Header from './layouts/Header';
-import Footer from './layouts/Footer';
-export default {
-  components: {Header, Footer},
-  computed: {
-    user() {
-      return this.$store.state.user;
-    }
-  }
-}
-</script>
->>>>>>> 8f993fde411ef2dc0a4a02a6c4a60991553ca658
 <style>
 #app {
 height: 1300px;
