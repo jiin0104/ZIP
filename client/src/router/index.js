@@ -13,20 +13,20 @@ import { createRouter, createWebHistory } from 'vue-router'
 // import Mypage_Pw_Check from '../views/Mypage_Pw_Check.vue'
 // import Mypage from '../views/Mypage.vue'
 // import Notify from '../views/Notify.vue'
-// import Payment from '../views/Payment.vue'
+import Payment from '../views/Payment.vue'
 // import Reservation_Info from '../views/Reservation_Info.vue'
 // import Signup from '../views/Signup.vue'
 // import Acco_Detail from '../views/Acco_Detail.vue'
+import Search_List from '../views/Search_List.vue'
 
-
-import HomeView from '../views/HomeView.vue'
 
 
 const routes = [
+
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: '/search_list',
+    name: 'search_list',
+    component: Search_List
   },
 
   // {
@@ -107,11 +107,11 @@ const routes = [
   //   component: Mypage
   // },
 
-  // {
-  //   path: '/payment',
-  //   name: 'payment',
-  //   component: Payment
-  // },
+  {
+    path: '/payment',
+    name: 'payment',
+    component: Payment
+  },
 
   // {
   //   path: '/reservation_info',
