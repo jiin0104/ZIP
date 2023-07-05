@@ -20,23 +20,17 @@
         </ul>
       </div>
     </div>
-    <div class="logout-modal" v-if="logoutmodal == true">
-      <h2>로그아웃 하시겠습니까?</h2>
-      <button class="logout-button1" @click="logout">로그아웃</button>
-      <button class="logout-button2">취소</button>
-    </div>
     <!-- 관리자용 헤더 내용 -->
     <div class="header1 container h-100" v-else-if="userRole === 'admin'">
       <h1><a href="#" class="logo"><img alt="Vue logo" src="@/layouts/logo.png" width="80"></a></h1>
       <div class="menuWrap">
         <ul class="menu">
-          <li class="dorne-signin-btn"><a href="javascript:;">로그아웃</a></li>
+          <li class="dorne-signin-btn"><a @click="logout" href="javascript:;">로그아웃</a></li>
           <li><a href="#">예약관리</a></li>
           <li><a href="#">회원관리</a></li>
         </ul>
       </div>
     </div>
-
   </header>
 </template>
 
@@ -100,8 +94,7 @@ export default {
   name: 'header',
   data() {
     return {
-      userRole: 'guest', // 사용자 역할을 저장하는 변수
-      logoutmodal: true,
+      userRole: 'admin', // 사용자 역할을 저장하는 변수
     }
   },
   methods: {
