@@ -61,17 +61,18 @@
                 id="inputPassword6"
                 class="form-control"
                 aria-describedby="passwordHelpInline"
+                v-model="rendom_pw"
               />
             </div>
             <button
               type="submit"
-              onclick="showConfirmation()"
               class="btn btn-primary"
               style="
                 position: relative;
                 background-color: #0b5394;
                 color: white;
               "
+              @click="checkPassword()"
             >
               확인
             </button>
@@ -91,9 +92,14 @@
 </template>
 <script>
 export default {
+  name: "pwcheck",
   data() {
-    return {};
+    return {
+      user_pw: null,
+      rendom_pw: null,
+    };
   },
+
   methods: {
     Mypage_Link() {
       this.$router.push({ path: "/mypage" });
@@ -106,6 +112,19 @@ export default {
     },
     My_Delete_Link() {
       this.$router.push({ path: "/my_delete" });
+    },
+    My_Update_Link() {
+      this.$router.push({ path: "/my_update" });
+    },
+
+    checkPassword() {
+      // 비밀번호 확인
+      if (rendom_pw === user_pw) {
+        My_Update_Link();
+      } else {
+        showConfirmation();
+        return;
+      }
     },
   },
 };
