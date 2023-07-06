@@ -1,8 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-// import Admin_Page_Reservation from '../views/Admin_Page_Reservation.vue'
-// import Admin_Page_Room from '../views/Admin_Page_Room.vue'
-// import Admin_Page_User from '../views/Admin_Page_User.vue'
-// import Admin_Product_Create from '../views/Admin_Product_Create.vue'
+import Admin_Page_Reservation from '../views/Admin_Page_Reservation.vue'
+import Admin_Page_User from '../views/Admin_Page_User.vue'
+import Admin_Product_Create from '../views/Admin_Product_Create.vue'
 // import Find_Id_Result from '../views/Find_Id_Result.vue'
 // import Find_IdPw from '../views/Find_IdPw.vue'
 // import Find_Pw_Result from '../views/Find_Pw_Result.vue'
@@ -16,12 +15,19 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Payment from '../views/Payment.vue'
 // import Reservation_Info from '../views/Reservation_Info.vue'
 // import Signup from '../views/Signup.vue'
-// import Acco_Detail from '../views/Acco_Detail.vue'
+import Acco_Detail from '../views/Acco_Detail.vue'
 import Search_List from '../views/Search_List.vue'
+import Main from '../views/Main.vue'
 
 
 
 const routes = [
+
+  {
+    path: '/',
+    name: 'main',
+    component: Main
+  },
 
   {
     path: '/search_list',
@@ -29,29 +35,24 @@ const routes = [
     component: Search_List
   },
 
-  // {
-  //   path: '/',
-  //   name: 'main',
-  //   component: Admin_Main
-  // },
 
-  // {
-  //   path: '/admin_page_reservation',
-  //   name: 'admin_page_reservation',
-  //   component: Admin_Page_Reservation
-  // },
+  {
+    path: '/admin_page_reservation',
+    name: 'admin_page_reservation',
+    component: Admin_Page_Reservation
+  },
 
-  // {
-  //   path: '/admin_page_user',
-  //   name: 'admin_page_user',
-  //   component: Admin_Page_User
-  // },
+  {
+    path: '/admin_page_user',
+    name: 'admin_page_user',
+    component: Admin_Page_User
+  },
 
-  // {
-  //   path: '/admin_product_create',
-  //   name: 'admin_product_create',
-  //   component: Admin_Product_Create
-  // },
+  {
+    path: '/admin_product_create',
+    name: 'admin_product_create',
+    component: Admin_Product_Create
+  },
 
   // {
   //   path: '/find_id_result',
@@ -125,11 +126,11 @@ const routes = [
   //   component: Signup
   // },
 
-  // {
-  //   path: '/acco_detail',
-  //   name: 'acco_detail',
-  //   component: Acco_Detail
-  // },
+  {
+    path: '/acco_detail',
+    name: 'acco_detail',
+    component: Acco_Detail
+  },
 
 
 

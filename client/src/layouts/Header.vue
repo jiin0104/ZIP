@@ -2,18 +2,18 @@
   <header class="header_area" id="header">
     <!-- 회원용 헤더 내용 -->
     <div class="header1 container h-100" v-if="userRole === 'member'">
-      <h1><a href="#" class="logo"><img alt="Vue logo" src="@/layouts/logo.png" width="80"></a></h1>
+      <router-link to="/"><h1><a><img alt="Vue logo" src="@/layouts/logo.png" width="80"></a></h1></router-link>
       <div class="menuWrap">
         <ul class="menu">
           <li class="dorne-signin-btn"><a @click="logout" href="javascript:;">로그아웃</a></li>
-          <li><a href="#">내정보</a></li>
-          <li><a href="#">예약내역</a></li>
+          <router-link to="mypage"><li><a>내정보</a></li></router-link>
+          <router-link to="my_reservation"><li><a>예약내역</a></li></router-link>
         </ul>
       </div>
     </div>
     <!-- 비회원용 헤더 내용 -->
     <div class="header1 container h-100" v-else-if="userRole === 'guest'">
-      <h1><a href="#" class="logo"><img alt="Vue logo" src="@/layouts/logo.png" width="80"></a></h1>
+      <router-link to="/"><h1><a><img alt="Vue logo" src="@/layouts/logo.png" width="80"></a></h1></router-link>
       <div class="menuWrap">
         <ul class="menu">
           <li class="dorne-signin-btn"><a @click="login" href="javascript:;">로그인</a></li>
@@ -22,12 +22,13 @@
     </div>
     <!-- 관리자용 헤더 내용 -->
     <div class="header1 container h-100" v-else-if="userRole === 'admin'">
-      <h1><a href="#" class="logo"><img alt="Vue logo" src="@/layouts/logo.png" width="80"></a></h1>
+      <router-link to="/"><h1><a><img alt="Vue logo" src="@/layouts/logo.png" width="80"></a></h1></router-link>
       <div class="menuWrap">
         <ul class="menu">
           <li class="dorne-signin-btn"><a @click="logout" href="javascript:;">로그아웃</a></li>
-          <li><a href="#">예약관리</a></li>
-          <li><a href="#">회원관리</a></li>
+          <router-link to="admin_page_reservation"><li><a>예약관리</a></li></router-link>
+          <router-link to="admin_page_user"><li><a>회원관리</a></li></router-link>
+          <router-link to="admin_product_create"><li><a>숙소관리</a></li></router-link>
         </ul>
       </div>
     </div>
