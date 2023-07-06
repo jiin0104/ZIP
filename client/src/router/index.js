@@ -3,7 +3,7 @@ import Admin_Page_Reservation from "../views/Admin_Page_Reservation.vue";
 import Admin_Page_User from "../views/Admin_Page_User.vue";
 import Admin_Product_Create from "../views/Admin_Product_Create.vue";
 // import Find_Id_Result from '../views/Find_Id_Result.vue'
-// import Find_IdPw from '../views/Find_IdPw.vue'
+import Find_IdPw from '../views/Find_IdPw.vue'
 // import Find_Pw_Result from '../views/Find_Pw_Result.vue'
 import Login from "../views/Login.vue";
 import My_Delete from "../views/My_Delete.vue";
@@ -55,11 +55,11 @@ const routes = [
   //   component: Find_Id_Result
   // },
 
-  // {
-  //   path: '/find_idpw',
-  //   name: 'find_idpw',
-  //   component: Find_IdPw
-  // },
+  {
+    path: '/find_idpw',
+    name: 'find_idpw',
+    component: Find_IdPw
+  },
 
   // {
   //   path: '/find_pw_result',

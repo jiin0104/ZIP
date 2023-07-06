@@ -16,7 +16,7 @@
 
             <div class="text-right p-t-8 p-b-31">
               <a href="#" style="text-decoration: none;">
-                <p style="text-align: right;" link="">아이디/비밀번호 찾기</p>
+                <RouterLink to="Find_IdPw"><p style="text-align: right;" link="">아이디/비밀번호 찾기</p></RouterLink>
               </a>
             </div>
 
