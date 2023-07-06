@@ -10,3 +10,5 @@ app.use(router);
 app.mixin(mixins);
 app.use(store);
 app.mount('#app');
+
+window.Kakao.init("2da1dfec1c5fbfc311dcdfc163b3a092")

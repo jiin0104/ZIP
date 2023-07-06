@@ -36,7 +36,7 @@
             <br />
             <div class="flex-c-m">
               <!-- 각 버튼을 누르면 api로 작동하게 후에 백엔드 코드 짜고서 추가 -->
-              <a href="#" class="login100-social-item bg1" style="text-decoration: none;">
+              <a href="#" class="login100-social-item bg1" style="text-decoration: none;" @click="kakaoLogin()">
                 <i class="fa fa-kakao"><b>카카오 로그인</b></i>
               </a>
               <br />
@@ -85,7 +85,38 @@ export default {
     }
 
     alert('로그인 되었습니다.')
+    },
+
+    // 카카오 간편 로그인
+    kakaoLogin() {
+      window.Kakao.Auth.login({
+        scope: "profile_image, account_email",
+        success: this.getKakaoAccount,
+      });
+    },
+    getKakaoAccount() {
+      window.Kakao.API.request({
+        url: "/v2/user/me",
+        success: res => {
+          const kakao_account = res.kakao_account;
+          const nickname = kakao_account.nickname;
+          const email = kakao_account.email
+          console.log('nickname', nickname);
+          console.log('email', email);
+
+          alert("로그인 성공!");
+        },
+        fail : error => {
+          console.log(error)
+        }
+      })
     }
   }
 }
 </script>
+
+<style>
+  div {
+    text-align: left;
+  }
+</style>
