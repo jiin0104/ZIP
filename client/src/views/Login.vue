@@ -51,7 +51,7 @@
               </span>
 
               <a href="#" class="txt2">
-                <p link="" style="text-align: right;"><b>회원가입</b></p>
+                <p link="" style="text-align: right;"><RouterLink to='/Signup'><b>회원가입</b></RouterLink></p>
               </a>
             </div>
           </form>
