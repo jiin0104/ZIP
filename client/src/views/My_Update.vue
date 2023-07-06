@@ -22,7 +22,7 @@
       </div>
       <!-- 여기가 오른쪽에 있는 내용 -->
       <form id="app3" @submit="checkForm" action="/mypage" method="post" novalidate="true">
-      <div class="contact-form-area equal-height container" style="padding-top: 6%">
+      <div class="contact-form-area equal-height container" style="padding-top: 6%; width: 220%;">
         <div class="contact-text">
           <h1>회원 정보 수정</h1>
 
@@ -58,9 +58,9 @@
               <input type="text" id="zonecode" placeholder="우편번호" role="textbox" v-model="zonecode" readonly />
               <input type="button" @click="openPostcode" value="우편번호 찾기" id="postcode"><br />
               <input type="text" placeholder="주소" role="textbox" v-model="roadAddress" readonly
-                style="width: 67%;" /><br />
+                style="width: 43%;" /><br />
               <input type="text" id="addressdetail" placeholder="상세주소" role="textbox" v-model="detailAddress"
-                style="width: 67%;" /><br />
+                style="width: 43%;" /><br />
             </div>
 
             <p v-if="errors.length">
@@ -175,16 +175,13 @@ export default {
     },
 
 
-
-
-    signUpCheck3() {
-      if (this.errors.length) {
-        setTimeout(function () {
-          alert("가입이 완료되었습니다.")
-          onclick = location.href = "/login";
-        });
+    signUpCheck3(){
+      if(this.phone == null || this.nickname == null || this.password === null || this.passwordCheck === null || this.roadAddress === null){
+        return
       }
-    },
+      alert("정보가 수정되었습니다")
+      this.$router.push({ path: "/mypage"})
+    }
   },
 };
 </script>

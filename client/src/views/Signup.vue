@@ -9,7 +9,7 @@
                         <b label for="email">이메일(아이디)</b><br>
                         <input id="email" type="text" role="textbox" placeholder="이메일을 입력해 주세요." name="email"
                             v-model="email" />
-                            <input type="button" id="crosscheck" value="중복 확인" onclick="validateEmail()">
+                        <input type="button" id="crosscheck" value="중복 확인" onclick="validateEmail()">
                         <br /><br />
                     </div>
 
@@ -174,18 +174,14 @@ export default {
             }).open();
         },
 
-
-
-
         signUpCheck2() {
-            if (this.errors.length) {
-                setTimeout(function () {
-                    alert("가입이 완료되었습니다.")
-                    onclick = location.href = "/login";
-                });
+            if (this.phone == null || this.nickname == null || this.password === null || this.passwordCheck === null || this.roadAddress === null) {
+                return
             }
+            alert("가입이 완료되었습니다")
+            this.$router.push({ path: "/login" })
         }
-    }
+    },
 }
 
 </script>
