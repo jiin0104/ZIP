@@ -117,15 +117,15 @@ export default {
       this.$router.push({ path: "/my_update" });
     },
 
-    checkPassword() {
-      // 비밀번호 확인
-      if (rendom_pw === user_pw) {
-        My_Update_Link();
-      } else {
-        showConfirmation();
-        return;
-      }
-    },
+    // checkPassword() {
+    //   // 비밀번호 확인
+    //   if (rendom_pw === user_pw) {
+    //     My_Update_Link();
+    //   } else {
+    //     showConfirmation();
+    //     return;
+    //   }
+    // },
   },
 };
 </script>
