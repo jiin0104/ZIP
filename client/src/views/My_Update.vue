@@ -1,222 +1,189 @@
 <template>
   <div>
     <!-- ***** Breadcumb Area Start ***** -->
-    <div
-      class="breadcumb-area bg-img bg-overlay"
-      style="background-image: url(img/bg-img/hero-1.jpg)"
-    ></div>
+    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/hero-1.jpg)"></div>
     <!-- ***** Breadcumb Area End ***** -->
 
     <!-- ***** Contact Area Start ***** -->
-    <div
-      class="dorne-contact-area d-md-flex container"
-      style="padding-top: 43px"
-      id="contact"
-    >
+    <div class="dorne-contact-area d-md-flex container" style="padding-top: 43px" id="contact">
       <!-- 버튼부분-->
       <div style="width: 20%">
         <div class="leftsidebar" style="width: 20%; padding-top: 30%">
-          <button
-            type="button"
-            id="mypage_button"
-            style="max-width: 20px; color: red"
-            @click="Mypage_Link"
-          >
+          <button type="button" id="mypage_button" style="max-width: 20px; color: red" @click="Mypage_Link">
             내정보
           </button>
-          <button
-            type="button"
-            id="mypage_button"
-            style="max-width: 20px"
-            @click="My_reservation_Link"
-          >
+          <button type="button" id="mypage_button" style="max-width: 20px" @click="My_reservation_Link">
             예약내역
           </button>
-          <button
-            type="button"
-            id="mypage_button"
-            style="max-width: 20px"
-            @click="My_Delete_Link"
-          >
+          <button type="button" id="mypage_button" style="max-width: 20px" @click="My_Delete_Link">
             회원 탈퇴
           </button>
         </div>
       </div>
       <!-- 여기가 오른쪽에 있는 내용 -->
-      <div
-        class="contact-form-area equal-height container"
-        style="padding-top: 6%"
-      >
+      <form id="app3" @submit="checkForm" action="/mypage" method="post" novalidate="true">
+      <div class="contact-form-area equal-height container" style="padding-top: 6%">
         <div class="contact-text">
           <h1>회원 정보 수정</h1>
+
           <div style="position: relative; left: 30%">
             <div class="field2" id="sign">
-              <b>닉네임</b><br />
-              <input
-                type="text"
-                id="nickname"
-                role="textbox"
-                placeholder="닉네임을 입력해 주세요."
-                v-model="nickname"
-              />
-              <button id="crosscheck" onclick="validateNickname()">
-                중복확인
-              </button>
-              <p v-if="duplicateMessage">{{ duplicateMessage }}</p>
+              <b label for="nickname">닉네임</b><br />
+              <input type="text" id="nickname" role="textbox" placeholder="닉네임을 입력해 주세요." name="nickname"
+                v-model="nickname" />
+              <input type="button" id="crosscheck" value="중복 확인" onclick="validateNickname()"><br />
             </div>
             <br>
             <div class="field2">
-              <b>비밀번호</b><br />
-              <input
-                class="userpw"
-                id="password"
-                type="password"
-                role="textbox"
-                placeholder="비밀번호를 입력해 주세요."
-              />
-              <div id="passwordError" class="error"></div>
+              <b label for="password">비밀번호</b><br />
+              <input class="userpw" id="password" type="password" role="textbox" placeholder="비밀번호를 입력해 주세요."
+                name="password" v-model="password" /><br /><br />
             </div>
             <div class="field2">
-              <b>비밀번호 재확인</b><br />
-              <input
-                class="userpw-confirm"
-                id="passwordCheck"
-                type="password"
-                role="textbox"
-                placeholder="비밀번호를 입력해 주세요."
-              />
-              <div id="passwordCheckError" class="error"></div>
+              <b label for="passwordCheck">비밀번호 재확인</b><br />
+              <input class="userpw-confirm" id="passwordCheck" type="password" role="textbox" name="passwordCheck"
+                v-model="passwordCheck" placeholder="비밀번호를 입력해 주세요." /><br /><br />
             </div>
             <!-- 5. 이메일_전화번호 -->
             <div class="field2 tel-number">
-              <b>휴대전화</b>
+              <b label for="phone">휴대전화(-제외)</b>
               <div>
-                <input
-                  id="phone1"
-                  type="text"
-                  size="1"
-                  maxlength="3"
-                  oninput="changePhone1()"
-                  role="textbox2"
-                />-
-                <input
-                  id="phone2"
-                  type="text"
-                  size="3"
-                  maxlength="4"
-                  oninput="changePhone2()"
-                  role="textbox2"
-                />-
-                <input
-                  id="phone3"
-                  type="text"
-                  size="3"
-                  maxlength="4"
-                  oninput="changePhone3()"
-                  role="textbox2"
-                />
-                <div id="phoneError" class="error"></div>
+                <input id="phone1" type="text" role="textbox" name="phone" placeholder="ex)00012345678"
+                  v-model="phone" /><br /><br />
               </div>
-              
-            </div>
-            <div class="field2">
-              <b>주소</b><br />
-              <input
-                type="text"
-                id="sample6_postcode"
-                placeholder="우편번호"
-                role="textbox"
-              />
-              <button onclick="sample6_execDaumPostcode()" id="findad">
-                우편번호찾기</button
-              ><br />
-              <input
-                type="text"
-                id="sample6_address"
-                placeholder="주소"
-                role="textbox2"
-              /><br />
-              <input
-                type="text"
-                id="sample6_detailAddress"
-                placeholder="상세주소"
-                role="textbox"
-              /><br />
-              <input
-                type="text"
-                id="sample6_extraAddress"
-                placeholder="참고항목"
-                role="textbox"
-              />
-              <div id="addressError" class="error"></div>
             </div>
 
+            <div class="field2">
+              <b label for="address">주소</b><br />
+              <input type="text" id="zonecode" placeholder="우편번호" role="textbox" v-model="zonecode" readonly />
+              <input type="button" @click="openPostcode" value="우편번호 찾기" id="postcode"><br />
+              <input type="text" placeholder="주소" role="textbox" v-model="roadAddress" readonly
+                style="width: 67%;" /><br />
+              <input type="text" id="addressdetail" placeholder="상세주소" role="textbox" v-model="detailAddress"
+                style="width: 67%;" /><br />
+            </div>
+
+            <p v-if="errors.length">
+              <br>
+              <b>아래 항목을 확인해주세요</b>
+            <ul>
+              <li v-for="error in errors" v-bind:key="error" style="color: red;">{{ error }}</li>
+            </ul>
+            </p>
+
             <div style="position: relative; left: 125px; top: 30px">
-              <button id="addallow" onclick="signUpCheck()">수정</button>
+              <input type="submit" id="addallow" v-on:click=signUpCheck3() value="수정">
             </div>
           </div>
         </div>
       </div>
+      </form>
     </div>
     <div class="main" style="width: 20%"></div>
   </div>
 </template>
 <script>
 export default {
-  name: "",
-  components: {},
+  el: "#app3",
   data() {
     return {
-      originalNickname: "기존 닉네임",
-      newNickname: "",
-      duplicateMessage: "",
+      errors: [],
+      phone: null,
+      nickname: null,
+      password: null,
+      passwordCheck: null,
+      zonecode: null,
+      roadAddress: null,
+      detailAddress: null
     };
   },
-  setup() {},
-  created() {},
-  mounted() {},
-  unmounted() {},
   methods: {
-    Mypage_Link() {
-      this.$router.push({ path: "/mypage" });
-    },
-    My_reservation_Link() {
-      this.$router.push({ path: "/my_reservation" });
-    },
-    mypage_pw_check_Link() {
-      this.$router.push({ path: "/mypage_pw_check" });
-    },
-    My_Delete_Link() {
-      this.$router.push({ path: "/my_delete" });
+    checkForm(e) {
+      e.preventDefault();
+      this.errors = [];
+
+      if (!this.nickname) {
+        this.errors.push("닉네임은 필수입니다.");
+      }
+
+      if (!this.password) {
+        this.errors.push("비밀번호는 4~12자리를 입력해주세요");
+      } else if (!this.validPassword(this.password)) {
+        this.errors.push("비밀번호 형식을 확인하세요.");
+      }
+
+      if (!this.passwordCheck) {
+        this.errors.push("비밀번호를 확인해주세요");
+      } else if (!this.validPasswordCheck(this.passwordCheck)) {
+        this.errors.push("비밀번호를 확인해주세요")
+      }
+
+      if (!this.phone) {
+        this.errors.push("전화번호는 필수입니다");
+      } else if (!this.validPhone(this.phone)) {
+        this.errors.push("전화번호 형식을 확인하세요.");
+      }
+
+      if (!this.roadAddress) {
+        this.errors.push("주소는 필수입니다");
+      }
+
+      if (!this.errors.length) {
+        return true
+      }
     },
 
-    checkDuplicate() {
-      // 서버로 닉네임 중복 여부 확인 요청
-      // 아래는 가상의 비동기 함수로 가정합니다. 실제로는 서버와의 통신을 구현해야 합니다.
-      this.duplicateMessage = "확인 중...";
 
-      // 비동기 요청 예시 (실제로는 서버 API 호출 등으로 대체해야 함)
-      setTimeout(() => {
-        const isDuplicate = this.simulateDuplicateCheck(this.nickname);
-        if (isDuplicate) {
-          this.duplicateMessage = "닉네임이 이미 사용 중입니다.";
-        } else {
-          this.duplicateMessage = "닉네임을 사용할 수 있습니다.";
-        }
-      }, 1000);
+    validNickname: function (nickname) {
+      var re0 = /^[A-Za-z가-힣]{1,6}$/
+      return re0.test(nickname);
     },
-    simulateDuplicateCheck(nickname) {
-      // 가상의 중복 확인 메서드
-      const existingNicknames = ["user1", "user2", "user3"];
-      return existingNicknames.includes(nickname);
+
+    validEmail: function (email) {
+      var re1 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+      return re1.test(email);
     },
-    updateNickname() {
-      // 닉네임 변경 로직을 구현합니다.
-      // 여기에서 서버로 닉네임을 전송하고 변경을 처리합니다.
-      // 입력된 데이터를 활용하여 서버에 요청을 보내는 코드를 작성해야 합니다.
-      // 예시로는 간단한 메시지만 출력합니다.
-      console.log("닉네임을 변경합니다.");
-      console.log("새로운 닉네임:", this.newNickname);
+
+    validPhone: function (phone) {
+      var re2 = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/
+      return re2.test(phone);
+    },
+
+    validPassword: function (password) {
+      var re3 = /^[A-Za-z0-9]{4,12}$/
+      return re3.test(password);
+    },
+
+    validPasswordCheck: function () {
+      let pw = document.getElementById("password").value
+      let pwcheck = document.getElementById("passwordCheck").value
+
+      if (pw !== pwcheck) {
+        alert("비밀번호가 맞지않습니다")
+      } else {
+        return true;
+      }
+    },
+
+    openPostcode() {
+      new window.daum.Postcode({
+        oncomplete: (data) => {
+          this.zonecode = data.zonecode;
+          this.roadAddress = data.roadAddress;
+        },
+      }).open();
+    },
+
+
+
+
+    signUpCheck3() {
+      if (this.errors.length) {
+        setTimeout(function () {
+          alert("가입이 완료되었습니다.")
+          onclick = location.href = "/login";
+        });
+      }
     },
   },
 };
