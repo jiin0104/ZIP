@@ -35,6 +35,7 @@
               type="button"
               id="mypage_button"
               style="max-width: 20px; margin: 0px 0px 0px 45px; color: red"
+              @click="reservationLink"
             >
               예약관리
             </button>
@@ -44,6 +45,7 @@
               type="button"
               id="mypage_button"
               style="max-width: 20px; margin: 0px 0px 0px 45px"
+              @click="userLink"
             >
               회원관리
             </button>
@@ -94,7 +96,7 @@
                   <td>2023-05-13</td>
                   <td>abc</td>
                   <td>1000</td>
-                  <th>숙소명1</th>
+                  <td>숙소명1</td>
                 </tr>
                 <tr onclick="location.href='#';">
                   <td>2001</td>
@@ -102,7 +104,7 @@
                   <td>2023-05-13</td>
                   <td>abc11</td>
                   <td>1001</td>
-                  <th>숙소명2</th>
+                  <td>숙소명2</td>
                 </tr>
               </tbody>
             </table>
@@ -130,12 +132,9 @@
 </template>
 <script>
 export default {
-  name: "",
   components: {},
   data() {
-    return {
-      sampledata: "",
-    };
+    return {};
   },
   beforeCreate() {},
   created() {},
@@ -145,6 +144,13 @@ export default {
   updated() {},
   beforeUnmount() {},
   unmounted() {},
-  methods: {},
+  methods: {
+    userLink() {
+      this.$router.push({ path: "/admin_page_user" });
+    },
+    reservationLink() {
+      this.$router.push({ path: "/admin_page_reservation" });
+    },
+  },
 };
 </script>

@@ -12,9 +12,9 @@
       <div class="row">
         <div class="col-md-5">
           <form action="" method="post">
-            <div class="img_add">
+            <div class="img_add" style="width: 400px; height: auto">
               <img
-                src="https://image.goodchoice.kr/resize_490x348/affiliate/2021/03/31/6063ceed4d9b5.jpg"
+                :src="'/download/${acco.acco_id}/${acco.acco_image}'"
                 class="d-block w-100"
                 alt="..."
                 style="width: 400px; height: auto"

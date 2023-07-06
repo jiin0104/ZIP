@@ -35,6 +35,7 @@
               type="button"
               id="mypage_button"
               style="max-width: 20px; margin: 0px 0px 0px 45px"
+              @click="reservationLink"
             >
               예약관리
             </button>
@@ -44,6 +45,7 @@
               type="button"
               id="mypage_button"
               style="max-width: 20px; color: red; margin: 0px 0px 0px 45px"
+              @click="userLink"
             >
               회원관리
             </button>
@@ -145,6 +147,13 @@ export default {
   updated() {},
   beforeUnmount() {},
   unmounted() {},
-  methods: {},
+  methods: {
+    userLink() {
+      this.$router.push({ path: "/admin_page_user" });
+    },
+    reservationLink() {
+      this.$router.push({ path: "/admin_page_reservation" });
+    },
+  },
 };
 </script>
