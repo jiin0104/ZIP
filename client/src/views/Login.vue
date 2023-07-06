@@ -16,7 +16,7 @@
 
             <div class="text-right p-t-8 p-b-31">
               <a href="#" style="text-decoration: none;">
-                <p style="text-align: right;" link="">아이디/비밀번호 찾기</p>
+                <RouterLink to="Find_IdPw"><p style="text-align: right;" link="">아이디/비밀번호 찾기</p></RouterLink>
               </a>
             </div>
 
@@ -40,7 +40,7 @@
                 <i class="fa fa-kakao"><b>카카오 로그인</b></i>
               </a>
               <br />
-              <a href="#" class="login100-social-item bg2" style="text-decoration: none;">
+              <a href="#" class="login100-social-item bg2" style="text-decoration: none;" id="naverIdLogin">
                 <i class="fa fa-naver"><b>네이버 로그인</b></i>
               </a>
             </div>
@@ -64,13 +64,43 @@
 <style src="./Login.css"></style>
 
 <script>
+// import axios from "axios";
+
 export default {
   name: 'log',
   data() {
     return {
       user_id: null,
       user_pw: null,
-    }
+      naverLogin: null,
+    };
+  },
+  mounted() {
+    this.naverLogin = new window.naver.LoginWithNaverId({
+      clientId: "8NWAD60RgqNbWdmXePhg", // 네이버 클라이언트 아이디
+      callbackUrl: "http://localhost:8080/login", // 콜백 url
+      isPopup: false, // 팝업 연동처리 여부
+      loginButton: {
+        color: "green", height: 40, type: 3 },
+    });
+    
+    this.naverLogin.init();
+
+    this.naverLogin.getLoginStatus((status) => {
+      if(status) {
+        console.log(status);
+        console.log(this.naver.user);
+
+        var email = this.naverLogin.user.getEmail();
+        if (email == undefined || email == null) {
+          alert("이메일은 필수 정보입니다. 정보 제공을 동의해주세요.");
+          this.naverLogin.reprompt();
+          return;
+        }
+      } else {
+        console.log("callback 처리에 실패했습니다.");
+      }
+    });
   },
   methods: {
     fnLogin() {
