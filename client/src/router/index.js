@@ -5,7 +5,7 @@ import Admin_Product_Create from '../views/Admin_Product_Create.vue'
 // import Find_Id_Result from '../views/Find_Id_Result.vue'
 // import Find_IdPw from '../views/Find_IdPw.vue'
 // import Find_Pw_Result from '../views/Find_Pw_Result.vue'
-// import Login from '../views/Login.vue'
+import Login from '../views/Login.vue'
 // import My_Delete from '../views/My_Delete.vue'
 // import My_Reservation from '../views/My_Reservation.vue'
 // import My_Update from '../views/My_Update.vue'
@@ -72,11 +72,11 @@ const routes = [
   //   component: Find_Pw_Result
   // },
 
-  // {
-  //   path: '/login',
-  //   name: 'login',
-  //   component: Login
-  // },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login
+  },
 
   // {
   //   path: '/my_delete',
