@@ -186,4 +186,5 @@ export default {
     height: 20px;
     color: red;
     font-weight: 700;
-}</style>
+}
+</style>

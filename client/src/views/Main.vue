@@ -39,7 +39,7 @@
             />
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
-              <button class="btn-save4">상세보기</button>
+              <RouterLink to='/acco_detail'><button class="btn-save4">상세보기</button></RouterLink>
             </div>
           </div>
         </div>
@@ -52,7 +52,7 @@
             />
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
-              <button class="btn-save4">상세보기</button>
+              <RouterLink to='/acco_detail'><button class="btn-save4">상세보기</button></RouterLink>
             </div>
           </div>
         </div>
@@ -65,7 +65,7 @@
             />
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
-              <button class="btn-save4">상세보기</button>
+              <RouterLink to='/acco_detail'><button class="btn-save4">상세보기</button></RouterLink>
             </div>
           </div>
         </div>
@@ -78,7 +78,7 @@
             />
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
-              <button class="btn-save4">상세보기</button>
+              <RouterLink to='/acco_detail'><button class="btn-save4">상세보기</button></RouterLink>
             </div>
           </div>
         </div>
