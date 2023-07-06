@@ -14,14 +14,14 @@ import Admin_Product_Create from '../views/Admin_Product_Create.vue'
 // import Notify from '../views/Notify.vue'
 import Payment from '../views/Payment.vue'
 // import Reservation_Info from '../views/Reservation_Info.vue'
-// import Signup from '../views/Signup.vue'
+import Signup from '../views/Signup.vue'
 import Acco_Detail from '../views/Acco_Detail.vue'
 import Search_List from '../views/Search_List.vue'
 import Main from '../views/Main.vue'
 
 
 
-const routes = [
+const routes = [  
 
   {
     path: '/',
@@ -120,11 +120,11 @@ const routes = [
   //   component: Reservation_Info
   // },
 
-  // {
-  //   path: '/signup',
-  //   name: 'signup',
-  //   component: Signup
-  // },
+  {
+    path: '/signup',
+    name: 'signup',
+    component: Signup
+  },
 
   {
     path: '/acco_detail',

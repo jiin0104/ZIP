@@ -21,14 +21,12 @@
             <b label for="phone">휴대전화(-제외)</b>
             <div>
               <input id="phone1" type="text"  role="textbox" name="phone" placeholder="ex)00012345678" v-model="phone" /><br/><br/>
-
             </div>
           </div>
 
           <div class="field2" id="sign">
             <b label for="email">이메일(아이디)</b><br>
             <input id="email" type="text" role="textbox" placeholder="이메일을 입력해 주세요." name="email" v-model="email" /><br/><br/>
-
           </div>
 
           <div class="field2" id="sign">
