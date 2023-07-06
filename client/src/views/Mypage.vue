@@ -53,18 +53,16 @@
             <!-- 폼전송시 전달되는 data target element -->
             <input aria-hidden="true" type="hidden" name="uno" value="" />
             <p>
-              <strong>아이디:<!--{{ USERS.USER_ID }}--></strong>
+              <strong>아이디:{{ USER_ID }}</strong>
             </p>
             <p>
-              <strong>닉네임:<!--{{ USERS.USER_NICKNAME }}--></strong>
+              <strong>닉네임:{{ USER_NICKNAME }}</strong>
             </p>
             <p>
-              <strong>전화번호:<!--{{ USERS.USER_TEL }}--></strong>
+              <strong>전화번호:{{ USER_TEL }}</strong>
             </p>
             <p>
-              <strong
-                >주소:<!--{{ USERS.USER_ADDRESS1 }}{{ USERS.USER_ADDRESS2 }}--></strong
-              >
+              <strong>주소:{{ USER_ADDRESS1 }}{{ USER_ADDRESS2 }}</strong>
             </p>
             <br /><button
               id="infobutton"
@@ -82,9 +80,27 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      // user 정보를 담을 리스트
+      USER_ID: "",
+      USER_NICKNAME: "",
+      USER_TEL: "",
+      USER_ADDRESS1: "",
+      USER_ADDRESS2: "",
+    };
+  },
+  mounted() {
+    //페이지가 실행되자마자 작동시킬함수 정의
+    this.Get_User_Info();
   },
   methods: {
+    /* Get_User_Info() {
+        // AXIOS로 통신하는 변수
+        user_info =  () // <-- axios
+
+
+    }*/
+
     Mypage_Link() {
       this.$router.push({ path: "/mypage" });
     },
@@ -96,6 +112,14 @@ export default {
     },
     My_Delete_Link() {
       this.$router.push({ path: "/my_delete" });
+    },
+
+    Get_User_Info() {
+      this.USER_ID = 1;
+      this.USER_NICKNAME = "jiin";
+      this.USER_TEL = "01011111111";
+      this.USER_ADDRESS1 = "헬렐레 팔렐레";
+      this.USER_ADDRESS2 = "301호";
     },
   },
 };
