@@ -42,8 +42,8 @@
                     <div class="field2">
                         <b label for="address">주소</b><br />
                         <input type="text" id="zonecode" placeholder="우편번호" role="textbox" v-model="zonecode" readonly />
-                        <input type="button" @click="openPostcode" value="우편번호 찾기" id="postcode" name="address"><br />
-                        <input type="text" id="address" placeholder="주소" role="textbox" v-model="roadAddress" readonly
+                        <input type="button" @click="openPostcode" value="우편번호 찾기" id="postcode"><br />
+                        <input type="text"  placeholder="주소" role="textbox" v-model="roadAddress" readonly
                             style="width: 67%;" /><br />
                         <input type="text" id="addressdetail" placeholder="상세주소" role="textbox" v-model="detailAddress"
                             style="width: 67%;" /><br />
@@ -59,7 +59,7 @@
 
 
                     <div style="position: relative; left: 125px; top: 30px" class="signUp">
-                        <input type="submit" id="addallow"  value="가입하기">
+                        <input type="submit" id="addallow" onclick="signUpCheck()" value="가입하기">
                     </div>
 
                 </div>
@@ -122,7 +122,7 @@ export default {
                 this.errors.push("전화번호 형식을 확인하세요.");
             }
                        
-            if (!this.address) {
+            if (!this.roadAddress) {
                 this.errors.push("주소는 필수입니다");
             }
 
@@ -170,6 +170,15 @@ export default {
                 },
             }).open();
         },
+
+        signUpCheck(){
+            if(this.checkForm){
+                setTimeout(function () {
+          alert("가입이 완료되었습니다.")
+          onclick = "/login"
+        });
+            }
+        }
     }
 }
 

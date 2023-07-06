@@ -6,12 +6,11 @@ import Admin_Product_Create from '../views/Admin_Product_Create.vue'
 // import Find_IdPw from '../views/Find_IdPw.vue'
 // import Find_Pw_Result from '../views/Find_Pw_Result.vue'
 import Login from '../views/Login.vue'
-// import My_Delete from '../views/My_Delete.vue'
-// import My_Reservation from '../views/My_Reservation.vue'
-// import My_Update from '../views/My_Update.vue'
-// import Mypage_Pw_Check from '../views/Mypage_Pw_Check.vue'
-// import Mypage from '../views/Mypage.vue'
-// import Notify from '../views/Notify.vue'
+import My_Delete from '../views/My_Delete.vue'
+import My_Reservation from '../views/My_Reservation.vue'
+import My_Update from '../views/My_Update.vue'
+import Mypage_Pw_Check from '../views/Mypage_Pw_Check.vue'
+import Mypage from '../views/Mypage.vue'
 import Payment from '../views/Payment.vue'
 // import Reservation_Info from '../views/Reservation_Info.vue'
 import Signup from '../views/Signup.vue'
@@ -78,35 +77,35 @@ const routes = [
     component: Login
   },
 
-  // {
-  //   path: '/my_delete',
-  //   name: 'my_delete',
-  //   component: My_Delete
-  // },
+  {
+    path: '/my_delete',
+    name: 'my_delete',
+    component: My_Delete
+  },
 
-  // {
-  //   path: '/my_reservation',
-  //   name: 'my_reservation',
-  //   component: My_Reservation
-  // },
+  {
+    path: '/my_reservation',
+    name: 'my_reservation',
+    component: My_Reservation
+  },
 
-  // {
-  //   path: '/my_update',
-  //   name: 'my_update',
-  //   component: My_Update
-  // },
+  {
+    path: '/my_update',
+    name: 'my_update',
+    component: My_Update
+  },
 
-  // {
-  //   path: '/mypage_pw_check',
-  //   name: 'mypage_pw_check',
-  //   component: Mypage_Pw_Check
-  // },
+  {
+    path: '/mypage_pw_check',
+    name: 'mypage_pw_check',
+    component: Mypage_Pw_Check
+  },
 
-  // {
-  //   path: '/mypage',
-  //   name: 'mypage',
-  //   component: Mypage
-  // },
+  {
+    path: '/mypage',
+    name: 'mypage',
+    component: Mypage
+  },
 
   {
     path: '/payment',
