@@ -160,3 +160,15 @@ export default {
   methods: {},
 };
 </script>
+
+<style>
+  .catagory-content {
+    text-align: center;
+  }
+  .card-body {
+    text-align: center;
+  }
+  h6 {
+    text-align: center;
+  }
+</style>

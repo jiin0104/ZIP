@@ -86,7 +86,7 @@ export default {
 
     alert('로그인 되었습니다.')
     },
-    
+
     // 카카오 간편 로그인
     kakaoLogin() {
       window.Kakao.Auth.login({
@@ -114,3 +114,9 @@ export default {
   }
 }
 </script>
+
+<style>
+  div {
+    text-align: left;
+  }
+</style>
