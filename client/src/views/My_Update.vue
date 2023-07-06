@@ -64,6 +64,7 @@
               </button>
               <p v-if="duplicateMessage">{{ duplicateMessage }}</p>
             </div>
+            <br>
             <div class="field2">
               <b>비밀번호</b><br />
               <input
@@ -116,18 +117,7 @@
                 />
                 <div id="phoneError" class="error"></div>
               </div>
-              <div class="auth">
-                <div id="certificationNumber">000000</div>
-                <button disabled id="sendMessage" onclick="getToken()">
-                  인증번호 전송
-                </button>
-              </div>
-              <div class="timer">
-                <div id="timeLimit">03:00</div>
-                <button disabled id="completion" onclick="checkCompletion()">
-                  인증확인
-                </button>
-              </div>
+              
             </div>
             <div class="field2">
               <b>주소</b><br />

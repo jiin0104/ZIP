@@ -8,7 +8,9 @@
                     <div class="field2" id="sign">
                         <b label for="email">이메일(아이디)</b><br>
                         <input id="email" type="text" role="textbox" placeholder="이메일을 입력해 주세요." name="email"
-                            v-model="email" /><br /><br />
+                            v-model="email" />
+                            <input type="button" id="crosscheck" value="중복 확인" onclick="validateEmail()">
+                        <br /><br />
                     </div>
 
 
@@ -16,7 +18,7 @@
                         <b label for="nickname">닉네임</b><br />
                         <input type="text" id="nickname" role="textbox" placeholder="닉네임을 입력해 주세요." name="nickname"
                             v-model="nickname" />
-                        <input type="button" id="crosscheck" value="중복 확인"><br /><br />
+                        <input type="button" id="crosscheck" value="중복 확인" onclick="validateNickname()"><br /><br />
                     </div>
 
                     <div class="field2">
@@ -43,7 +45,7 @@
                         <b label for="address">주소</b><br />
                         <input type="text" id="zonecode" placeholder="우편번호" role="textbox" v-model="zonecode" readonly />
                         <input type="button" @click="openPostcode" value="우편번호 찾기" id="postcode"><br />
-                        <input type="text"  placeholder="주소" role="textbox" v-model="roadAddress" readonly
+                        <input type="text" placeholder="주소" role="textbox" v-model="roadAddress" readonly
                             style="width: 67%;" /><br />
                         <input type="text" id="addressdetail" placeholder="상세주소" role="textbox" v-model="detailAddress"
                             style="width: 67%;" /><br />
@@ -59,7 +61,7 @@
 
 
                     <div style="position: relative; left: 125px; top: 30px" class="signUp">
-                        <input type="submit" id="addallow" onclick="signUpCheck()" value="가입하기">
+                        <input type="submit" id="addallow" v-on:click=signUpCheck2() value="가입하기">
                     </div>
 
                 </div>
@@ -110,9 +112,9 @@ export default {
                 this.errors.push("비밀번호 형식을 확인하세요.");
             }
 
-            if(!this.passwordCheck){
+            if (!this.passwordCheck) {
                 this.errors.push("비밀번호를 확인해주세요");
-            } else if(!this.validPasswordCheck(this.passwordCheck)){
+            } else if (!this.validPasswordCheck(this.passwordCheck)) {
                 this.errors.push("비밀번호를 확인해주세요")
             }
 
@@ -121,13 +123,14 @@ export default {
             } else if (!this.validPhone(this.phone)) {
                 this.errors.push("전화번호 형식을 확인하세요.");
             }
-                       
+
             if (!this.roadAddress) {
                 this.errors.push("주소는 필수입니다");
             }
 
-            if (!this.errors.length) return true;
-            
+            if (!this.errors.length) {
+                return true
+            }
         },
 
 
@@ -171,12 +174,15 @@ export default {
             }).open();
         },
 
-        signUpCheck(){
-            if(this.checkForm){
+
+
+
+        signUpCheck2() {
+            if (this.errors.length) {
                 setTimeout(function () {
-          alert("가입이 완료되었습니다.")
-          onclick = "/login"
-        });
+                    alert("가입이 완료되었습니다.")
+                    onclick = location.href = "/login";
+                });
             }
         }
     }
