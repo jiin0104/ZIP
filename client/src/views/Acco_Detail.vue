@@ -256,21 +256,7 @@ th {
                       우수
                     </p>
                     <br /><br /><br />
-                    <div>
-                      <button
-                        type="button"
-                        class="save-btn1"
-                        style="
-                          border: none;
-                          min-width: 150px;
-                          margin-left: 15px;
-                          display: inline-block;
-                        "
-                        onclick="showConfirmation()"
-                      >
-                        예약하기
-                      </button>
-                    </div>
+                    
                   </div>
                   <div id="popup" class="save-btn1" style="display: none">
                     <p class="popup-message" style="font-size: 18px">
@@ -345,13 +331,13 @@ th {
                     >
                     <br />
                     <br />
-                    <button
+                    <router-link to="/payment"><button
                       type="button"
                       class="save-btn1"
                       style="border: none; min-width: 150px; float: right"
                     >
                       예약하기
-                    </button>
+                    </button></router-link>
                   </div>
                 </li>
               </ul>
