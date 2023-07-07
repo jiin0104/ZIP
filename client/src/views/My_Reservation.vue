@@ -68,7 +68,6 @@
               <h2>이용완료 내역</h2>
               <div>
                 <strong>{{ ACCO_NAME }}</strong>
-                <span>{{ ACCO_TYPE }}</span>
               </div>
               <section>
                 <div>
@@ -78,6 +77,7 @@
                 <div>
                   <p><strong>예약번호</strong> {{ RESERVATION_ID }}</p>
                   <p><strong>예약자 이름</strong> {{ USER_ID }}</p>
+                  <p><strong>숙박인원</strong> {{ RESERVATION_CAPACITY }}</p>
                 </div>
               </section>
               <div class="total">
@@ -111,13 +111,13 @@ export default {
     return {
       // user 정보를 담을 리스트
       ACCO_NAME: "",
-      ACCO_TYPE: "",
       RESERVATION_CHECK_IN: "",
       RESERVATION_CHECK_OUT: "",
       PAYMENT_TOTAL_PRICE: "",
       RESERVATION_TEL: "",
       ACCO_IMAGE: "",
       res_acco: [],
+      RESERVATION_CAPACITY: "",
     };
   },
   mounted() {
@@ -171,13 +171,13 @@ export default {
     //
     Get_Reservation_Info() {
       this.ACCO_NAME = "이젠호텔";
-      this.ACCO_TYPE = "호텔";
       this.RESERVATION_ID = "000001";
       this.USER_ID = "김지인";
       this.RESERVATION_CHECK_IN = "2023-07-07";
       this.RESERVATION_CHECK_OUT = "2023-07-08";
       this.PAYMENT_TOTAL_PRICE = "100,000원";
       this.RESERVATION_TEL = "010-1111-1111";
+      this.RESERVATION_CAPACITY = "2";
     },
   },
 };
