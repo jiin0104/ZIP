@@ -167,20 +167,20 @@ export default {
 
 
     requestPay() {
-      if (this.name == null || this.phone == null || this.email === null) {
+      if (this.name == null || this.phone == null || this.email === null || !this.validEmail(this.email)) {
         return
       }
       IMP.request_pay({ // param
         pg: "inicis",
         pay_method: "card",
-        merchant_uid: "ORD20180131-0000011",
-        name: "노르웨이 회전 의자",
-        amount: 1222,
-        buyer_email: "gildong@gmail.com",
-        buyer_name: "홍길동",
-        buyer_tel: "010-4242-4242",
-        buyer_addr: "서울특별시 강남구 신사동",
-        buyer_postcode: "01181"
+        merchant_uid: "57008833-33004",
+        name: "당근 10kg",
+        amount: 1004,
+        buyer_email: "Iamport@chai.finance",
+        buyer_name: "포트원 기술지원팀",
+        buyer_tel: "010-1234-5678",
+        buyer_addr: "서울특별시 강남구 삼성동",
+        buyer_postcode: "123-456",
       }, rsp => { // callback
         if (rsp.success) {
           alert("결제에 성공했습니다.");
@@ -218,4 +218,5 @@ a {
   height: 20px;
   color: red;
   font-weight: 700;
-}</style>
+}
+</style>
