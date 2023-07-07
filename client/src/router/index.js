@@ -23,30 +23,41 @@ const routes = [
     path: "/",
     name: "main",
     component: Main,
+    meta: {}
   },
 
   {
     path: "/search_list",
     name: "search_list",
     component: Search_List,
+    meta: {}
   },
 
   {
     path: "/admin_page_reservation",
     name: "admin_page_reservation",
     component: Admin_Page_Reservation,
+    meta: {
+      roles: [ 'admin' ]
+    }
   },
 
   {
     path: "/admin_page_user",
     name: "admin_page_user",
     component: Admin_Page_User,
+    meta: {
+      roles: [ 'admin' ]
+    }
   },
 
   {
     path: "/admin_product_create",
     name: "admin_product_create",
     component: Admin_Product_Create,
+    meta: {
+      roles: [ 'admin' ]
+    }
   },
 
   // {
@@ -58,7 +69,8 @@ const routes = [
   {
     path: '/find_idpw',
     name: 'find_idpw',
-    component: Find_IdPw
+    component: Find_IdPw,
+    meta: {}
   },
 
   // {
@@ -71,60 +83,84 @@ const routes = [
     path: "/login",
     name: "login",
     component: Login,
+    meta: {}
   },
 
   {
     path: "/my_delete",
     name: "my_delete",
     component: My_Delete,
+    meta: {
+      roles: [ 'member', 'admin' ]
+    }
   },
 
   {
     path: "/my_reservation",
     name: "my_reservation",
     component: My_Reservation,
+    meta: {
+      roles: [ 'member', 'admin' ]
+    }
   },
 
   {
     path: "/my_update",
     name: "my_update",
     component: My_Update,
+    meta: {
+      roles: [ 'member', 'admin' ]
+    }
   },
 
   {
     path: "/mypage_pw_check",
     name: "mypage_pw_check",
     component: Mypage_Pw_Check,
+    meta: {
+      roles: [ 'member', 'admin' ]
+    }
   },
 
   {
     path: "/mypage",
     name: "mypage",
     component: Mypage,
+    meta: {
+      roles: [ 'member', 'admin' ]
+    }
   },
 
   {
     path: "/payment",
     name: "payment",
     component: Payment,
+    meta: {
+      roles: [ 'member', 'admin' ]
+    }
   },
 
   {
     path: "/Reservation_info",
     name: "Reservation_info",
     component: Reservation_info,
+    meta: {
+      roles: [ 'member', 'admin' ]
+    }
   },
 
   {
     path: "/signup",
     name: "signup",
     component: Signup,
+    meta: {}
   },
 
   {
     path: "/acco_detail",
     name: "acco_detail",
     component: Acco_Detail,
+    meta: {}
   },
 ];
 
@@ -132,5 +168,15 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
+
+router.beforeEach((to, from, next) => {
+  let roleStatus = '..' // 권한 상태
+  if (to.meta.roles && !to.meta.roles.includes(roleStatus)) {
+    alert('해당 페이지에 접근 권한이 없습니다.')
+    next(from)
+  } else {
+    next()
+  }
+})
 
 export default router;
