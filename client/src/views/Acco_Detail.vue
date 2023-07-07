@@ -188,21 +188,21 @@ th {
                 <div class="carousel-inner">
                   <div class="carousel-item active">
                     <img
-                      src="https://image.goodchoice.kr/resize_490x348/affiliate/2018/02/20/5a8bda525e78d.jpg"
+                      src="'/download/${acco.acco_id}/${acco.acco_image}'"
                       class="d-block w-100"
                       alt="..."
                     />
                   </div>
                   <div class="carousel-item">
                     <img
-                      src="https://image.goodchoice.kr/resize_490x348/affiliate/2018/03/05/5a9d03fcd1b18.jpg"
+                      src="'/download/${acco.acco_id}/${acco.acco_image}'"
                       class="d-block w-100"
                       alt="..."
                     />
                   </div>
                   <div class="carousel-item">
                     <img
-                      src="https://image.goodchoice.kr/resize_490x348/affiliate/2018/03/05/5a9d040dd59b7.jpg"
+                      src="'/download/${acco.acco_id}/${acco.acco_image}'"
                       class="d-block w-100"
                       alt="..."
                     />
@@ -237,33 +237,21 @@ th {
             <div class="col-md-7">
               <div class="card shadow-sm">
                 <div class="card-body">
-                  <div class="card-title" id="card1">
-                    <h3>[반짝특가] 체스터톤스 호텔</h3>
-                  </div>
+                  <div class="card-title" id="card1"></div>
                   <div>
+                    <h3>{{ ACCO_NAME }}</h3>
                     <b>주소</b>
                     <br />
-                    <p>강원도 속초시 교동 1024</p>
+                    <p>{{ ACCO_ADDRESS }}</p>
                     <br />
                     <p>
-                      전객실 야외 온천 수영장 무료 <br />
-                      이용 재미있는 놀이 <br />속초 고속버스 터미널과 접근성
-                      우수
+                      {{ ACCO_INTRODUCE_COMMENT }}
+                    </p>
+                    <br />
+                    <p>
+                      {{ ACCO_DETAIL_DESCRIPTION }}
                     </p>
                     <br /><br /><br />
-                  </div>
-                  <div id="popup" class="save-btn1" style="display: none">
-                    <p class="popup-message" style="font-size: 18px">
-                      예약 하시겠습니까?
-                    </p>
-                    <div class="popup-buttons">
-                      <button id="button7" onclick="hideConfirmation()">
-                        취소
-                      </button>
-                      <button id="button8" onclick="cancelReservation()">
-                        확인
-                      </button>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -311,7 +299,7 @@ th {
               margin-left: 30px;
               width: 300px;
             "
-                      >[단독특가] 원룸 스탠다드더블</strong
+                      >{{ ACCO_ROOM }}</strong
                     >
                     <br />
                     <br />
@@ -321,7 +309,7 @@ th {
                     <br />
                     <br />
                     <strong style="font-size: 20px; float: right"
-                      >가격 : 113,000원</strong
+                      >가격 : {{ ACCO_PRICE }}원</strong
                     >
                     <br />
                     <br />
@@ -342,9 +330,9 @@ th {
                   <li v-for="(item, index) in employList" :key="index">
                     <h3 style="margin-left: 60px">기본정보</h3>
                     <p style="margin-left: 60px">주변정보</p>
-                    <p style="margin-left: 60px">속초 터미널 차량 11분</p>
-                    <p style="margin-left: 60px">청초호 호수공원 보도 6분</p>
-                    <h3 style="margin-left: 60px">지도상 위치</h3>
+                    <p style="margin-left: 60px">
+                      {{ ACCO_DETAIL_DESCRIPTION }}
+                    </p>
                     <br /><br />
                   </li>
                 </ul>
@@ -367,16 +355,35 @@ export default {
       currentTab: 0,
       tabList: [{ name: "객실안내" }, { name: "숙소정보" }],
       employList: [{ title: "", sub: "" }],
+      ACCO_NAME: "",
+      ACCO_ADDRESS: "",
+      ACCO_INTRODUCE_COMMENT: "",
+      ACCO_DETAIL_DESCRIPTION: "",
+      ACCO_ROOM: "",
+      ACCO_PRICE: "",
     };
   },
+
   beforeCreate() {},
   created() {},
   beforMount() {},
-  mounted() {},
+  mounted() {
+    this.ACCO();
+  },
   beforeUpdate() {},
   updated() {},
   beforeUnmount() {},
   unmounted() {},
-  methods: {},
+  methods: {
+    ACCO() {
+      (this.ACCO_NAME = "호텔리베라"),
+        (this.ACCO_ADDRESS = "서울 강남구 청담동 53-7"),
+        (this.ACCO_INTRODUCE_COMMENT =
+          "COEX 전시장, 도심공항터미널, 종합무역센터, 올림픽 메인스타디움에 인접해 있어 비즈니스, 관광 등이 편합니다"),
+        (this.ACCO_DETAIL_DESCRIPTION = "지하철이 가까움"),
+        (this.ACCO_ROOM = "체크인시 배정"),
+        (this.ACCO_PRICE = "230,000");
+    },
+  },
 };
 </script>
