@@ -73,7 +73,7 @@
                 v-model="rendom_pw"
               />
             </div>
-            <button type="submit" @click="checkPassword()" id="button6">
+            <button type="submit" onclick="checkPassword()" id="button6">
               확인
             </button>
           </div>
