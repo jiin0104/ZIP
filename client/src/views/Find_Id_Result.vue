@@ -1,33 +1,37 @@
 <template>
   <div class="container">
     <div class="title">
-      <h2>아이디 찾기</h2>
+      <h4>아이디 찾기</h4>
+      <div class="underline"></div>
     </div>
     <div class="description">
       <p>고객님의 정보와 일치하는 아이디 목록입니다.</p>
     </div>
-    <form>
-      <div class="form-container">
+    <div class="form-container">
+      <form>
         <div class="found-ids">
-          <ul>
-            <li>
-              <strong>
-                <label>(찾은 아이디 표시 로직구현 필요)</label>
-              </strong>
-            </li>
-          </ul>
+          <div class="box">
+            <ul class="ids-list">
+              <li>
+                <strong>
+                  <label>아이디 : </label>
+                  <span>(찾은 아이디 표시, 로직구현 필요)</span>
+                </strong>
+              </li>
+            </ul>
+          </div>
         </div>
 
         <div class="options">
-          <li>
+          <li class="option-item">
             <RouterLink to="/Login">로그인</RouterLink>
           </li>
-          <li>
+          <li class="option-item">
             <RouterLink to="/find_idpw">비밀번호 찾기</RouterLink>
           </li>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -38,13 +42,16 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  padding-top: 150px;
 }
 
 .title {
   margin-bottom: 20px;
+  position: relative;
+  height: fit-content;
 }
 
-h2 {
+h4 {
   font-size: 24px;
   color: #333;
   margin: 0;
@@ -65,19 +72,38 @@ p {
 }
 
 .found-ids {
-  text-align: left;
+  text-align: center;
 }
 
-ul {
+.box {
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 200%;
+  max-width: 700px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: -50%;
+}
+
+.ids-list {
   list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ids-list li {
+  text-align: left;
 }
 
 .options {
   margin-top: 20px;
+  display: flex;
+  justify-content: center;
 }
 
-.options li {
-  display: inline-block;
+.option-item {
   margin-right: 10px;
 }
 
