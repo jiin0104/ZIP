@@ -31,8 +31,7 @@
           </p>
           <p>
             체크인 날짜:
-            <span class="reservation-date"
-              ><!--{{ RESERVATION.RESERVATION_CHECK_IN }}--></span
+            <span class="reservation-date"><!--{{ RESERVATION.RESERVATION_CHECK_IN }}--></span
             >
             체크아웃 날짜:
             <span class="reservation-date"
@@ -54,7 +53,6 @@
           id="infobutton"
           style="display: inline-block"
           @click="main_Link"
-          ;
         >
           메인 페이지로
         </button>
@@ -71,10 +69,6 @@ export default {
       sampleData: "",
     };
   },
-  setup() {},
-  created() {},
-  mounted() {},
-  unmounted() {},
   methods: {
     main_Link() {
       this.$router.push({ path: "/main_link" });
@@ -82,3 +76,6 @@ export default {
   },
 };
 </script>
+<style>
+
+</style>
