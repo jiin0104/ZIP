@@ -38,7 +38,19 @@
               </section>
             </div>
 
-            <div class="list_wrap">
+            <div v-if="searchacco == null" style="max-width: 80%;">
+              <br><br><br><br><br><br><br><br><br><br><br>
+              <div class="mypage_title">
+                <h1>검색 결과</h1>
+              </div>
+              <div class="user-res-wrap">
+                <div class="really2" style="text-align: center;">
+                  검색 내역이 없습니다<br /> 다른 정보로 검색해주세요
+                </div>
+                <br />
+              </div>
+            </div>
+            <div class="list_wrap" v-else>
               <div class="top_sort">
                 <div class="pc">
                   <div class="btn_wrap width_2">
@@ -47,7 +59,6 @@
                   </div>
                 </div>
               </div>
-
               <div id="product_list_area">
                 <ul>
                   <!-- <li class="list_4 adcno2" :key="i" v-for="(acco,i) in searchacco"> -->
@@ -70,12 +81,9 @@
                           </div>
                         </div>
                         <div class="name">
-
                           <strong>
                             <div class="badge" style="padding: 0;">
                             </div> <!--{{acco.acco_name}}--> SL 호텔 강릉
-
-
                             <button type="submit" class="btn btn-primary"
                               style="position: relative; background-color: #0b5394; float: right;"
                               onclick="window.open('roomsdetail.html', '_blank', 'width=800, height=600'); return false;">
@@ -108,6 +116,7 @@
       </form>
     </div>
   </body>
+
   </html>
 </template>
 
@@ -136,10 +145,10 @@ export default {
   data() {
     return {
       searchacco: [],
-
       acco: [],
       price: [],
-      facility: []
+      facility: [],
+      search: 'search',
     };
   },
 
