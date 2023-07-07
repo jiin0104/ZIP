@@ -188,21 +188,21 @@ th {
                 <div class="carousel-inner">
                   <div class="carousel-item active">
                     <img
-                      src="'/download/${acco.acco_id}/${acco.acco_image}'"
+                      src="https://image.goodchoice.kr/resize_490x348/affiliate/2018/02/20/5a8bda525e78d.jpg"
                       class="d-block w-100"
                       alt="..."
                     />
                   </div>
                   <div class="carousel-item">
                     <img
-                      src="'/download/${acco.acco_id}/${acco.acco_image}'"
+                      src="https://image.goodchoice.kr/resize_490x348/affiliate/2018/03/05/5a9d03fcd1b18.jpg"
                       class="d-block w-100"
                       alt="..."
                     />
                   </div>
                   <div class="carousel-item">
                     <img
-                      src="'/download/${acco.acco_id}/${acco.acco_image}'"
+                      src="https://image.goodchoice.kr/resize_490x348/affiliate/2018/03/05/5a9d040dd59b7.jpg"
                       class="d-block w-100"
                       alt="..."
                     />
