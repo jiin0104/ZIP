@@ -1,41 +1,51 @@
-.container {
+.container-idresult {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  height: 100vh;
-  padding-top: 50px;
+  padding-top: 150px;
 }
 
-.title {
+.title-idresult {
   margin-bottom: 20px;
+  position: relative;
+  height: fit-content;
 }
 
-h4 {
+.h4-idresult {
   font-size: 24px;
   color: #333;
   margin: 0;
 }
 
-.description {
+.underline-idresult {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #333;
+}
+
+.description-idresult {
   margin-bottom: 10px;
 }
 
-p {
+.p-idresult {
   font-size: 16px;
   color: #666;
   margin: 0;
 }
 
-.form-container {
+.form-container-idresult {
   width: 300px;
 }
 
-.found-ids {
+.found-ids-idresult {
   text-align: center;
 }
 
-.box {
+.box-idresult {
   border: 1px solid #ccc;
   padding: 10px;
   width: 200%;
@@ -47,23 +57,23 @@ p {
   margin-left: -50%;
 }
 
-.ids-list {
+.ids-list-idresult {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-.ids-list li {
+.ids-list-idresult li {
   text-align: left;
 }
 
-.options {
+.options-idresult {
   margin-top: 20px;
   display: flex;
   justify-content: center;
 }
 
-.option-item {
+.option-item-idresult {
   margin-right: 10px;
 }
 
