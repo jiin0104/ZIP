@@ -54,7 +54,9 @@
               예약 내역이 없습니다<br />관심있는 숙소를 등록해주세요
             </div>
             <br />
-            <button type="button" id="main">지금 바로 숙소 등록하기</button>
+            <button type="button" id="main" @click="main_link">
+              지금 바로 숙소 등록하기
+            </button>
           </div>
         </div>
       </div>
@@ -66,6 +68,12 @@ export default {
   data() {
     return {};
   },
+
+  mounted() {
+    //페이지가 실행되자마자 작동시킬함수 정의
+    this.Get_Reservation_empty_Info();
+  },
+
   methods: {
     Mypage_Link() {
       this.$router.push({ path: "/mypage" });
@@ -78,6 +86,13 @@ export default {
     },
     My_Delete_Link() {
       this.$router.push({ path: "/my_delete" });
+    },
+    main_link() {
+      this.$router.push({ path: "/main" });
+    },
+
+    Get_Reservation_empty_Info(){
+      if
     },
   },
 };

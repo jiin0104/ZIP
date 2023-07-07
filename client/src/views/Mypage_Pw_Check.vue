@@ -133,7 +133,7 @@ export default {
       if (this.random_pw == this.user_pw) {
         this.My_Update_Link();
       } else {
-        console.log("비밀번호 다르다 저리가");
+        console.log("비밀번호 다르다");
         this.showConfirmation();
         return;
       }

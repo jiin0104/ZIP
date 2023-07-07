@@ -52,20 +52,18 @@
           <div style="position: relative; left: 33%">
             <div class="res-content">
               <img src="hotel.jpg" class="room-image" />
-              <strong style="font-size: 17px"
-                ><!--{{ ACCOMMODATIONS.ACCO_NAME}}--></strong
-              >
+              <strong style="font-size: 17px"><!--{{ ACCO_NAME}}--></strong>
               <div style="position: relative; left: 60px">
                 <button
                   id="button2"
                   style="display: inline-block"
-                  onclick="openModal()"
+                  @click="openModal()"
                 >
                   상세내역
                 </button>
                 <button
                   id="button3"
-                  onclick="showConfirmation()"
+                  @click="showConfirmation()"
                   style="display: inline-block"
                 >
                   예약취소
@@ -76,12 +74,10 @@
                   예약을 취소하시겠습니까?
                 </p>
                 <div class="popup-buttons">
-                  <button id="button7" onclick="hideConfirmation()">
-                    취소
-                  </button>
+                  <button id="button7" @click="hideConfirmation()">취소</button>
                 </div>
                 <div class="popup-buttons">
-                  <button id="button8" onclick="cancelReservation()">
+                  <button id="button8" @click="cancelReservation()">
                     확인
                   </button>
                 </div>
@@ -94,17 +90,17 @@
             <div class="reslistpopup">
               <h2>이용완료 내역</h2>
               <div>
-                <strong>(숙소명)</strong>
-                <span>(방타입)</span>
+                <strong>{{ ACCO_NAME }}</strong>
+                <span>{{ ACCO_TYPE }}</span>
               </div>
               <section>
                 <div>
-                  <p><strong>체크인</strong> (년.월.일.요일.체크인시간)</p>
-                  <p><strong>체크아웃</strong> (년.월.일.요일.체크아웃시간)</p>
+                  <p><strong>체크인</strong> {{ RESERVATION_CHECK_IN }}</p>
+                  <p><strong>체크아웃</strong> {{ RESERVATION_CHECK_OUT }}</p>
                 </div>
                 <div>
-                  <p><strong>예약번호</strong> (예약번호나열)</p>
-                  <p><strong>예약자 이름</strong> (예약자 이름)</p>
+                  <p><strong>예약번호</strong> {{ RESERVATION_ID }}</p>
+                  <p><strong>예약자 이름</strong> {{ USER_ID }}</p>
                 </div>
               </section>
               <div class="total">
@@ -113,14 +109,16 @@
                     <p><strong>총 결제 금액</strong></p>
                   </div>
                   <div class="payment-info-middle">
-                    <p><b>(****,***원)</b></p>
+                    <p>
+                      <b>{{ PAYMENT_TOTAL_PRICE }}</b>
+                    </p>
                   </div>
                 </div>
               </div>
-              <a href="tel:(전화번호)" class="btn-call">전화문의하기</a>
+              <a href="{{ RESERVATION_TEL }}" class="btn-call">전화문의하기</a>
               <section>
                 <p>
-                  <input type="button" value="닫기" onclick="closeModal()" />
+                  <input type="button" value="닫기" @click="closeModal()" />
                 </p>
               </section>
             </div>
@@ -133,8 +131,21 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      // user 정보를 담을 리스트
+      ACCO_NAME: "",
+      ACCO_TYPE: "",
+      RESERVATION_CHECK_IN: "",
+      RESERVATION_CHECK_OUT: "",
+      PAYMENT_TOTAL_PRICE: "",
+      RESERVATION_TEL: "",
+    };
   },
+  mounted() {
+    //페이지가 실행되자마자 작동시킬함수 정의
+    this.Get_Reservation_Info();
+  },
+
   methods: {
     Mypage_Link() {
       this.$router.push({ path: "/mypage" });
@@ -147,6 +158,43 @@ export default {
     },
     My_Delete_Link() {
       this.$router.push({ path: "/my_delete" });
+    },
+
+    //팝업
+    showConfirmation() {
+      var popup = document.getElementById("popup");
+      popup.style.display = "block";
+    },
+    // hideConfirmation() {
+    //   var popup = document.getElementById("popup");
+    //   popup.style.display = "none";
+    // },
+    // cancelReservation() {
+    //   alert("예약이 취소되었습니다");
+    //   hideConfirmation();
+    // },
+
+    //예약 모달
+    openModal() {
+      var modal = document.getElementById("modal");
+      modal.style.display = "block";
+    },
+
+    closeModal() {
+      var modal = document.getElementById("modal");
+      modal.style.display = "none";
+    },
+
+    //
+    Get_Reservation_Info() {
+      this.ACCO_NAME = "이젠호텔";
+      this.ACCO_TYPE = "호텔";
+      this.RESERVATION_ID = "000001";
+      this.USER_ID = "김지인";
+      this.RESERVATION_CHECK_IN = "2023-07-07";
+      this.RESERVATION_CHECK_OUT = "2023-07-08";
+      this.PAYMENT_TOTAL_PRICE = "100,000원";
+      this.RESERVATION_TEL = "010-1111-1111";
     },
   },
 };
