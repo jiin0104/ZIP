@@ -12,7 +12,7 @@
               <input id="user" type="text" class="input" />
             </div>
             <div class="group">
-              <input type="submit" class="button" value="아이디 찾기" href="#" onclick="alert('전화번호를 확인해주세요')" />
+              <input type="submit" class="button" value="아이디 찾기" href="#" onclick="alert('전화번호를 확인해주세요')" style="text-align: center;"/>
             </div>
             <div class="hr"></div>
             <div class="foot-lnk">
@@ -30,7 +30,7 @@
               <input id="pass" type="password" class="input" data-type="password" />
             </div>
             <div class="group">
-              <input type="submit" class="button" value="비밀번호 찾기" href="#" onclick="alert('아이디와 인증번호를 확인해주세요')" />
+              <input type="submit" class="button" value="비밀번호 찾기" href="#" onclick="alert('아이디와 인증번호를 확인해주세요')" style="text-align: center;"/>
             </div>
             <div class="hr"></div>
             <div class="foot-lnk">

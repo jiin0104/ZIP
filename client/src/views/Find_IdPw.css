@@ -24,8 +24,6 @@ a {
   max-width: 525px;
   min-height: 670px;
   position: relative;
-  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 .findid-html {
   width: 100%;
@@ -33,6 +31,7 @@ a {
   position: absolute;
   padding: 90px 70px 50px 70px;
   background: rgba(40, 57, 101, 0.9);
+  margin-top: 100px;
 }
 .findid-html .findid-htm,
 .findid-html .findpw-htm {
