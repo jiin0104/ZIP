@@ -63,7 +63,7 @@ export default {
   name: "mydelete",
   data() {
     return {
-      user_pw: null,
+      user_pw: "1234",
       remdom_pw: null,
     };
   },
