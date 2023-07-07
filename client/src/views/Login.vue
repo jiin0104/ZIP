@@ -16,7 +16,9 @@
 
             <div class="text-right p-t-8 p-b-31">
               <a href="#" style="text-decoration: none;">
-                <RouterLink to="Find_IdPw"><p style="text-align: right;" link="">아이디/비밀번호 찾기</p></RouterLink>
+                <RouterLink to="Find_IdPw">
+                  <p style="text-align: right;" link="">아이디/비밀번호 찾기</p>
+                </RouterLink>
               </a>
             </div>
 
@@ -33,25 +35,29 @@
                 </button>
               </div>
             </div>
-            <br />
+
             <div class="flex-c-m">
               <!-- 각 버튼을 누르면 api로 작동하게 후에 백엔드 코드 짜고서 추가 -->
-              <a href="#" class="login100-social-item bg1" style="text-decoration: none;" @click="kakaoLogin()">
-                <i class="fa fa-kakao"><b>카카오 로그인</b></i>
-              </a>
               <br />
-              <a href="#" class="login100-social-item bg2" style="text-decoration: none;" id="naverIdLogin">
-                <i class="fa fa-naver"><b>네이버 로그인</b></i>
+              <!-- 네이버 로그인 -->
+              <div id="naverIdLogin" style="margin-right: 20px; margin-left: 2px;">
+                <a href="#" class="login100-social-item bg2" style="text-decoration: none;">
+                </a>
+              </div>
+              <!-- 카카오 로그인 -->
+              <a href="#" @click="kakaoLogin()">
+                <img style="width: 225px;" src="./kakao_login2.png" alt="">
               </a>
             </div>
-
             <div class="flex-col-c p-t-155" style="text-align: right;">
               <span class="txt1 p-b-17">
                 아직 탈출할 준비가 되지 않으셨다면?
               </span>
 
               <a href="#" class="txt2">
-                <p link="" style="text-align: right;"><RouterLink to='/Signup'><b>회원가입</b></RouterLink></p>
+                <p link="" style="text-align: right;">
+                  <RouterLink to='/Signup'><b>회원가입</b></RouterLink>
+                </p>
               </a>
             </div>
           </form>
@@ -62,6 +68,15 @@
 </template>
 
 <style src="./Login.css"></style>
+
+<style>
+#naverIdLogin {
+  width: 250px;
+  height: 70px;
+  object-fit: cover;
+  float: left;
+}
+</style>
 
 <script>
 // import axios from "axios";
@@ -81,13 +96,14 @@ export default {
       callbackUrl: "http://localhost:8080/login", // 콜백 url
       isPopup: false, // 팝업 연동처리 여부
       loginButton: {
-        color: "green", height: 40, type: 3 },
+        color: "green", height: 40, type: 3
+      },
     });
-    
+
     this.naverLogin.init();
 
     this.naverLogin.getLoginStatus((status) => {
-      if(status) {
+      if (status) {
         console.log(status);
         console.log(this.naver.user);
 
@@ -112,9 +128,9 @@ export default {
       if (this.user_pw === null) {
         alert('비밀번호를 입력하세요.')
         return
-    }
+      }
 
-    alert('로그인 되었습니다.')
+      alert('로그인 되었습니다.')
     },
 
     // 카카오 간편 로그인
@@ -136,7 +152,7 @@ export default {
 
           alert("로그인 성공!");
         },
-        fail : error => {
+        fail: error => {
           console.log(error)
         }
       })
@@ -146,7 +162,7 @@ export default {
 </script>
 
 <style>
-  div {
-    text-align: left;
-  }
+div {
+  text-align: left;
+}
 </style>

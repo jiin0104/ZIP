@@ -8,9 +8,9 @@
         </a></h1>
       <div class="menuWrap">
         <ul class="menu">
-          <li class="dorne-signin-btn"><a @click="logout" href="javascript:;">로그아웃</a></li>
-          <li><a href="#">내정보</a></li>
-          <li><a href="#">예약내역</a></li>
+          <li><a @click="logout"><RouterLink to='/'>로그아웃</RouterLink></a></li>
+          <li><RouterLink to='/Mypage'>내정보</RouterLink></li>
+          <li><RouterLink to='/My_Reservation'>예약내역</RouterLink></li>
         </ul>
       </div>
     </div>
@@ -34,9 +34,9 @@
         </a></h1>
       <div class="menuWrap">
         <ul class="menu">
-          <li class="dorne-signin-btn"><a @click="logout" href="javascript:;">로그아웃</a></li>
-          <li><a href="#">예약관리</a></li>
-          <li><a href="#">회원관리</a></li>
+          <li><a @click="logout"><RouterLink to='/'>로그아웃</RouterLink></a></li>
+          <li><RouterLink to='/Admin_Page_Reservation'>예약관리</RouterLink></li>
+          <li><RouterLink to='/Admin_Page_User'>회원관리</RouterLink></li>
         </ul>
       </div>
     </div>
@@ -104,7 +104,7 @@ export default {
   name: 'header',
   data() {
     return {
-      userRole: 'guest', // 사용자 역할을 저장하는 변수
+      userRole: 'admin', // 사용자 역할을 저장하는 변수
     }
   },
   methods: {
