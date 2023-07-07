@@ -12,7 +12,7 @@
       <div class="row">
         <div class="col-md-5">
           <form action="" method="post">
-            <div class="img_add" style="width: 400px; height: auto">
+            <div class="img_add" style="width: 400px; height: 500px">
               <img
                 :src="'/download/${acco.acco_id}/${acco.acco_image}'"
                 class="d-block w-100"
@@ -27,8 +27,8 @@
           </form>
         </div>
         <div class="col-md-7">
-          <div class="card shadow-sm">
-            <div class="card-body">
+          <div class="card shadow-sm" style="height: 500px">
+            <div class="card-body" style="height: 500px">
               <h5 class="card-title" id="card1" style="float: left">업체명</h5>
               <br />
               <br />
@@ -41,20 +41,43 @@
                 업체주소
               </h5>
               <br /><br />
-              <div style="float: left">
+              <div class="field2" style="float: left">
                 <input
                   type="text"
-                  style="size: 20px; border: 1px solid"
-                  placeholder="업체주소입력"
+                  id="zonecode"
+                  placeholder="우편번호"
+                  role="textbox"
+                  v-model="zonecode"
+                  readonly
                 />
-                <button
+                <input
                   type="button"
-                  class="addressfind"
-                  style="border: none; margin-left: 5px"
-                >
-                  주소찾기
-                </button>
+                  @click="openPostcode"
+                  value="우편번호 찾기"
+                  id="postcode"
+                  class="save-btn1"
+                  style="height: 26px; line-height: 20px; min-width: 40px"
+                /><br />
+                <input
+                  type="text"
+                  placeholder="주소"
+                  role="textbox"
+                  v-model="roadAddress"
+                  readonly
+                  style="width: 67%; float: left"
+                /><br />
+                <input
+                  type="text"
+                  id="addressdetail"
+                  placeholder="상세주소"
+                  role="textbox"
+                  v-model="detailAddress"
+                  style="width: 67%; float: left"
+                /><br />
               </div>
+
+              <br />
+              <br />
               <br />
               <br />
               <h5 class="card-title" id="card1" style="float: left">객실명</h5>
@@ -127,6 +150,15 @@ export default {
   updated() {},
   beforeUnmount() {},
   unmounted() {},
-  methods: {},
+  methods: {
+    openPostcode() {
+      new window.daum.Postcode({
+        oncomplete: (data) => {
+          this.zonecode = data.zonecode;
+          this.roadAddress = data.roadAddress;
+        },
+      }).open();
+    },
+  },
 };
 </script>
