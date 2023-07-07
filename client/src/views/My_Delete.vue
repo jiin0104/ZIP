@@ -70,9 +70,10 @@
                 class="form-control"
                 style="width: 300px"
                 aria-describedby="passwordHelpInline"
+                v-model="rendom_pw"
               />
             </div>
-            <button type="submit" onclick="showConfirmation()" id="button6">
+            <button type="submit" @click="checkPassword()" id="button6">
               확인
             </button>
           </div>
@@ -94,8 +95,12 @@
 </template>
 <script>
 export default {
+  name: "mydelete",
   data() {
-    return {};
+    return {
+      user_pw: null,
+      remdom_pw: null,
+    };
   },
   methods: {
     Mypage_Link() {

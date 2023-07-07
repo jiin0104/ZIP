@@ -49,10 +49,22 @@
       >
         <div class="contact-text">
           <h1>예약내역</h1>
-          <div style="position: relative; left: 33%">
+          <div v-if="res_acco == null" class="reslistempty">
+            <div class="really2">
+              예약 내역이 없습니다<br />관심있는 숙소를 등록해주세요
+            </div>
+            <br />
+            <button type="button" id="main" @click="main_link">
+              지금 바로 숙소 등록하기
+            </button>
+          </div>
+          <div v-else style="position: relative; left: 33%">
             <div class="res-content">
-              <img src="hotel.jpg" class="room-image" />
-              <strong style="font-size: 17px"><!--{{ ACCO_NAME}}--></strong>
+              <img
+                src="client\public\img\clients-img\ACCO_IMAGE.jpg"
+                class="room-image"
+              />
+              <strong style="font-size: 17px">{{ ACCO_NAME }}</strong>
               <div style="position: relative; left: 60px">
                 <button
                   id="button2"
@@ -139,6 +151,8 @@ export default {
       RESERVATION_CHECK_OUT: "",
       PAYMENT_TOTAL_PRICE: "",
       RESERVATION_TEL: "",
+      ACCO_IMAGE: "",
+      res_acco: null,
     };
   },
   mounted() {
@@ -158,6 +172,9 @@ export default {
     },
     My_Delete_Link() {
       this.$router.push({ path: "/my_delete" });
+    },
+    main_link() {
+      this.$router.push({ path: "/" });
     },
 
     //팝업
