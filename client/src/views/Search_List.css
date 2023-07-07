@@ -126,6 +126,7 @@ li {
   overflow: hidden;
   position: relative;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  height: 230px;
 }
 .list_4 .pic {
   display: inline-block;

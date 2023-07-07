@@ -84,24 +84,17 @@
                           <strong>
                             <div class="badge" style="padding: 0;">
                             </div> <!--{{acco.acco_name}}--> SL 호텔 강릉
-                            <button type="submit" class="btn btn-primary"
-                              style="position: relative; background-color: #0b5394; float: right;"
-                              onclick="window.open('roomsdetail.html', '_blank', 'width=800, height=600'); return false;">
-                              상세 정보
-                            </button>
-
                           </strong>
-                          <p class="score">
-                            <span>&nbsp;</span>&nbsp;
-                          </p>
-                          <p>
-                            &nbsp;</p>
+                          <div style="height: 90px;">
+                            대충 소개글대충 소개글대충 소개글대충 소개글대충 소개글대충 소개글대충 소개글대충 소개글대충 소개글대충 소개글대충 소개글대충 소개글대충 소개글대충 소개글대충 소개글대충 소개글
+                          </div>
+                          <p>&nbsp;</p>
                         </div>
-                        <div class="price">
+                        <div class="price"  style="display: contents; text-align: right;">
                           <div class="map_html">
 
                           </div>
-                          <p><span><i>&nbsp;</i></span>
+                          <p style="text-align: right ;"><span><i>&nbsp;</i></span>
                             <b style="color: rgba(0,0,0,1);"><!--{{acco.room_day_price}}-->99,000원</b>
                           </p>
                         </div>
