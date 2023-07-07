@@ -1,25 +1,24 @@
-.container {
+.container-pwresult {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  height: 100vh;
-  padding-top: 50px;
+  padding-top: 150px;
 }
 
-.title {
+.title-pwresult {
   margin-bottom: 20px;
   position: relative;
   height: fit-content;
 }
 
-h2 {
+.h2-pwresult {
   font-size: 24px;
   color: #333;
   margin: 0;
 }
 
-.underline {
+.underline-pwresult {
   position: absolute;
   left: 0;
   bottom: 0;
@@ -28,25 +27,25 @@ h2 {
   background-color: #333;
 }
 
-.description {
+.description-pwresult {
   margin-bottom: 10px;
 }
 
-p {
+.p-pwresult {
   font-size: 16px;
   color: #666;
   margin: 0;
 }
 
-.form-container {
+.form-container-pwresult {
   width: 300px;
 }
 
-.found-password {
+.found-password-pwresult {
   text-align: center;
 }
 
-.box {
+.box-pwresult {
   border: 1px solid #ccc;
   padding: 10px;
   width: 200%;
@@ -58,24 +57,30 @@ p {
   margin-left: -50%;
 }
 
-.password-list {
+.password-list-pwresult {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-.password-list li {
+.password-list-pwresult li {
   text-align: left;
-}s
+}
 
-.btn-area {
+.btn-area-pwresult {
   margin-top: 20px;
   display: flex;
   justify-content: center;
 }
 
-.btn-item {
-  margin-right: 10px;
+.btn-list-pwresult {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn-item-pwresult {
+  margin-bottom: 10px;
 }
 
 a {
