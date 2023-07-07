@@ -16,7 +16,7 @@
             </div>
             <div class="hr"></div>
             <div class="foot-lnk">
-              <a href="signUp.html">아직 회원이 아니세요?</a>
+              <a href="/signUp">아직 회원이 아니세요?</a>
             </div>
           </div>
           <div class="findpw-htm">
