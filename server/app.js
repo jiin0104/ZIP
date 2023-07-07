@@ -25,7 +25,7 @@ const app = express();
 // );
 
 //passport 모듈 연결
-passportConfig();
+//passportConfig();
 //req객체에 passport설정 대입하는 미들웨어
 app.use(passport.initialize());
 //req.session객체에 passport 정보 저장 미들웨어
