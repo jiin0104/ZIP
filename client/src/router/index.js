@@ -2,9 +2,9 @@ import { createRouter, createWebHistory } from "vue-router";
 import Admin_Page_Reservation from "../views/Admin_Page_Reservation.vue";
 import Admin_Page_User from "../views/Admin_Page_User.vue";
 import Admin_Product_Create from "../views/Admin_Product_Create.vue";
-import Find_Id_Result from '../views/Find_Id_Result.vue'
+// import Find_Id_Result from '../views/Find_Id_Result.vue'
 import Find_IdPw from '../views/Find_IdPw.vue'
-import Find_Pw_Result from '../views/Find_Pw_Result.vue'
+// import Find_Pw_Result from '../views/Find_Pw_Result.vue'
 import Login from "../views/Login.vue";
 import My_Delete from "../views/My_Delete.vue";
 import My_Reservation from "../views/My_Reservation.vue";
@@ -60,11 +60,11 @@ const routes = [
     }
   },
 
-  {
-    path: '/find_id_result',
-    name: 'find_id_result',
-    component: Find_Id_Result
-  },
+  // {
+  //   path: '/find_id_result',
+  //   name: 'find_id_result',
+  //   component: Find_Id_Result
+  // },
 
   {
     path: '/find_idpw',
@@ -73,11 +73,11 @@ const routes = [
     meta: {}
   },
 
-  {
-    path: '/find_pw_result',
-    name: 'find_pw_result',
-    component: Find_Pw_Result
-  },
+  // {
+  //   path: '/find_pw_result',
+  //   name: 'find_pw_result',
+  //   component: Find_Pw_Result
+  // },
 
   {
     path: "/login",
