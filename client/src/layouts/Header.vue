@@ -104,7 +104,7 @@ export default {
   name: 'header',
   data() {
     return {
-      userRole: 'admin', // 사용자 역할을 저장하는 변수
+      userRole: 'member', // 사용자 역할을 저장하는 변수
     }
   },
   methods: {
