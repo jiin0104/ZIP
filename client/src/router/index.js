@@ -169,14 +169,15 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
-  let roleStatus = '..' // 권한 상태
-  if (to.meta.roles && !to.meta.roles.includes(roleStatus)) {
-    alert('해당 페이지에 접근 권한이 없습니다.')
-    next(from)
-  } else {
-    next()
-  }
-})
+// 유저 접근 권한 설정
+// router.beforeEach((to, from, next) => {
+//   let roleStatus = '..' // 권한 상태
+//   if (to.meta.roles && !to.meta.roles.includes(roleStatus)) {
+//     alert('로그인이 필요합니다.')
+//     next(from)
+//   } else {
+//     next()
+//   }
+// })
 
 export default router;
