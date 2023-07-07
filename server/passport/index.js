@@ -1,7 +1,7 @@
 const passport = require("passport");
-const local = require("./localStrategy");
+const local = require("./localStrategy"); //이거 우리가 다시 한 번 봐야 됨
 const kakao = require("./kakaoStrategy");
-const User = require("../models/user");
+const User = require("../models/user"); //이거 우리가 다시 한 번 봐야 됨
 const naver = require("./naverStrategy");
 
 module.exports = () => {
@@ -15,18 +15,18 @@ module.exports = () => {
     console.log("deserialize");
     User.findOne({
       where: { id },
-      include: [
-        {
-          model: User,
-          attributes: ["id", "nick"],
-          as: "Followers",
-        },
-        {
-          model: User,
-          attributes: ["id", "nick"],
-          as: "Followings",
-        },
-      ],
+      // include: [
+      //   {
+      //     model: User,
+      //     attributes: ["id", "nick"],
+      //     as: "Followers",
+      //   },
+      //   {
+      //     model: User,
+      //     attributes: ["id", "nick"],
+      //     as: "Followings",
+      //   },
+      // ],
     })
       .then((user) => {
         console.log("user", user);
@@ -37,4 +37,5 @@ module.exports = () => {
 
   local();
   kakao();
+  naver();
 };

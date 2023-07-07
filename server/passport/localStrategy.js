@@ -1,3 +1,5 @@
+//로컬 로그인 로직인데 수정, 검토 해야됨
+
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
