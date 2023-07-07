@@ -15,13 +15,8 @@ import Mypage_Pw_Check from "../views/Mypage_Pw_Check.vue";
 import Mypage from "../views/Mypage.vue";
 import Payment from "../views/Payment.vue";
 
-// import Reservation_info from "../views/Reservation_info.vue";
+import Reservation_info from "../views/Reservation-info.vue";
 
-<<<<<<< HEAD
-
-
-const routes = [
-=======
 import Signup from "../views/Signup.vue";
 import Acco_Detail from "../views/Acco_Detail.vue";
 import Search_List from "../views/Search_List.vue";
@@ -35,7 +30,6 @@ const routes = [
     name: "main",
     component: Main,
   },
->>>>>>> f428f5a4ee07f048ca4631cbe7d83665ce22a44c
 
   {
     path: "/search_list",
@@ -121,11 +115,11 @@ const routes = [
     component: Payment,
   },
 
-  // {
-  //   path: "/Reservation_info",
-  //   name: "Reservation_info",
-  //   component: Reservation_info,
-  // },
+  {
+    path: "/Reservation_info",
+    name: "Reservation_info",
+    component: Reservation_info,
+  },
 
   {
     path: "/signup",

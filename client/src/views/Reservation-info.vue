@@ -32,11 +32,11 @@
           <p>
             체크인 날짜:
             <span class="reservation-date"
-              ><!--{{ RESERVATION.RESERVATION_CHECK_IN }}-->></span
+              ><!--{{ RESERVATION.RESERVATION_CHECK_IN }}--></span
             >
             체크아웃 날짜:
             <span class="reservation-date"
-              ><!--{{ RESERVATION.RESERVATION_CHECK_OUT }}-->></span
+              ><!--{{ RESERVATION.RESERVATION_CHECK_OUT }}--></span
             >
           </p>
           <p>
