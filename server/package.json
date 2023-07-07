@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "집탈출 프로젝트",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,6 +15,15 @@
     "mysql": "^2.18.1",
     "mysql2": "^3.4.0",
     "sequelize": "^6.32.1",
+    "bcrypt": "^5.0.0",
+    "dotenv": "^16.0.0",
+    "multer": "^1.4.2",
+    "passport": "^0.6.0",
+    "passport-kakao": "^1.0.0",
+    "passport-local": "^1.0.0",
     "sequelize-cli": "^6.6.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
   }
 }

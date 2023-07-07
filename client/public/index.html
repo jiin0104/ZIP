@@ -1,3 +1,4 @@
+<!-- 어플리케이션의 뼈대가 되는 html  -->
 <!DOCTYPE html>
 <html lang="">
   <head>
@@ -5,10 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+    <!-- 카카오api에서 제공하는 카카오 계정 로그인을 위한 sdk -->
     <script
       type="text/javascript"
       src="https://developers.kakao.com/sdk/js/kakao.min.js"
     ></script>
+    <!-- 네이버api에서 제공하는 로그인을 위한 sdk -->
     <script
       src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"
       charset="utf-8"
@@ -284,6 +287,7 @@
       >
     </noscript>
     <div id="app"></div>
+    <!--vue 컴포넌트들이 마운팅 되는 곳. main.js 에서 참고 -->
     <!-- built files will be auto injected -->
   </body>
 </html>

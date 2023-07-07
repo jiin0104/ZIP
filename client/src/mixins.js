@@ -1,5 +1,8 @@
+//여러 군데, 여러번 쓰이는 함수,모듈 저장소.
+
 import axios from 'axios';
 
+//서버와의 데이터 통신을 위한 메소드
 export default {
   methods: {
     async $api(url, data) {
@@ -11,6 +14,8 @@ export default {
         console.log(e);
       })).data;
     },
+
+        //숙소 이미지등을 서버로 업로드하기 위해서 이미지파일을 base64 string으로 변환 하는 메소드
     $base64(file) {
       return new Promise(resolve => {
         var a = new FileReader();
@@ -18,6 +23,8 @@ export default {
         a.readAsDataURL(file);
       });
     },
+
+       //숙소 가격 표시를 위한 메소드
     $currencyFormat(value, format = '#,###') {
       if (value == 0 || value == null) return 0;
 
