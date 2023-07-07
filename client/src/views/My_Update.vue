@@ -1,0 +1,187 @@
+<template>
+  <div>
+    <!-- ***** Breadcumb Area Start ***** -->
+    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/hero-1.jpg)"></div>
+    <!-- ***** Breadcumb Area End ***** -->
+
+    <!-- ***** Contact Area Start ***** -->
+    <div class="dorne-contact-area d-md-flex container" style="padding-top: 43px" id="contact">
+      <!-- 버튼부분-->
+      <div style="width: 20%">
+        <div class="leftsidebar" style="width: 20%; padding-top: 30%">
+          <button type="button" id="mypage_button" style="max-width: 20px; color: red" @click="Mypage_Link">
+            내정보
+          </button>
+          <button type="button" id="mypage_button" style="max-width: 20px" @click="My_reservation_Link">
+            예약내역
+          </button>
+          <button type="button" id="mypage_button" style="max-width: 20px" @click="My_Delete_Link">
+            회원 탈퇴
+          </button>
+        </div>
+      </div>
+      <!-- 여기가 오른쪽에 있는 내용 -->
+      <form id="app3" @submit="checkForm" action="/mypage" method="post" novalidate="true">
+      <div class="contact-form-area equal-height container" style="padding-top: 6%; width: 220%;">
+        <div class="contact-text">
+          <h1>회원 정보 수정</h1>
+
+          <div style="position: relative; left: 30%">
+            <div class="field2" id="sign">
+              <b label for="nickname">닉네임</b><br />
+              <input type="text" id="nickname" role="textbox" placeholder="닉네임을 입력해 주세요." name="nickname"
+                v-model="nickname" />
+              <input type="button" id="crosscheck" value="중복 확인" onclick="validateNickname()"><br />
+            </div>
+            <br>
+            <div class="field2">
+              <b label for="password">비밀번호</b><br />
+              <input class="userpw" id="password" type="password" role="textbox" placeholder="비밀번호를 입력해 주세요."
+                name="password" v-model="password" /><br /><br />
+            </div>
+            <div class="field2">
+              <b label for="passwordCheck">비밀번호 재확인</b><br />
+              <input class="userpw-confirm" id="passwordCheck" type="password" role="textbox" name="passwordCheck"
+                v-model="passwordCheck" placeholder="비밀번호를 입력해 주세요." /><br /><br />
+            </div>
+            <!-- 5. 이메일_전화번호 -->
+            <div class="field2 tel-number">
+              <b label for="phone">휴대전화(-제외)</b>
+              <div>
+                <input id="phone1" type="text" role="textbox" name="phone" placeholder="ex)00012345678"
+                  v-model="phone" /><br /><br />
+              </div>
+            </div>
+
+            <div class="field2">
+              <b label for="address">주소</b><br />
+              <input type="text" id="zonecode" placeholder="우편번호" role="textbox" v-model="zonecode" readonly />
+              <input type="button" @click="openPostcode" value="우편번호 찾기" id="postcode"><br />
+              <input type="text" placeholder="주소" role="textbox" v-model="roadAddress" readonly
+                style="width: 43%;" /><br />
+              <input type="text" id="addressdetail" placeholder="상세주소" role="textbox" v-model="detailAddress"
+                style="width: 43%;" /><br />
+            </div>
+
+            <p v-if="errors.length">
+              <br>
+              <b>아래 항목을 확인해주세요</b>
+            <ul>
+              <li v-for="error in errors" v-bind:key="error" style="color: red;">{{ error }}</li>
+            </ul>
+            </p>
+
+            <div style="position: relative; left: 125px; top: 30px">
+              <input type="submit" id="addallow" v-on:click=signUpCheck3() value="수정">
+            </div>
+          </div>
+        </div>
+      </div>
+      </form>
+    </div>
+    <div class="main" style="width: 20%"></div>
+  </div>
+</template>
+<script>
+export default {
+  el: "#app3",
+  data() {
+    return {
+      errors: [],
+      phone: null,
+      nickname: null,
+      password: null,
+      passwordCheck: null,
+      zonecode: null,
+      roadAddress: null,
+      detailAddress: null
+    };
+  },
+  methods: {
+    checkForm(e) {
+      e.preventDefault();
+      this.errors = [];
+
+      if (!this.nickname) {
+        this.errors.push("닉네임은 필수입니다.");
+      }
+
+      if (!this.password) {
+        this.errors.push("비밀번호는 4~12자리를 입력해주세요");
+      } else if (!this.validPassword(this.password)) {
+        this.errors.push("비밀번호 형식을 확인하세요.");
+      }
+
+      if (!this.passwordCheck) {
+        this.errors.push("비밀번호를 확인해주세요");
+      } else if (!this.validPasswordCheck(this.passwordCheck)) {
+        this.errors.push("비밀번호를 확인해주세요")
+      }
+
+      if (!this.phone) {
+        this.errors.push("전화번호는 필수입니다");
+      } else if (!this.validPhone(this.phone)) {
+        this.errors.push("전화번호 형식을 확인하세요.");
+      }
+
+      if (!this.roadAddress) {
+        this.errors.push("주소는 필수입니다");
+      }
+
+      if (!this.errors.length) {
+        return true
+      }
+    },
+
+
+    validNickname: function (nickname) {
+      var re0 = /^[A-Za-z가-힣]{1,6}$/
+      return re0.test(nickname);
+    },
+
+    validEmail: function (email) {
+      var re1 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+      return re1.test(email);
+    },
+
+    validPhone: function (phone) {
+      var re2 = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/
+      return re2.test(phone);
+    },
+
+    validPassword: function (password) {
+      var re3 = /^[A-Za-z0-9]{4,12}$/
+      return re3.test(password);
+    },
+
+    validPasswordCheck: function () {
+      let pw = document.getElementById("password").value
+      let pwcheck = document.getElementById("passwordCheck").value
+
+      if (pw !== pwcheck) {
+        alert("비밀번호가 맞지않습니다")
+      } else {
+        return true;
+      }
+    },
+
+    openPostcode() {
+      new window.daum.Postcode({
+        oncomplete: (data) => {
+          this.zonecode = data.zonecode;
+          this.roadAddress = data.roadAddress;
+        },
+      }).open();
+    },
+
+
+    signUpCheck3(){
+      if(this.phone == null || this.nickname == null || this.password === null || this.passwordCheck === null || this.roadAddress === null){
+        return
+      }
+      alert("정보가 수정되었습니다")
+      this.$router.push({ path: "/mypage"})
+    }
+  },
+};
+</script>

@@ -1,0 +1,489 @@
+@charset "UTF-8";
+
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  color: #2a2a2a;
+  line-height: 1.3;
+}
+
+p {
+  color: #848484;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+  outline: none;
+  font-weight: 600;
+}
+
+li {
+  list-style: none;
+}
+
+
+.filter_wrap {
+  display: none;
+  position: absolute;
+  top: 0;
+  z-index: 300;
+  width: 100%;
+  background: #fff;
+}
+
+.filter_wrap section strong button {
+  display: inline-block;
+  position: absolute;
+  top: -3px;
+  right: 0;
+  border: none;
+  background: none;
+  font-size: 14px;
+  color: rgb(0, 121, 107);
+}
+.filter_wrap section ul li {
+  margin-bottom: 16px;
+}
+.filter_wrap .cnt_people button {
+  border: none;
+  background: none;
+  font-size: 18px;
+  font-weight: bold;
+  vertical-align: top;
+}
+.filter_wrap .cnt_people button.disable {
+  opacity: 0.5;
+}
+.filter_wrap .cnt_people span {
+  display: block;
+  padding-top: 25px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(229, 16, 72);
+}
+.filter_wrap .btn_date {
+  display: none;
+  cursor: pointer;
+}
+.slider_wrap {
+  position: relative;
+  height: 40px;
+  margin: 34px 24px 0 0;
+}
+.list_wrap .title {
+  position: relative;
+  padding: 6px 16px 5px 16px;
+  background: #e8e8e8;
+  font-size: 12px;
+}
+.list_wrap .title h3 {
+  font-size: 12px;
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.38);
+}
+.top_sort .pc {
+  display: none;
+}
+/*.stage strong, .stage b, .stage p, .stage em, .stage span{line-height:normal;}*/
+.list_4.adcno6 .pic img,
+.list_4.adcno3 .pic img,
+.list_4.adcno4 .pic img,
+.list_4.adcno5 .pic img {
+  width: 100%;
+  height: 100%;
+}
+.list_4.adcno2 .pic img,
+.list_4.adcno1 .pic img {
+  position: sticky;
+  top: 0;
+  left: 50%;
+  height: 100%;
+}
+.list_4 a {
+  display: block;
+  color: #fff;
+}
+.list_4 {
+  overflow: hidden;
+  position: relative;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+.list_4 .pic {
+  display: inline-block;
+  overflow: hidden;
+  position: absolute;
+  top: 16px;
+  bottom: 16px;
+  left: 16px;
+  width: 104px;
+  text-align: center;
+}
+.list_4 .stage {
+  padding: 16px 16px 16px 134px;
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 14px;
+  line-height: normal;
+}
+.list_4 .stage .name strong {
+  display: block;
+  margin-bottom: 3px;
+  padding-top: 2px;
+  font-size: 17px;
+  line-height: 1;
+}
+.list_4 .stage .name p {
+  margin-bottom: 1px;
+  line-height: 19px;
+}
+.list_4 .stage .name .score {
+  color: rgb(255, 167, 38);
+}
+.list_4 .stage .name .score em {
+  display: inline-block;
+  height: 15px;
+  padding: 1px 2px;
+  border-radius: 4px;
+  background: rgb(255, 167, 38);
+  font-size: 12px;
+  line-height: 15px;
+  color: #fff;
+}
+.list_4 .stage .name .txt_opt {
+  color: rgba(0, 0, 0, 0.56);
+  line-height: 19px;
+}
+.list_4 .stage .name .txt_evt {
+  color: rgb(22, 141, 133);
+  display: block;
+  overflow: hidden;
+  padding: 0;
+  line-height: 19px;
+}
+.list_4 .stage .price {
+  margin-top: 24px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.72);
+  text-align: right;
+}
+.list_4 .stage .price p {
+  padding-top: 5px;
+}
+.list_4 .stage .price em {
+  display: block;
+  position: relative;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.56);
+  text-decoration: line-through;
+  line-height: 1;
+  vertical-align: bottom;
+}
+.list_4 .stage .price .mark {
+  text-align: right;
+  line-height: 1;
+}
+.list_4 .stage .price .mark span {
+  display: inline-block;
+  position: relative;
+}
+.list_4 .stage .price .mark span b {
+  margin-bottom: 2px;
+  vertical-align: top;
+}
+.list_4 .stage .price .mark b {
+  display: inline-block;
+  position: relative;
+  background: none;
+  z-index: 10;
+  font-size: 13px;
+  font-weight: normal;
+  vertical-align: bottom;
+}
+.list_4 .stage .price .mark i {
+  display: inline-block;
+  position: absolute;
+  bottom: 3px;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: rgb(255, 250, 194);
+}
+.list_4 .stage .price b {
+  display: inline-block;
+  position: relative;
+  top: 1.5px;
+  font-size: 17px;
+  color: rgba(0, 0, 0, 0.87);
+  line-height: 1;
+}
+.list_4 .stage .price span {
+  position: relative;
+  top: -1px;
+  padding: 2px 2px 1px 2px;
+  font-size: 12px;
+  color: #fff;
+  vertical-align: bottom;
+}
+.list_4 .stage .badge {
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+}
+.ios .list_4 .stage .badge {
+  top: -2px;
+}
+.right_badges {
+  overflow: hidden;
+  position: absolute;
+  top: 19px;
+  left: 16px;
+  width: 104px;
+  height: 20px;
+}
+.list_4 .stage .right_badges .badge {
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  padding-right: 3px;
+}
+.list_4 .stage .badge_adcno {
+  left: 89px;
+  right: auto;
+}
+.list_4 .stage .badge span {
+  display: inline-block;
+  float: left;
+  padding: 2px 2px 1px 2px;
+  font-size: 12px;
+  line-height: normal;
+  color: #fff;
+}
+.list_4 .stage .right_badges .badge span {
+  float: right;
+}
+
+
+
+/* Media Query 1024 */
+@media all and (min-width: 1024px) {
+  /*	.list_2.adcno1 .pic img,.list_4.adcno1 .pic img{position:relative;top:0;left:0;height:auto;margin:0 !important;}*/
+  
+  .filter_wrap {
+    float: left;
+    display: inline-block !important;
+    position: relative !important;
+    top: 40px;
+    z-index: 1;
+    width: 296px;
+    margin: 0 32px 0 31px;
+    padding-bottom: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    background: #fff;
+  }
+  .filter_wrap h3 {
+    display: block;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.87);
+  }
+  .filter_wrap section {
+    margin: 0 0 0 24px;
+    padding: 27px 0 0 0;
+    border-bottom: none;
+  }
+  .list_wrap {
+    float: left;
+    width: 635px;
+    margin-top: 40px;
+  }
+  .list_wrap .title .pop_add {
+    top: 20px;
+    right: 21px;
+    font-size: 14px;
+  }
+  .top_sort {
+    overflow: hidden;
+    padding: 0;
+    background: #fff;
+    box-shadow: none;
+    text-align: center;
+  }
+  .top_sort .btn_wrap {
+    overflow: hidden;
+    float: left;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .top_sort .btn_wrap button {
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  .top_sort .btn_wrap button:last-child {
+    border-right: none;
+  }
+  .top_sort button {
+    float: left;
+    height: 40px;
+    border: none;
+    border-radius: 0;
+    background: rgba(250, 250, 250, 0.6);
+    font-size: 16px;
+    line-height: 40px;
+    color: rgba(0, 0, 0, 0.38);
+  }
+  .top_sort .pc {
+    display: block;
+  }
+  .top_sort .width_2 button {
+    width: 50%;
+  }
+  .list_4 .stage .price p span {
+    position: relative;
+    top: 1px;
+    height: 20px;
+    padding: 0 3px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .list_4 .pic {
+    display: inline-block;
+    overflow: hidden;
+    position: absolute;
+    top: 16px;
+    bottom: 16px;
+    left: 0;
+    width: 152px;
+    text-align: center;
+  }
+  .list_4 .pic img.align_2 {
+    height: 130%;
+  }
+  .list_4 .stage {
+    padding: 16px 0 16px 168px;
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 18px;
+    line-height: 21px;
+  }
+  .list_4 .stage .name strong {
+    margin-bottom: 7px;
+    padding-top: 8px;
+    font-size: 22px;
+    line-height: 1;
+  }
+  .list_4 .stage .name p {
+    margin-bottom: 7px;
+  }
+  .list_4 .stage .name .score em {
+    display: inline-block;
+    position: relative;
+    top: 1px;
+    height: 17px;
+    padding: 0 3px;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 17px;
+    vertical-align: top;
+  }
+  .list_4 .stage .name .txt_evt {
+    line-height: 1.4;
+  }
+  .list_4 .stage .price {
+    margin-top: 56px;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.72);
+    text-align: right;
+  }
+  .list_4 .stage .price p {
+    padding-top: 9px;
+  }
+  .list_4 .stage .price em {
+    display: block;
+    position: relative;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.56);
+    text-decoration: line-through;
+  }
+  .list_4 .stage .price .mark {
+    text-align: right;
+  }
+  .list_4 .stage .price .mark span {
+    display: inline-block;
+    position: relative;
+  }
+  .list_4 .stage .price .mark b {
+    display: inline-block;
+    position: relative;
+    background: none;
+    z-index: 10;
+    font-size: 16px;
+    font-weight: normal;
+  }
+  .list_4 .stage .price .mark i {
+    display: inline-block;
+    position: absolute;
+    bottom: 3px;
+    left: 0;
+    width: 100%;
+    height: 7px;
+    background: rgb(255, 250, 194);
+  }
+  .list_4 .stage .price b {
+    top: 0;
+    font-size: 22px;
+    color: rgba(0, 0, 0, 0.87);
+  }
+  .list_4 .stage .badge {
+    position: relative;
+    top: 2px;
+  }
+  .list_4 .stage .right_badges .badge {
+    padding-right: 4px;
+  }
+  .right_badges {
+    overflow: hidden;
+    position: absolute;
+    top: 16px;
+    left: 0;
+    width: 152px;
+    height: 24px;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+  }
+  .right_badges .badge {
+    text-align: right;
+    width: 100%;
+    top: 0px !important;
+    left: 0px !important;
+    padding: 4px;
+  }
+  .list_4 .stage .badge span {
+    display: inline-block;
+    float: left;
+    height: 18px;
+    padding: 0 3px;
+    font-size: 14px;
+    line-height: 18px;
+    color: #fff;
+  }
+
+}
