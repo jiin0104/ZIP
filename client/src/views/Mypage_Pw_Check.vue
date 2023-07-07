@@ -61,7 +61,7 @@
                 id="inputPassword6"
                 class="form-control"
                 aria-describedby="passwordHelpInline"
-                v-model="rendom_pw"
+                v-model="random_pw"
               />
             </div>
             <button
@@ -95,8 +95,8 @@ export default {
   name: "pwcheck",
   data() {
     return {
-      user_pw: null,
-      rendom_pw: null,
+      user_pw: 1234,
+      random_pw: null,
     };
   },
 
@@ -113,19 +113,31 @@ export default {
     My_Delete_Link() {
       this.$router.push({ path: "/my_delete" });
     },
+
     My_Update_Link() {
       this.$router.push({ path: "/my_update" });
     },
+    showConfirmation() {
+      var popup = document.getElementById("popup");
+      popup.style.display = "block";
+    },
+    hideConfirmation() {
+      var popup = document.getElementById("popup");
+      popup.style.display = "none";
+    },
 
-    // checkPassword() {
-    //   // 비밀번호 확인
-    //   if (rendom_pw === user_pw) {
-    //     My_Update_Link();
-    //   } else {
-    //     showConfirmation();
-    //     return;
-    //   }
-    // },
+    checkPassword() {
+      console.log("this.random_pw : ", this.random_pw);
+      console.log("this.user_pw", this.user_pw);
+      // 비밀번호 확인
+      if (this.random_pw == this.user_pw) {
+        this.My_Update_Link();
+      } else {
+        console.log("비밀번호 다르다 저리가");
+        this.showConfirmation();
+        return;
+      }
+    },
   },
 };
 </script>
