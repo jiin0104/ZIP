@@ -51,11 +51,11 @@
           <h1>예약내역</h1>
           <div v-if="res_acco == null" class="reslistempty">
             <div class="really2">
-              예약 내역이 없습니다<br />관심있는 숙소를 등록해주세요
+              예약 내역이 없습니다<br />관심있는 숙소를 예약해주세요
             </div>
             <br />
             <button type="button" id="main" @click="main_link">
-              지금 바로 숙소 등록하기
+              지금 바로 숙소 예약하기
             </button>
           </div>
           <div v-else style="position: relative; left: 33%">
