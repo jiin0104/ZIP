@@ -2,15 +2,15 @@
   <main class="mt-3">
     <br /><br />
     <div>
-      <h3 class="h3-size" style="float: left; text-indent: 110px">
-        업체사진 등록
-      </h3>
       <br />
       <br />
     </div>
     <div class="container">
       <div class="row">
         <div class="col-md-5">
+          <h3 class="h3-size" style="float: left; text-indent: 110px">
+            업체사진 등록
+          </h3>
           <form action="" method="post">
             <div class="img_add" style="width: 400px; height: 500px">
               <img
@@ -80,13 +80,19 @@
               <br />
               <br />
               <br />
-              <h5 class="card-title" id="card1" style="float: left">객실명</h5>
-              <br /><br />
-              <input
-                type="text"
-                style="size: 20px; border: 1px solid; float: left"
-                placeholder="객실명입력"
-              /><br /><br />
+              <div>
+                <br />
+                <br />
+                <h5 class="card-title" id="card1" style="float: left">
+                  객실명
+                </h5>
+                <br /><br />
+                <input
+                  type="text"
+                  style="size: 20px; border: 1px solid; float: left"
+                  placeholder="객실명입력"
+                /><br /><br />
+              </div>
               <h5 style="float: left">업체분류</h5>
               <br /><br />
               <div style="float: left">

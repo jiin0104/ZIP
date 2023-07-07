@@ -156,212 +156,204 @@ th {
 }
 </style>
 <template>
-  <!-- ***** Breadcumb Area Start ***** -->
-  <div
-    class="breadcumb-area bg-img bg-overlay"
-    style="background-image: url(img/bg-img/hero-1.jpg)"
-  ></div>
-  <!-- ***** Breadcumb Area End ***** -->
   <br />
   <br />
-  <main class="mt-3">
-    <div>
-      <form action="method">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-5">
-              <div
-                id="carouselExampleIndicators"
-                class="carousel carousel-dark slide"
-                data-bs-ride="carousel"
+  <div>
+    <form action="method">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5">
+            <div
+              id="carouselExampleIndicators"
+              class="carousel carousel-dark slide"
+              data-bs-ride="carousel"
+            >
+              <ol class="carousel-indicators">
+                <li
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide-to="0"
+                  class="active"
+                ></li>
+                <li
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide-to="1"
+                ></li>
+                <li
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide-to="2"
+                ></li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img
+                    src="https://image.goodchoice.kr/resize_490x348/affiliate/2018/02/20/5a8bda525e78d.jpg"
+                    class="d-block w-100"
+                    alt="..."
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="https://image.goodchoice.kr/resize_490x348/affiliate/2018/03/05/5a9d03fcd1b18.jpg"
+                    class="d-block w-100"
+                    alt="..."
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="https://image.goodchoice.kr/resize_490x348/affiliate/2018/03/05/5a9d040dd59b7.jpg"
+                    class="d-block w-100"
+                    alt="..."
+                  />
+                </div>
+              </div>
+              <a
+                class="carousel-control-prev"
+                href="#carouselExampleIndicators"
+                role="button"
+                data-bs-slide="prev"
               >
-                <ol class="carousel-indicators">
-                  <li
-                    data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide-to="0"
-                    class="active"
-                  ></li>
-                  <li
-                    data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide-to="1"
-                  ></li>
-                  <li
-                    data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide-to="2"
-                  ></li>
-                </ol>
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Previous</span>
+              </a>
+              <a
+                class="carousel-control-next"
+                href="#carouselExampleIndicators"
+                role="button"
+                data-bs-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Next</span>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <div class="card-title" id="card1">
+                  <h3>[반짝특가] 체스터톤스 호텔</h3>
+                </div>
+                <div>
+                  <b>주소</b>
+                  <br />
+                  <p>강원도 속초시 교동 1024</p>
+                  <br />
+                  <p>
+                    전객실 야외 온천 수영장 무료 <br />
+                    이용 재미있는 놀이 <br />속초 고속버스 터미널과 접근성 우수
+                  </p>
+                  <br /><br /><br />
+                </div>
+                <div id="popup" class="save-btn1" style="display: none">
+                  <p class="popup-message" style="font-size: 18px">
+                    예약 하시겠습니까?
+                  </p>
+                  <div class="popup-buttons">
+                    <button id="button7" onclick="hideConfirmation()">
+                      취소
+                    </button>
+                    <button id="button8" onclick="cancelReservation()">
+                      확인
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="container">
+            <br />
+            <br />
+            <div class="tab">
+              <button
+                v-for="(tab, index) in tabList"
+                :key="index"
+                @click.prevent="currentTab = index"
+                :class="{ active: currentTab === index }"
+                class="save-btn1"
+                style="
+                  background-color: #0b5394;
+                  border: none;
+                  margin-right: 5px;
+                  float: left;
+                "
+              >
+                {{ tab.name }}
+              </button>
+            </div>
+            <br /><br />
+            <ul class="tab-content" v-if="currentTab === 0">
+              <li v-for="(item, index) in employList" :key="index">
+                <div
+                  class="room"
+                  style="float: left width: 500px; height: 300px;"
+                >
+                  <p
+                    class="tab_img"
+                    style="width: 50%; float: left; margin-left: 60px"
+                  >
                     <img
                       src="https://image.goodchoice.kr/resize_490x348/affiliate/2018/02/20/5a8bda525e78d.jpg"
-                      class="d-block w-100"
-                      alt="..."
+                      alt=""
                     />
-                  </div>
-                  <div class="carousel-item">
-                    <img
-                      src="https://image.goodchoice.kr/resize_490x348/affiliate/2018/03/05/5a9d03fcd1b18.jpg"
-                      class="d-block w-100"
-                      alt="..."
-                    />
-                  </div>
-                  <div class="carousel-item">
-                    <img
-                      src="https://image.goodchoice.kr/resize_490x348/affiliate/2018/03/05/5a9d040dd59b7.jpg"
-                      class="d-block w-100"
-                      alt="..."
-                    />
-                  </div>
-                </div>
-                <a
-                  class="carousel-control-prev"
-                  href="#carouselExampleIndicators"
-                  role="button"
-                  data-bs-slide="prev"
-                >
-                  <span
-                    class="carousel-control-prev-icon"
-                    aria-hidden="true"
-                  ></span>
-                  <span class="visually-hidden">Previous</span>
-                </a>
-                <a
-                  class="carousel-control-next"
-                  href="#carouselExampleIndicators"
-                  role="button"
-                  data-bs-slide="next"
-                >
-                  <span
-                    class="carousel-control-next-icon"
-                    aria-hidden="true"
-                  ></span>
-                  <span class="visually-hidden">Next</span>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-7">
-              <div class="card shadow-sm">
-                <div class="card-body">
-                  <div class="card-title" id="card1">
-                    <h3>[반짝특가] 체스터톤스 호텔</h3>
-                  </div>
-                  <div>
-                    <b>주소</b>
-                    <br />
-                    <p>강원도 속초시 교동 1024</p>
-                    <br />
-                    <p>
-                      전객실 야외 온천 수영장 무료 <br />
-                      이용 재미있는 놀이 <br />속초 고속버스 터미널과 접근성
-                      우수
-                    </p>
-                    <br /><br /><br />
-                    
-                  </div>
-                  <div id="popup" class="save-btn1" style="display: none">
-                    <p class="popup-message" style="font-size: 18px">
-                      예약 하시겠습니까?
-                    </p>
-                    <div class="popup-buttons">
-                      <button id="button7" onclick="hideConfirmation()">
-                        취소
-                      </button>
-                      <button id="button8" onclick="cancelReservation()">
-                        확인
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id="container">
-              <br />
-              <br />
-              <div class="tab">
-                <button
-                  v-for="(tab, index) in tabList"
-                  :key="index"
-                  @click.prevent="currentTab = index"
-                  :class="{ active: currentTab === index }"
-                  class="save-btn1"
-                  style="
-                    background-color: #0b5394;
-                    border: none;
-                    margin-right: 5px;
-                    float: left;
-                  "
-                >
-                  {{ tab.name }}
-                </button>
-              </div>
-              <br /><br />
-              <ul class="tab-content" v-if="currentTab === 0">
-                <li v-for="(item, index) in employList" :key="index">
-                  <div
-                    class="room"
-                    style="float: left width: 500px; height: 300px;"
-                  >
-                    <p
-                      class="tab_img"
-                      style="width: 50%; float: left; margin-left: 60px"
-                    >
-                      <img
-                        src="https://image.goodchoice.kr/resize_490x348/affiliate/2018/02/20/5a8bda525e78d.jpg"
-                        alt=""
-                      />
-                    </p>
-                    <strong
-                      style="
+                  </p>
+                  <strong
+                    style="
               font-size: 20px;
               margin-top: 20px; height 300px;
               margin-left: 30px;
               width: 300px;
             "
-                      >[단독특가] 원룸 스탠다드더블</strong
-                    >
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <strong style="font-size: 20px; float: right"
-                      >가격 : 113,000원</strong
-                    >
-                    <br />
-                    <br />
-                    <router-link to="/payment"><button
+                    >[단독특가] 원룸 스탠다드더블</strong
+                  >
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <strong style="font-size: 20px; float: right"
+                    >가격 : 113,000원</strong
+                  >
+                  <br />
+                  <br />
+                  <router-link to="/payment"
+                    ><button
                       type="button"
                       class="save-btn1"
                       style="border: none; min-width: 150px; float: right"
                     >
                       예약하기
-                    </button></router-link>
-                  </div>
+                    </button></router-link
+                  >
+                </div>
+              </li>
+            </ul>
+            <div>
+              <ul class="tab-content" v-if="currentTab === 1">
+                <li v-for="(item, index) in employList" :key="index">
+                  <h3 style="margin-left: 60px">기본정보</h3>
+                  <p style="margin-left: 60px">주변정보</p>
+                  <p style="margin-left: 60px">속초 터미널 차량 11분</p>
+                  <p style="margin-left: 60px">청초호 호수공원 보도 6분</p>
+                  <h3 style="margin-left: 60px">지도상 위치</h3>
+                  <br /><br />
                 </li>
               </ul>
-              <div>
-                <ul class="tab-content" v-if="currentTab === 1">
-                  <li v-for="(item, index) in employList" :key="index">
-                    <h3 style="margin-left: 60px">기본정보</h3>
-                    <p style="margin-left: 60px">주변정보</p>
-                    <p style="margin-left: 60px">속초 터미널 차량 11분</p>
-                    <p style="margin-left: 60px">청초호 호수공원 보도 6분</p>
-                    <h3 style="margin-left: 60px">지도상 위치</h3>
-                    <br /><br />
-                  </li>
-                </ul>
-              </div>
-
-              <br />
-              <br /><br /><br />
             </div>
+
+            <br />
+            <br /><br /><br />
           </div>
         </div>
-      </form>
-    </div>
-  </main>
+      </div>
+    </form>
+  </div>
 </template>
 <script>
 export default {
