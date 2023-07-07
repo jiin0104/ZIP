@@ -47,6 +47,10 @@ h1 {
   font-size: 20px;
 }
 
+.user-info strong {
+  font-size: 20px;
+}
+
 #infobutton {
   background-color: #0b5394;
   min-width: 187px;
@@ -324,9 +328,6 @@ img[class="room-image"] {
   -webkit-transition-duration: 500ms;
   transition-duration: 500ms;
   border: none;
-  position: relative;
-  left: 15%;
-  top: 10px;
   text-align: center;
 }
 
@@ -338,8 +339,8 @@ img[class="room-image"] {
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  position: absolute;
-  top: 10%;
+  position: relative;
+  left: 30%;
   text-align: center;
 }
 

@@ -1,52 +1,23 @@
 <template>
   <div>
-    <!-- ***** Breadcumb Area Start ***** -->
-    <div
-      class="breadcumb-area bg-img bg-overlay"
-      style="background-image: url(img/bg-img/hero-1.jpg)"
-    ></div>
-    <!-- ***** Breadcumb Area End ***** -->
-
     <!-- ***** Contact Area Start ***** -->
-    <div
-      class="dorne-contact-area d-md-flex container"
-      style="padding-top: 43px"
-      id="contact"
-    >
+    <div class="dorne-contact-area d-md-flex container" style="padding-top: 43px" id="contact">
       <!-- 버튼부분-->
       <div style="width: 20%">
         <div class="leftsidebar" style="width: 20%; padding-top: 30%">
-          <button
-            type="button"
-            id="mypage_button"
-            style="max-width: 20px"
-            @click="Mypage_Link"
-          >
+          <button type="button" id="mypage_button" style="max-width: 20px" @click="Mypage_Link">
             내정보
           </button>
-          <button
-            type="button"
-            id="mypage_button"
-            style="max-width: 20px; color: red"
-            @click="My_reservation_Link"
-          >
+          <button type="button" id="mypage_button" style="max-width: 20px; color: red" @click="My_reservation_Link">
             예약내역
           </button>
-          <button
-            type="button"
-            id="mypage_button"
-            style="max-width: 20px"
-            @click="My_Delete_Link"
-          >
+          <button type="button" id="mypage_button" style="max-width: 20px" @click="My_Delete_Link">
             회원 탈퇴
           </button>
         </div>
       </div>
       <!-- 여기가 오른쪽에 있는 내용 -->
-      <div
-        class="contact-form-area equal-height container"
-        style="padding-top: 6%"
-      >
+      <div class="contact-form-area equal-height container" style="padding-top: 6%">
         <div class="contact-text">
           <h1>예약내역</h1>
           <div v-if="res_acco == null" class="reslistempty">
@@ -58,35 +29,24 @@
               지금 바로 숙소 예약하기
             </button>
           </div>
-          <div v-else style="position: relative; left: 33%">
+          <div v-else style="position: relative; left: 18%">
             <div class="res-content">
               <!--<img
                 src="'/download/${ACCO_ID}/${ACCO_IMAGE}'"
                 class="room-image"
               />-->
-              <img
-                class="lazy"
-                src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2023/06/16/648c25cfa5a22.jpg"
-                style="display: block"
-              />
+              <img class="lazy" src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2023/06/16/648c25cfa5a22.jpg"
+                style="display: block" />
               <strong style="font-size: 17px">{{ ACCO_NAME }}</strong>
-              <div style="position: relative; left: 60px">
-                <button
-                  id="button2"
-                  style="display: inline-block"
-                  @click="openModal()"
-                >
+              <div style="position: relative; left: 69px">
+                <button id="button2" style="display: inline-block" @click="openModal()">
                   상세내역
                 </button>
-                <button
-                  id="button3"
-                  @click="showConfirmation()"
-                  style="display: inline-block"
-                >
+                <button id="button3" @click="showConfirmation()" style="display: inline-block">
                   예약취소
                 </button>
               </div>
-              <div id="popup" class="popup" style="display: none">
+              <div id="popup" class="popup" style="display: none; left: 30px; top:50px;">
                 <p class="popup-message" style="font-size: 18px">
                   예약을 취소하시겠습니까?
                 </p>
@@ -108,7 +68,6 @@
               <h2>이용완료 내역</h2>
               <div>
                 <strong>{{ ACCO_NAME }}</strong>
-                <span>{{ ACCO_TYPE }}</span>
               </div>
               <section>
                 <div>
@@ -118,6 +77,7 @@
                 <div>
                   <p><strong>예약번호</strong> {{ RESERVATION_ID }}</p>
                   <p><strong>예약자 이름</strong> {{ USER_ID }}</p>
+                  <p><strong>숙박인원</strong> {{ RESERVATION_CAPACITY }}</p>
                 </div>
               </section>
               <div class="total">
@@ -151,13 +111,13 @@ export default {
     return {
       // user 정보를 담을 리스트
       ACCO_NAME: "",
-      ACCO_TYPE: "",
       RESERVATION_CHECK_IN: "",
       RESERVATION_CHECK_OUT: "",
       PAYMENT_TOTAL_PRICE: "",
       RESERVATION_TEL: "",
       ACCO_IMAGE: "",
       res_acco: [],
+      RESERVATION_CAPACITY: "",
     };
   },
   mounted() {
@@ -211,14 +171,17 @@ export default {
     //
     Get_Reservation_Info() {
       this.ACCO_NAME = "이젠호텔";
-      this.ACCO_TYPE = "호텔";
       this.RESERVATION_ID = "000001";
       this.USER_ID = "김지인";
       this.RESERVATION_CHECK_IN = "2023-07-07";
       this.RESERVATION_CHECK_OUT = "2023-07-08";
       this.PAYMENT_TOTAL_PRICE = "100,000원";
       this.RESERVATION_TEL = "010-1111-1111";
+      this.RESERVATION_CAPACITY = "2";
     },
   },
 };
 </script>
+<style>
+@import "Mypage.css";
+</style>
