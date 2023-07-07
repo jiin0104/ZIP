@@ -46,12 +46,6 @@
         popup.style.display = "none";
       }
 
-      function confirmdelete() {
-        alert("탈퇴가 완료되었습니다!");
-        hideConfirmation();
-        location.href = "/";
-      }
-
       function cancelReservation() {
         alert("예약이 취소되었습니다");
         hideConfirmation();
@@ -60,15 +54,6 @@
       function selectroom() {
         alert("객실을 선택해주세요");
         hideConfirmation();
-      }
-
-      function checkPassword() {
-        if (this.rendom_pw == this.user_pw) {
-          this.showConfirmation();
-        } else {
-          alert("비밀번호가 다릅니다!");
-          return;
-        }
       }
 
       //예약 모달
