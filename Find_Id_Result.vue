@@ -38,13 +38,16 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  padding-top: 150px;
 }
 
 .title {
   margin-bottom: 20px;
+  position: relative;
+  height: fit-content;
 }
 
-h2 {
+h4 {
   font-size: 24px;
   color: #333;
   margin: 0;
