@@ -33,15 +33,9 @@ import Signup from '../views/Signup.vue'
 import Acco_Detail from '../views/Acco_Detail.vue'
 
 
-import HomeView from '../views/HomeView.vue'
 
 
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
 
   {
     path: '/admin_faq_edit',
