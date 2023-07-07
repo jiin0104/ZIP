@@ -1,8 +1,5 @@
 <template>
   <v-main>
-    <!-- ***** Breadcumb Area Start ***** -->
-    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/hero-1.jpg)"></div>
-    <!-- ***** Breadcumb Area End ***** -->
 
     <!-- ***** Contact Area Start ***** -->
     <div class="dorne-contact-area d-md-flex container" style="padding-top: 43px" id="contact">
@@ -32,11 +29,12 @@
           <div class="delete-check" style="position: relative; left: 30%">
             <div class="col-auto" style="padding: 0">
               <label for="inputPassword6" class="col-form-label"
-                style="font-size: 18px; position: relative; left: 3%">비밀번호 입력</label>
+                style="font-size: 18px; position: relative; left: 8%">비밀번호 입력</label>
             </div>
             <div class="col-auto">
-              <input type="password" id="inputPassword6" class="form-control" style="width: 300px"
-                aria-describedby="passwordHelpInline" v-model="rendom_pw" />
+              <input type="password" id="inputPassword6" class="form-control"
+                style="width: 300px; position: relative; right: 65px;" aria-describedby="passwordHelpInline"
+                v-model="rendom_pw" />
             </div>
             <button type="submit" @click="checkPassword()" id="button6">
               확인
@@ -105,4 +103,6 @@ export default {
   }
 }
 </script>
-<!--추가한script-->
+<style>
+@import "Mypage.css";
+</style>

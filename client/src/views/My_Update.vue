@@ -1,8 +1,5 @@
 <template>
   <div>
-    <!-- ***** Breadcumb Area Start ***** -->
-    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/hero-1.jpg)"></div>
-    <!-- ***** Breadcumb Area End ***** -->
 
     <!-- ***** Contact Area Start ***** -->
     <div class="dorne-contact-area d-md-flex container" style="padding-top: 43px" id="contact">
@@ -198,3 +195,6 @@ export default {
   },
 };
 </script>
+<style>
+@import "Mypage.css";
+</style>
