@@ -1,5 +1,3 @@
-//index.js 웹의 각 페이지에 해당하는 컴포넌트 라우트 설정 파일
-// 어떤 웹페이지를 가져올 건지 나열
 import { createRouter, createWebHistory } from "vue-router";
 import Admin_Page_Reservation from "../views/Admin_Page_Reservation.vue";
 import Admin_Page_User from "../views/Admin_Page_User.vue";
@@ -14,15 +12,11 @@ import My_Update from "../views/My_Update.vue";
 import Mypage_Pw_Check from "../views/Mypage_Pw_Check.vue";
 import Mypage from "../views/Mypage.vue";
 import Payment from "../views/Payment.vue";
-
-import Reservation_info from "../views/Reservation-info.vue";
-
+import Reservation_info from "../views/Reservation_info.vue";
 import Signup from "../views/Signup.vue";
 import Acco_Detail from "../views/Acco_Detail.vue";
 import Search_List from "../views/Search_List.vue";
 import Main from "../views/Main.vue";
-
-//라우트 설정
 
 const routes = [
   {
@@ -134,7 +128,6 @@ const routes = [
   },
 ];
 
-//vue-router 모듈을 이용해서 라우터 생성
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
