@@ -32,7 +32,7 @@ a {
   height: 100%;
   position: absolute;
   padding: 90px 70px 50px 70px;
-  background: rgba(40, 57, 101, 0.9);
+  background: rgba(59, 123, 153, 0.9);
 }
 .findid-html .findid-htm,
 .findid-html .findpw-htm {
@@ -95,7 +95,7 @@ a {
   -webkit-text-security: circle;
 }
 .findid-form .group .label {
-  color: #aaa;
+  color: white;
   font-size: 12px;
 }
 .findid-form .group .button {
