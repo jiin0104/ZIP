@@ -60,9 +60,14 @@
           </div>
           <div v-else style="position: relative; left: 33%">
             <div class="res-content">
-              <img
-                src="client\public\img\clients-img\ACCO_IMAGE.jpg"
+              <!--<img
+                src="'/download/${ACCO_ID}/${ACCO_IMAGE}'"
                 class="room-image"
+              />-->
+              <img
+                class="lazy"
+                src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2023/06/16/648c25cfa5a22.jpg"
+                style="display: block"
               />
               <strong style="font-size: 17px">{{ ACCO_NAME }}</strong>
               <div style="position: relative; left: 60px">
@@ -152,7 +157,7 @@ export default {
       PAYMENT_TOTAL_PRICE: "",
       RESERVATION_TEL: "",
       ACCO_IMAGE: "",
-      res_acco: null,
+      res_acco: [],
     };
   },
   mounted() {
@@ -182,14 +187,15 @@ export default {
       var popup = document.getElementById("popup");
       popup.style.display = "block";
     },
-    // hideConfirmation() {
-    //   var popup = document.getElementById("popup");
-    //   popup.style.display = "none";
-    // },
-    // cancelReservation() {
-    //   alert("예약이 취소되었습니다");
-    //   hideConfirmation();
-    // },
+    hideConfirmation() {
+      var popup = document.getElementById("popup");
+      popup.style.display = "none";
+    },
+    cancelReservation() {
+      alert("예약이 취소되었습니다");
+      var popup = document.getElementById("popup");
+      popup.style.display = "none";
+    },
 
     //예약 모달
     openModal() {
