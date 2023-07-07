@@ -31,7 +31,8 @@
           </p>
           <p>
             체크인 날짜:
-            <span class="reservation-date"><!--{{ RESERVATION.RESERVATION_CHECK_IN }}--></span
+            <span class="reservation-date"
+              ><!--{{ RESERVATION.RESERVATION_CHECK_IN }}--></span
             >
             체크아웃 날짜:
             <span class="reservation-date"
@@ -41,7 +42,7 @@
           <p>
             예약 번호:
             <span class="reservation-number"
-              ><!--RESERVATION.RESERVATION_ID-->></span
+              ><!--RESERVATION.RESERVATION_ID--></span
             >
           </p>
         </div>
@@ -71,11 +72,11 @@ export default {
   },
   methods: {
     main_Link() {
-      this.$router.push({ path: "/main_link" });
+      this.$router.push({ path: "/" });
     },
   },
 };
 </script>
 <style>
-
+@import "Reservation_Info.css";
 </style>

@@ -93,6 +93,20 @@ export default {
     //페이지가 실행되자마자 작동시킬함수 정의
     this.Get_User_Info();
   },
+
+  // created(){
+  //         this.get_res_acco();
+  //     },
+  //     methods: {
+  //         async get_res_acco(){
+  //             this.res_acco = await this.$api("/api/res_acco",{});
+  //             console.log(this.res_acco);
+  //         },
+  //         goToDetail(acco_id){
+  //             this.$router.push({path:'/detail', query:{acco_id:acco_id}});
+  //         }
+  //     }
+
   methods: {
     /* Get_User_Info() {
         // AXIOS로 통신하는 변수

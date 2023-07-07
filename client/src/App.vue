@@ -13,6 +13,11 @@ import Header from './layouts/Header.vue'
 import Footer from './layouts/Footer.vue'
 
 export default {
+  data() {
+    return {
+      userRole: 'member'
+    }
+  },
 components: { Header, Footer },
 //스토어에서 받아온 유저정보를 페이지에 적용
   computed: {

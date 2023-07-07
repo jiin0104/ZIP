@@ -66,7 +66,9 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      RESERVATION_ID: "",
+    };
   },
 
   mounted() {
@@ -91,8 +93,13 @@ export default {
       this.$router.push({ path: "/main" });
     },
 
-    Get_Reservation_empty_Info(){
-      if
+    Get_Reservation_empty_Info() {
+      if (this.RESERVATION_ID == !null) {
+        this.My_reservation_Link();
+      } else {
+        console.log("예약없다");
+        return;
+      }
     },
   },
 };
