@@ -69,35 +69,10 @@ const db = {
   multipleStatements: true, // 세미콜론으로 이어진 여러 개의 쿼리문을 한꺼번에 날릴 수 있게
 };
 
-//createconnection 말고 createpool을 이용해서 연결.createConnection은 단일 연결 방식, 요청이 있을 때마다 연결 객체를 생성했다가, 제거하는 것이 반복.
+//createconnection 말고 createpool을 이용해서 연결.
+//createConnection은 단일 연결 방식, 요청이 있을 때마다 연결 객체를 생성했다가, 제거하는 것이 반복.
 //따라서 비용, 시간, 연결에 대한 부담이 발생
 const dbPool = require("mysql2").createPool(db);
-
-app.post("/api/login", async (request, res) => {
-  // request.session['email'] = 'seungwon.go@gmail.com';
-  // res.send('ok');
-  try {
-    await req.db("signUp", request.body.param);
-    if (request.body.param.length > 0) {
-      for (let key in request.body.param[0])
-        request.session[key] = request.body.param[0][key];
-      res.send(request.body.param[0]);
-    } else {
-      res.send({
-        error: "Please try again or contact system manager.",
-      });
-    }
-  } catch (err) {
-    res.send({
-      error: "DB access error",
-    });
-  }
-});
-
-app.post("/api/logout", async (request, res) => {
-  request.session.destroy();
-  res.send("ok");
-});
 
 app.post("/upload/:productId/:type/:fileName", async (request, res) => {
   let { productId, type, fileName } = request.params;
@@ -164,13 +139,39 @@ app.post("/apirole/:alias", async (request, res) => {
 
 // route 설정 목록
 
+//로그인 라우터. 웹페이지'/login'에서 인증로직 처리.
+app.post("/login", async (request, res) => {
+  try {
+    await req.db("signUp", request.body.param);
+    if (request.body.param.length > 0) {
+      for (let key in request.body.param[0])
+        request.session[key] = request.body.param[0][key];
+      res.send(request.body.param[0]);
+    } else {
+      res.send({
+        error: "Please try again or contact system manager.",
+      });
+    }
+  } catch (err) {
+    res.send({
+      error: "DB access error",
+    });
+  }
+});
+
+//로그아웃 라우터. 로그아웃 시 세션 삭제
+app.post("/api/logout", async (request, res) => {
+  request.session.destroy();
+  res.send("ok");
+});
+
 // 네이버 라우트. 검토 필요
 // router.get("/login/naver", passport.authenticate("naver"));
 
 //위에서 네이버 서버 로그인이 되면, 네이버 redirect url 설정에 따라 이쪽 라우터로 오게 된다.
 // router.get("/login/naver/callback", function (req, res, next) {
 
-  //passport 로그인 전략에 의해 naverStrategy로 가서 계정 정보와 DB를 비교해서 회원가입시키거나 로그인 처리하게 한다.
+//passport 로그인 전략에 의해 naverStrategy로 가서 계정 정보와 DB를 비교해서 회원가입시키거나 로그인 처리하게 한다.
 //   passport.authenticate("naver", function (err, user) {
 //     console.log("passport.authenticate(naver)실행");
 //     if (!user) {
