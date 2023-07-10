@@ -155,7 +155,7 @@ export default {
   //직접 코드 짜서 토큰 삭제로 로그아웃 처리. 다만,axios를 이용해서 메소드 호출하면,cors 에러 뜸. vue.config.js에 프록시 등록해서 사용.
   naverLogout() {
     const accessToken = this.naverLogin.accessToken.accessToken;
-    const url = `/oauth2.0/token?grant_type=delete%client_id={발급받은 클라이언트 아이디}&client_secret={발급받은 클라이언트 시크릿}&access_token=${accessToken}&service_provider=NAVER`;
+    const url = `/oauth2.0/token?grant_type=delete%client_id={8NWAD60RgqNbWdmXePhg}&client_secret={bnEH07OqTy}&access_token=${accessToken}&service_provider=NAVER`;
     //https://nid.naver.com//oauth2.0/token?grant_type=delete%client_id={발급받은 클라이언트 아이디}&client_secret={발급받은 클라이언트 시크릿}&access_token={로그인시 발급받은 토큰}&service_provider=NAVER
 
     axios.get(url).then((res) => {
