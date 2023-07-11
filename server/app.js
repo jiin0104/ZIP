@@ -11,7 +11,7 @@ const passport = require("passport"); //로그인 로직할 때 필요
 
 const app = express();
 
-//쿠키 설정. 쿠키사용 보류
+// 쿠키 설정. 쿠키사용 보류
 // app.use(
 //   session({
 //     secret: "secret code",
@@ -27,11 +27,11 @@ const app = express();
 //passport 모듈 연결
 //passportConfig();
 //req객체에 passport설정 대입하는 미들웨어
-app.use(passport.initialize());
+// app.use(passport.initialize());
 
 //req.session객체에 passport 정보 저장 미들웨어
 //*req.session 객체는 express-session에서 생성하므로,passport미들웨어는 express-session 미들웨어보다 뒤에 연걸 해야함.순서 중요.
-app.use(passport.session());
+// app.use(passport.session());
 
 //express 서버로 POST 요청을 할 때 input 태그의 value를 전달하기 위해 사용
 //post 방식으로 클라이언트가 요청하는 본문에 있는 value를 넘겨받고 req.body 객체로 만들어주는 미들웨어.
@@ -64,7 +64,7 @@ const db = {
   host: "127.0.0.1",
   port: 3306,
   user: "root",
-  password: "1234",
+  password: "root",
   connectionLimit: 100,
   multipleStatements: true, // 세미콜론으로 이어진 여러 개의 쿼리문을 한꺼번에 날릴 수 있게
 };
