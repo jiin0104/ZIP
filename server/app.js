@@ -74,9 +74,10 @@ const db = {
 //따라서 비용, 시간, 연결에 대한 부담이 발생
 const dbPool = require("mysql2").createPool(db);
 
-app.post("/upload/:productId/:type/:fileName", async (request, res) => {
-  let { productId, type, fileName } = request.params;
-  const dir = `${__dirname}/uploads/${productId}`;
+//이미지 업로드 불러오기 정의(나중에 슬라이드사진으로 할경우에는 수정필요)
+app.post("/upload/:ACCO_ID/:type/:fileName", async (request, res) => {
+  let { ACCO_ID, fileName } = request.params;
+  const dir = `${__dirname}/uploads/${ACCO_ID}`;
   const file = `${dir}/${fileName}`;
   if (!request.body.data)
     return fs.unlink(file, async (err) =>
@@ -89,10 +90,10 @@ app.post("/upload/:productId/:type/:fileName", async (request, res) => {
   );
   if (!fs.existsSync(dir)) fs.mkdirSync(dir);
   fs.writeFile(file, data, "base64", async (error) => {
-    await req.db("productImageInsert", [
+    await req.db("accommodations", [
       {
-        product_id: productId,
-        type: type,
+        ACCO_ID: ACCO_ID,
+        //type: type,
         path: fileName,
       },
     ]);
@@ -106,10 +107,10 @@ app.post("/upload/:productId/:type/:fileName", async (request, res) => {
     }
   });
 });
-
-app.get("/download/:productId/:fileName", (request, res) => {
-  const { productId, type, fileName } = request.params;
-  const filepath = `${__dirname}/uploads/${productId}/${fileName}`;
+//이미지 불러오기
+app.get("/download/:ACCO_ID/:fileName", (request, res) => {
+  const { ACCO_ID, fileName } = request.params;
+  const filepath = `${__dirname}/uploads/${ACCO_ID}/${fileName}`;
   res.header(
     "Content-Type",
     `image/${fileName.substring(fileName.lastIndexOf("."))}`
@@ -121,6 +122,7 @@ app.get("/download/:productId/:fileName", (request, res) => {
   else fs.createReadStream(filepath).pipe(res);
 });
 
+//apirole은 로그인된거 나중에 상품등록할때 관리자 권한으로 사용할것
 app.post("/apirole/:alias", async (request, res) => {
   if (!request.session.email) {
     return res.status(401).send({

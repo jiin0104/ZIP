@@ -154,6 +154,9 @@ th {
   margin-left: 250px;
   border: none;
 }
+/* .card-body {
+  width: 500px;
+} */
 </style>
 <template>
   <div>
@@ -188,12 +191,12 @@ th {
                 <div class="carousel-inner">
                   <div class="carousel-item active">
                     <img
-                      src="https://image.goodchoice.kr/resize_490x348/affiliate/2018/02/20/5a8bda525e78d.jpg"
+                      :src="`/download/${detailList.ACCO_ID}/${detailList.ACCO_IMAGE}`"
                       class="d-block w-100"
                       alt="..."
                     />
                   </div>
-                  <div class="carousel-item">
+                  <!-- <div class="carousel-item">
                     <img
                       src="https://image.goodchoice.kr/resize_490x348/affiliate/2018/03/05/5a9d03fcd1b18.jpg"
                       class="d-block w-100"
@@ -206,7 +209,7 @@ th {
                       class="d-block w-100"
                       alt="..."
                     />
-                  </div>
+                  </div> -->
                 </div>
                 <a
                   class="carousel-control-prev"
@@ -235,28 +238,28 @@ th {
               </div>
             </div>
             <div class="col-md-7">
-              <div class="card shadow-sm">
+              <div class="card shadow-sm" style="width: 500px; height: 400px">
                 <div class="card-body">
                   <div class="card-title" id="card1"></div>
                   <div>
-                    <h3>{{ ACCO_NAME }}</h3>
+                    <h3>{{ detailList.ACCO_NAME }}</h3>
                     <b>주소</b>
                     <br />
-                    <p>{{ ACCO_ADDRESS }}</p>
+                    <p>{{ detailList.ACCO_ADDRESS }}</p>
                     <br />
                     <p>
-                      {{ ACCO_INTRODUCE_COMMENT }}
+                      {{ detailList.ACCO_INTRODUCE_COMMENT }}
                     </p>
                     <br />
                     <p>
-                      {{ ACCO_DETAIL_DESCRIPTION }}
+                      {{ detailList.ACCO_DETAIL_DESCRIPTION }}
                     </p>
                     <br /><br /><br />
                   </div>
                 </div>
               </div>
             </div>
-            <div id="container">
+            <div id="container" style="width: 1000px">
               <br />
               <br />
               <div class="tab">
@@ -288,7 +291,7 @@ th {
                       style="width: 50%; float: left; margin-left: 60px"
                     >
                       <img
-                        src="https://image.goodchoice.kr/resize_490x348/affiliate/2018/02/20/5a8bda525e78d.jpg"
+                        :src="`/download/${detailList.ACCO_ID}/${detailList.ACCO_IMAGE}`"
                         alt=""
                       />
                     </p>
@@ -299,7 +302,7 @@ th {
               margin-left: 30px;
               width: 300px;
             "
-                      >{{ ACCO_ROOM }}</strong
+                      >{{ detailList.ACCO_ROOM }}</strong
                     >
                     <br />
                     <br />
@@ -309,7 +312,8 @@ th {
                     <br />
                     <br />
                     <strong style="font-size: 20px; float: right"
-                      >가격 : {{ ACCO_PRICE }}원</strong
+                      >가격 :
+                      {{ getCurrencyFormat(detailList.ACCO_PRICE) }}원</strong
                     >
                     <br />
                     <br />
@@ -331,7 +335,7 @@ th {
                     <h3 style="margin-left: 60px">기본정보</h3>
                     <p style="margin-left: 60px">주변정보</p>
                     <p style="margin-left: 60px">
-                      {{ ACCO_DETAIL_DESCRIPTION }}
+                      {{ detailList.ACCO_DETAIL_DESCRIPTION }}
                     </p>
                     <br /><br />
                   </li>
@@ -355,34 +359,32 @@ export default {
       currentTab: 0,
       tabList: [{ name: "객실안내" }, { name: "숙소정보" }],
       employList: [{ title: "", sub: "" }],
-      ACCO_NAME: "",
-      ACCO_ADDRESS: "",
-      ACCO_INTRODUCE_COMMENT: "",
-      ACCO_DETAIL_DESCRIPTION: "",
-      ACCO_ROOM: "",
-      ACCO_PRICE: "",
+      detailList: [],
+      ACCO_ID: 0,
     };
   },
 
   beforeCreate() {},
-  created() {},
-  beforMount() {},
-  mounted() {
-    this.ACCO();
+  created() {
+    this.getDetailList();
+    this.ACCO_ID = this.$route.query.ACCO_ID;
   },
+  beforMount() {},
+  mounted() {},
   beforeUpdate() {},
   updated() {},
   beforeUnmount() {},
   unmounted() {},
   methods: {
-    ACCO() {
-      (this.ACCO_NAME = "호텔리베라"),
-        (this.ACCO_ADDRESS = "서울 강남구 청담동 53-7"),
-        (this.ACCO_INTRODUCE_COMMENT =
-          "COEX 전시장, 도심공항터미널, 종합무역센터, 올림픽 메인스타디움에 인접해 있어 비즈니스, 관광 등이 편합니다"),
-        (this.ACCO_DETAIL_DESCRIPTION = "지하철이 가까움"),
-        (this.ACCO_ROOM = "체크인시 배정"),
-        (this.ACCO_PRICE = "230,000");
+    async getDetailList() {
+      let detailList = await this.$api("/api/acco_detail_sql", {
+        param: [this.ACCO_ID],
+      });
+      this.detailList = detailList[0];
+      console.log(this.detailList);
+    },
+    getCurrencyFormat(value) {
+      return this.$currencyFormat(value);
     },
   },
 };
