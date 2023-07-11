@@ -19,6 +19,13 @@
 .board-list tbody tr:nth-child(even) {
   background-color: #f9f9f9;
 }
+.save-btn1 {
+  min-width: 40px;
+  height: 30px;
+  line-height: 26px;
+  margin: 0 auto;
+  background-color: #dc3545;
+}
 </style>
 <template>
   <main>
@@ -87,25 +94,31 @@
                   <th>닉네임</th>
                   <th>로그인유형</th>
                   <th>회원등급</th>
+                  <th>회원관리</th>
                 </tr>
               </thead>
               <tbody>
-                <tr onclick="">
-                  <td>1000</td>
-                  <td>abc</td>
-                  <td>1234</td>
-                  <td>집탈출</td>
-                  <td>카카오</td>
-                  <td>일반회원</td>
+                <tr :key="i" v-for="(user, i) in userList">
+                  <td>{{ user.USER_NO }}</td>
+                  <td>{{ user.USER_ID }}</td>
+                  <td>{{ user.USER_PASSWORD }}</td>
+                  <td>{{ user.USER_NICKNAME }}</td>
+                  <td>{{ user.USER_LOGIN_TYPE }}</td>
+                  <td>{{ user.USER_GRADE }}</td>
+                  <td>
+                    <button class="save-btn1" @click="userdel(user.USER_NO)">
+                      삭제
+                    </button>
+                  </td>
                 </tr>
-                <tr onclick="location.href='#';">
+                <!-- <tr>
                   <td>1001</td>
                   <td>abc11</td>
                   <td>12344</td>
                   <td>집탈출1</td>
                   <td>로컬</td>
                   <td>관리자</td>
-                </tr>
+                </tr> -->
               </tbody>
             </table>
           </div>
@@ -136,11 +149,13 @@ export default {
   components: {},
   data() {
     return {
-      sampledata: "",
+      userList: [],
     };
   },
   beforeCreate() {},
-  created() {},
+  created() {
+    this.getUserList();
+  },
   beforMount() {},
   mounted() {},
   beforeUpdate() {},
@@ -153,6 +168,19 @@ export default {
     },
     reservationLink() {
       this.$router.push({ path: "/admin_page_reservation" });
+    },
+    async getUserList() {
+      this.userList = await this.$api("/api/user_sql", {});
+      console.log(this.userList);
+    },
+    userdel() {
+      if (confirm("정말 삭제하시겠습니까??") == true) {
+        //확인
+        document.form.submit();
+      } else {
+        //취소
+        return;
+      }
     },
   },
 };
