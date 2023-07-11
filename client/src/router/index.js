@@ -1,3 +1,4 @@
+//#region ** import 모음 **
 import { createRouter, createWebHistory } from "vue-router";
 import Admin_Page_Reservation from "../views/Admin_Page_Reservation.vue";
 import Admin_Page_User from "../views/Admin_Page_User.vue";
@@ -17,7 +18,7 @@ import Signup from "../views/Signup.vue";
 import Acco_Detail from "../views/Acco_Detail.vue";
 import Search_List from "../views/Search_List.vue";
 import Main from "../views/Main.vue";
-
+//#endregion
 const routes = [
   {
     path: "/",
