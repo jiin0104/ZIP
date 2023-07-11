@@ -54,48 +54,44 @@
               <div class="top_sort">
                 <div class="pc">
                   <div class="btn_wrap width_2">
-                    <button type="button" data-sort="DISTANCE" @click="pricehigh"><span>높은 가격 순</span></button><button
-                      type="button" data-sort="LOWPRICE" @click="pricelow"><span>낮은 가격 순</span></button>
+                    <button type="button" data-sort="DISTANCE" @click="ascSort"><span>높은 가격 순</span></button><button
+                      type="button" data-sort="LOWPRICE" @click="descSort"><span>낮은 가격 순</span></button>
                   </div>
                 </div>
               </div>
               <div id="product_list_area">
                 <ul>
-                  <li class="list_4 adcno2" :key="i" v-for="(acco,i) in SearchAcco">
-                  <!-- <li class="list_4 adcno2"> -->
-                    <!-- <a @click="goToDetail(acco.id);" > -->
-                    <a href="">
-                      <p class="pic">
-                        <img class="lazy"
-                        :src="'/download/${acco.ACCO_ID}/${acco.ACCO_IMAGE}'"
-                        style="margin-left: -170px; display: block;">
+                  <li class="list_4 adcno2" :key="i" v-for="(acco, i) in SearchAcco">
 
-                        <!-- <img class="lazy"
-                          src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2023/06/16/648c25cfa5a22.jpg"
-                          style="margin-left: -170px; display: block;"> -->
+                    <!-- <a href @click="goToDetail(acco.ACCO_ID);" > -->
+                    <a href>
+                      <p class="pic">
+                        <img class="lazy" :src="`/download/${acco.ACCO_ID}/${acco.ACCO_IMAGE}`"
+                          style="margin-left: -170px; display: block;">
+
                       </p>
                       <div class="stage">
                         <div class="right_badges">
                           <div class="badge"><span class="build_badge"
-                              style="color: rgba(255,255,255,0.8); background-color: rgba(62,76,103,1);">{{acco.ACCO_TYPE}}</span>
+                              style="color: rgba(255,255,255,0.8); background-color: rgba(62,76,103,1);">{{ acco.ACCO_TYPE }}</span>
                           </div>
                         </div>
                         <div class="name">
                           <strong>
                             <div class="badge" style="padding: 0;">
-                            </div> {{acco.ACCO_NAME}} <!--SL 호텔 강릉-->
+                            </div> {{ acco.ACCO_NAME }}
                           </strong>
                           <div style="height: 90px;">
-                             {{ acco.ACCO_INTRODUCE_COMMENT }}
+                            {{ acco.ACCO_INTRODUCE_COMMENT }}
                           </div>
                           <p>&nbsp;</p>
                         </div>
-                        <div class="price"  style="display: contents; text-align: right;">
+                        <div class="price" style="display: contents; text-align: right;">
                           <div class="map_html">
 
                           </div>
                           <p style="text-align: right ;"><span><i>&nbsp;</i></span>
-                            <b style="color: rgba(0,0,0,1);">{{acco.ACCO_PRICE}}원<!--99,000원--></b>
+                            <b style="color: rgba(0,0,0,1);">{{ acco.ACCO_PRICE }}원</b>
                           </p>
                         </div>
                       </div>
@@ -120,50 +116,36 @@ axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 
 export default {
-    data(){
-        return {
-            SearchAcco: []
-        };
+  data() {
+    return {
+      SearchAcco: [],
+    };
+  },
+  created() {
+    this.getSearchAcco();
+  },
+  methods: {
+    async getSearchAcco() {
+      this.SearchAcco = await this.$api("/api/SearchAcco", {});
+      console.log(this.SearchAcco);
     },
-    created(){
-        this.getSearchAcco();
+    goToDetail(ACCO_ID) {
+      this.$router.push({ path: '/acco_detail', query: { ACCO_ID: ACCO_ID } });
     },
-    methods: {
-        async getSearchAcco(){
-            this.SearchAcco = await this.$api("/api/SearchAcco",{});
-            console.log(this.SearchAcco);
-        },
-        // goToDetail(acco_id){
-        //     this.$router.push({path:'/detail', query:{acco_id:acco_id}});
-        // }
-    }
+    ascSort() {
+      this.SearchAcco.sort(function (a, b) {
+        return a.ACCO_PRICE - b.ACCO_PRICE;
+      });
+    },
+    descSort() {
+      this.SearchAcco.sort(function (a, b) {
+        return b.ACCO_PRICE - a.ACCO_PRICE;
+      });
+    },
+  }
 }
 
-// export default {
-//   name: "App",
-//   data() {
-//     return {
-//       searchacco: [],
-//       acco: [],
-//       price: [],
-//       facility: [],
-//       search: "search",
-//     };
-//   },
 
-//   methods: {
-//     pricehigh() {
-//       this.searchacco.sort(function (a, b) {
-//         return a.room_price - b.room_price;
-//       });
-//     },
-//     pricelow() {
-//       this.searchacco.sort(function (a, b) {
-//         return b.room_price - a.room_price;
-//       });
-//     },
-//   },
-// };
 </script>
 
 <style>
@@ -176,7 +158,7 @@ export default {
   overflow: hidden;
 }
 
-.card .img-box > img {
+.card .img-box>img {
   width: 100%;
 }
 </style>

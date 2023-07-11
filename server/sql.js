@@ -96,13 +96,13 @@ module.exports = {
     query: `DELETE from FAQ where FAQ_NO = ?`,
   },
   GetUserInfo: {
-    query: `SELECT * FROM USERS where USER_ID=?`,
+    query: `SELECT * FROM USERS where USER_ID=#{USER_ID}`,
   },
   UpdateUser: {
     query: `UPDATE USERS SET USER_ID=?, USER_PASSWORD=?,USER_NICKNAME=?,USER_ADDRESS1=?, USER_ADDRESS2=?, USER_TEL=?`,
   },
   GetReservation: {
-    query: `SELECT U.USER_NO, R.RESERVATION_ID,R.RESERVATION_CHECK_IN, R.RESERVATION_CHECK_OUT, R.ROOM_NO,R.RESERVATION_NAME, R.RESERVATION_TEL from USERS as U INNER JOIN RESERVATION as R on U.USER_NO = ?`,
+    query: `SELECT * FROM RESERVATION where USER_NO = 1`,
   },
   FindId: {
     query: `SELECT USER_ID FROM USERS where USER_TEL=?`,

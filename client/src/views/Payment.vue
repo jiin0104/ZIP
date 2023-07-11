@@ -167,13 +167,13 @@ export default {
 
 
     requestPay() {
-      if (this.name == null || this.phone == null || this.email === null || !this.validEmail(this.email)) {
+      if (this.name == null || this.phone == null || this.email === null || !this.validEmail(this.email) || !this.validPhone(this.phone)) {
         return
       }
       IMP.request_pay({ // param
         pg: "inicis",
         pay_method: "card",
-        merchant_uid: "57008833-33004",
+        merchant_uid: "570033-33004",
         name: "당근 10kg",
         amount: 1004,
         buyer_email: "Iamport@chai.finance",

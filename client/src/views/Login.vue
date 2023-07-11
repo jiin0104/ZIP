@@ -180,7 +180,7 @@ export default {
     // 카카오 간편 로그인
     kakaoLogin() {
       window.Kakao.Auth.login({
-        scope: "profile, account_email", //동의 항목으로 활성화한 목록
+        scope: "profile_nickname, profile_image, account_email", //동의 항목으로 활성화한 목록
         success: this.getKakaoAccount,
       });
     },
