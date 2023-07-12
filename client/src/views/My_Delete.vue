@@ -61,8 +61,8 @@ export default {
   name: "mydelete",
   data() {
     return {
-      user_pw: "1234",
-      remdom_pw: null,
+      deletelist: {},
+      rendom_pw: ""
     };
   },
   methods: {
@@ -80,7 +80,7 @@ export default {
     },
 
     checkPassword() {
-      if (this.rendom_pw == this.user_pw) {
+      if (this.rendom_pw == this.deletelist) {
         this.showConfirmation()
       } else {
         alert("비밀번호가 다릅니다!");
