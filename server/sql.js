@@ -72,7 +72,7 @@ module.exports = {
     query: `DELETE from REVIEW where REVIEW_NO = ?`,
   },
   PaymentResister: {
-    query: `INSERT  INTO PAYMENT SET ?`,
+    query: `INSERT INTO PAYMENT SET ?`,
   },
   PaymentDelete: {
     query: `DELETE from PAYMENT where PAYMENT_ID=?`,
@@ -158,18 +158,12 @@ WHERE ACCO_ADDRESS LIKE CONCAT('%' , IFNULL(?, '') , '%');`,
   CheckInAcco: {
     query: `SELECT RESERVATION_CHECK_IN, RESERVATION_CHECK_OUT FROM RESERVATION WHERE RESERVATION_CHECK_IN > now() and RESERVATION_CHECK_OUT > RESERTVATION_CHECK_IN`,
   },
-
-  //지인 쿼리추가문
-  userlist: {
-    query: `select user_id, user_nickname, user_tel, user_address1, user_address2 from users where user_no=1`,
+  // PARK Acco_Detail.vue
+  acco_detail_sql: {
+    query: `select * from ACCOMMODATIONS`,
   },
-  // reslist: {
-  //   query: `select r1.RESERVATION_ID, r1.RESERVATION_NAME, a1.ACCO_IMAGE, r1.RESERVATION_CHECK_IN, r1.RESERVATION_CHECK_OUT, a1.USER_TEL, r1.RESERVATION_CAPACITY, p1.PAYMENT_TOTAL_PRICE, r1.RESERVATION_TEL from reservation r1, users u1, accommodations a1, payment p1 where RESERVATION_ID=?`,
-  // },
-  // modallist: {
-  //   query: `select RESERVATION_NAME, RESERVATION_CHECK_IN, RESERVATION_CHECK_OUT,RESERVATION_ID, USER_NO,RESERVATION_TEL from project.RESERVATION`,
-  // },
-  // deletelist: {
-  //   query: `select user_id,USER_PASSWORD from project.users`,
-  // },
+  //Main.vue
+  main_sql: {
+    query: `select ACCO_ID, ACCO_NAME, ACCO_PRICE, ACCO_IMAGE from ACCOMMODATIONS`,
+  },
 };
