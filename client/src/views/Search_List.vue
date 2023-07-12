@@ -63,8 +63,8 @@
                 <ul>
                   <li class="list_4 adcno2" :key="i" v-for="(acco, i) in SearchAcco">
 
-                    <!-- <a href @click="goToDetail(acco.ACCO_ID);" > -->
-                    <a href>
+                    <a href @click="goToDetail(acco.ACCO_ID);" >
+                    
                       <p class="pic">
                         <img class="lazy" :src="`/download/${acco.ACCO_ID}/${acco.ACCO_IMAGE}`"
                           style="margin-left: -170px; display: block;">
@@ -91,7 +91,7 @@
 
                           </div>
                           <p style="text-align: right ;"><span><i>&nbsp;</i></span>
-                            <b style="color: rgba(0,0,0,1);">{{ acco.ACCO_PRICE }}원</b>
+                            <b style="color: rgba(0,0,0,1);">{{ getCurrencyFormat(acco.ACCO_PRICE) }}원</b>
                           </p>
                         </div>
                       </div>
@@ -134,14 +134,17 @@ export default {
     },
     ascSort() {
       this.SearchAcco.sort(function (a, b) {
-        return a.ACCO_PRICE - b.ACCO_PRICE;
+        return b.ACCO_PRICE - a.ACCO_PRICE;
       });
     },
     descSort() {
       this.SearchAcco.sort(function (a, b) {
-        return b.ACCO_PRICE - a.ACCO_PRICE;
+        return a.ACCO_PRICE - b.ACCO_PRICE;
       });
     },
+    getCurrencyFormat(value){
+      return this.$currencyFormat(value);
+    }
   }
 }
 
