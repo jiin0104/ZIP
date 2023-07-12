@@ -96,13 +96,13 @@ module.exports = {
     query: `DELETE from FAQ where FAQ_NO = ?`,
   },
   GetUserInfo: {
-    query: `SELECT * FROM USERS where USER_ID=#{USER_ID}`,
+    query: `SELECT * FROM USERS where USER_ID=?`,
   },
   UpdateUser: {
     query: `UPDATE USERS SET USER_ID=?, USER_PASSWORD=?,USER_NICKNAME=?,USER_ADDRESS1=?, USER_ADDRESS2=?, USER_TEL=?`,
   },
   GetReservation: {
-    query: `SELECT * FROM RESERVATION where USER_NO = 1`,
+    query: `SELECT U.USER_NO, R.RESERVATION_ID,R.RESERVATION_CHECK_IN, R.RESERVATION_CHECK_OUT, R.ROOM_NO,R.RESERVATION_NAME, R.RESERVATION_TEL from USERS as U INNER JOIN RESERVATION as R on U.USER_NO = ?`,
   },
   FindId: {
     query: `SELECT USER_ID FROM USERS where USER_TEL=?`,
@@ -138,8 +138,10 @@ module.exports = {
     query: `UPDATE QA_ANS SET ? = ? WHERE QA_ANS_NO = ?`,
   },
   SearchAcco: {
-    query: `SELECT *
-FROM ACCOMMODATIONS`,
+    query: `SELECT ACCO_ID, ACCO_NAME, ACCO_ADDRESS, ACCO_TYPE, ACCO_IMAGE, 
+    CITY_ID, ACCO_INTRODUCE_COMMENT, ACCO_DETAIL_DESCRIPTION AS DETAILDESCRIPTION
+FROM ACCOMMODATIONS
+WHERE ACCO_ADDRESS LIKE CONCAT('%' , IFNULL(?, '') , '%');`,
   },
   CheckId: {
     query: `selet user_id from users where user_no=?`,
@@ -156,12 +158,18 @@ FROM ACCOMMODATIONS`,
   CheckInAcco: {
     query: `SELECT RESERVATION_CHECK_IN, RESERVATION_CHECK_OUT FROM RESERVATION WHERE RESERVATION_CHECK_IN > now() and RESERVATION_CHECK_OUT > RESERTVATION_CHECK_IN`,
   },
-  // PARK Acco_Detail.vue
-  acco_detail_sql: {
-    query: `select * from ACCOMMODATIONS`,
+
+  //지인 쿼리추가문
+  userlist: {
+    query: `select user_id, user_nickname, user_tel, user_address1, user_address2 from users where user_no=1`,
   },
-  //Main.vue
-  main_sql: {
-    query: `select ACCO_ID, ACCO_NAME, ACCO_PRICE, ACCO_IMAGE from ACCOMMODATIONS`,
-  },
+  // reslist: {
+  //   query: `select r1.RESERVATION_ID, r1.RESERVATION_NAME, a1.ACCO_IMAGE, r1.RESERVATION_CHECK_IN, r1.RESERVATION_CHECK_OUT, a1.USER_TEL, r1.RESERVATION_CAPACITY, p1.PAYMENT_TOTAL_PRICE, r1.RESERVATION_TEL from reservation r1, users u1, accommodations a1, payment p1 where RESERVATION_ID=?`,
+  // },
+  // modallist: {
+  //   query: `select RESERVATION_NAME, RESERVATION_CHECK_IN, RESERVATION_CHECK_OUT,RESERVATION_ID, USER_NO,RESERVATION_TEL from project.RESERVATION`,
+  // },
+  // deletelist: {
+  //   query: `select user_id,USER_PASSWORD from project.users`,
+  // },
 };
