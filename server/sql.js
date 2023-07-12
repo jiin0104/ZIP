@@ -72,7 +72,7 @@ module.exports = {
     query: `DELETE from REVIEW where REVIEW_NO = ?`,
   },
   PaymentResister: {
-    query: `INSERT  INTO PAYMENT SET ?`,
+    query: `INSERT INTO PAYMENT SET ?`,
   },
   PaymentDelete: {
     query: `DELETE from PAYMENT where PAYMENT_ID=?`,
@@ -157,11 +157,11 @@ FROM ACCOMMODATIONS`,
     query: `SELECT RESERVATION_CHECK_IN, RESERVATION_CHECK_OUT FROM RESERVATION WHERE RESERVATION_CHECK_IN > now() and RESERVATION_CHECK_OUT > RESERTVATION_CHECK_IN`,
   },
   // PARK Acco_Detail.vue
-  acco_detail_sql: {
+  acco_detail_Sql: {
     query: `select * from ACCOMMODATIONS`,
   },
   //Main.vue
   main_sql: {
-    query: `select ACCO_ID, ACCO_NAME, ACCO_PRICE, ACCO_IMAGE from ACCOMMODATIONS`,
-  },
+    query: `select ACCO_ID, ACCO_NAME, ACCO_PRICE, ACCO_IMAGE FROM ACCOMMODATIONS`,
+  }
 };
