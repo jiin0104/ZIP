@@ -1,8 +1,10 @@
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap");
+
 * {
   font-family: "Noto Sans KR", sans-serif;
 }
+
 .tab {
   list-style: none;
   margin: 0px;
@@ -142,18 +144,21 @@ th {
   transition-duration: 500ms;
   border: 0px;
 }
+
 #liked {
   border: none;
   background-color: #72728c;
   min-width: 150px;
   margin-left: 250px;
 }
+
 #liked.active {
   background-color: pink;
   min-width: 150px;
   margin-left: 250px;
   border: none;
 }
+
 /* .card-body {
   width: 500px;
 } */
@@ -168,33 +173,16 @@ th {
         <div class="container">
           <div class="row">
             <div class="col-md-5">
-              <div
-                id="carouselExampleIndicators"
-                class="carousel carousel-dark slide"
-                data-bs-ride="carousel"
-              >
+              <div id="carouselExampleIndicators" class="carousel carousel-dark slide" data-bs-ride="carousel">
                 <ol class="carousel-indicators">
-                  <li
-                    data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide-to="0"
-                    class="active"
-                  ></li>
-                  <li
-                    data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide-to="1"
-                  ></li>
-                  <li
-                    data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide-to="2"
-                  ></li>
+                  <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+                  <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+                  <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
                 </ol>
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img
-                      :src="`/download/${detailList.ACCO_ID}/${detailList.ACCO_IMAGE}`"
-                      class="d-block w-100"
-                      alt="..."
-                    />
+                    <img :src="`/download/${detailList.ACCO_ID}/${detailList.ACCO_IMAGE}`" class="d-block w-100"
+                      alt="..." />
                   </div>
                   <!-- <div class="carousel-item">
                     <img
@@ -211,28 +199,12 @@ th {
                     />
                   </div> -->
                 </div>
-                <a
-                  class="carousel-control-prev"
-                  href="#carouselExampleIndicators"
-                  role="button"
-                  data-bs-slide="prev"
-                >
-                  <span
-                    class="carousel-control-prev-icon"
-                    aria-hidden="true"
-                  ></span>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Previous</span>
                 </a>
-                <a
-                  class="carousel-control-next"
-                  href="#carouselExampleIndicators"
-                  role="button"
-                  data-bs-slide="next"
-                >
-                  <span
-                    class="carousel-control-next-icon"
-                    aria-hidden="true"
-                  ></span>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Next</span>
                 </a>
               </div>
@@ -263,47 +235,29 @@ th {
               <br />
               <br />
               <div class="tab">
-                <button
-                  v-for="(tab, index) in tabList"
-                  :key="index"
-                  @click.prevent="currentTab = index"
-                  :class="{ active: currentTab === index }"
-                  class="save-btn1"
-                  style="
+                <button v-for="(tab, index) in tabList" :key="index" @click.prevent="currentTab = index"
+                  :class="{ active: currentTab === index }" class="save-btn1" style="
                     background-color: #0b5394;
                     border: none;
                     margin-right: 5px;
                     float: left;
-                  "
-                >
+                  ">
                   {{ tab.name }}
                 </button>
               </div>
               <br /><br />
               <ul class="tab-content" v-if="currentTab === 0">
                 <li v-for="(item, index) in employList" :key="index">
-                  <div
-                    class="room"
-                    style="float: left width: 500px; height: 300px;"
-                  >
-                    <p
-                      class="tab_img"
-                      style="width: 50%; float: left; margin-left: 60px"
-                    >
-                      <img
-                        :src="`/download/${detailList.ACCO_ID}/${detailList.ACCO_IMAGE}`"
-                        alt=""
-                      />
+                  <div class="room" style="float: left width: 500px; height: 300px;">
+                    <p class="tab_img" style="width: 50%; float: left; margin-left: 60px">
+                      <img :src="`/download/${detailList.ACCO_ID}/${detailList.ACCO_IMAGE}`" alt="" />
                     </p>
-                    <strong
-                      style="
+                    <strong style="
               font-size: 20px;
               margin-top: 20px; height 300px;
               margin-left: 30px;
               width: 300px;
-            "
-                      >{{ detailList.ACCO_ROOM }}</strong
-                    >
+            ">{{ detailList.ACCO_ROOM }}</strong>
                     <br />
                     <br />
                     <br />
@@ -311,21 +265,14 @@ th {
                     <br />
                     <br />
                     <br />
-                    <strong style="font-size: 20px; float: right"
-                      >가격 :
-                      {{ getCurrencyFormat(detailList.ACCO_PRICE) }}원</strong
-                    >
+                    <strong style="font-size: 20px; float: right">가격 :
+                      {{ getCurrencyFormat(detailList.ACCO_PRICE) }}원</strong>
                     <br />
                     <br />
-                    <router-link to="/payment"
-                      ><button
-                        type="button"
-                        class="save-btn1"
-                        style="border: none; min-width: 150px; float: right"
-                      >
+                    <router-link to="/payment"><button type="button" class="save-btn1"
+                        style="border: none; min-width: 150px; float: right">
                         예약하기
-                      </button></router-link
-                    >
+                      </button></router-link>
                   </div>
                 </li>
               </ul>
@@ -359,28 +306,29 @@ export default {
       currentTab: 0,
       tabList: [{ name: "객실안내" }, { name: "숙소정보" }],
       employList: [{ title: "", sub: "" }],
-      detailList: [],
+      detailList: {},
       ACCO_ID: 0,
     };
   },
 
-  beforeCreate() {},
+  beforeCreate() { },
   created() {
-    this.getDetailList();
     this.ACCO_ID = this.$route.query.ACCO_ID;
+    this.getDetailList();
+
   },
-  beforMount() {},
-  mounted() {},
-  beforeUpdate() {},
-  updated() {},
-  beforeUnmount() {},
-  unmounted() {},
+  beforMount() { },
+  mounted() { },
+  beforeUpdate() { },
+  updated() { },
+  beforeUnmount() { },
+  unmounted() { },
   methods: {
     async getDetailList() {
-      let detailList = await this.$api("/api/acco_detail_sql", {
-        param: [this.ACCO_ID],
-      });
+      
+      let detailList = await this.$api("/api/detailList", {param:[this.ACCO_ID]});
       this.detailList = detailList[0];
+
       console.log(this.detailList);
     },
     getCurrencyFormat(value) {
