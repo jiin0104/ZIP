@@ -78,7 +78,6 @@ export default {
       // AXIOS로 통신하는 변수
       let userlist = await this.$api("/api/userlist", {});
       this.userlist = userlist[0];
-
     },
 
 
