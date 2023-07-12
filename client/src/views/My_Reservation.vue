@@ -20,7 +20,7 @@
       <div class="contact-form-area equal-height container" style="padding-top: 6%">
         <div class="contact-text">
           <h1>예약내역</h1>
-          <div v-if="RESERVATION_ID == null" class="reslistempty">
+          <div v-if="reslist == null" class="reslistempty">
             <div class="really2">
               예약 내역이 없습니다<br />관심있는 숙소를 예약해주세요
             </div>
@@ -29,15 +29,13 @@
               지금 바로 숙소 예약하기
             </button>
           </div>
-          <div v-else style="position: relative; left: 18%" v-for="(reslist, i) in reslist" :key="i">
+
+          <div v-else style="position: relative; left: 18%" v-for="(rs, i) in reslist" :key="i">
             <div class="res-content">
-              <!--<img: src="'/download/${reslist.RESERVATION_NAME}/${ACCO_IMAGE}'"
-                class="room-image"
-              />-->
-              <img class="lazy" src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2023/06/16/648c25cfa5a22.jpg"
-                style="display: block" />
-              <strong style="font-size: 17px">{{
-                reslist.RESERVATION_NAME
+              <img :src="`/download/${rs.ACCO_ID}/${rs.ACCO_IMAGE}`" class="room-image"
+                style="display: block; margin-bottom: 0; " />
+              <strong style="font-size: 17px;">{{
+                rs.RESERVATION_NAME
               }}</strong>
               <div style="position: relative; left: 69px">
                 <button id="button2" style="display: inline-block" @click="openModal()">
@@ -64,29 +62,29 @@
           </div>
         </div>
         <div id="modal" class="modal">
-          <div class="modal-content">
+          <div class="modal-content" v-for="(rs, i) in reslist" :key="i">
             <div class="reslistpopup">
               <h2>예약완료 내역</h2>
               <div>
-                <strong>{{ reslist.RESERVATION_NAME }}</strong>
+                <strong>숙소 이름: {{ rs.RESERVATION_NAME }}</strong>
               </div>
               <section>
                 <div>
                   <p>
-                    <strong>체크인</strong> {{ reslist.RESERVATION_CHECK_IN }}
+                    <strong>체크인</strong> {{ rs.RESERVATION_CHECK_IN }}
                   </p>
                   <p>
                     <strong>체크아웃</strong>
-                    {{ reslist.RESERVATION_CHECK_OUT }}
+                    {{ rs.RESERVATION_CHECK_OUT }}
                   </p>
                 </div>
                 <div>
-                  <p><strong>예약번호</strong> {{ reslist.RESERVATION_ID }}</p>
+                  <p><strong>예약번호</strong> {{ rs.RESERVATION_ID }}</p>
                   <p>
-                    <strong>예약자 휴대폰 번호</strong> {{ reslist.USER_TEL }}
+                    <strong>예약자 휴대폰 번호</strong> {{ rs.USER_TEL }}
                   </p>
                   <p>
-                    <strong>숙박인원</strong> {{ reslist.RESERVATION_CAPACITY }}
+                    <strong>숙박인원</strong> {{ rs.RESERVATION_CAPACITY }}
                   </p>
                 </div>
               </section>
@@ -97,12 +95,11 @@
                   </div>
                   <div class="payment-info-middle">
                     <p>
-                      <b>{{ reslist.PAYMENT_TOTAL_PRICE }}</b>
+                      <b>{{ rs.PAYMENT_TOTAL_PRICE }}</b>
                     </p>
                   </div>
                 </div>
               </div>
-              <a :href="reslist.RESERVATION_TEL" class="btn-call">전화문의하기</a>
               <section>
                 <p>
                   <input type="button" value="닫기" @click="closeModal()" />
@@ -116,6 +113,11 @@
   </div>
 </template>
 <script>
+import axios from "axios";
+axios.defaults.baseURL = "http://localhost:3000"; //프록시 서버
+axios.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8";
+axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
+
 export default {
   data() {
     return {
@@ -146,12 +148,14 @@ export default {
     },
 
     async Get_Reservation_Info() {
-      this.reslist = await this.$api("/api/reslist", {});
-      console.log(this.reslist);
+      this.reslist = await this.$api("/api/reslist", []);
+
+      //console.log(this.reslist);
     },
 
     //팝업
     showConfirmation() {
+
       var popup = document.getElementById("popup");
       popup.style.display = "block";
     },
@@ -176,10 +180,6 @@ export default {
       modal.style.display = "none";
     },
 
-    //모달창에도 v-for줘야하는지?
-
-
-    //예약 상세내역 모달창에 예약자 이름이 있었는데 디비에 회원 이름이 없어서 이름대신 휴대폰번호로 대체 하였음
   },
 };
 </script>
