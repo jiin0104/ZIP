@@ -96,13 +96,13 @@ module.exports = {
     query: `DELETE from FAQ where FAQ_NO = ?`,
   },
   GetUserInfo: {
-    query: `SELECT * FROM USERS where USER_ID=?`,
+    query: `SELECT * FROM USERS where USER_ID=#{USER_ID}`,
   },
   UpdateUser: {
     query: `UPDATE USERS SET USER_ID=?, USER_PASSWORD=?,USER_NICKNAME=?,USER_ADDRESS1=?, USER_ADDRESS2=?, USER_TEL=?`,
   },
   GetReservation: {
-    query: `SELECT U.USER_NO, R.RESERVATION_ID,R.RESERVATION_CHECK_IN, R.RESERVATION_CHECK_OUT, R.ROOM_NO,R.RESERVATION_NAME, R.RESERVATION_TEL from USERS as U INNER JOIN RESERVATION as R on U.USER_NO = ?`,
+    query: `SELECT * FROM RESERVATION where USER_NO = 1`,
   },
   FindId: {
     query: `SELECT USER_ID FROM USERS where USER_TEL=?`,
@@ -138,10 +138,8 @@ module.exports = {
     query: `UPDATE QA_ANS SET ? = ? WHERE QA_ANS_NO = ?`,
   },
   SearchAcco: {
-    query: `SELECT ACCO_ID, ACCO_NAME, ACCO_ADDRESS, ACCO_TYPE, ACCO_IMAGE, 
-    CITY_ID, ACCO_INTRODUCE_COMMENT, ACCO_DETAIL_DESCRIPTION AS DETAILDESCRIPTION
-FROM ACCOMMODATIONS
-WHERE ACCO_ADDRESS LIKE CONCAT('%' , IFNULL(?, '') , '%');`,
+    query: `SELECT *
+FROM ACCOMMODATIONS`,
   },
   CheckId: {
     query: `selet user_id from users where user_no=?`,
@@ -157,5 +155,13 @@ WHERE ACCO_ADDRESS LIKE CONCAT('%' , IFNULL(?, '') , '%');`,
   },
   CheckInAcco: {
     query: `SELECT RESERVATION_CHECK_IN, RESERVATION_CHECK_OUT FROM RESERVATION WHERE RESERVATION_CHECK_IN > now() and RESERVATION_CHECK_OUT > RESERTVATION_CHECK_IN`,
+  },
+  // PARK Acco_Detail.vue
+  acco_detail_sql: {
+    query: `select * from ACCOMMODATIONS`,
+  },
+  //Main.vue
+  main_sql: {
+    query: `select ACCO_ID, ACCO_NAME, ACCO_PRICE, ACCO_IMAGE from ACCOMMODATIONS`,
   },
 };

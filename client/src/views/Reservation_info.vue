@@ -22,27 +22,29 @@
         <br />
         <h6>[예약 호텔 정보]</h6>
 
-        <div class="reservation-info">
+        <div class="reservation-info" style="" >
           <p>
             예약 호텔:
             <span class="reservation-hotel"
-              ><!--{{ RESERVATION.RESERVATION_NAME }}--></span
+              >{{ GetReservation.RESERVATION_NAME }}</span
             >
           </p>
           <p>
             체크인 날짜:
             <span class="reservation-date"
-              ><!--{{ RESERVATION.RESERVATION_CHECK_IN }}--></span
+              >{{ GetReservation.RESERVATION_CHECK_IN }}</span
             >
+          </p>
+          <p>
             체크아웃 날짜:
             <span class="reservation-date"
-              ><!--{{ RESERVATION.RESERVATION_CHECK_OUT }}--></span
+              >{{ GetReservation.RESERVATION_CHECK_OUT }}</span
             >
           </p>
           <p>
             예약 번호:
             <span class="reservation-number"
-              ><!--RESERVATION.RESERVATION_ID--></span
+              >{{GetReservation.RESERVATION_ID}}</span
             >
           </p>
         </div>
@@ -63,14 +65,20 @@
 </template>
 <script>
 export default {
-  name: "",
-  components: {},
   data() {
     return {
-      sampleData: "",
+      GetReservation: "",
     };
   },
+  created(){
+    this.Reservation();
+  },
   methods: {
+    async Reservation(){
+      let GetReservation = await this.$api("/api/GetReservation", {});
+      this.GetReservation = GetReservation[0];
+    },
+
     main_Link() {
       this.$router.push({ path: "/" });
     },

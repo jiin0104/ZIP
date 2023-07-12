@@ -19,6 +19,7 @@
 }
 .card {
   height: 350px;
+  width: 250px;
 }
 </style>
 
@@ -26,149 +27,173 @@
   <!-- 배너 넣고 싶으면 여기에 추가 -->
 
   <!-- ***** Editor Pick Area End ***** -->
-  <section>
-    <div class="container">
-      <br /><br /><br /><br /><br />
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-          <div class="card">
-            <img
-              src="https://image.goodchoice.kr/resize_490x348/affiliate/2021/03/31/6063ceed4d9b5.jpg"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <RouterLink to='/acco_detail'><button class="btn-save4">상세보기</button></RouterLink>
+  <div>
+    <section>
+      <div class="container">
+        <br /><br /><br /><br /><br />
+        <div
+          class="row row-cols-1 row-cols-md-3 g-4"
+          :key="i"
+          v-for="(main, i) in mainList"
+        >
+          <div class="col">
+            <div class="card">
+              <img
+                :src="`/download/${main.ACCO_ID}/${main.ACCO_IMAGE}`"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">{{ main.ACCO_NAME }}</h5>
+                <button class="btn-save4" @click="goToDetail(main.ACCO_ID)">
+                  상세보기
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img
-              src="https://image.goodchoice.kr/resize_490x348/affiliate/2021/03/31/6063ceed4d9b5.jpg"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <RouterLink to='/acco_detail'><button class="btn-save4">상세보기</button></RouterLink>
+          <!-- <div class="col">
+            <div class="card">
+              <img
+                src="https://image.goodchoice.kr/resize_490x348/affiliate/2021/03/31/6063ceed4d9b5.jpg"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <RouterLink to="/acco_detail"
+                  ><button class="btn-save4">상세보기</button></RouterLink
+                >
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img
-              src="https://image.goodchoice.kr/resize_490x348/affiliate/2021/03/31/6063ceed4d9b5.jpg"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <RouterLink to='/acco_detail'><button class="btn-save4">상세보기</button></RouterLink>
+          <div class="col">
+            <div class="card">
+              <img
+                src="https://image.goodchoice.kr/resize_490x348/affiliate/2021/03/31/6063ceed4d9b5.jpg"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <RouterLink to="/acco_detail"
+                  ><button class="btn-save4">상세보기</button></RouterLink
+                >
+              </div>
             </div>
           </div>
+          <div class="col">
+            <div class="card">
+              <img
+                src="https://image.goodchoice.kr/resize_490x348/affiliate/2021/03/31/6063ceed4d9b5.jpg"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <RouterLink to="/acco_detail"
+                  ><button class="btn-save4">상세보기</button></RouterLink
+                >
+              </div>
+            </div>
+          </div> -->
         </div>
-        <div class="col">
-          <div class="card">
-            <img
-              src="https://image.goodchoice.kr/resize_490x348/affiliate/2021/03/31/6063ceed4d9b5.jpg"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <RouterLink to='/acco_detail'><button class="btn-save4">상세보기</button></RouterLink>
+      </div>
+    </section>
+    <section class="dorne-catagory-area">
+      <div class="container">
+        <br /><br /><br /><br /><br /><br /><br /><br />
+        <div class="row">
+          <div class="col-12">
+            <div class="all-catagories">
+              <div class="row">
+                <!-- Single Catagory Area -->
+                <div class="col-12 col-sm-6 col-md">
+                  <div
+                    class="single-catagory-area wow fadeInUpBig"
+                    data-wow-delay="0.2s"
+                  >
+                    <div class="catagory-content">
+                      <img src="img/core-img/icon-1.png" alt="" />
+                      <a href="#">
+                        <h6>Hotels</h6>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Single Catagory Area -->
+                <div class="col-12 col-sm-6 col-md">
+                  <div
+                    class="single-catagory-area wow fadeInUpBig"
+                    data-wow-delay="0.4s"
+                  >
+                    <div class="catagory-content">
+                      <img src="img/core-img/icon-2.png" alt="" />
+                      <a href="#">
+                        <h6>Restaurants</h6>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Single Catagory Area -->
+                <div class="col-12 col-sm-6 col-md">
+                  <div
+                    class="single-catagory-area wow fadeInUpBig"
+                    data-wow-delay="0.6s"
+                  >
+                    <div class="catagory-content">
+                      <img src="img/core-img/icon-3.png" alt="" />
+                      <a href="#">
+                        <h6>Shopping</h6>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  <section class="dorne-catagory-area">
-    <div class="container">
-      <br /><br /><br /><br /><br /><br /><br /><br />
-      <div class="row">
-        <div class="col-12">
-          <div class="all-catagories">
-            <div class="row">
-              <!-- Single Catagory Area -->
-              <div class="col-12 col-sm-6 col-md">
-                <div
-                  class="single-catagory-area wow fadeInUpBig"
-                  data-wow-delay="0.2s"
-                >
-                  <div class="catagory-content">
-                    <img src="img/core-img/icon-1.png" alt="" />
-                    <a href="#">
-                      <h6>Hotels</h6>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <!-- Single Catagory Area -->
-              <div class="col-12 col-sm-6 col-md">
-                <div
-                  class="single-catagory-area wow fadeInUpBig"
-                  data-wow-delay="0.4s"
-                >
-                  <div class="catagory-content">
-                    <img src="img/core-img/icon-2.png" alt="" />
-                    <a href="#">
-                      <h6>Restaurants</h6>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <!-- Single Catagory Area -->
-              <div class="col-12 col-sm-6 col-md">
-                <div
-                  class="single-catagory-area wow fadeInUpBig"
-                  data-wow-delay="0.6s"
-                >
-                  <div class="catagory-content">
-                    <img src="img/core-img/icon-3.png" alt="" />
-                    <a href="#">
-                      <h6>Shopping</h6>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </template>
 <script>
 export default {
   components: {},
   data() {
     return {
-      sampledata: "",
+      mainList: [],
     };
   },
   beforeCreate() {},
-  created() {},
+  created() {
+    this.getMainList();
+  },
   beforMount() {},
   mounted() {},
   beforeUpdate() {},
   updated() {},
   beforeUnmount() {},
   unmounted() {},
-  methods: {},
+  methods: {
+    async getMainList() {
+      this.mainList = await this.$api("/api/main_sql", {});
+      console.log(this.mainList);
+    },
+    goToDetail(ACCO_ID) {
+      this.$router.push({ path: "/acco_detail", query: { ACCO_ID: ACCO_ID } });
+    },
+  },
 };
 </script>
 
 <style>
-  .catagory-content {
-    text-align: center;
-  }
-  .card-body {
-    text-align: center;
-  }
-  h6 {
-    text-align: center;
-  }
+.catagory-content {
+  text-align: center;
+}
+.card-body {
+  text-align: center;
+}
+h6 {
+  text-align: center;
+}
 </style>

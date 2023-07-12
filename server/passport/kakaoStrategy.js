@@ -11,11 +11,12 @@ module.exports = () => {
     console.log('kakao profile', profile);
     try {
       const exUser = await User.findOne({
+        //카카오에서 일치하는 아이디를 찾아서 로그인 검토
         where: { snsId: profile.id, provider: 'kakao' },
       });
-      if (exUser) {
+      if (exUser) {//있으면 로그인
         done(null, exUser);
-      } else {
+      } else {//가입이 안되 있으면 회원가입 시키고 로그인
         const newUser = await User.create({
           email: profile._json?.kakao_account?.email,
           nick: profile.displayName,

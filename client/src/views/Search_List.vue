@@ -38,7 +38,7 @@
               </section>
             </div>
 
-            <div v-if="searchacco == null" style="max-width: 80%;">
+            <div v-if="SearchAcco.length == 0" style="max-width: 80%;">
               <br><br><br><br><br><br><br><br><br><br><br>
               <div class="mypage_title">
                 <h1>검색 결과</h1>
@@ -54,48 +54,44 @@
               <div class="top_sort">
                 <div class="pc">
                   <div class="btn_wrap width_2">
-                    <button type="button" data-sort="DISTANCE" @click="pricehigh"><span>높은 가격 순</span></button><button
-                      type="button" data-sort="LOWPRICE" @click="pricelow"><span>낮은 가격 순</span></button>
+                    <button type="button" data-sort="DISTANCE" @click="ascSort"><span>높은 가격 순</span></button><button
+                      type="button" data-sort="LOWPRICE" @click="descSort"><span>낮은 가격 순</span></button>
                   </div>
                 </div>
               </div>
               <div id="product_list_area">
                 <ul>
-                  <!-- <li class="list_4 adcno2" :key="i" v-for="(acco,i) in searchacco"> -->
-                  <li class="list_4 adcno2">
-                    <!-- <a @click="goToDetail(acco.id);" > -->
-                    <a href="">
-                      <p class="pic">
-                        <!-- <img class="lazy"
-                        src="'/download/${acco.acco_id}/${acco.acco_image}'"
-                        style="margin-left: -170px; display: block;"> -->
+                  <li class="list_4 adcno2" :key="i" v-for="(acco, i) in SearchAcco">
 
-                        <img class="lazy"
-                          src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2023/06/16/648c25cfa5a22.jpg"
+                    <!-- <a href @click="goToDetail(acco.ACCO_ID);" > -->
+                    <a href>
+                      <p class="pic">
+                        <img class="lazy" :src="`/download/${acco.ACCO_ID}/${acco.ACCO_IMAGE}`"
                           style="margin-left: -170px; display: block;">
+
                       </p>
                       <div class="stage">
                         <div class="right_badges">
                           <div class="badge"><span class="build_badge"
-                              style="color: rgba(255,255,255,0.8); background-color: rgba(62,76,103,1);"><!--{{acco.acco_type}}-->호텔</span>
+                              style="color: rgba(255,255,255,0.8); background-color: rgba(62,76,103,1);">{{ acco.ACCO_TYPE }}</span>
                           </div>
                         </div>
                         <div class="name">
                           <strong>
                             <div class="badge" style="padding: 0;">
-                            </div> <!--{{acco.acco_name}}--> SL 호텔 강릉
+                            </div> {{ acco.ACCO_NAME }}
                           </strong>
                           <div style="height: 90px;">
-                            대충 소개글대충 소개글대충 소개글대충 소개글대충 소개글대충 소개글대충 소개글대충 소개글대충 소개글대충 소개글대충 소개글대충 소개글대충 소개글대충 소개글대충 소개글대충 소개글
+                            {{ acco.ACCO_INTRODUCE_COMMENT }}
                           </div>
                           <p>&nbsp;</p>
                         </div>
-                        <div class="price"  style="display: contents; text-align: right;">
+                        <div class="price" style="display: contents; text-align: right;">
                           <div class="map_html">
 
                           </div>
                           <p style="text-align: right ;"><span><i>&nbsp;</i></span>
-                            <b style="color: rgba(0,0,0,1);"><!--{{acco.room_day_price}}-->99,000원</b>
+                            <b style="color: rgba(0,0,0,1);">{{ acco.ACCO_PRICE }}원</b>
                           </p>
                         </div>
                       </div>
@@ -114,50 +110,42 @@
 </template>
 
 <script>
-// export default {
-//     data(){
-//         return {
-//             searchacco: []
-//         };
-//     },
-//     created(){
-//         this.getsearchacco();
-//     },
-//     methods: {
-//         async getsearchacco(){
-//             this.searchacco = await this.$api("/api/searchacco",{});
-//             console.log(this.searchacco);
-//         },
-//         goToDetail(acco_id){
-//             this.$router.push({path:'/detail', query:{acco_id:acco_id}});
-//         }
-//     }
-// }
+import axios from 'axios'
+axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
+axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+
 export default {
-  name: "App",
   data() {
     return {
-      searchacco: [],
-      acco: [],
-      price: [],
-      facility: [],
-      search: "search",
+      SearchAcco: [],
     };
   },
-
-  methods: {
-    pricehigh() {
-      this.searchacco.sort(function (a, b) {
-        return a.room_price - b.room_price;
-      });
-    },
-    pricelow() {
-      this.searchacco.sort(function (a, b) {
-        return b.room_price - a.room_price;
-      });
-    },
+  created() {
+    this.getSearchAcco();
   },
-};
+  methods: {
+    async getSearchAcco() {
+      this.SearchAcco = await this.$api("/api/SearchAcco", {});
+      console.log(this.SearchAcco);
+    },
+    goToDetail(ACCO_ID) {
+      this.$router.push({ path: '/acco_detail', query: { ACCO_ID: ACCO_ID } });
+    },
+    ascSort() {
+      this.SearchAcco.sort(function (a, b) {
+        return a.ACCO_PRICE - b.ACCO_PRICE;
+      });
+    },
+    descSort() {
+      this.SearchAcco.sort(function (a, b) {
+        return b.ACCO_PRICE - a.ACCO_PRICE;
+      });
+    },
+  }
+}
+
+
 </script>
 
 <style>
@@ -170,7 +158,7 @@ export default {
   overflow: hidden;
 }
 
-.card .img-box > img {
+.card .img-box>img {
   width: 100%;
 }
 </style>

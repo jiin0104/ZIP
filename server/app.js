@@ -11,7 +11,7 @@ const passport = require("passport"); //로그인 로직할 때 필요
 
 const app = express();
 
-//쿠키 설정. 쿠키사용 보류
+// 쿠키 설정. 쿠키사용 보류
 // app.use(
 //   session({
 //     secret: "secret code",
@@ -27,11 +27,11 @@ const app = express();
 //passport 모듈 연결
 //passportConfig();
 //req객체에 passport설정 대입하는 미들웨어
-app.use(passport.initialize());
+// app.use(passport.initialize());
 
 //req.session객체에 passport 정보 저장 미들웨어
 //*req.session 객체는 express-session에서 생성하므로,passport미들웨어는 express-session 미들웨어보다 뒤에 연걸 해야함.순서 중요.
-app.use(passport.session());
+// app.use(passport.session());
 
 //express 서버로 POST 요청을 할 때 input 태그의 value를 전달하기 위해 사용
 //post 방식으로 클라이언트가 요청하는 본문에 있는 value를 넘겨받고 req.body 객체로 만들어주는 미들웨어.
@@ -64,44 +64,20 @@ const db = {
   host: "127.0.0.1",
   port: 3306,
   user: "root",
-  password: "1234",
+  password: "root",
   connectionLimit: 100,
   multipleStatements: true, // 세미콜론으로 이어진 여러 개의 쿼리문을 한꺼번에 날릴 수 있게
 };
 
-//createconnection 말고 createpool을 이용해서 연결.createConnection은 단일 연결 방식, 요청이 있을 때마다 연결 객체를 생성했다가, 제거하는 것이 반복.
+//createconnection 말고 createpool을 이용해서 연결.
+//createConnection은 단일 연결 방식, 요청이 있을 때마다 연결 객체를 생성했다가, 제거하는 것이 반복.
 //따라서 비용, 시간, 연결에 대한 부담이 발생
 const dbPool = require("mysql2").createPool(db);
 
-app.post("/api/login", async (request, res) => {
-  // request.session['email'] = 'seungwon.go@gmail.com';
-  // res.send('ok');
-  try {
-    await req.db("signUp", request.body.param);
-    if (request.body.param.length > 0) {
-      for (let key in request.body.param[0])
-        request.session[key] = request.body.param[0][key];
-      res.send(request.body.param[0]);
-    } else {
-      res.send({
-        error: "Please try again or contact system manager.",
-      });
-    }
-  } catch (err) {
-    res.send({
-      error: "DB access error",
-    });
-  }
-});
-
-app.post("/api/logout", async (request, res) => {
-  request.session.destroy();
-  res.send("ok");
-});
-
-app.post("/upload/:productId/:type/:fileName", async (request, res) => {
-  let { productId, type, fileName } = request.params;
-  const dir = `${__dirname}/uploads/${productId}`;
+//이미지 업로드 불러오기 정의(나중에 슬라이드사진으로 할경우에는 수정필요)
+app.post("/upload/:ACCO_ID/:type/:fileName", async (request, res) => {
+  let { ACCO_ID, fileName } = request.params;
+  const dir = `${__dirname}/uploads/${ACCO_ID}`;
   const file = `${dir}/${fileName}`;
   if (!request.body.data)
     return fs.unlink(file, async (err) =>
@@ -114,10 +90,10 @@ app.post("/upload/:productId/:type/:fileName", async (request, res) => {
   );
   if (!fs.existsSync(dir)) fs.mkdirSync(dir);
   fs.writeFile(file, data, "base64", async (error) => {
-    await req.db("productImageInsert", [
+    await req.db("accommodations", [
       {
-        product_id: productId,
-        type: type,
+        ACCO_ID: ACCO_ID,
+        //type: type,
         path: fileName,
       },
     ]);
@@ -131,10 +107,10 @@ app.post("/upload/:productId/:type/:fileName", async (request, res) => {
     }
   });
 });
-
-app.get("/download/:productId/:fileName", (request, res) => {
-  const { productId, type, fileName } = request.params;
-  const filepath = `${__dirname}/uploads/${productId}/${fileName}`;
+//이미지 불러오기
+app.get("/download/:ACCO_ID/:fileName", (request, res) => {
+  const { ACCO_ID, fileName } = request.params;
+  const filepath = `${__dirname}/uploads/${ACCO_ID}/${fileName}`;
   res.header(
     "Content-Type",
     `image/${fileName.substring(fileName.lastIndexOf("."))}`
@@ -146,6 +122,7 @@ app.get("/download/:productId/:fileName", (request, res) => {
   else fs.createReadStream(filepath).pipe(res);
 });
 
+//apirole은 로그인된거 나중에 상품등록할때 관리자 권한으로 사용할것
 app.post("/apirole/:alias", async (request, res) => {
   if (!request.session.email) {
     return res.status(401).send({
@@ -164,13 +141,39 @@ app.post("/apirole/:alias", async (request, res) => {
 
 // route 설정 목록
 
+//로그인 라우터. 웹페이지'/login'에서 인증로직 처리.
+app.post("/login", async (request, res) => {
+  try {
+    await req.db("signUp", request.body.param);
+    if (request.body.param.length > 0) {
+      for (let key in request.body.param[0])
+        request.session[key] = request.body.param[0][key];
+      res.send(request.body.param[0]);
+    } else {
+      res.send({
+        error: "Please try again or contact system manager.",
+      });
+    }
+  } catch (err) {
+    res.send({
+      error: "DB access error",
+    });
+  }
+});
+
+//로그아웃 라우터. 로그아웃 시 세션 삭제
+app.post("/api/logout", async (request, res) => {
+  request.session.destroy();
+  res.send("ok");
+});
+
 // 네이버 라우트. 검토 필요
 // router.get("/login/naver", passport.authenticate("naver"));
 
 //위에서 네이버 서버 로그인이 되면, 네이버 redirect url 설정에 따라 이쪽 라우터로 오게 된다.
 // router.get("/login/naver/callback", function (req, res, next) {
 
-  //passport 로그인 전략에 의해 naverStrategy로 가서 계정 정보와 DB를 비교해서 회원가입시키거나 로그인 처리하게 한다.
+//passport 로그인 전략에 의해 naverStrategy로 가서 계정 정보와 DB를 비교해서 회원가입시키거나 로그인 처리하게 한다.
 //   passport.authenticate("naver", function (err, user) {
 //     console.log("passport.authenticate(naver)실행");
 //     if (!user) {
