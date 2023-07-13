@@ -180,33 +180,45 @@ export default {
     // 카카오 간편 로그인
     kakaoLogin() {
       window.Kakao.Auth.login({
-        scope: "profile_nickname, profile_image, account_email", //동의 항목으로 활성화한 목록
+        scope: "profile_image, account_email",
         success: this.getKakaoAccount,
       });
     },
-    //로그아웃
-    kakaoLogout() {
-      window.Kakao.Auth.logout((response) => {
-        console.log(response);
-      });
-    },
+    // 카카오 계정 정보 받아옴
     getKakaoAccount() {
       window.Kakao.API.request({
         url: "/v2/user/me",
-        success: (res) => {
+        success: res => {
           const kakao_account = res.kakao_account;
           const nickname = kakao_account.nickname;
-          const email = kakao_account.email;
-          console.log("nickname", nickname);
-          console.log("email", email);
-
+          const email = kakao_account.email
+          console.log('nickname', nickname);
+          console.log('email', email);
+          
           alert("로그인 성공!");
-        },
-        fail: (error) => {
-          console.log(error);
+          this.$store.commit("user", kakao_account);
+          this.$router.push({path:'/'});
+          // 로그인 상태
+          this.$store.state.isLogin = true
         },
       });
     },
+    async login(kakao_account) {
+      await this.$api("/api/login", {
+        param: [
+          {email:kakao_account.email, nickname:kakao_account.profile.nickname},
+          {nickname:kakao_account.profile.nickname}
+          ]
+      });
+    },
+    kakaoLogout() {
+      window.Kakao.Auth.logout((response) => {
+        console.log(response);
+        this.$store.commit("user", {});
+        alert("로그아웃");
+        this.$router.push({path:'/'});
+      });
+    }
   },
 };
 </script>
