@@ -26,7 +26,7 @@
           <p>
             예약 호텔:
             <span class="reservation-hotel"
-              >{{ GetReservation.RESERVATION_NAME }}</span
+              >{{ GetReservation.ACCO_NAME }}</span
             >
           </p>
           <p>
@@ -71,12 +71,13 @@ export default {
     };
   },
   created(){
-    this.RESERVATION_ID = this.$route.query.RESERVATION_ID;
+    // this.RESERVATION_ID = this.$route.query.RESERVATION_ID;
     this.Reservation();
   },
   methods: {
     async Reservation(){
-      let GetReservation = await this.$api("/api/GetReservation", {param:[this.RESERVATION_ID]});
+      // let GetReservation = await this.$api("/api/GetReservation", {param:[this.RESERVATION_ID]});
+      let GetReservation = await this.$api("/api/GetReservation", {});
       this.GetReservation = GetReservation[0];
     },
 

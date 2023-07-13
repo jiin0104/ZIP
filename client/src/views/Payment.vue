@@ -65,18 +65,18 @@
         <section class="info" data-v-33033856="">
           <p class="name" data-v-33033856="">
             <strong data-v-33033856="">숙소이름</strong>
-            <!--{{acco.name}}-->명동 밀리오레호텔
+            {{GetAcco.ACCO_NAME}}
           </p>
-          <p data-v-33033856=""><strong data-v-33033856="">체크인</strong>06.29 목 15:00
+          <p data-v-33033856=""><strong data-v-33033856="">체크인</strong>{{GetAcco.RESERVATION_CHECK_IN}}
           </p>
-          <p data-v-33033856=""><strong data-v-33033856="">체크아웃</strong>06.30 금 12:00
+          <p data-v-33033856=""><strong data-v-33033856="">체크아웃</strong>{{GetAcco.RESERVATION_CHECK_OUT}}
           </p>
         </section>
         <section class="total_price_pc" data-v-33033856="">
           <p data-v-33033856="">
             <strong data-v-33033856="">
               <b data-v-33033856="">총 결제 금액</b>(VAT포함)</strong>
-            <span class="in_price" data-v-33033856=""><!--{{getCurrencyFormat(totalPrice)} * 일수}-->85,000원</span>
+            <span class="in_price" data-v-33033856="">{{getCurrencyFormat(GetAcco.ACCO_PRICE)}}원</span>
           </p>
           <ul data-v-33033856="">
             <li data-v-33033856="">해당 객실가는 세금, 봉사료가 포함된 금액입니다</li>
@@ -95,6 +95,8 @@
 
 
 <script>
+import axios from 'axios';
+
 var IMP = window.IMP;   // 생략 가능
 IMP.init("imp56476234");
 
@@ -108,10 +110,20 @@ export default {
       email: null,
       phone: null,
       total: 1,
-      totalPrice: 0
+      totalPrice: 0,
+      reservationid: 1,
+      GetAcco: "",
     }
   },
+  created(){
+    this.Acco();
+  },
   methods: {
+    async Acco(){
+      let GetAcco = await this.$api("/api/GetReservation", {});
+      this.GetAcco = GetAcco[0];
+    },
+
     checkForm(e) {
       e.preventDefault();
       this.errors = [];
@@ -133,6 +145,8 @@ export default {
 
       if (!this.errors.length) return true;
     },
+
+
     validEmail: function (email) {
       var re1 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
       return re1.test(email);
@@ -143,20 +157,6 @@ export default {
       return re2.test(phone);
     },
 
-    PaymentInsert() {
-      this.$swal.fire({
-        title: '예약 확정을 하시겠습니까?',
-        showCancelButton: true,
-        confirmButtonText: '확인',
-        cancelButtonText: '취소'
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          await this.$api("/api/PaymentInsert", { param: [this.payment] });
-          this.swal.fire('예약되었습니다!', '', 'success');
-          this.$router.push({ path: '/payment' });
-        }
-      })
-    },
 
 
 
@@ -173,17 +173,15 @@ export default {
       IMP.request_pay({ // param
         pg: "inicis",
         pay_method: "card",
-        merchant_uid: "570033-33004",
+        merchant_uid: "52033-33sd230d4",
         name: "당근 10kg",
         amount: 1004,
         buyer_email: "Iamport@chai.finance",
         buyer_name: "포트원 기술지원팀",
-        buyer_tel: "010-1234-5678",
-        buyer_addr: "서울특별시 강남구 삼성동",
-        buyer_postcode: "123-456",
+        
       }, rsp => { // callback
         if (rsp.success) {
-          alert("결제에 성공했습니다.");
+          this.submitForm();
           location.href = "/reservation_info"
           // 결제 성공 시 로직,
 
@@ -193,7 +191,34 @@ export default {
 
         }
       });
-    }
+    },
+
+    submitForm() {//입력한 값들 서브밋.
+        const formData = {
+                    
+          totalprice: this.totalPrice,
+          reservationid: this.reservationid
+                   
+        };
+  
+  
+        axios.post('/payment', formData)//서브밋한 값들을 받아서 서버에 전달.
+          .then(response => {
+            if (response.data.message) {
+              alert(response.data.message);
+              
+            } else {
+              alert('결제에 실패했습니다.');
+              console.log(formData);
+            }
+          })
+          .catch(error => {
+            console.error('결제 실패', error);
+            alert('결제 실패');
+          });
+      },
+
+
   }
 }
 
