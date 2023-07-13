@@ -8,7 +8,9 @@ const fs = require("fs");
 const path = require("path");
 const dotenv = require("dotenv");
 const passport = require("passport"); //로그인 로직할 때 필요
-
+// const db = require("./db"); // DB 연결 설정 파일
+const mysql = require("mysql2");
+// const db = require("./db"); // DB 연결 설정 파일
 const app = express();
 
 // 쿠키 설정. 쿠키사용 보류
@@ -36,12 +38,8 @@ const app = express();
 //express 서버로 POST 요청을 할 때 input 태그의 value를 전달하기 위해 사용
 //post 방식으로 클라이언트가 요청하는 본문에 있는 value를 넘겨받고 req.body 객체로 만들어주는 미들웨어.
 //넘겨받은 value들은 DB로 전송
-//app.use(express.urlencoded({ extended: false })); 논의필요. https://kirkim.github.io/javascript/2021/10/16/body_parser.html
-app.use(
-  express.json({
-    limit: "50mb",
-  })
-);
+app.use(express.urlencoded({ extended: true })); 
+app.use(express.json());
 
 //서버의 포트 설정
 const server = app.listen(3000, () => {
@@ -58,8 +56,8 @@ fs.watchFile(__dirname + "/sql.js", (curr, prev) => {
   sql = require("./sql.js");
 });
 
-//db 연결.
-const db = {
+// db 연결.
+const db = mysql.createConnection({
   database: "project",
   host: "127.0.0.1",
   port: 3306,
@@ -67,7 +65,7 @@ const db = {
   password: "root",
   connectionLimit: 100,
   multipleStatements: true, // 세미콜론으로 이어진 여러 개의 쿼리문을 한꺼번에 날릴 수 있게
-};
+});
 
 //createconnection 말고 createpool을 이용해서 연결.
 //createConnection은 단일 연결 방식, 요청이 있을 때마다 연결 객체를 생성했다가, 제거하는 것이 반복.
@@ -224,3 +222,68 @@ const req = {
     );
   },
 };
+
+// 회원 가입 API 엔드포인트
+app.post("/signup", (req, res) => {
+  const { email, nickname, password, phone, address } = req.body;
+
+  // 중복된 이메일이 없을 경우 회원 정보 저장
+  const insertUserSql =
+    "INSERT INTO users (USER_ID, USER_NICKNAME, USER_PASSWORD, USER_TEL, USER_ADDRESS1, USER_ADDRESS2) VALUES (?, ?, ?, ?, ?, ?)";
+  const values = [email, nickname, password, phone, address, ""];
+  db.query(insertUserSql, values, (err, result) => {
+    if (err) {
+      console.error("회원 정보 인서트 실패:", err);
+      return res
+        .status(500)
+        .json({ error: "회원 정보 인서트에 실패했습니다." });
+    }
+
+    // 회원 가입 성공 응답
+    res.json({ message: "가입 되셨습니다." });
+  });
+});
+
+// 이메일 중복 확인
+app.post("/checkEmail", (req, res) => {
+  const { email } = req.body;
+
+  const checkDuplicateEmailSql = "SELECT * FROM users WHERE USER_ID = ?";
+  db.query(checkDuplicateEmailSql, [email], (error, results) => {
+    if (error) {
+      console.error("이메일 중복검사 에러:", error);
+      return res.status(500).json({ error: "이메일 중복검사 실패." });
+    }
+
+    if (results.length > 0) {
+      res.json({ exists: true });
+    } else {
+      // 이미 존재하는 이메일인 경우 false
+      res.json({ exists: false });
+    }
+  });
+});
+
+//닉네임 중복 확인
+app.post("/checkNickname", (req, res) => {
+  const { nickname } = req.body;
+
+  const checkDuplicateNicknameSql =
+    "SELECT * FROM users WHERE USER_NICKNAME = ?";
+  db.query(checkDuplicateNicknameSql, [nickname], (error, results) => {
+    if (error) {
+      console.error("닉네임 중복 확인 에러:", error);
+      return res
+        .status(500)
+        .json({ error: "닉네임 중복 확인에 실패했습니다." });
+    }
+
+    if (results.length > 0) {
+      res.json({ exists: true });
+    } else {
+      res.json({ exists: false });
+    }
+  });
+});
+
+module.exports = db;
