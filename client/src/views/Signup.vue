@@ -200,7 +200,7 @@
       validateEmail() {
         const email = this.email;
         if (!email) {
-          // this.errors.push("이메일은 필수입니다.");
+          alert("이메일 항목을 작성해주세요");
           return;
         }
   
@@ -222,7 +222,7 @@
       validateNickname() {
         const nickname = this.nickname;
         if (!nickname) {
-        //   this.errors.push("닉네임은 필수입니다.");
+        alert("닉네임 항목을 작성해주세요");
           return;
         }
   
