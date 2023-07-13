@@ -1,34 +1,34 @@
 <template>
   <header class="header_area" id="header">
     <!-- 회원용 헤더 내용 -->
-    <div class="header1 container h-100" v-if="userRole === 'member'">
+    <div class="header1 container h-100" v-if="isLogin">
       <h1><a href="#" class="logo">
           <RouterLink to= />
           <img alt="Vue logo" src="@/layouts/logo.png" width="80"></RouterLink>
         </a></h1>
       <div class="menuWrap">
         <ul class="menu">
-          <li><a @click="logout"><RouterLink to='/'>로그아웃</RouterLink></a></li>
+          <li><a @click="kakaoLogout"><RouterLink to='/'>로그아웃</RouterLink></a></li>
           <li><RouterLink to='/Mypage'>내정보</RouterLink></li>
           <li><RouterLink to='/My_Reservation'>예약내역</RouterLink></li>
         </ul>
       </div>
     </div>
     <!-- 비회원용 헤더 내용 -->
-    <div class="header1 container h-100" v-else-if="userRole === 'guest'">
+    <div class="header1 container h-100" v-else>
       <h1><a href="#" class="logo">
           <RouterLink to= /><img alt="Vue logo" src="@/layouts/logo.png" width="80"></RouterLink>
         </a></h1>
       <div class="menuWrap">
         <ul class="menu">
           <li class="dorne-signin-btn">
-            <RouterLink to='/Login'>로그인</RouterLink>
+            <a><RouterLink to='/Login'>로그인</RouterLink></a>
           </li>
         </ul>
       </div>
     </div>
     <!-- 관리자용 헤더 내용 -->
-    <div class="header1 container h-100" v-else-if="userRole === 'admin'">
+    <!-- <div class="header1 container h-100">
       <h1><a href="#" class="logo">
           <RouterLink to= /><img alt="Vue logo" src="@/layouts/logo.png" width="80"></RouterLink>
         </a></h1>
@@ -39,7 +39,7 @@
           <li><RouterLink to='/Admin_Page_User'>회원관리</RouterLink></li>
         </ul>
       </div>
-    </div>
+    </div> -->
   </header>
 </template>
 
@@ -100,19 +100,28 @@ a {
 </style>
 
 <script>
+
+import { mapState } from 'vuex';
+
 export default {
   name: 'header',
   data() {
     return {
-      userRole: 'member', // 사용자 역할을 저장하는 변수
+      userRole: 'member',
     }
   },
+  computed: {
+    ...mapState(['isLogin'])
+  },
   methods: {
-    logout() {
-      this.userRole = 'guest';
-    },
-    login() {
-      this.userRole = 'member';
+    kakaoLogout() {
+      window.Kakao.Auth.logout((response) => {
+        console.log(response);
+        this.$store.commit("user", {});
+        alert("로그아웃");
+        this.$router.push({path:'/'});
+        this.$store.state.isLogin = false
+      });
     }
   }
   // 사용자 역할을 확인하고 userRole 값을 업데이트하는 로직 필요

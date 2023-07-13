@@ -11,12 +11,22 @@ const store = createStore({
     //공통으로 참조하기 위한 변수를 정의. State에 접근하는 것은 Component의 computed 영역내에서 가능. 기본 접근 방법: this.$store.state.items
     return {
       user: {},
+      isLogin: false,
+      isLoginError: false
     };
   },
   mutations: {
     //Mutation을 통해서만 State를 변경. 함수작성. Mutations에 접근하는 것은 Component의 Methods 영역내에서 가능. 기본 접근 방법: this.$store.commit('경로명/함수명')
     user(state, data) {
       state.user = data;
+    },
+    loginSuccess(state) {
+      state.isLogin = true
+      state.isLoginError = false
+    },
+    loginError(state) {
+      state.isLogin = false
+      state.isLoginError = true
     },
   },
   plugins: [
