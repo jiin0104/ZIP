@@ -200,14 +200,14 @@
       validateEmail() {
         const email = this.email;
         if (!email) {
-        //   this.errors.push("이메일은 필수입니다.");
+          // this.errors.push("이메일은 필수입니다.");
           return;
         }
   
         axios.post('/checkEmail', { email })
           .then(response => {
             if (response.data.exists) {
-                alert("이미 존재하는 이메일입니다.");
+              alert("이미 존재하는 이메일입니다.");
             } else {
               alert("사용 가능한 이메일입니다.");
             }

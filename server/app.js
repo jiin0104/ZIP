@@ -8,9 +8,8 @@ const fs = require("fs");
 const path = require("path");
 const dotenv = require("dotenv");
 const passport = require("passport"); //로그인 로직할 때 필요
-// const db = require("./db"); // DB 연결 설정 파일
+const db = require("./db"); // DB 연결 설정 파일
 const mysql = require("mysql2");
-// const db = require("./db"); // DB 연결 설정 파일
 const app = express();
 
 // 쿠키 설정. 쿠키사용 보류
@@ -57,15 +56,15 @@ fs.watchFile(__dirname + "/sql.js", (curr, prev) => {
 });
 
 // db 연결.
-const db = mysql.createConnection({
-  database: "project",
-  host: "127.0.0.1",
-  port: 3306,
-  user: "root",
-  password: "root",
-  connectionLimit: 100,
-  multipleStatements: true, // 세미콜론으로 이어진 여러 개의 쿼리문을 한꺼번에 날릴 수 있게
-});
+// const db = mysql.createConnection({
+//   database: "project",
+//   host: "127.0.0.1",
+//   port: 3306,
+//   user: "root",
+//   password: "root",
+//   connectionLimit: 100,
+//   multipleStatements: true, // 세미콜론으로 이어진 여러 개의 쿼리문을 한꺼번에 날릴 수 있게
+// });
 
 //createconnection 말고 createpool을 이용해서 연결.
 //createConnection은 단일 연결 방식, 요청이 있을 때마다 연결 객체를 생성했다가, 제거하는 것이 반복.

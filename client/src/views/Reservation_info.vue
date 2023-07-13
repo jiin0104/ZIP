@@ -71,11 +71,12 @@ export default {
     };
   },
   created(){
+    this.RESERVATION_ID = this.$route.query.RESERVATION_ID;
     this.Reservation();
   },
   methods: {
     async Reservation(){
-      let GetReservation = await this.$api("/api/GetReservation", {});
+      let GetReservation = await this.$api("/api/GetReservation", {param:[this.RESERVATION_ID]});
       this.GetReservation = GetReservation[0];
     },
 

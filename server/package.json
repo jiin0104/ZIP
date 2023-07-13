@@ -22,7 +22,8 @@
     "passport-local": "^1.0.0",
     "passport-naver-v2": "^2.0.8",
     "sequelize": "^6.32.1",
-    "sequelize-cli": "^6.6.1"
+    "sequelize-cli": "^6.6.1",
+    "axios": "^1.4.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"
