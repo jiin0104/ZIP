@@ -8,7 +8,6 @@ const fs = require("fs");
 const path = require("path");
 const dotenv = require("dotenv");
 const passport = require("passport"); //로그인 로직할 때 필요
-// const db = require("./db"); // DB 연결 설정 파일
 const mysql = require("mysql2");
 const app = express();
 
@@ -37,13 +36,8 @@ const app = express();
 //express 서버로 POST 요청을 할 때 input 태그의 value를 전달하기 위해 사용
 //post 방식으로 클라이언트가 요청하는 본문에 있는 value를 넘겨받고 req.body 객체로 만들어주는 미들웨어.
 //넘겨받은 value들은 DB로 전송
-app.use(express.urlencoded({ extended: true })); 
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-//서버의 포트 설정
-const server = app.listen(3000, () => {
-  console.log("port 3000에서 대기 중");
-});
 
 //cosnt를 줘버리면 sql이 고정값을 가져서 쿼리문 여러 개 못 씀.
 let sql = require("./sql.js");
@@ -55,21 +49,30 @@ fs.watchFile(__dirname + "/sql.js", (curr, prev) => {
   sql = require("./sql.js");
 });
 
-// db 연결.
-const db = {
-  database: "project",
+//연결하는 db
+const dbPool = mysql.createPool({
   host: "127.0.0.1",
-  port: 3306,
   user: "root",
-  password: "root",
-  connectionLimit: 100,
-  multipleStatements: true, // 세미콜론으로 이어진 여러 개의 쿼리문을 한꺼번에 날릴 수 있게
-};
+  password: "@k41292001",
+  database: "project",
+  connectionLimit: 100, //연결할 수 있는 최대 수 100
+});
 
 //createconnection 말고 createpool을 이용해서 연결.
 //createConnection은 단일 연결 방식, 요청이 있을 때마다 연결 객체를 생성했다가, 제거하는 것이 반복.
 //따라서 비용, 시간, 연결에 대한 부담이 발생
-const dbPool = require("mysql2").createConnection(db);
+//createpool을 이용한 커넥션 생성
+dbPool.getConnection((err, connection) => {
+  if (err) {
+    console.error("db 연동에 문제가 있습니다:", err);
+    return;
+  }
+  console.log("db와 연결 성공");
+
+  //연결을 사용한 작업 수행
+
+  connection.release(); //사용 완료된 연결 반납
+});
 
 //이미지 업로드 불러오기 정의(나중에 슬라이드사진으로 할경우에는 수정필요)
 app.post("/upload/:ACCO_ID/:type/:fileName", async (request, res) => {
@@ -136,8 +139,6 @@ app.post("/apirole/:alias", async (request, res) => {
   }
 });
 
-// route 설정 목록
-
 //로그인 라우터. 웹페이지'/login'에서 인증로직 처리.
 app.post("/login", async (request, res) => {
   try {
@@ -195,18 +196,6 @@ let corsOption = {
 app.use(cors(corsOption)); //CORS 미들웨어
 
 // 쿼리 요청을 보내는 부분. 에러가 발생하였을 때 콘솔에 출력해주는 소스.
-app.post("/api/:alias", async (request, res) => {
-  try {
-    res.send(
-      await req.db(request.params.alias, request.body.param, request.body.where)
-    );
-  } catch (err) {
-    res.status(500).send({
-      error: err,
-    });
-  }
-});
-
 const req = {
   async db(alias, param = [], where = "") {
     return new Promise((resolve, reject) =>
@@ -222,44 +211,76 @@ const req = {
   },
 };
 
+app.post("/api/:alias", async (request, res) => {
+  try {
+    res.send(
+      await req.db(request.params.alias, request.body.param, request.body.where)
+    );
+  } catch (err) {
+    res.status(500).send({
+      error: err,
+    });
+  }
+});
+
 // 회원 가입 API 엔드포인트
 app.post("/signup", (req, res) => {
-  const { email, nickname, password, phone, address } = req.body;
-
-  // 중복된 이메일이 없을 경우 회원 정보 저장
-  const insertUserSql =
-    "INSERT INTO users (USER_ID, USER_NICKNAME, USER_PASSWORD, USER_TEL, USER_ADDRESS1, USER_ADDRESS2) VALUES (?, ?, ?, ?, ?, ?)";
-  const values = [email, nickname, password, phone, address, ""];
-  db.query(insertUserSql, values, (err, result) => {
+  //db연결을 사용해서 작업
+  dbPool.getConnection((err, connection) => {
     if (err) {
-      console.error("회원 정보 인서트 실패:", err);
-      return res
-        .status(500)
-        .json({ error: "회원 정보 인서트에 실패했습니다." });
+      console.error("db연결에 문제가 있음", err);
+      return res.status(500).json({ error: "db연결에 실패했습니다." });
     }
 
-    // 회원 가입 성공 응답
-    res.json({ message: "가입 되셨습니다." });
+    const { email, nickname, password, phone, address } = req.body;
+
+    // 중복된 이메일이 없을 경우 회원 정보 저장
+    const insertUserSql =
+      "INSERT INTO users (USER_ID, USER_NICKNAME, USER_PASSWORD, USER_TEL, USER_ADDRESS1, USER_ADDRESS2) VALUES (?, ?, ?, ?, ?, ?)";
+    const values = [email, nickname, password, phone, address, ""];
+    connection.query(insertUserSql, values, (err, result) => {
+      connection.release(); // 사용이 완료된 연결 반환
+
+      if (err) {
+        console.error("회원 정보 인서트 실패:", err);
+        return res
+          .status(500)
+          .json({ error: "회원 정보 인서트에 실패했습니다." });
+      }
+
+      // 회원 가입 성공 응답
+      res.json({ message: "가입 되셨습니다." });
+    });
   });
 });
 
 // 이메일 중복 확인
 app.post("/checkEmail", (req, res) => {
-  const { email } = req.body;
-
-  const checkDuplicateEmailSql = "SELECT * FROM users WHERE USER_ID = ?";
-  db.query(checkDuplicateEmailSql, [email], (error, results) => {
-    if (error) {
-      console.error("이메일 중복검사 에러:", error);
-      return res.status(500).json({ error: "이메일 중복검사 실패." });
+  //db 연결을 사용해서 작업
+  dbPool.getConnection((err, connection) => {
+    if (err) {
+      console.error("db 연결에 문제가 있습니다:", err);
+      return res.status(500).json({ error: "DB 연결에 실패했습니다." });
     }
 
-    if (results.length > 0) {
-      res.json({ exists: true });
-    } else {
-      // 이미 존재하는 이메일인 경우 false
-      res.json({ exists: false });
-    }
+    const { email } = req.body;
+
+    const checkDuplicateEmailSql = "SELECT * FROM users WHERE USER_ID = ?";
+    connection.query(checkDuplicateEmailSql, [email], (error, results) => {
+      connection.release(); // 사용이 완료된 연결 반납
+
+      if (error) {
+        console.error("이메일 중복검사 에러:", error);
+        return res.status(500).json({ error: "이메일 중복검사 실패." });
+      }
+
+      if (results.length > 0) {
+        res.json({ exists: true });
+      } else {
+        // 이미 존재하는 이메일인 경우 false
+        res.json({ exists: false });
+      }
+    });
   });
 });
 
@@ -269,7 +290,7 @@ app.post("/checkNickname", (req, res) => {
 
   const checkDuplicateNicknameSql =
     "SELECT * FROM users WHERE USER_NICKNAME = ?";
-  db.query(checkDuplicateNicknameSql, [nickname], (error, results) => {
+  dbPool.query(checkDuplicateNicknameSql, [nickname], (error, results) => {
     if (error) {
       console.error("닉네임 중복 확인 에러:", error);
       return res
@@ -285,4 +306,9 @@ app.post("/checkNickname", (req, res) => {
   });
 });
 
-module.exports = db;
+// 서버 실행
+app.listen(3000, () => {
+  console.log("port 3000에서 서버구동");
+});
+
+module.exports = dbPool;
