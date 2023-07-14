@@ -11,7 +11,7 @@
               <span class="label-input100">이메일(아이디)</span>
               <input
                 class="input100"
-                type="text"
+                type="email"
                 name="username"
                 placeholder="이메일을 입력하세요"
                 v-model="l_user.USER_ID"
@@ -116,8 +116,8 @@ export default {
   data() {
     return {
       l_user: {
-        USER_ID: null,
-        USER_PASSWORD: null,
+        USER_ID: "",
+        USER_PASSWORD: "",
       },
       naverLogin: null,
     };
@@ -165,6 +165,12 @@ export default {
     axios.get(url).then((res) => {
       console.log(res.data);
     });
+  },
+
+  computed: {
+    user() {
+      return this.$store.state.user; // user 정보가 바뀔 때마다 자동으로 user() 갱신
+    },
   },
 
   methods: {
