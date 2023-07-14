@@ -3,7 +3,7 @@
 const passport = require("passport");
 const local = require("./localStrategy"); //이거 우리가 다시 한 번 봐야 됨
 const kakao = require("./kakaoStrategy");
-const User = require("../models/user"); //이거 우리가 다시 한 번 봐야 됨
+// const User = require("../models/user"); //이거 우리가 다시 한 번 봐야 됨
 const naver = require("./naverStrategy");
 
 module.exports = () => {

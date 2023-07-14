@@ -48,7 +48,7 @@
               <button id="button7" @click="hideConfirmation()">취소</button>
             </div>
             <div class="popup-buttons">
-              <button id="button8" @click="confirmdelete()">확인</button>
+              <button id="button8" @click="deleteuser()">확인</button>
             </div>
           </div>
         </div>
@@ -57,15 +57,27 @@
   </v-main>
 </template>
 <script>
+
+
 export default {
   name: "mydelete",
   data() {
     return {
-      deletelist: {},
-      rendom_pw: ""
+      checkpw: {},
     };
   },
+
+  created() {
+    this.get_user_pw();
+  },
   methods: {
+    async get_user_pw() {
+      // AXIOS로 통신하는 변수
+      let checkpw = await this.$api("/api/checkpw", {param:[this.USER_NO]});
+      this.checkpw = checkpw[0];
+    },
+
+
     Mypage_Link() {
       this.$router.push({ path: "/mypage" });
     },
@@ -80,26 +92,34 @@ export default {
     },
 
     checkPassword() {
-      if (this.rendom_pw == this.deletelist) {
+      let pw = document.getElementById("inputPassword6").value
+      if (pw == this.checkpw.USER_PASSWORD) {
         this.showConfirmation()
       } else {
         alert("비밀번호가 다릅니다!");
         return;
       }
     },
+
     showConfirmation() {
       var popup = document.getElementById("popup");
       popup.style.display = "block";
     },
-    confirmdelete() {
+
+    deleteuser(USER_NO) {
+      this.SignOut = this.$api("/api/SignOut", { param: [USER_NO] });
+
       alert("탈퇴가 완료되었습니다!");
       this.hideConfirmation();
       location.href = "/";
     },
+
     hideConfirmation() {
       var popup = document.getElementById("popup");
       popup.style.display = "none";
-    }
+    },
+
+
   }
 }
 </script>

@@ -28,7 +28,7 @@
                 <b label for="nickname">닉네임</b><br />
                 <input type="text" id="nickname" role="textbox" placeholder="닉네임을 입력해 주세요." name="nickname"
                   v-model="nickname" />
-                <input type="button" id="crosscheck" value="중복 확인" onclick="validateNickname()"><br />
+                <input type="button" id="crosscheck" value="중복 확인" @click="validateNickname"><br />
               </div>
               <br>
               <div class="field2">
@@ -69,7 +69,7 @@
               </p>
 
               <div style="position: relative; left: 125px; top: 30px">
-                <input type="submit" id="addallow" v-on:click=signUpCheck3() value="수정">
+                <input type="submit" id="addallow" value="수정">
               </div>
             </div>
           </div>
@@ -80,6 +80,8 @@
   </div>
 </template>
 <script>
+import axios from 'axios';
+
 export default {
   el: "#app3",
   data() {
@@ -139,32 +141,18 @@ export default {
       }
 
       if (!this.errors.length) {
-        return true
+        this.submitForm();
       }
     },
 
 
-    validNickname: function (nickname) {
-      var re0 = /^[A-Za-z가-힣]{1,6}$/
-      return re0.test(nickname);
-    },
-
-    validEmail: function (email) {
-      var re1 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-      return re1.test(email);
-    },
-
-    validPhone: function (phone) {
-      var re2 = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/
-      return re2.test(phone);
-    },
-
-    validPassword: function (password) {
+    validPassword(password) {// 비밀번호 형식 유효성 검사 로직
       var re3 = /^[A-Za-z0-9]{4,12}$/
       return re3.test(password);
     },
 
-    validPasswordCheck: function () {
+
+    validPasswordCheck: function () {//비밀번호 일치 검사 로직
       let pw = document.getElementById("password").value
       let pwcheck = document.getElementById("passwordCheck").value
 
@@ -175,7 +163,89 @@ export default {
       }
     },
 
-    openPostcode() {
+
+    validNickname: function (nickname) {//닉네임 유효성 검사 로직
+      var re0 = /^[A-Za-z가-힣]{1,6}$/
+      return re0.test(nickname);
+    },
+
+
+    validPhone(phone) {// 전화번호 유효성 검사 로직
+      var re2 = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/
+      return re2.test(phone);
+    },
+
+
+    submitForm() {//입력한 값들 서브밋.
+      const formData = {
+        nickname: this.nickname,
+        password: this.password,
+        phone: this.phone,
+        address: this.roadAddress + ' ' + this.detailAddress
+      };
+
+
+      axios.post('/my_update', formData)//서브밋한 값들을 받아서 서버에 전달.
+        .then(response => {
+          if (response.data.message) {
+            alert(response.data.message);
+            // 가입 완료 후 로그인 페이지로 리다이렉트
+          } else {
+            alert('회원 등록에 실패했습니다.');
+            console.log(formData);
+          }
+        })
+        .catch(error => {
+          console.error('회원등록 실패', error);
+          alert('회원등록 실패. 확인 후 다시 시도해 주세요');
+        });
+    },
+
+    validateEmail() {
+      const email = this.email;
+      if (!email) {
+        alert("이메일 항목을 작성해주세요");
+        return;
+      }
+
+      axios.post('/checkEmail', { email })
+        .then(response => {
+          if (response.data.exists) {
+            alert("이미 존재하는 이메일입니다.");
+          } else {
+            alert("사용 가능한 이메일입니다.");
+          }
+        })
+        .catch(error => {
+          console.error('이메일 중복 확인 실패', error);
+          alert('이메일 중복 확인에 실패했습니다.');
+        });
+    },
+
+
+    validateNickname() {
+      const nickname = this.nickname;
+      if (!nickname) {
+        alert("닉네임 항목을 작성해주세요");
+        return;
+      }
+
+      axios.post('/checkNickname', { nickname })
+        .then(response => {
+          if (response.data.exists) {
+            alert("이미 존재하는 닉네임입니다.");
+          } else {
+            alert("사용 가능한 닉네임입니다.");
+          }
+        })
+        .catch(error => {
+          console.error('닉네임 중복 확인 실패', error);
+          alert('닉네임 중복 확인에 실패했습니다.');
+        });
+    },
+
+
+    openPostcode() {//주소찾기 로직
       new window.daum.Postcode({
         oncomplete: (data) => {
           this.zonecode = data.zonecode;
@@ -185,13 +255,6 @@ export default {
     },
 
 
-    signUpCheck3() {
-      if (this.phone == null || this.nickname == null || this.password === null || this.passwordCheck === null || this.roadAddress === null) {
-        return
-      }
-      alert("정보가 수정되었습니다")
-      this.$router.push({ path: "/mypage" })
-    }
   },
 };
 </script>

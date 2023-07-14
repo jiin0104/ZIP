@@ -8,6 +8,7 @@ const fs = require("fs");
 const path = require("path");
 const dotenv = require("dotenv");
 const passport = require("passport"); //로그인 로직할 때 필요
+const passportConfig = require('./passport');
 const mysql = require("mysql2");
 const app = express();
 
@@ -24,9 +25,9 @@ const app = express();
 //   })
 // );
 
-//passport 모듈 연결
-//passportConfig();
-//req객체에 passport설정 대입하는 미들웨어
+// passport 모듈 연결
+// passportConfig();
+// req객체에 passport설정 대입하는 미들웨어
 // app.use(passport.initialize());
 
 //req.session객체에 passport 정보 저장 미들웨어
@@ -306,7 +307,36 @@ app.post("/checkNickname", (req, res) => {
   });
 });
 
+// 정보 수정 API 엔드포인트
+app.post("/my_update", (req, res) => {
+  //db연결을 사용해서 작업
+  dbPool.getConnection((err, connection) => {
+    if (err) {
+      console.error("db연결에 문제가 있음", err);
+      return res.status(500).json({ error: "db연결에 실패했습니다." });
+    }
 
+    const { nickname, password, phone, address1, address2 } = req.body;
+
+    // 중복된 이메일이 없을 경우 회원 정보 저장
+    const updateUserSql =
+      "update users (USER_NICKNAME, USER_PASSWORD, USER_TEL, USER_ADDRESS1, USER_ADDRESS2) VALUES (?, ?, ?, ?, ?)";
+    const values = [nickname, password, phone, address1, address2];
+    connection.query(updateUserSql, values, (err, result) => {
+      connection.release(); // 사용이 완료된 연결 반환
+
+      if (err) {
+        console.error("회원 정보 업데이트 실패:", err);
+        return res
+          .status(500)
+          .json({ error: "회원 정보 수정에 실패했습니다." });
+      }
+
+      // 정보 수정 성공 응답
+      res.json({ message: "정보가 수정 되었습니다." });
+    });
+  });
+});
 
 
 // 결제 API 엔드포인트

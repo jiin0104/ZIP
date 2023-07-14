@@ -4,7 +4,7 @@ const {
   Profile: NaverProfile,
 } = require("passport-naver-v2");
 
-const User = require("../models/user");
+// const User = require("../models/user");
 
 module.exports = () => {
   passport.use(
