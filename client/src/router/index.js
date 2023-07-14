@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Admin_Page_Reservation from "../views/Admin_Page_Reservation.vue";
 import Admin_Page_User from "../views/Admin_Page_User.vue";
 import Admin_Product_Create from "../views/Admin_Product_Create.vue";
-import Find_Id_Result from '../views/Find_Id_result.vue'
+import Find_Id_Result from '../views/Find_Id_Result.vue'
 import Find_IdPw from '../views/Find_IdPw.vue'
 import Find_Pw_Result from '../views/Find_Pw_Result.vue'
 import Login from "../views/Login.vue";
