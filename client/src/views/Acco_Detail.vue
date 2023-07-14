@@ -269,15 +269,15 @@ th {
                       {{ getCurrencyFormat(detailList.ACCO_PRICE) }}원</strong>
                     <br />
                     <br />
-                    <router-link to="/payment"><button type="button" class="save-btn1"
-                        style="border: none; min-width: 150px; float: right">
+                    <button type="button" class="save-btn1"
+                        style="border: none; min-width: 150px; float: right" @click="goToPayment(detailList.ACCO_ID);">
                         예약하기
-                      </button></router-link>
+                      </button>
                   </div>
                 </li>
               </ul>
               <div>
-                <ul class="tab-content" v-if="currentTab === 1">
+                <ul class="tab-content" v-if="currentTab === 1">s
                   <li v-for="(item, index) in employList" :key="index">
                     <h3 style="margin-left: 60px">기본정보</h3>
                     <p style="margin-left: 60px">주변정보</p>
@@ -311,18 +311,12 @@ export default {
     };
   },
 
-  beforeCreate() { },
   created() {
     this.ACCO_ID = this.$route.query.ACCO_ID;
     this.getDetailList();
 
   },
-  beforMount() { },
-  mounted() { },
-  beforeUpdate() { },
-  updated() { },
-  beforeUnmount() { },
-  unmounted() { },
+
   methods: {
     async getDetailList() {
       
@@ -333,6 +327,9 @@ export default {
     },
     getCurrencyFormat(value) {
       return this.$currencyFormat(value);
+    },
+    goToPayment(ACCO_ID) {
+      this.$router.push({ path: '/payment', query: { ACCO_ID: ACCO_ID } });
     },
   },
 };

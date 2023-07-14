@@ -65,18 +65,18 @@
         <section class="info" data-v-33033856="">
           <p class="name" data-v-33033856="">
             <strong data-v-33033856="">숙소이름</strong>
-            {{GetAcco.ACCO_NAME}}
+            {{GetReservation.ACCO_NAME}}
           </p>
-          <p data-v-33033856=""><strong data-v-33033856="">체크인</strong>{{GetAcco.RESERVATION_CHECK_IN}}
+          <p data-v-33033856=""><strong data-v-33033856="">체크인</strong>{{GetReservation.RESERVATION_CHECK_IN}}
           </p>
-          <p data-v-33033856=""><strong data-v-33033856="">체크아웃</strong>{{GetAcco.RESERVATION_CHECK_OUT}}
+          <p data-v-33033856=""><strong data-v-33033856="">체크아웃</strong>{{GetReservation.RESERVATION_CHECK_OUT}}
           </p>
         </section>
         <section class="total_price_pc" data-v-33033856="">
           <p data-v-33033856="">
             <strong data-v-33033856="">
               <b data-v-33033856="">총 결제 금액</b>(VAT포함)</strong>
-            <span class="in_price" data-v-33033856="">{{getCurrencyFormat(GetAcco.ACCO_PRICE)}}원</span>
+            <span class="in_price" data-v-33033856="">{{getCurrencyFormat(GetReservation.ACCO_PRICE)}}원</span>
           </p>
           <ul data-v-33033856="">
             <li data-v-33033856="">해당 객실가는 세금, 봉사료가 포함된 금액입니다</li>
@@ -113,15 +113,23 @@ export default {
       totalPrice: 0,
       reservationid: 1,
       GetAcco: "",
+      ACCO_ID: 0,
+      GetReservation: {},
+
     }
   },
   created(){
+    
+    this.ACCO_ID = this.$route.query.ACCO_ID;
     this.Acco();
+
   },
   methods: {
     async Acco(){
-      let GetAcco = await this.$api("/api/GetReservation", {});
+      let GetAcco = await this.$api("/api/GetReservation", {param:[this.ACCO_ID]});
       this.GetAcco = GetAcco[0];
+
+      console.log(this.GetAcco);
     },
 
     checkForm(e) {

@@ -55,12 +55,23 @@ export default {
   name: "pwcheck",
   data() {
     return {
-      user_pw: 1234,
-      random_pw: null,
+      checkpw: {},
+      
     };
   },
 
+  created(){
+    this.get_user_pw();
+  },
+
+
   methods: {
+    async get_user_pw(){
+      let checkpw = await this.$api("/api/checkpw", {param:[this.USER_NO]});
+      this.checkpw = checkpw[0];
+    },
+
+
     Mypage_Link() {
       this.$router.push({ path: "/mypage" });
     },
@@ -87,10 +98,9 @@ export default {
     },
 
     checkPassword() {
-      console.log("this.random_pw : ", this.random_pw);
-      console.log("this.user_pw", this.user_pw);
+      let pw = document.getElementById("inputPassword6").value
       // 비밀번호 확인
-      if (this.random_pw == this.user_pw) {
+      if (pw == this.checkpw.USER_PASSWORD) {
         this.My_Update_Link();
       } else {
         console.log("비밀번호 다르다");
@@ -98,6 +108,7 @@ export default {
         return;
       }
     },
+
   },
 };
 </script>
