@@ -31,12 +31,8 @@
     <section>
       <div class="container">
         <br /><br /><br /><br /><br />
-        <div
-          class="row row-cols-1 row-cols-md-3 g-4"
-          :key="i"
-          v-for="(main, i) in mainList"
-        >
-          <div class="col">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="col" :key="i" v-for="(main, i) in mainList">
             <div class="card">
               <img
                 :src="`/download/${main.ACCO_ID}/${main.ACCO_IMAGE}`"
