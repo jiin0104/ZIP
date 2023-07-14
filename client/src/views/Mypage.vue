@@ -34,7 +34,7 @@
               <strong>전화번호:{{ userlist.user_tel }}</strong>
             </p>
             <p>
-              <strong>주소:{{ userlist.user_address1 }}{{ userlist.user_address2 }}</strong>
+              <strong>주소:{{ userlist.user_address1 }}&nbsp;&nbsp;&nbsp;{{ userlist.user_address2 }}</strong>
             </p>
             <br /><button id="infobutton" @click="mypage_pw_check_Link" style="display: inline-block">
               정보수정
