@@ -177,8 +177,8 @@
           nickname: this.nickname,
           password: this.password,
           phone: this.phone,
-          roadAddress: this.roadAddress,
-          detailAddress: this.detailAddress
+          address1: this.roadAddress,
+          address2: this.detailAddress
         };
   
   
@@ -187,6 +187,7 @@
             if (response.data.message) {
               alert(response.data.message);
               // 가입 완료 후 로그인 페이지로 리다이렉트
+              location.href = "/login";
             } else {
               alert('회원 등록에 실패했습니다.');
               console.log(formData);
