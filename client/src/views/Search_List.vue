@@ -129,8 +129,8 @@ export default {
       this.SearchAcco = await this.$api("/api/SearchAcco", {});
       console.log(this.SearchAcco);
     },
-    goToDetail(ACCO_ID) {
-      this.$router.push({ path: '/acco_detail', query: { ACCO_ID: ACCO_ID } });
+    goToDetail(RESERVATION_ID) {
+      this.$router.push({ path: '/acco_detail', query: { RESERVATION_ID: RESERVATION_ID } });
     },
     ascSort() {
       this.SearchAcco.sort(function (a, b) {

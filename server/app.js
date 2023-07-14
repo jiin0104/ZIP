@@ -380,6 +380,47 @@ app.post("/my_update", (req, res) => {
 });
 
 
+// 예약 생성 API 엔드포인트
+app.post("/acco_detail", (req, res) => {
+  //db연결을 사용해서 작업
+  dbPool.getConnection((err, connection) => {
+    if (err) {
+      console.error("db연결에 문제가 있음", err);
+      return res.status(500).json({ error: "db연결에 실패했습니다." });
+    }
+
+    const { check_in, check_out, userno, accoid} = req.body;
+
+    // 중복된 이메일이 없을 경우 회원 정보 저장
+    const insertReservationSql =
+      "INSERT INTO reservation (RESERVATION_CHECK_IN, RESERVATION_CHECK_OUT, USER_NO, ACCO_ID) VALUES (?, ?, ?, ?)";
+    const values = [check_in, check_out, userno, accoid];
+    connection.query(insertReservationSql, values, (err, result) => {
+      connection.release(); // 사용이 완료된 연결 반환
+
+      if (err) {
+        console.error("예약 생성 인서트 실패:", err);
+        return res
+          .status(500)
+          .json({ error: "예약 정보 인서트에 실패했습니다." });
+      }
+
+      // 회원 가입 성공 응답
+      res.json({ message: "예약창으로 넘어갑니다" });
+    });
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
 // 결제 API 엔드포인트
 app.post("/payment", (req, res) => {
   //db연결을 사용해서 작업
