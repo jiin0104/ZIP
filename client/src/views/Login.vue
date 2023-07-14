@@ -173,7 +173,7 @@ export default {
         .then(() => {
           alert("로그인 성공!"); // api가 정상적으로 작동할 시 해당 alert를 띄움
           this.$router.push({ path: "/" }); // 메인페이지로 라우팅
-          this.$store.commit("user", this.l_user); // vuex를 이용하여 상태관리하도록 store에 user 정보를 갱신
+          this.$store.commit("user", this.l_user); // vuex를 이용하여 상태 관리하도록 store에 user 정보를 갱신
         })
         .catch(() => {
           // api 오류 발생 시 해당 alert 띄움
@@ -210,7 +210,7 @@ export default {
     },
     async kakao_login(kakao_account) {
       // login겸  signup
-      await this.$api("/api/login", {
+      await this.$api("/api/kakaoLogin", {
         // 계정 정보를 kakaoLogin sql로 보냄
         param: [
           { email: kakao_account.email, name: kakao_account.profile.nickname },

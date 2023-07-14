@@ -1,5 +1,5 @@
 //express 서버의 코드를 담는 파일
-
+const cors = require("cors");
 const express = require("express");
 const session = require("express-session");
 const fs = require("fs");
@@ -11,6 +11,7 @@ const passport = require("passport"); //로그인 로직할 때 필요
 const passportConfig = require('./passport');
 const mysql = require("mysql2");
 const app = express();
+const bcrypt = require("bcrypt");
 
 // 쿠키 설정. 쿠키사용 보류
 // app.use(
@@ -141,28 +142,69 @@ app.post("/apirole/:alias", async (request, res) => {
 });
 
 //로그인 라우터. 웹페이지'/login'에서 인증로직 처리.
-app.post("/login", async (request, res) => {
+app.post("/api/login", async (request, res) => {
+  // login api
+  await dbPool.query(
+    'SELECT USER_ID, USER_PASSWORD FROM users WHERE USER_ID = "' +
+      request.body.user.USER_ID +
+      '"',
+    (err, row) => {
+      // body에서 받아온 data와 동일한 data가 있는지 확인
+      if (err) {
+        // 동일한 data가 없을 시 에러 호출
+        res.json({
+          success: false,
+          message: "Login failed please check your email or pasword",
+        });
+      }
+      if (row[0] !== undefined && row[0].email === request.body.user.email) {
+        // data가 undefined가 아니고, body에서 받아온 email과 select한 email이 같은 경우
+        bcrypt.compare(
+          request.body.user.password,
+          row[0].password,
+          (err, res2) => {
+            // body에서 받아온 password와 select한 password를 비교
+            if (res2) {
+              // 같은 경우 success
+              res.json({
+                success: true,
+                message: "Login successful",
+              });
+            } else {
+              // 다른 경우 에러 호출
+              res.send(401);
+            }
+          }
+        );
+      }
+    }
+  );
+});
+
+app.post("/api/kakaoLogin", async (request, res) => {
+  // client에서 server쪽으로 axios post방식으로 login api 가져오기
+  // res.send('ok');
   try {
-    await req.db("signUp", request.body.param);
+    await req.db("signUp", request.body.param); // signUp sql 호출하고, request시 body에 파라미터도 함께 들어오도록 설정
     if (request.body.param.length > 0) {
       for (let key in request.body.param[0])
-        request.session[key] = request.body.param[0][key];
-      res.send(request.body.param[0]);
+        request.session[key] = request.body.param[0][key]; // 받아온 파리미터의 첫번째 인자를 key값에 넣어줌
+        res.send(request.body.param[0]); // 받아왔던 파라미터를 보내줌
     } else {
-      res.send({
-        error: "Please try again or contact system manager.",
-      });
+      // 파라미터 없이 api를 호출했을 시
+      res.send({ error: "Please try again or contact system manager ." });
     }
   } catch (err) {
+    // DB에 저장 도중 error가 났을 시
     res.send({
       error: "DB access error",
     });
   }
 });
 
-//로그아웃 라우터. 로그아웃 시 세션 삭제
 app.post("/api/logout", async (request, res) => {
-  request.session.destroy();
+  // client에서 server쪽으로 axios post()방식으로 logout api가져오기
+  request.session.destroy(); // session 없애기
   res.send("ok");
 });
 
@@ -187,7 +229,6 @@ app.post("/api/logout", async (request, res) => {
 
 //cors 오류 해결 코드. 후에 cors 모듈을 이용하지 않고 해결할 방법 찾아볼 것
 //(프론트단에 추가한 액시오스 설정도 같이 볼 것)
-const cors = require("cors");
 
 let corsOption = {
   origin: "http://localhost:8080",
