@@ -189,39 +189,42 @@ export default {
       });
     },
     // 카카오 계정 정보 받아옴
-    getKakaoAccount() {
+    getKakaoAccount(authObj) {
+      // authObj라는 이름으로 파라메터 받아오기
+      console.log(authObj);
       window.Kakao.API.request({
+        //로그인 유저 정보 가져오기
         url: "/v2/user/me",
         success: res => {
-          const kakao_account = res.kakao_account;
-          const nickname = kakao_account.nickname;
-          const email = kakao_account.email
-          console.log('nickname', nickname);
-          console.log('email', email);
-          
+          // 성공시 콜백 함수
+          const kakao_account = res.kakao_account; // 로그인한 유저 계정 정보 받아오기
+          console.log(kakao_account); // 계정 정보 확인
+          this.kakao_login(kakao_account); // 계정 정보를 kakao_login으로 보내줌
+          this.$store.commit("user", kakao_account); // store로 유저 정보 보관
+          this.$router.push({path:'/'}); // 메인페이지로 라우팅
           alert("로그인 성공!");
-          this.$store.commit("user", kakao_account);
-          this.$router.push({path:'/'});
           // 로그인 상태
-          this.$store.state.isLogin = true
+          this.$store.state.isLogin = true // 헤더 로그인 상태로 변환
         },
       });
     },
     async kakao_login(kakao_account) {
+      // login겸  signup
       await this.$api("/api/login", {
         // 계정 정보를 kakaoLogin sql로 보냄
         param: [
-          {email:kakao_account.email, nickname:kakao_account.profile.nickname},
-          {nickname:kakao_account.profile.nickname}
+          { email: kakao_account.email, name: kakao_account.profile.nickname },
+          { name: kakao_account.profile.nickname },
           ]
       });
+      this.$store.commit("user", kakao_account); // vuex를 이용, 상태관리하도록 store에 user 정보 갱신
     },
     kakaoLogout() {
       window.Kakao.Auth.logout((response) => {
         console.log(response);
-        this.$store.commit("user", {});
+        this.$store.commit("user", {}); // store에 담긴 user 정보의 data를 null값으로 만듦
         alert("로그아웃");
-        this.$router.push({path:'/'});
+        this.$router.push({path:'/'}); // 로그아웃 이후 메인 페이지로 라우팅
       });
     }
   },
