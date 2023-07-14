@@ -1,5 +1,5 @@
 <template>
-  <footer class="dorne-footer-area">
+  <footer class="dorne-footer-area" style="position: relative;">
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 d-md-flex align-items-center justify-content-between">
