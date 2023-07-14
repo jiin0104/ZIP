@@ -19,12 +19,13 @@
 .board-list tbody tr:nth-child(even) {
   background-color: #f9f9f9;
 }
-.save-btn1 {
+.save-btn6 {
   min-width: 40px;
   height: 30px;
   line-height: 26px;
   margin: 0 auto;
   background-color: #dc3545;
+  color: white;
 }
 </style>
 <template>
@@ -71,14 +72,7 @@
             "
           >
             <h3 style="float: left">관리자페이지 회원관리</h3>
-            <div class="write-button" style="float: right">
-              <button
-                class="save-btn"
-                style="border: none; height: 30px; line-height: 0px"
-              >
-                저장
-              </button>
-            </div>
+            <div class="write-button" style="float: right"></div>
           </div>
 
           <div
@@ -106,7 +100,10 @@
                   <td>{{ user.USER_LOGIN_TYPE }}</td>
                   <td>{{ user.USER_GRADE }}</td>
                   <td>
-                    <button class="save-btn1" @click="userdel(user.USER_NO)">
+                    <button
+                      class="save-btn6"
+                      @click="userdel(user.USER_NICKNAME)"
+                    >
                       삭제
                     </button>
                   </td>
@@ -173,13 +170,10 @@ export default {
       this.userList = await this.$api("/api/user_sql", {});
       console.log(this.userList);
     },
-    userdel() {
-      if (confirm("정말 삭제하시겠습니까??") == true) {
-        //확인
-        document.form.submit();
-      } else {
-        //취소
-        return;
+    async userdel(USER_NICKNAME) {
+      if (confirm("삭제하시겠습니까?") == true) {
+        await this.$api("/api/user_sql_del", { param: [USER_NICKNAME] });
+        this.getUserList();
       }
     },
   },

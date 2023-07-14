@@ -14,7 +14,7 @@
           <form action="" method="post">
             <div class="img_add" style="width: 400px; height: 500px">
               <img
-                :src="'/download/${acco.acco_id}/${acco.acco_image}'"
+                :src="`/download/${ACCO_ID}/${ACCO_IMAGE}`"
                 class="d-block w-100"
                 alt="..."
                 style="width: 400px; height: auto"
@@ -27,8 +27,8 @@
           </form>
         </div>
         <div class="col-md-7">
-          <div class="card shadow-sm" style="height: 500px">
-            <div class="card-body" style="height: 500px">
+          <div class="card shadow-sm" style="width: 500px; height: 510px">
+            <div class="card-body">
               <h5 class="card-title" id="card1" style="float: left">업체명</h5>
               <br />
               <br />
@@ -36,6 +36,7 @@
                 type="text"
                 placeholder="업체명 입력"
                 style="border: 1px solid; float: left"
+                v-model="accommodations.ACCO_NAME"
               /><br /><br />
               <h5 class="card-title" id="card1" style="float: left">
                 업체주소
@@ -62,7 +63,7 @@
                   type="text"
                   placeholder="주소"
                   role="textbox"
-                  v-model="roadAddress"
+                  v-model="accommodations.ACCO_ADDRESS1"
                   readonly
                   style="width: 67%; float: left"
                 /><br />
@@ -71,7 +72,7 @@
                   id="addressdetail"
                   placeholder="상세주소"
                   role="textbox"
-                  v-model="detailAddress"
+                  v-model="accommodations.ACCO_ADDRESS1"
                   style="width: 67%; float: left"
                 /><br />
               </div>
@@ -91,18 +92,40 @@
                   type="text"
                   style="size: 20px; border: 1px solid; float: left"
                   placeholder="객실명입력"
+                  v-model="accommodations.ACCO_NAME"
                 /><br /><br />
               </div>
               <h5 style="float: left">업체분류</h5>
               <br /><br />
               <div style="float: left">
-                <input type="checkbox" class="hotel" />
+                <input
+                  type="checkbox"
+                  id="adcno_0"
+                  name="adcno[]"
+                  class="inp_chk"
+                  value="1"
+                  v-model="accommodations.ACCO_TYPE"
+                />
                 <label>호텔</label>
                 <br />
-                <input type="checkbox" class="motel" />
+                <input
+                  type="checkbox"
+                  id="adcno_1"
+                  name="adcno[]"
+                  class="inp_chk"
+                  value="2"
+                  v-model="accommodations.ACCO_TYPE"
+                />
                 <label>모텔</label>
                 <br />
-                <input type="checkbox" class="cottage" />
+                <input
+                  type="checkbox"
+                  id="adcno_2"
+                  name="adcno[]"
+                  class="inp_chk"
+                  value="3"
+                  v-model="accommodations.ACCO_TYPE"
+                />
                 <label>펜션</label>
               </div>
               <br />
@@ -112,6 +135,8 @@
         </div>
         <div>
           <br /><br />
+          <!-- <input type="file" accept="image/png, image/jpeg" /> -->
+
           <h3>업체 상세 소개</h3>
           <textarea
             name="message"
@@ -120,12 +145,14 @@
             cols="129"
             rows="10"
             placeholder="업체 상세 소개를 입력해주세요"
+            v-model="accommodations.ACCO_DETAIL_DESCRIPTION"
           ></textarea>
           <br />
           <button
             type="button"
             class="save-btn1"
             style="border: none; float: right"
+            @click="productInsert"
           >
             저장
           </button>
@@ -141,11 +168,16 @@
 </template>
 <script>
 export default {
-  name: "",
   components: {},
   data() {
     return {
-      sampledata: "",
+      accommodations: {
+        ACCO_NAME: "",
+        ACCO_ADDRESS1: "",
+        ACCO_ADDRESS2: "",
+        ACCO_TYPE: "",
+        ACCO_DETAIL_DESCRIPTION: "",
+      },
     };
   },
   beforeCreate() {},
@@ -164,6 +196,12 @@ export default {
           this.roadAddress = data.roadAddress;
         },
       }).open();
+    },
+    async getProductImage() {
+      this.productImage = await this.$api("/api/imageList", {
+        param: [this.productId],
+      });
+      console.log("this.productImage", this.productImage);
     },
   },
 };
