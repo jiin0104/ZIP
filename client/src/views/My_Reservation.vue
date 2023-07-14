@@ -1,23 +1,45 @@
 <template>
   <div>
     <!-- ***** Contact Area Start ***** -->
-    <div class="dorne-contact-area d-md-flex container" style="padding-top: 43px" id="contact">
+    <div
+      class="dorne-contact-area d-md-flex container"
+      style="padding-top: 43px"
+      id="contact"
+    >
       <!-- 버튼부분-->
       <div style="width: 20%">
         <div class="leftsidebar" style="width: 20%; padding-top: 30%">
-          <button type="button" id="mypage_button" style="max-width: 20px" @click="Mypage_Link">
+          <button
+            type="button"
+            id="mypage_button"
+            style="max-width: 20px"
+            @click="Mypage_Link"
+          >
             내정보
           </button>
-          <button type="button" id="mypage_button" style="max-width: 20px; color: red" @click="My_reservation_Link">
+          <button
+            type="button"
+            id="mypage_button"
+            style="max-width: 20px; color: red"
+            @click="My_reservation_Link"
+          >
             예약내역
           </button>
-          <button type="button" id="mypage_button" style="max-width: 20px" @click="My_Delete_Link">
+          <button
+            type="button"
+            id="mypage_button"
+            style="max-width: 20px"
+            @click="My_Delete_Link"
+          >
             회원 탈퇴
           </button>
         </div>
       </div>
       <!-- 여기가 오른쪽에 있는 내용 -->
-      <div class="contact-form-area equal-height container" style="padding-top: 6%">
+      <div
+        class="contact-form-area equal-height container"
+        style="padding-top: 6%"
+      >
         <div class="contact-text">
           <h1>예약내역</h1>
           <div v-if="reslist == null" class="reslistempty">
@@ -30,22 +52,40 @@
             </button>
           </div>
 
-          <div v-else style="position: relative; left: 18%" v-for="(rs, i) in reslist" :key="i">
+          <div
+            v-else
+            style="position: relative; left: 18%"
+            v-for="(rs, i) in reslist"
+            :key="i"
+          >
             <div class="res-content">
-              <img :src="`/download/${rs.ACCO_ID}/${rs.ACCO_IMAGE}`" class="room-image"
-                style="display: block; margin-bottom: 0; " />
-              <strong style="font-size: 17px;">{{
-                rs.RESERVATION_NAME
-              }}</strong>
+              <img
+                :src="`/download/${rs.ACCO_ID}/${rs.ACCO_IMAGE}`"
+                class="room-image"
+                style="display: block; margin-bottom: 0"
+              />
+              <strong style="font-size: 17px">{{ rs.ACCO_NAME }}</strong>
               <div style="position: relative; left: 69px">
-                <button id="button2" style="display: inline-block" @click="openModal()">
+                <button
+                  id="button2"
+                  style="display: inline-block"
+                  @click="openModal()"
+                >
                   상세내역
                 </button>
-                <button id="button3" @click="showConfirmation()" style="display: inline-block">
+                <button
+                  id="button3"
+                  @click="showConfirmation()"
+                  style="display: inline-block"
+                >
                   예약취소
                 </button>
               </div>
-              <div id="popup" class="popup" style="display: none; left: 30px; top: 50px">
+              <div
+                id="popup"
+                class="popup"
+                style="display: none; left: 30px; top: 50px"
+              >
                 <p class="popup-message" style="font-size: 18px">
                   예약을 취소하시겠습니까?
                 </p>
@@ -61,31 +101,25 @@
             </div>
           </div>
         </div>
+
         <div id="modal" class="modal">
-          <div class="modal-content" v-for="(rs, i) in reslist" :key="i">
+          <div class="modal-content" v-for="(resm, i) in resmodalList" :key="i">
             <div class="reslistpopup">
               <h2>예약완료 내역</h2>
               <div>
-                <strong>숙소 이름: {{ rs.RESERVATION_NAME }}</strong>
+                <strong>숙소 이름: {{ resm.ACCO_NAME }}</strong>
               </div>
               <section>
                 <div>
-                  <p>
-                    <strong>체크인</strong> {{ rs.RESERVATION_CHECK_IN }}
-                  </p>
+                  <p><strong>체크인</strong> {{ resm.RESERVATION_CHECK_IN }}</p>
                   <p>
                     <strong>체크아웃</strong>
-                    {{ rs.RESERVATION_CHECK_OUT }}
+                    {{ resm.RESERVATION_CHECK_OUT }}
                   </p>
                 </div>
                 <div>
-                  <p><strong>예약번호</strong> {{ rs.RESERVATION_ID }}</p>
-                  <p>
-                    <strong>예약자 휴대폰 번호</strong> {{ rs.USER_TEL }}
-                  </p>
-                  <p>
-                    <strong>숙박인원</strong> {{ rs.RESERVATION_CAPACITY }}
-                  </p>
+                  <p><strong>예약번호</strong> {{ resm.RESERVATION_ID }}</p>
+                  <p><strong>예약자 휴대폰 번호</strong> {{ resm.USER_TEL }}</p>
                 </div>
               </section>
               <div class="total">
@@ -95,7 +129,7 @@
                   </div>
                   <div class="payment-info-middle">
                     <p>
-                      <b>{{ rs.PAYMENT_TOTAL_PRICE }}</b>
+                      <b>{{ resm.PAYMENT_TOTAL_PRICE }}</b>
                     </p>
                   </div>
                 </div>
@@ -122,6 +156,7 @@ export default {
   data() {
     return {
       reslist: [],
+      resmodalList: [],
     };
   },
   mounted() {
@@ -148,14 +183,35 @@ export default {
     },
 
     async Get_Reservation_Info() {
-      this.reslist = await this.$api("/api/reslist", []);
+      this.reslist = await this.$api("/api/reslist", {
+        USER_NO: 1,
+      });
 
-      //console.log(this.reslist);
+      console.log(
+        "My_Reservation.vue {reslist.length} : ",
+        this.reslist.length
+      );
+      for (var i = 0; i < this.reslist.length; i++) {
+        console.log(this.reslist[i]);
+      }
+    },
+
+    async Get_Modal_Info() {
+      this.resmodalList = await this.$api("/api/resmodalList", {
+        ACCO_ID: 1,
+      });
+
+      console.log(
+        "My_Reservation.vue {resmodalList.length} : ",
+        this.resmodalList.length
+      );
+      for (var i = 0; i < this.resmodalList.length; i++) {
+        console.log(this.resmodalList[i]);
+      }
     },
 
     //팝업
     showConfirmation() {
-
       var popup = document.getElementById("popup");
       popup.style.display = "block";
     },
@@ -172,14 +228,16 @@ export default {
     //예약 모달
     openModal() {
       var modal = document.getElementById("modal");
+      this.Get_Modal_Info();
+      console.log("모달 여깃다!");
       modal.style.display = "block";
     },
 
     closeModal() {
       var modal = document.getElementById("modal");
+      console.log("모달 주거따 ㅠ");
       modal.style.display = "none";
     },
-
   },
 };
 </script>
