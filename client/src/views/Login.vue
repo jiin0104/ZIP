@@ -3,7 +3,7 @@
     <div class="limiter">
       <div class="container-login100">
         <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-          <form class="login100-form validate-form" @submit.prevent="fnLogin">
+          <form class="login100-form validate-form" @submit.prevent="login">
             <div
               class="wrap-input100 validate-input m-b-23"
               data-validate="Username is required"
@@ -14,7 +14,8 @@
                 type="text"
                 name="username"
                 placeholder="이메일을 입력하세요"
-                v-model="user_id"
+                v-model="l_user.USER_ID"
+                required
               />
             </div>
 
@@ -28,7 +29,8 @@
                 type="password"
                 name="pass"
                 placeholder="비밀번호를 입력하세요"
-                v-model="user_pw"
+                v-model="l_user.USER_PASSWORD"
+                required
               />
             </div>
 
@@ -113,8 +115,10 @@ export default {
   name: "naverLogin",
   data() {
     return {
-      user_id: null,
-      user_pw: null,
+      l_user: {
+        USER_ID: null,
+        USER_PASSWORD: null,
+      },
       naverLogin: null,
     };
   },
@@ -147,7 +151,7 @@ export default {
           return;
         }
       } else {
-        console.log("callback 처리에 실패했습니다.");
+        // console.log("callback 처리에 실패했습니다.");
       }
     });
   },
@@ -163,18 +167,18 @@ export default {
     });
   },
 
-  //이메일 비밀번호 입력유무
   methods: {
-    fnLogin() {
-      if (this.user_id === null) {
-        alert("이메일을 입력하세요.");
-        return;
-      }
-
-      if (this.user_pw === null) {
-        alert("비밀번호를 입력하세요.");
-        return;
-      }
+    async login() {    
+      await this.$api("/api/login", { user: this.l_user }) // l_user 데이터를 login sql를 통해 확인
+        .then(() => {
+          alert("로그인 성공!"); // api가 정상적으로 작동할 시 해당 alert를 띄움
+          this.$router.push({ path: "/" }); // 메인페이지로 라우팅
+          this.$store.commit("user", this.l_user); // vuex를 이용하여 상태관리하도록 store에 user 정보를 갱신
+        })
+        .catch(() => {
+          // api 오류 발생 시 해당 alert 띄움
+          alert("계정 정보를 확인해주세요.");
+        });
     },
 
     // 카카오 간편 로그인
@@ -203,8 +207,9 @@ export default {
         },
       });
     },
-    async login(kakao_account) {
+    async kakao_login(kakao_account) {
       await this.$api("/api/login", {
+        // 계정 정보를 kakaoLogin sql로 보냄
         param: [
           {email:kakao_account.email, nickname:kakao_account.profile.nickname},
           {nickname:kakao_account.profile.nickname}

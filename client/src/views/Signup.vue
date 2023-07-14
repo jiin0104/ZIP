@@ -177,7 +177,8 @@
           nickname: this.nickname,
           password: this.password,
           phone: this.phone,
-          address: this.roadAddress + ' ' + this.detailAddress
+          roadAddress: this.roadAddress,
+          detailAddress: this.detailAddress
         };
   
   
