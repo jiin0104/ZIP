@@ -53,7 +53,7 @@ fs.watchFile(__dirname + "/sql.js", (curr, prev) => {
 const dbPool = mysql.createPool({
   host: "127.0.0.1",
   user: "root",
-  password: "@k41292001",
+  password: "root",
   database: "project",
   connectionLimit: 100, //연결할 수 있는 최대 수 100
 });
@@ -305,6 +305,66 @@ app.post("/checkNickname", (req, res) => {
     }
   });
 });
+
+
+
+
+// 결제 API 엔드포인트
+app.post("/payment", (req, res) => {
+  //db연결을 사용해서 작업
+  dbPool.getConnection((err, connection) => {
+    if (err) {
+      console.error("db연결에 문제가 있음", err);
+      return res.status(500).json({ error: "db연결에 실패했습니다." });
+    }
+
+    const { totalprice, reservationid } = req.body;
+
+    // 결제 정보 저장
+    const insertPaymentSql =
+      "INSERT INTO payment (PAYMENT_TOTAL_PRICE, PAYMENT_STATUS, RESERVATION_ID) VALUES (?, ?, ?)";
+    const values = [totalprice, "", reservationid];
+    connection.query(insertPaymentSql, values, (err, result) => {
+      connection.release(); // 사용이 완료된 연결 반환
+
+      if (err) {
+        console.error("회원 정보 인서트 실패:", err);
+        return res
+          .status(500)
+          .json({ error: "회원 정보 인서트에 실패했습니다." });
+      }
+
+      // 결제 성공 응답
+      res.json({ message: "결제 되셨습니다." });
+    });
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // 서버 실행
 app.listen(3000, () => {
