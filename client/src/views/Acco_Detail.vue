@@ -310,7 +310,7 @@ export default {
       employList: [{ title: "", sub: "" }],
       detailList: {},
       ACCO_ID: 0,
-      accoid: 2, // 예시
+      accoid: 5, // 예시
       userno: 1, // 예시
       check_in: '2012-1-12', // 예시
       check_out: '2012-3-14' // 예시
