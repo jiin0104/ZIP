@@ -184,20 +184,6 @@ th {
                     <img :src="`/download/${detailList.ACCO_ID}/${detailList.ACCO_IMAGE}`" class="d-block w-100"
                       alt="..." />
                   </div>
-                  <!-- <div class="carousel-item">
-                    <img
-                      src="https://image.goodchoice.kr/resize_490x348/affiliate/2018/03/05/5a9d03fcd1b18.jpg"
-                      class="d-block w-100"
-                      alt="..."
-                    />
-                  </div>
-                  <div class="carousel-item">
-                    <img
-                      src="https://image.goodchoice.kr/resize_490x348/affiliate/2018/03/05/5a9d040dd59b7.jpg"
-                      class="d-block w-100"
-                      alt="..."
-                    />
-                  </div> -->
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -217,7 +203,9 @@ th {
                     <h3>{{ detailList.ACCO_NAME }}</h3>
                     <b>주소</b>
                     <br />
-                    <p>{{ detailList.ACCO_ADDRESS }}</p>
+                    <p>{{ detailList.ACCO_ADDRESS1 }}</p>
+                    <br />
+                    <p>{{ detailList.ACCO_ADDRESS2 }}</p>
                     <br />
                     <p>
                       {{ detailList.ACCO_INTRODUCE_COMMENT }}
@@ -309,9 +297,9 @@ export default {
       tabList: [{ name: "객실안내" }, { name: "숙소정보" }],
       employList: [{ title: "", sub: "" }],
       detailList: {},
-      ACCO_ID: 0,
-      accoid: 5, // 예시
-      userno: 1, // 예시
+      
+      accoid: this.$route.query.ACCO_ID, // 예시
+      userno: 1,      //this.$route.query.USER_NO,
       check_in: '2012-1-12', // 예시
       check_out: '2012-3-14' // 예시
     };
@@ -349,6 +337,7 @@ export default {
           if (response.data.message) {
             // 예약 누르면 예약페이지로
             this.$router.push({ path: '/payment', query: { ACCO_ID: ACCO_ID } });
+            
           } else {
             alert('뭔가가 실패했습니다.');
             console.log(formData);
