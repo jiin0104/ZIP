@@ -12,6 +12,7 @@ const passportConfig = require('./passport');
 const mysql = require("mysql2");
 const app = express();
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken")
 
 // 쿠키 설정. 쿠키사용 보류
 app.use(
@@ -143,43 +144,45 @@ app.post("/apirole/:alias", async (request, res) => {
 });
 
 //로그인 라우터. 웹페이지'/login'에서 인증로직 처리.
-app.post("/api/login", async (request, res) => {
-  // login api
-  await dbPool.query(
-    'SELECT USER_ID, USER_PASSWORD FROM users WHERE USER_ID = "' +
-    request.body.user.USER_ID +
-    '"',
-    (err, row) => {
-      // body에서 받아온 data와 동일한 data가 있는지 확인
-      if (err) {
-        // 동일한 data가 없을 시 에러 호출
-        res.json({
-          success: false,
-          message: "Login failed please check your email or pasword",
-        });
-      }
-      if (row[0] !== undefined && row[0].email === request.body.user.email) {
-        // data가 undefined가 아니고, body에서 받아온 email과 select한 email이 같은 경우
-        bcrypt.compare(
-          request.body.user.password,
-          row[0].password,
-          (err, res2) => {
-            // body에서 받아온 password와 select한 password를 비교
-            if (res2) {
-              // 같은 경우 success
-              res.json({
-                success: true,
-                message: "Login successful",
-              });
-            } else {
-              // 다른 경우 에러 호출
-              res.send(401);
-            }
-          }
-        );
-      }
+app.post("/api/login", (req, res) => {
+  const saveData = req.body; // 데이터 추출
+  // 변수 할당
+  const userId = saveData.userId;
+  const userPw = saveData.userPw;
+  // 쿼리문 생성
+  const query = "SELECT * FROM users WHERE USER_ID = ? AND USER_PASSWORD = ?";
+
+  dbPool.getConnection((err, connection) => {
+    if (err) {
+      console.error("DB 연결을 가져오는 중 오류 발생:", err);
+      res.status(500).json({ error: "로그인 처리 중 오류가 발생했습니다." });
+      return;
     }
-  );
+
+    // 쿼리 실행
+    connection.query(query, [userId, userPw], (error, results) => {
+      connection.release(); // 연결 반환
+
+      if (error) {
+        console.error("쿼리 실행 중 오류 발생:", error);
+        res.status(500).json({ error: "로그인 처리 중 오류가 발생했습니다." });
+        return;
+      }
+
+      // 결과 확인
+      if (results.length > 0 && results[0].USER_ID === userId && results[0].USER_PASSWORD === userPw) {
+        // 로그인 성공
+
+        // 토큰 생성
+        const token = jwt.sign({ userId }, { expiresIn: "1h" });
+
+        res.status(200).json({ token }); // 토큰 반환
+      } else {
+        // 로그인 실패
+        res.status(401).json({ error: "잘못된 사용자 ID 또는 비밀번호입니다." });
+      }
+    });
+  });
 });
 
 app.post("/api/kakaoLogin", async (request, res) => {
