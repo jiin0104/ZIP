@@ -104,7 +104,7 @@ a {
 import { mapState } from 'vuex';
 
 export default {
-  name: 'header',
+  name: 'Header',
   data() {
     return {
       userRole: 'member',

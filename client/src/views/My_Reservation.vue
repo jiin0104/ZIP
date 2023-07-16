@@ -58,18 +58,18 @@
             v-for="(rs, i) in reslist"
             :key="i"
           >
-            <div class="res-content">
+            <div class="res-content" style="height: 350px">
               <img
                 :src="`/download/${rs.ACCO_ID}/${rs.ACCO_IMAGE}`"
                 class="room-image"
                 style="display: block; margin-bottom: 0"
               />
-              <strong style="font-size: 17px">{{ rs.ACCO_NAME }}</strong>
-              <div style="position: relative; left: 69px">
+              <strong style="font-size: 18px">{{ rs.ACCO_NAME }}</strong>
+              <div style="position: relative; left: 69px; margin: 10px">
                 <button
                   id="button2"
                   style="display: inline-block"
-                  @click="openModal()"
+                  @click="openModal(rs)"
                 >
                   상세내역
                 </button>
@@ -93,7 +93,7 @@
                   <button id="button7" @click="hideConfirmation()">취소</button>
                 </div>
                 <div class="popup-buttons">
-                  <button id="button8" @click="cancelReservation()">
+                  <button id="button8" @click="cancelReservation(rs)">
                     확인
                   </button>
                 </div>
@@ -155,6 +155,8 @@ axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
 export default {
   data() {
     return {
+      USER_NO: 1, // 로그인 구현되면 로그인된 유저의 USER_NO를 넣어야함
+      ACCO_ID: "",
       reslist: [],
       resmodalList: [],
     };
@@ -182,32 +184,25 @@ export default {
       this.$router.push({ path: "/" });
     },
 
+    //유저의 예약리스트
     async Get_Reservation_Info() {
       this.reslist = await this.$api("/api/reslist", {
-        USER_NO: 1,
+        param: [this.USER_NO], // 현재는 테스트, 나중엔 USER_NO 를 받아와야함
       });
-
-      console.log(
-        "My_Reservation.vue {reslist.length} : ",
-        this.reslist.length
-      );
-      for (var i = 0; i < this.reslist.length; i++) {
-        console.log(this.reslist[i]);
-      }
     },
 
+    //예약한 숙소의 정보 가져오기
     async Get_Modal_Info() {
       this.resmodalList = await this.$api("/api/resmodalList", {
-        ACCO_ID: 1,
+        param: [this.ACCO_ID],
       });
+    },
 
-      console.log(
-        "My_Reservation.vue {resmodalList.length} : ",
-        this.resmodalList.length
-      );
-      for (var i = 0; i < this.resmodalList.length; i++) {
-        console.log(this.resmodalList[i]);
-      }
+    //예약 취소하기
+    async Delete_res() {
+      this.ResDelete = await this.$api("/api/ResDelete", {
+        param: [this.ACCO_ID],
+      });
     },
 
     //팝업
@@ -219,17 +214,20 @@ export default {
       var popup = document.getElementById("popup");
       popup.style.display = "none";
     },
-    cancelReservation() {
-      alert("예약이 취소되었습니다");
+    cancelReservation(rs) {
       var popup = document.getElementById("popup");
       popup.style.display = "none";
+      this.ResDelete = this.$api("/api/ResDelete", { param: [rs.ACCO_ID] });
+      alert("예약이 취소되었습니다");
+      this.hideConfirmation();
+      location.href = "/My_Reservation";
     },
 
     //예약 모달
-    openModal() {
+    openModal(rs) {
       var modal = document.getElementById("modal");
+      this.ACCO_ID = rs.ACCO_ID;
       this.Get_Modal_Info();
-      console.log("모달 여깃다!");
       modal.style.display = "block";
     },
 

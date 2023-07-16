@@ -1,5 +1,6 @@
 //각종 js 파일을 병합해서 app에 적용 시키는 파일
 
+
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
@@ -7,6 +8,9 @@ import store from './store'
 import mixins from './mixins'
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+
+
 
 // import specific icons
 import { fas } from '@fortawesome/free-solid-svg-icons';

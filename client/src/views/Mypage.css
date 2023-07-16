@@ -2,418 +2,419 @@
 
 /*내정보(공통) 사이드바 버튼들*/
 #mypage_button {
-  margin: 0px;
-  min-width: 200px;
-  height: 52px;
-  margin-left: 45px;
-  background-color: #eff1f3;
-  border-radius: 0;
-  padding: 0 15px;
-  line-height: 50px;
-  color: #72728c;
-  font-weight: 600;
-  font-size: 15px;
-  -webkit-transition-duration: 500ms;
-  transition-duration: 500ms;
-  border: none;
+	margin: 0px;
+	min-width: 200px;
+	height: 52px;
+	margin-left: 45px;
+	background-color: #eff1f3;
+	border-radius: 0;
+	padding: 0 15px;
+	line-height: 50px;
+	color: #72728c;
+	font-weight: 600;
+	font-size: 15px;
+	-webkit-transition-duration: 500ms;
+	transition-duration: 500ms;
+	border: none;
 }
 /*마이페이지(공통) 타이틀*/
 h1 {
-  margin-bottom: 60px;
-  text-align: center;
-  position: relative;
-  left: 0%;
+	margin-bottom: 60px;
+	text-align: center;
+	position: relative;
+	left: 0%;
 }
 
 /*마이페이지.mypage.html*/
 
 .user-info {
-  font-family: "Noto Sans KR", sans-serif;
-  height: 300px;
-  width: 500px;
-  background-color: fff;
-  text-align: center;
-  font-size: 30px;
-  position: relative;
-  top: 30px;
-  left: 18%;
+	font-family: "Noto Sans KR", sans-serif;
+	height: 300px;
+	width: 500px;
+	background-color: fff;
+	text-align: center;
+	font-size: 30px;
+	position: relative;
+	top: 30px;
+	left: 18%;
 }
 
 .user-info[role="textbox"] {
-  border-style: hidden;
+	border-style: hidden;
 }
 
 .user-info p {
-  font-size: 20px;
+	font-size: 20px;
 }
 
 .user-info strong {
-  font-size: 20px;
+	font-size: 20px;
 }
 
 #infobutton {
-  background-color: #0b5394;
-  min-width: 187px;
-  height: 52px;
-  border-radius: 0;
-  padding: 0 15px;
-  line-height: 50px;
-  color: #fff;
-  font-weight: 400;
-  font-size: 18px;
-  -webkit-transition-duration: 500ms;
-  transition-duration: 500ms;
-  border: none;
+	background-color: #0b5394;
+	min-width: 187px;
+	height: 52px;
+	border-radius: 0;
+	padding: 0 15px;
+	line-height: 50px;
+	color: #fff;
+	font-weight: 400;
+	font-size: 18px;
+	-webkit-transition-duration: 500ms;
+	transition-duration: 500ms;
+	border: none;
+	position: relative;
+	right: 50px;
 }
 
 /*회원정보수정*/
 .field2 [role="textbox"] {
-  font-family: "Noto Sans KR", sans-serif;
-  width: 180px;
-  height: 32px;
-  font-size: 15px;
-  border: 0;
-  border-radius: 15px;
-  outline: none;
-  margin: 7px 7px 0px 0px;
-  padding: 10px;
-  background-color: rgb(233, 233, 233);
+	font-family: "Noto Sans KR", sans-serif;
+	width: 180px;
+	height: 32px;
+	font-size: 15px;
+	border: 0;
+	border-radius: 15px;
+	outline: none;
+	margin: 7px 7px 0px 0px;
+	padding: 10px;
+	background-color: rgb(233, 233, 233);
 }
 .field2 [role="textbox2"] {
-  font-family: "Noto Sans KR", sans-serif;
-  width: 60px;
-  height: 32px;
-  font-size: 15px;
-  border: 0;
-  border-radius: 15px;
-  outline: none;
-  margin: 7px 0px 0px 0px;
-  padding: 10px;
-  background-color: rgb(233, 233, 233);
+	font-family: "Noto Sans KR", sans-serif;
+	width: 60px;
+	height: 32px;
+	font-size: 15px;
+	border: 0;
+	border-radius: 15px;
+	outline: none;
+	margin: 7px 0px 0px 0px;
+	padding: 10px;
+	background-color: rgb(233, 233, 233);
 }
 .field2 #sample6_address {
-  width: 300px;
+	width: 300px;
 }
 
 .field2 #sample6_detailAddress {
-  width: 300px;
+	width: 300px;
 }
 
 .field2 #sample6_extraAddress {
-  width: 300px;
+	width: 300px;
 }
 
 .member2 #sample6_postcode {
-  width: 100px;
+	width: 100px;
 }
 
 #crosscheck {
-  background-color: #0b5394;
-  color: #fff;
-  padding: 3px 5px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 15px;
+	background-color: #0b5394;
+	color: #fff;
+	padding: 3px 5px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 15px;
 }
 
 #findad {
-  width: 100px;
-  height: 30px;
-  border: none;
-  background-color: #0b5394;
-  color: #fff;
-  padding: 3px 5px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 15px;
+	width: 100px;
+	height: 30px;
+	border: none;
+	background-color: #0b5394;
+	color: #fff;
+	padding: 3px 5px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 15px;
 }
 #addallow {
-  background-color: #0b5394;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 17px;
-  width: 50px;
-  height: 35px;
-  text-align: center;
+	background-color: #0b5394;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 17px;
+	width: 50px;
+	height: 35px;
+	text-align: center;
 }
 
 /*예약내역.reservation.html*/
 
 .res-content {
-  /*이용내역과 겹침*/
-  background-color: fff;
-  text-align: center;
-  font-size: 30px;
-  border-radius: 9px;
-  border: 1px solid gainsboro;
-  width: 300px;
-  height: 300px;
+	/*이용내역과 겹침*/
+	background-color: fff;
+	text-align: center;
+	font-size: 30px;
+	border-radius: 9px;
+	border: 1px solid gainsboro;
+	width: 250px;
+	height: 100px;
 }
 
 #button2 {
-  background-color: #0b5394;
-  min-width: 100px;
-  height: 50px;
-  border-radius: 0;
-  line-height: 50px;
-  color: #fff;
-  font-weight: 600;
-  font-size: 15px;
-  -webkit-transition-duration: 500ms;
-  transition-duration: 500ms;
-  border: none;
+	background-color: #0b5394;
+	min-width: 100px;
+	height: 50px;
+	border-radius: 0;
+	line-height: 50px;
+	color: #fff;
+	font-weight: 600;
+	font-size: 15px;
+	-webkit-transition-duration: 500ms;
+	transition-duration: 500ms;
+	border: none;
 }
 
 #button3 {
-  background-color: #dc3545;
-  min-width: 100px;
-  height: 50px;
-  border-radius: 0;
-  line-height: 50px;
-  color: #fff;
-  font-weight: 600;
-  font-size: 15px;
-  -webkit-transition-duration: 500ms;
-  transition-duration: 500ms;
-  border: none;
-  position: relative;
-  left: 10%;
+	background-color: #dc3545;
+	min-width: 100px;
+	height: 50px;
+	border-radius: 0;
+	line-height: 50px;
+	color: #fff;
+	font-weight: 600;
+	font-size: 15px;
+	-webkit-transition-duration: 500ms;
+	transition-duration: 500ms;
+	border: none;
+	position: relative;
+	left: 10%;
 }
 
 img[class="room-image"] {
-  border-radius: 2px;
-  border: 1px solid gainsboro;
-  width: 300px;
-  height: 180px;
+	width: 400px;
+	height: 230px;
+	border: 0;
 }
 
 .really2 {
-  font-size: 20px;
-  position: relative;
+	font-size: 20px;
+	position: relative;
 }
 
 /*예약내역없을때.reservationempty.html*/
 
 .reslistempty {
-  /*내찜목록 없을때랑 겹침*/
-  text-align: center;
-  width: 400px;
-  height: 400px;
-  position: relative;
-  top: 30px;
-  left: 230px;
+	/*내찜목록 없을때랑 겹침*/
+	text-align: center;
+	width: 400px;
+	height: 400px;
+	position: relative;
+	top: 30px;
+	left: 230px;
 }
 
 /*이용내역.myuselist.html*/
 
 #button4 {
-  background-color: #0b5394;
-  min-width: 100px;
-  height: 50px;
-  border-radius: 0;
-  line-height: 50px;
-  color: #fff;
-  font-weight: 600;
-  font-size: 15px;
-  -webkit-transition-duration: 500ms;
-  transition-duration: 500ms;
-  border: none;
-  position: relative;
-  left: 10%;
+	background-color: #0b5394;
+	min-width: 100px;
+	height: 50px;
+	border-radius: 0;
+	line-height: 50px;
+	color: #fff;
+	font-weight: 600;
+	font-size: 15px;
+	-webkit-transition-duration: 500ms;
+	transition-duration: 500ms;
+	border: none;
+	position: relative;
+	left: 10%;
 }
 
 #button5 {
-  background-color: gray;
-  min-width: 100px;
-  height: 50px;
-  border-radius: 0;
-  line-height: 50px;
-  color: #fff;
-  font-weight: 600;
-  font-size: 15px;
-  -webkit-transition-duration: 500ms;
-  transition-duration: 500ms;
-  border: none;
-  position: relative;
+	background-color: gray;
+	min-width: 100px;
+	height: 50px;
+	border-radius: 0;
+	line-height: 50px;
+	color: #fff;
+	font-weight: 600;
+	font-size: 15px;
+	-webkit-transition-duration: 500ms;
+	transition-duration: 500ms;
+	border: none;
+	position: relative;
 }
 
 /*내 찜 목록.likelist*/
 .like-content-list {
-  width: 500px;
-  position: relative;
-  left: 180px;
+	width: 500px;
+	position: relative;
+	left: 180px;
 }
 
 .like-content {
-  height: 200px;
-  background-color: fff;
-  text-align: center;
-  font-size: 25px;
-  border-radius: 9px;
-  border: 1px solid gainsboro;
+	height: 200px;
+	background-color: fff;
+	text-align: center;
+	font-size: 25px;
+	border-radius: 9px;
+	border: 1px solid gainsboro;
 }
 
 .like-content img {
-  float: left;
-  width: 180px;
-  height: 200px;
-  padding: 10px;
-  border-radius: 10%;
+	float: left;
+	width: 180px;
+	height: 200px;
+	padding: 10px;
+	border-radius: 10%;
 }
 
 .like-content p {
-  font-size: 20px;
-  color: black;
-  position: relative;
-  left: 10px;
-  top: 30px;
+	font-size: 20px;
+	color: black;
+	position: relative;
+	left: 10px;
+	top: 30px;
 }
 
 .like-content div {
-  font-size: 15px;
-  overflow: auto;
-  position: relative;
-  left: 30px;
-  top: 30px;
-  background-color: fff;
-  width: 150px;
-  height: 80px;
+	font-size: 15px;
+	overflow: auto;
+	position: relative;
+	left: 30px;
+	top: 30px;
+	background-color: fff;
+	width: 150px;
+	height: 80px;
 }
 
 .like-content span {
-  font-size: 20px;
-  font-weight: 700;
-  text-align: right;
-  font-family: "Noto Sans KR", sans-serif;
-  overflow: auto;
-  float: right;
-  position: relative;
-  top: 30px;
-  right: 10px;
+	font-size: 20px;
+	font-weight: 700;
+	text-align: right;
+	font-family: "Noto Sans KR", sans-serif;
+	overflow: auto;
+	float: right;
+	position: relative;
+	top: 30px;
+	right: 10px;
 }
 
 /*내 찜 목록 없을때. likelistempty*/
 
 #main {
-  width: 300px;
-  height: 50px;
-  background-color: #0b5394;
-  color: #fff;
-  padding: 3px 5px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 19px;
+	width: 300px;
+	height: 50px;
+	background-color: #0b5394;
+	color: #fff;
+	padding: 3px 5px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 19px;
 }
 
 /*회원탈퇴. mydelete.html*/
 .really {
-  font-size: 16px;
-  text-align: center;
+	font-size: 16px;
+	text-align: center;
 }
 
 #button6 {
-  background-color: #0b5394;
-  min-width: 70px;
-  height: 40px;
-  border-radius: 0;
-  line-height: 20px;
-  color: #fff;
-  font-weight: 600;
-  font-size: 15px;
-  -webkit-transition-duration: 500ms;
-  transition-duration: 500ms;
-  border: none;
-  text-align: center;
+	background-color: #0b5394;
+	min-width: 70px;
+	height: 40px;
+	border-radius: 0;
+	line-height: 20px;
+	color: #fff;
+	font-weight: 600;
+	font-size: 15px;
+	-webkit-transition-duration: 500ms;
+	transition-duration: 500ms;
+	border: none;
+	text-align: center;
 }
 
 /*팝업창들*/
 .popup {
-  width: 300px;
-  height: 200px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  position: relative;
-  left: 30%;
-  text-align: center;
+	width: 300px;
+	height: 200px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+	position: relative;
+	left: 30%;
+	text-align: center;
 }
 
 .popup-message {
-  width: 230px;
-  height: 30px;
-  position: absolute;
-  top: 27%;
-  left: 13%;
-  text-align: center;
+	width: 230px;
+	height: 30px;
+	position: absolute;
+	top: 27%;
+	left: 13%;
+	text-align: center;
 }
 
 .popup-buttons {
-  display: contents;
-  justify-content: center;
-  position: absolute;
-  top: 70%;
-  left: 32%;
-  text-align: center;
+	display: contents;
+	justify-content: center;
+	position: absolute;
+	top: 70%;
+	left: 32%;
+	text-align: center;
 }
 
 .popup-buttons #button7 {
-  background-color: gray;
-  min-width: 70px;
-  height: 40px;
-  border-radius: 0;
-  line-height: 20px;
-  color: #fff;
-  font-weight: 600;
-  font-size: 15px;
-  -webkit-transition-duration: 500ms;
-  transition-duration: 500ms;
-  border: none;
-  position: relative;
-  bottom: -60%;
-  text-align: center;
+	background-color: gray;
+	min-width: 70px;
+	height: 40px;
+	border-radius: 0;
+	line-height: 20px;
+	color: #fff;
+	font-weight: 600;
+	font-size: 15px;
+	-webkit-transition-duration: 500ms;
+	transition-duration: 500ms;
+	border: none;
+	position: relative;
+	bottom: -60%;
+	text-align: center;
 }
 
 .popup-buttons #button8 {
-  background-color: #0b5394;
-  min-width: 70px;
-  height: 40px;
-  border-radius: 0;
-  line-height: 20px;
-  color: #fff;
-  font-weight: 600;
-  font-size: 15px;
-  -webkit-transition-duration: 500ms;
-  transition-duration: 500ms;
-  border: none;
-  position: relative;
-  bottom: -60%;
-  left: 5%;
-  text-align: center;
+	background-color: #0b5394;
+	min-width: 70px;
+	height: 40px;
+	border-radius: 0;
+	line-height: 20px;
+	color: #fff;
+	font-weight: 600;
+	font-size: 15px;
+	-webkit-transition-duration: 500ms;
+	transition-duration: 500ms;
+	border: none;
+	position: relative;
+	bottom: -60%;
+	left: 5%;
+	text-align: center;
 }
 
 .popup-buttons #button9 {
-  background-color: #0b5394;
-  min-width: 70px;
-  height: 40px;
-  border-radius: 0;
-  line-height: 20px;
-  color: #fff;
-  font-weight: 600;
-  font-size: 15px;
-  -webkit-transition-duration: 500ms;
-  transition-duration: 500ms;
-  border: none;
-  position: relative;
-  bottom: -60%;
-  text-align: center;
+	background-color: #0b5394;
+	min-width: 70px;
+	height: 40px;
+	border-radius: 0;
+	line-height: 20px;
+	color: #fff;
+	font-weight: 600;
+	font-size: 15px;
+	-webkit-transition-duration: 500ms;
+	transition-duration: 500ms;
+	border: none;
+	position: relative;
+	bottom: -60%;
+	text-align: center;
 }
 
 .popup-buttons button:hover {
-  background-color: #999;
+	background-color: #999;
 }

@@ -3,7 +3,7 @@
     <div class="limiter">
       <div class="container-login100">
         <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-          <form class="login100-form validate-form" @submit.prevent="login">
+          <form class="login100-form validate-form">
             <div
               class="wrap-input100 validate-input m-b-23"
               data-validate="Username is required"
@@ -14,7 +14,7 @@
                 type="email"
                 name="username"
                 placeholder="이메일을 입력하세요"
-                v-model="l_user.USER_ID"
+                v-model="userId"
                 required
               />
             </div>
@@ -29,7 +29,7 @@
                 type="password"
                 name="pass"
                 placeholder="비밀번호를 입력하세요"
-                v-model="l_user.USER_PASSWORD"
+                v-model="userPw"
                 required
               />
             </div>
@@ -46,7 +46,7 @@
               <div class="wrap-login100-form-btn">
                 <div class="login100-form-bgbtn"></div>
 
-                <button class="login100-form-btn">
+                <button class="login100-form-btn" @click="loginSubmit">
                   <a style="text-decoration: none" href="#">
                     <p
                       style="margin-top: 15px; color: white; text-align: center"
@@ -115,10 +115,8 @@ export default {
   name: "naverLogin",
   data() {
     return {
-      l_user: {
-        USER_ID: "",
-        USER_PASSWORD: "",
-      },
+      userId: null,
+      userPw: null,
       naverLogin: null,
     };
   },
@@ -174,17 +172,30 @@ export default {
   },
 
   methods: {
-    async login() {    
-      await this.$api("/api/login", { user: this.l_user }) // l_user 데이터를 login sql를 통해 확인
-        .then(() => {
-          alert("로그인 성공!"); // api가 정상적으로 작동할 시 해당 alert를 띄움
-          this.$router.push({ path: "/" }); // 메인페이지로 라우팅
-          this.$store.commit("user", this.l_user); // vuex를 이용하여 상태 관리하도록 store에 user 정보를 갱신
-        })
-        .catch(() => {
-          // api 오류 발생 시 해당 alert 띄움
-          alert("계정 정보를 확인해주세요.");
-        });
+    loginSubmit() {
+      let userData = {};
+      userData.userId = this.userId;
+      userData.userPw = this.userPw;
+
+      try {
+        this.$axios
+          .post("/api/login", JSON.stringify(userData), {
+            headers: {
+              "Content-Type": `application/json`,
+            },
+          })
+          .then((res) => {
+            if (res.status === 200) {
+              // 로그인 성공시 처리해줘야할 부분
+              this.$store.commit("login", res.data);
+              this.$router.push("/");
+              this.$store.state.isLogin = true
+              alert("로그인 성공!");
+            }
+          });
+      } catch (error) {
+        console.error(error);
+      }
     },
 
     // 카카오 간편 로그인
