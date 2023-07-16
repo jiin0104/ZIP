@@ -29,7 +29,7 @@
             <div class="field2" id="sign">
               <b label for="email">이메일(아이디)</b><br>
               <input id="email" type="text" role="textbox" placeholder="이메일을 입력해 주세요." name="email"
-                v-model="email" /><br /><br />
+                v-model="email" /><br /><br /><br>
             </div>
 
             <div class="field2" id="sign">
@@ -42,6 +42,39 @@
                 <option value="5">5명</option>
               </select>
             </div>
+            <br>
+            <br>
+
+
+
+            <b>예약 날짜를 선택해 주세요</b><br>
+            <div class="date">
+              <span>From:</span>
+              <font-awesome-icon icon="fa-solid fa-calendar-days" transform="down-2.5 right-20"
+                style="z-index: 1; cursor: default" @click="clickCalIcon('dp2From')" />
+
+              <Datepicker v-model="dp2From" :ref="inputs.dp2From" class="datepicker" :locale="locale" :weekStartsOn="0"
+                :inputFormat="inputFormat" @focus="setOldValue($event.target.value)"
+                @update:modelValue="validateFromTo('from', 'dp2From', 'dp2To', 'check_in')" style="text-align:center"/>
+                </div><br>
+                <div class="date">
+
+
+              <span style="margin-left: 20px">To:</span>
+              <font-awesome-icon icon="fa-solid fa-calendar-days" transform="down-2.5 right-20"
+                style="z-index: 1; cursor: default" @click="clickCalIcon('dp2To')" />
+
+              <Datepicker v-model="dp2To" :ref="inputs.dp2To" class="datepicker" :locale="locale" :weekStartsOn="0"
+                :inputFormat="inputFormat" @focus="setOldValue($event.target.value)"
+                @update:modelValue="validateFromTo('to', 'dp2From', 'dp2To')" style="text-align:center"/>
+                
+            </div>
+
+
+
+
+
+
 
             <p v-if="errors.length">
               <br>
@@ -67,16 +100,16 @@
             <strong data-v-33033856="">숙소이름</strong>
             {{ GetAcco.ACCO_NAME }}
           </p>
-          <p data-v-33033856=""><strong data-v-33033856="">체크인</strong>{{ GetAcco.RESERVATION_CHECK_IN }}
+          <p data-v-33033856=""><strong data-v-33033856="">체크인</strong>{{ check_in }}
           </p>
-          <p data-v-33033856=""><strong data-v-33033856="">체크아웃</strong>{{ GetAcco.RESERVATION_CHECK_OUT }}
+          <p data-v-33033856=""><strong data-v-33033856="">체크아웃</strong>{{ dp2To }}
           </p>
         </section>
         <section class="total_price_pc" data-v-33033856="">
           <p data-v-33033856="">
             <strong data-v-33033856="">
               <b data-v-33033856="">총 결제 금액</b>(VAT포함)</strong>
-            <span class="in_price" data-v-33033856="">{{ getCurrencyFormat(GetAcco.ACCO_PRICE) }}원</span>
+            <span class="in_price" data-v-33033856="" @input="onChange($event)">{{ totalprice }} {{ getCurrencyFormat(totalPrice * GetAcco.ACCO_PRICE) }}원</span>
           </p>
           <ul data-v-33033856="">
             <li data-v-33033856="">해당 객실가는 세금, 봉사료가 포함된 금액입니다</li>
@@ -95,13 +128,121 @@
 
 
 <script>
+
+
 import axios from 'axios';
+import dayjs from 'dayjs';
+import 'dayjs/locale/ko';
+dayjs.locale('ko');
+import { ref, reactive, defineComponent } from 'vue';
+// vue3-datepicker
+import Datepicker from 'vue3-datepicker';
+import { ko } from 'date-fns/locale';
+import { defineRefs } from './helper.js';
 
 var IMP = window.IMP;   // 생략 가능
 IMP.init("imp56476234");
 
-export default {
-  el: "#app2",
+export default defineComponent({
+  name: 'App',
+  components: {
+    Datepicker,
+  },
+  setup() {
+    // :weekStartsOn="0" 'Sunday' is first
+    const picked = ref(new Date());
+    const locale = reactive(ko);
+    const inputFormat = ref('yyyy-MM-dd');
+
+    // dp2
+    const now = new Date();
+    const dp2 = ref(new Date());
+    const dp2From = ref(new Date(now.setDate(now.getDate() - 7)));
+    const dp2To = ref(new Date(now.setDate(now.getDate() + 14)));
+    const check_in = dp2From;
+    const check_out = ref(dayjs(dp2To).format('YYYY년 MM월 DD일 ddd요일'));
+    // [from, to]'s value before changing value
+    let oldVal = '';
+
+    
+
+    // refs
+    // const datepicker1 = ref(null);
+    // dynamic refs
+    const inputs = defineRefs(['dp1', 'dp2From', 'dp2To', 'dp2', 'check_in', 'check_out']);
+
+    const clickCalIcon = (refId) => {
+      const dp = inputs[refId].value;
+      // console.log(dp);
+      dp.inputRef.focus();
+      
+    };
+    const getCalValue = (refId) => {
+      // console.log(refId);
+      // console.log(datepicker1.value.input);
+      // ref="datepicker1"
+
+      const dp = inputs[refId].value;
+      // console.log(dp);
+      alert(dp.input);
+    };
+    const setOldValue = (val) => {
+      // console.log(val);
+      oldVal = val;
+    };
+    const validateFromTo = (target, refFrom, refTo) => {
+      setTimeout(() => {
+        const dpFrom = inputs[refFrom].value;
+        const dpTo = inputs[refTo].value;
+        // alert(dpFrom.input + ' ~ ' + dpTo.input);
+
+        if (dpFrom.input > dpTo.input) {
+          alert('Validation Error!!');
+
+          let date = null;
+          if (oldVal) {
+            const arrOldVal = oldVal.split('-');
+            date = new Date(
+              Number(arrOldVal[0]),
+              Number(arrOldVal[1]) - 1,
+              Number(arrOldVal[2]),
+            );
+          }
+          // console.log(date);
+
+          if (target === 'from') {
+            check_in.value = date;
+          } else if (target === 'to') {
+            dp2To.value = date;
+          }
+          return;
+        }
+      }, 10);
+    };
+    const isTodayOver = (date) => {
+      return date > new Date();
+    };
+
+    return {
+      picked,
+      locale,
+      inputFormat,
+      // datepicker1,
+      inputs,
+      clickCalIcon,
+      getCalValue,
+      dp2From,
+      dp2To,
+      dp2,
+      setOldValue,
+      validateFromTo,
+      isTodayOver,
+      check_in,
+      check_out,
+    };
+  },
+
+
   data() {
     return {
       capacity: "2",
@@ -110,23 +251,33 @@ export default {
       email: null,
       phone: null,
       total: 1,
+      fromD: new Date(this.dp2From),
+      toD: new Date(this.dp2To),
       totalPrice: 0,
       RESERVATION_ID: this.$route.query.RESERVATION_ID,
       GetAcco: {},
       accoid: this.$route.query.ACCO_ID, // 예시
       userno: this.$route.query.USER_NO,
-      check_in: '2012-1-12', // 예시
-      check_out: '2012-3-14' // 예시
-
+      
+      // check_in: 0, // 예시
+      // check_out: 0, // 예시
+      
     }
   },
   created() {
     this.ACCO_ID = this.$route.query.ACCO_ID;
     this.RESERVATION_ID = this.$route.query.RESERVATION_ID;
     this.Acco();
-
+    this.totalPrice = Math.ceil((this.toD.getTime() - this.fromD.getTime()) / (1000 * 3600 * 24));
+    
+    // this.check_in = ref(dayjs(this.dp2From).format('YYYY년 MM월 DD일 ddd요일'));
+    // this.check_out = ref(dayjs(this.dp2To).format('YYYY년 MM월 DD일 ddd요일'));
   },
   methods: {
+    onchange(event){
+  console.log(event.target.value)
+},
+
     async Acco() {
       let GetAcco = await this.$api("/api/GetReservation", { param: [this.ACCO_ID] });
       this.GetAcco = GetAcco[0];
@@ -168,7 +319,7 @@ export default {
     },
 
 
-    
+
 
 
     getCurrencyFormat(value) {
@@ -177,7 +328,7 @@ export default {
 
 
     requestPay() {
-            if (this.name == null || this.phone == null || this.email === null || !this.validEmail(this.email) || !this.validPhone(this.phone)) {
+      if (this.name == null || this.phone == null || this.email === null || !this.validEmail(this.email) || !this.validPhone(this.phone)) {
         return
       }
       IMP.request_pay({ // param
@@ -194,6 +345,7 @@ export default {
           this.submitForm();
 
           location.href = "/reservation_info"
+
           // 결제 성공 시 로직,
 
         } else {
@@ -226,8 +378,8 @@ export default {
         .then(response => {
           if (response.data.message) {
             alert(response.data.message);
-            
-            
+
+
           } else {
             alert('결제에 실패했습니다.');
             console.log(formData);
@@ -238,15 +390,18 @@ export default {
           alert('결제 실패');
         });
     },
-
-
   }
-}
+})
+
 
 </script>
 
 <style>
 @import "Payment.css";
+
+div.date {
+  display: inline-flex;
+}
 
 body,
 h2,
