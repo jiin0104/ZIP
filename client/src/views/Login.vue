@@ -173,23 +173,25 @@ export default {
 
   methods: {
     loginSubmit() {
-      let userData = {};
-      userData.userId = this.userId;
-      userData.userPw = this.userPw;
+      let userData = {}; // userData 객체 생성, 사용자 입력 값 할당
+      userData.userId = this.userId; // 사용자가 입력한 아이디
+      userData.userPw = this.userPw; // 사용자가 입력한 비밀번호
 
       try {
+        // this.$axios.post로 로그인 요청을 전송함
         this.$axios
+           // userData객체를 JSON 문자열로 변환하여 전송
           .post("/api/login", JSON.stringify(userData), {
             headers: {
-              "Content-Type": `application/json`,
+              "Content-Type": `application/json`, // 요청 헤더에 Content-type을 application/json으로 설정함
             },
           })
-          .then((res) => {
+          .then((res) => { // 서버 응답이 성공하면 로그인 처리 수행
             if (res.status === 200) {
               // 로그인 성공시 처리해줘야할 부분
-              this.$store.commit("login", res.data);
-              this.$router.push("/");
-              this.$store.state.isLogin = true
+              this.$store.commit("login", res.data); // 로그인 상태 저장하는 mutaion 호출
+              this.$router.push("/"); // 메인 컴포넌트 이동
+              this.$store.state.isLogin = true // isLogin 상태 변환
               alert("로그인 성공!");
             }
           });

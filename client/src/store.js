@@ -20,11 +20,12 @@ const store = createStore({
   },
   mutations: {
     //Mutation을 통해서만 State를 변경. 함수작성. Mutations에 접근하는 것은 Component의 Methods 영역내에서 가능. 기본 접근 방법: this.$store.commit('경로명/함수명')
-        // 저장된 유저 정보와 불러온 유저 정보가 일치하는지 확인
+    
+    // 저장된 유저 정보와 불러온 유저 정보가 일치하는지 확인
     login: function (state, payload) {
       state.userId = payload.userId
       state.userPw = payload.userPw
-      state.token = payload.token
+      state.token = payload.token // 여기서 토큰은 로그인 성공 시에 백엔드에서 줘야할 토큰
     },
     user(state, data) {
       state.user = data;
@@ -37,6 +38,7 @@ const store = createStore({
       state.isLogin = false
       state.isLoginError = true
     },
+    // 다른 페이지로 이동할 때 로그인 되어있는 사용자만 접근할 수 있는 페이지라면 페이지 이동 시에 체크해주는 기능
     loginCheck: function (state) {
       if (!state.token) {
         router.push({
