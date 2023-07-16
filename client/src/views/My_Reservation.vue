@@ -42,7 +42,7 @@
       >
         <div class="contact-text">
           <h1>예약내역</h1>
-          <div v-if="res_acco == null" class="reslistempty">
+          <div v-if="reslist == null" class="reslistempty">
             <div class="really2">
               예약 내역이 없습니다<br />관심있는 숙소를 예약해주세요
             </div>
@@ -51,29 +51,25 @@
               지금 바로 숙소 예약하기
             </button>
           </div>
+
           <div
             v-else
             style="position: relative; left: 18%"
-            v-for="(reslist, i) in reslist"
+            v-for="(rs, i) in reslist"
             :key="i"
           >
-            <div class="res-content">
-              <!--<img: src="'/download/${res_acco}/${ACCO_IMAGE}'"
-                class="room-image"
-              />-->
+            <div class="res-content" style="height: 350px">
               <img
-                class="lazy"
-                src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2023/06/16/648c25cfa5a22.jpg"
-                style="display: block"
+                :src="`/download/${rs.ACCO_ID}/${rs.ACCO_IMAGE}`"
+                class="room-image"
+                style="display: block; margin-bottom: 0"
               />
-              <strong style="font-size: 17px">{{
-                reslist.RESERVATION_NAME
-              }}</strong>
-              <div style="position: relative; left: 69px">
+              <strong style="font-size: 18px">{{ rs.ACCO_NAME }}</strong>
+              <div style="position: relative; left: 69px; margin: 10px">
                 <button
                   id="button2"
                   style="display: inline-block"
-                  @click="openModal()"
+                  @click="openModal(rs)"
                 >
                   상세내역
                 </button>
@@ -97,7 +93,7 @@
                   <button id="button7" @click="hideConfirmation()">취소</button>
                 </div>
                 <div class="popup-buttons">
-                  <button id="button8" @click="cancelReservation()">
+                  <button id="button8" @click="cancelReservation(rs)">
                     확인
                   </button>
                 </div>
@@ -105,31 +101,25 @@
             </div>
           </div>
         </div>
+
         <div id="modal" class="modal">
-          <div class="modal-content">
+          <div class="modal-content" v-for="(resm, i) in resmodalList" :key="i">
             <div class="reslistpopup">
-              <h2>이용완료 내역</h2>
+              <h2>예약완료 내역</h2>
               <div>
-                <strong>{{ reslist.RESERVATION_NAME }}</strong>
+                <strong>숙소 이름: {{ resm.ACCO_NAME }}</strong>
               </div>
               <section>
                 <div>
-                  <p>
-                    <strong>체크인</strong> {{ reslist.RESERVATION_CHECK_IN }}
-                  </p>
+                  <p><strong>체크인</strong> {{ resm.RESERVATION_CHECK_IN }}</p>
                   <p>
                     <strong>체크아웃</strong>
-                    {{ reslist.RESERVATION_CHECK_OUT }}
+                    {{ resm.RESERVATION_CHECK_OUT }}
                   </p>
                 </div>
                 <div>
-                  <p><strong>예약번호</strong> {{ reslist.RESERVATION_ID }}</p>
-                  <p>
-                    <strong>예약자 휴대폰 번호</strong> {{ reslist.USER_TEL }}
-                  </p>
-                  <p>
-                    <strong>숙박인원</strong> {{ reslist.RESERVATION_CAPACITY }}
-                  </p>
+                  <p><strong>예약번호</strong> {{ resm.RESERVATION_ID }}</p>
+                  <p><strong>예약자 휴대폰 번호</strong> {{ resm.USER_TEL }}</p>
                 </div>
               </section>
               <div class="total">
@@ -139,14 +129,11 @@
                   </div>
                   <div class="payment-info-middle">
                     <p>
-                      <b>{{ reslist.PAYMENT_PRICE }}</b>
+                      <b>{{ resm.PAYMENT_TOTAL_PRICE }}</b>
                     </p>
                   </div>
                 </div>
               </div>
-              <a :href="reslist.RESERVATION_TEL" class="btn-call"
-                >전화문의하기</a
-              >
               <section>
                 <p>
                   <input type="button" value="닫기" @click="closeModal()" />
@@ -160,10 +147,18 @@
   </div>
 </template>
 <script>
+import axios from "axios";
+axios.defaults.baseURL = "http://localhost:3000"; //프록시 서버
+axios.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8";
+axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
+
 export default {
   data() {
     return {
+      USER_NO: 1, // 로그인 구현되면 로그인된 유저의 USER_NO를 넣어야함
+      ACCO_ID: "",
       reslist: [],
+      resmodalList: [],
     };
   },
   mounted() {
@@ -189,9 +184,25 @@ export default {
       this.$router.push({ path: "/" });
     },
 
+    //유저의 예약리스트
     async Get_Reservation_Info() {
-      this.reslist = await this.$api("/api/reslist", {});
-      console.log(this.reslist);
+      this.reslist = await this.$api("/api/reslist", {
+        param: [this.USER_NO], // 현재는 테스트, 나중엔 USER_NO 를 받아와야함
+      });
+    },
+
+    //예약한 숙소의 정보 가져오기
+    async Get_Modal_Info() {
+      this.resmodalList = await this.$api("/api/resmodalList", {
+        param: [this.ACCO_ID],
+      });
+    },
+
+    //예약 취소하기
+    async Delete_res() {
+      this.ResDelete = await this.$api("/api/ResDelete", {
+        param: [this.ACCO_ID],
+      });
     },
 
     //팝업
@@ -203,24 +214,28 @@ export default {
       var popup = document.getElementById("popup");
       popup.style.display = "none";
     },
-    cancelReservation() {
-      alert("예약이 취소되었습니다");
+    cancelReservation(rs) {
       var popup = document.getElementById("popup");
       popup.style.display = "none";
+      this.ResDelete = this.$api("/api/ResDelete", { param: [rs.ACCO_ID] });
+      alert("예약이 취소되었습니다");
+      this.hideConfirmation();
+      location.href = "/My_Reservation";
     },
 
     //예약 모달
-    openModal() {
+    openModal(rs) {
       var modal = document.getElementById("modal");
+      this.ACCO_ID = rs.ACCO_ID;
+      this.Get_Modal_Info();
       modal.style.display = "block";
     },
 
     closeModal() {
       var modal = document.getElementById("modal");
+      console.log("모달 주거따 ㅠ");
       modal.style.display = "none";
     },
-
-    //예약 상세내역 모달창에 예약자 이름이 있었는데 디비에 회원 이름이 없어서 이름대신 휴대폰번호로 대체 하였음
   },
 };
 </script>
