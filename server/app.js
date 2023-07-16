@@ -147,8 +147,8 @@ app.post("/api/login", async (request, res) => {
   // login api
   await dbPool.query(
     'SELECT USER_ID, USER_PASSWORD FROM users WHERE USER_ID = "' +
-      request.body.user.USER_ID +
-      '"',
+    request.body.user.USER_ID +
+    '"',
     (err, row) => {
       // body에서 받아온 data와 동일한 data가 있는지 확인
       if (err) {
@@ -190,7 +190,7 @@ app.post("/api/kakaoLogin", async (request, res) => {
     if (request.body.param.length > 0) {
       for (let key in request.body.param[0])
         request.session[key] = request.body.param[0][key]; // 받아온 파리미터의 첫번째 인자를 key값에 넣어줌
-        res.send(request.body.param[0]); // 받아왔던 파라미터를 보내줌
+      res.send(request.body.param[0]); // 받아왔던 파라미터를 보내줌
     } else {
       // 파라미터 없이 api를 호출했을 시
       res.send({ error: "Please try again or contact system manager ." });
@@ -381,8 +381,8 @@ app.post("/my_update", (req, res) => {
 });
 
 
-// 결제 API 엔드포인트
-app.post("/payment", (req, res) => {
+// 예약 생성 API 엔드포인트
+app.post("/acco_detail", (req, res) => {
   //db연결을 사용해서 작업
   dbPool.getConnection((err, connection) => {
     if (err) {
@@ -390,24 +390,24 @@ app.post("/payment", (req, res) => {
       return res.status(500).json({ error: "db연결에 실패했습니다." });
     }
 
-    const { totalprice, reservationid } = req.body;
+    const { check_in, check_out, userno, accoid } = req.body;
 
-    // 결제 정보 저장
-    const insertPaymentSql =
-      "INSERT INTO payment (PAYMENT_TOTAL_PRICE, PAYMENT_STATUS, RESERVATION_ID) VALUES (?, ?, ?)";
-    const values = [totalprice, "", reservationid];
-    connection.query(insertPaymentSql, values, (err, result) => {
+    // 중복된 이메일이 없을 경우 회원 정보 저장
+    const insertReservationSql =
+      "INSERT INTO reservation (RESERVATION_CHECK_IN, RESERVATION_CHECK_OUT, USER_NO, ACCO_ID) VALUES (?, ?, ?, ?)";
+    const values = [check_in, check_out, userno, accoid];
+    connection.query(insertReservationSql, values, (err, result) => {
       connection.release(); // 사용이 완료된 연결 반환
 
       if (err) {
-        console.error("회원 정보 인서트 실패:", err);
+        console.error("예약 생성 인서트 실패:", err);
         return res
           .status(500)
-          .json({ error: "회원 정보 인서트에 실패했습니다." });
+          .json({ error: "예약 정보 인서트에 실패했습니다." });
       }
 
-      // 결제 성공 응답
-      res.json({ message: "결제 되셨습니다." });
+      // 회원 가입 성공 응답
+      res.json({ message: "예약창으로 넘어갑니다" });
     });
   });
 });
@@ -422,18 +422,69 @@ app.post("/payment", (req, res) => {
 
 
 
+// 결제 API 엔드포인트
+app.post("/payment", (req, res) => {
+  //db연결을 사용해서 작업
+  dbPool.getConnection((err, connection) => {
+    if (err) {
+      console.error("db연결에 문제가 있음", err);
+      return res.status(500).json({ error: "db연결에 실패했습니다." });
+    }
+
+    const { totalprice, reservationid} = req.body;
+
+    // 결제 정보 저장
+    const insertPaymentSql =
+      "INSERT INTO payment (PAYMENT_TOTAL_PRICE, RESERVATION_ID) VALUES (?, ?)";
+
+    const values = [totalprice, reservationid];
+    connection.query(insertPaymentSql, values, (err, result) => {
+      connection.release(); // 사용이 완료된 연결 반환
+
+      if (err) {
+        console.error("결제 인서트 실패:", err);
+        return res
+          .status(500)
+          .json({ error: "결제 정보 인서트에 실패했습니다." });
+      }
+
+      alert("결제 성공");
+      res.json({ message: "결제 되셨습니다." });
+    });
+  });
+});
 
 
+// 예약 상태 바꾸는 로직
+app.post("/reservation_info", (req, res) => {
+  //db연결을 사용해서 작업
+  dbPool.getConnection((err, connection) => {
+    if (err) {
+      console.error("db연결에 문제가 있음", err);
+      return res.status(500).json({ error: "db연결에 실패했습니다." });
+    }
 
+    const {RESERVATION_STATUS} = req.body;
 
+    // 중복된 이메일이 없을 경우 회원 정보 저장
+    const updateResSql =
+      "UPDATE reservation SET RESERVATION_STATUS=? order by RESERVATION_ID desc limit 1";
+    const values = [RESERVATION_STATUS];
+    connection.query(updateResSql, values, (err, result) => {
+      connection.release(); // 사용이 완료된 연결 반환
 
+      if (err) {
+        console.error("예약 상태 업데이트 실패:", err);
+        return res
+          .status(500)
+          .json({ error: "예약 상태 수정에 실패했습니다." });
+      }
 
-
-
-
-
-
-
+      // 정보 수정 성공 응답
+      res.json({ message: "예약 정보가 수정 되었습니다." });
+    });
+  });
+});
 
 
 

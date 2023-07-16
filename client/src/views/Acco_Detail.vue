@@ -184,20 +184,6 @@ th {
                     <img :src="`/download/${detailList.ACCO_ID}/${detailList.ACCO_IMAGE}`" class="d-block w-100"
                       alt="..." />
                   </div>
-                  <!-- <div class="carousel-item">
-                    <img
-                      src="https://image.goodchoice.kr/resize_490x348/affiliate/2018/03/05/5a9d03fcd1b18.jpg"
-                      class="d-block w-100"
-                      alt="..."
-                    />
-                  </div>
-                  <div class="carousel-item">
-                    <img
-                      src="https://image.goodchoice.kr/resize_490x348/affiliate/2018/03/05/5a9d040dd59b7.jpg"
-                      class="d-block w-100"
-                      alt="..."
-                    />
-                  </div> -->
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -217,7 +203,9 @@ th {
                     <h3>{{ detailList.ACCO_NAME }}</h3>
                     <b>주소</b>
                     <br />
-                    <p>{{ detailList.ACCO_ADDRESS }}</p>
+                    <p>{{ detailList.ACCO_ADDRESS1 }}</p>
+                    <br />
+                    <p>{{ detailList.ACCO_ADDRESS2 }}</p>
                     <br />
                     <p>
                       {{ detailList.ACCO_INTRODUCE_COMMENT }}
@@ -269,10 +257,10 @@ th {
                       {{ getCurrencyFormat(detailList.ACCO_PRICE) }}원</strong>
                     <br />
                     <br />
-                    <button type="button" class="save-btn1"
-                        style="border: none; min-width: 150px; float: right" @click="goToPayment(detailList.ACCO_ID);">
-                        예약하기
-                      </button>
+                    <button type="button" class="save-btn1" style="border: none; min-width: 150px; float: right"
+                      @click="goToPayment(detailList.ACCO_ID);">
+                      예약하기
+                    </button>
                   </div>
                 </li>
               </ul>
@@ -299,6 +287,8 @@ th {
   </div>
 </template>
 <script>
+import axios from 'axios';
+
 export default {
   name: "Tab",
   data() {
@@ -307,7 +297,11 @@ export default {
       tabList: [{ name: "객실안내" }, { name: "숙소정보" }],
       employList: [{ title: "", sub: "" }],
       detailList: {},
-      ACCO_ID: 0,
+      
+      accoid: this.$route.query.ACCO_ID, // 예시
+      userno: 1,      //this.$route.query.USER_NO,
+      check_in: '2012-1-12', // 예시
+      check_out: '2012-3-14' // 예시
     };
   },
 
@@ -319,8 +313,8 @@ export default {
 
   methods: {
     async getDetailList() {
-      
-      let detailList = await this.$api("/api/detailList", {param:[this.ACCO_ID]});
+
+      let detailList = await this.$api("/api/detailList", { param: [this.ACCO_ID] });
       this.detailList = detailList[0];
 
       console.log(this.detailList);
@@ -329,7 +323,30 @@ export default {
       return this.$currencyFormat(value);
     },
     goToPayment(ACCO_ID) {
-      this.$router.push({ path: '/payment', query: { ACCO_ID: ACCO_ID } });
+
+
+      const formData = {
+        check_in: this.check_in,
+        check_out: this.check_out,
+        userno: this.userno,
+        accoid: this.accoid,
+      };
+
+      axios.post('/acco_detail', formData)//서브밋한 값들을 받아서 서버에 전달.
+        .then(response => {
+          if (response.data.message) {
+            // 예약 누르면 예약페이지로
+            this.$router.push({ path: '/payment', query: { ACCO_ID: ACCO_ID } });
+            
+          } else {
+            alert('뭔가가 실패했습니다.');
+            console.log(formData);
+          }
+        })
+        .catch(error => {
+          console.error('뭔가가 실패', error);
+          alert('예약생성 실패. 확인 후 다시 시도해 주세요');
+        });
     },
   },
 };

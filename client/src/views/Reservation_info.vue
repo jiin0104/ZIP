@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app4">
     <!-- ***** Breadcumb Area Start ***** -->
     <div
       class="breadcumb-area bg-img bg-overlay"
@@ -26,63 +26,90 @@
           <p>
             예약 호텔:
             <span class="reservation-hotel"
-              >{{ GetReservation.ACCO_NAME }}</span
+              >{{ reservation_info.ACCO_NAME }}</span
             >
           </p>
           <p>
             체크인 날짜:
             <span class="reservation-date"
-              >{{ GetReservation.RESERVATION_CHECK_IN }}</span
+              >{{ reservation_info.RESERVATION_CHECK_IN }}</span
             >
           </p>
           <p>
             체크아웃 날짜:
             <span class="reservation-date"
-              >{{ GetReservation.RESERVATION_CHECK_OUT }}</span
+              >{{ reservation_info.RESERVATION_CHECK_OUT }}</span
             >
           </p>
           <p>
             예약 번호:
             <span class="reservation-number"
-              >{{GetReservation.RESERVATION_ID}}</span
+              >{{reservation_info.RESERVATION_ID}}</span
             >
           </p>
         </div>
         <br />
         <br />
-        <h6>이제 숙소 예약이 완료되었습니다</h6>
+        <h6>결제가 완료되었습니다</h6>
+        <h6>확인 버튼을 누르시면 예약이 확정됩니다</h6>
         <h6>즐거운 시간 보내세요!</h6>
         <br /><button
           id="infobutton"
           style="display: inline-block"
           @click="main_Link"
         >
-          메인 페이지로
+          확인
         </button>
       </div>
     </div>
   </div>
 </template>
 <script>
+import axios from "axios";
+
 export default {
+  el: "#app4",
   data() {
     return {
-      GetReservation: "",
+      reservation_info: {},
+      ACCO_ID: 0,
+      RESERVATION_ID: 0,
+      totalPrice:0,
     };
   },
   created(){
-    // this.RESERVATION_ID = this.$route.query.RESERVATION_ID;
+    this.RESERVATION_ID = this.$route.query.RESERVATION_ID;
+    this.ACCO_ID = this.$route.query.ACCO_ID;
+    
     this.Reservation();
   },
   methods: {
     async Reservation(){
       // let GetReservation = await this.$api("/api/GetReservation", {param:[this.RESERVATION_ID]});
-      let GetReservation = await this.$api("/api/GetReservation", {});
-      this.GetReservation = GetReservation[0];
+      let reservation_info = await this.$api("/api/reservation_info", {});
+      this.reservation_info = reservation_info[0];
+
+      console.log(this.reservation_info);
     },
 
     main_Link() {
-      this.$router.push({ path: "/" });
+      const formData = {
+        RESERVATION_STATUS: '결제완료',
+      };
+      axios.post('/reservation_info', formData)
+      .then(response => {
+        if(response.data.message){
+          console.log(formData);
+          location.href = "/";
+        } else {
+          alert('뭔가 오류가 있음');
+          console.log(formData);
+        }
+      })
+      .catch(error => {
+          console.error('뭔가가 실패', error);
+          alert('뭔가가 실패. 확인 후 다시 시도해 주세요');
+        });
     },
   },
 };

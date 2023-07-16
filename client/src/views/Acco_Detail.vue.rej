@@ -1,0 +1,9 @@
+diff a/client/src/views/Acco_Detail.vue b/client/src/views/Acco_Detail.vue	(rejected hunks)
+@@ -269,7 +269,6 @@
+                       {{ getCurrencyFormat(detailList.ACCO_PRICE) }}원</strong>
+                     <br />
+                     <br />
+-                    <router-link to="/payment"><button type="button" class="save-btn1"
+                     <button type="button" class="save-btn1"
+                         style="border: none; min-width: 150px; float: right" @click="goToPayment(detailList.ACCO_ID);">
+                         예약하기

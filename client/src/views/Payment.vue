@@ -65,18 +65,18 @@
         <section class="info" data-v-33033856="">
           <p class="name" data-v-33033856="">
             <strong data-v-33033856="">숙소이름</strong>
-            {{GetReservation.ACCO_NAME}}
+            {{ GetAcco.ACCO_NAME }}
           </p>
-          <p data-v-33033856=""><strong data-v-33033856="">체크인</strong>{{GetReservation.RESERVATION_CHECK_IN}}
+          <p data-v-33033856=""><strong data-v-33033856="">체크인</strong>{{ GetAcco.RESERVATION_CHECK_IN }}
           </p>
-          <p data-v-33033856=""><strong data-v-33033856="">체크아웃</strong>{{GetReservation.RESERVATION_CHECK_OUT}}
+          <p data-v-33033856=""><strong data-v-33033856="">체크아웃</strong>{{ GetAcco.RESERVATION_CHECK_OUT }}
           </p>
         </section>
         <section class="total_price_pc" data-v-33033856="">
           <p data-v-33033856="">
             <strong data-v-33033856="">
               <b data-v-33033856="">총 결제 금액</b>(VAT포함)</strong>
-            <span class="in_price" data-v-33033856="">{{getCurrencyFormat(GetReservation.ACCO_PRICE)}}원</span>
+            <span class="in_price" data-v-33033856="">{{ getCurrencyFormat(GetAcco.ACCO_PRICE) }}원</span>
           </p>
           <ul data-v-33033856="">
             <li data-v-33033856="">해당 객실가는 세금, 봉사료가 포함된 금액입니다</li>
@@ -111,22 +111,24 @@ export default {
       phone: null,
       total: 1,
       totalPrice: 0,
-      reservationid: 1,
-      GetAcco: "",
-      ACCO_ID: 0,
-      GetReservation: {},
+      RESERVATION_ID: this.$route.query.RESERVATION_ID,
+      GetAcco: {},
+      accoid: this.$route.query.ACCO_ID, // 예시
+      userno: this.$route.query.USER_NO,
+      check_in: '2012-1-12', // 예시
+      check_out: '2012-3-14' // 예시
 
     }
   },
-  created(){
-    
+  created() {
     this.ACCO_ID = this.$route.query.ACCO_ID;
+    this.RESERVATION_ID = this.$route.query.RESERVATION_ID;
     this.Acco();
 
   },
   methods: {
-    async Acco(){
-      let GetAcco = await this.$api("/api/GetReservation", {param:[this.ACCO_ID]});
+    async Acco() {
+      let GetAcco = await this.$api("/api/GetReservation", { param: [this.ACCO_ID] });
       this.GetAcco = GetAcco[0];
 
       console.log(this.GetAcco);
@@ -166,7 +168,7 @@ export default {
     },
 
 
-
+    
 
 
     getCurrencyFormat(value) {
@@ -175,26 +177,30 @@ export default {
 
 
     requestPay() {
-      if (this.name == null || this.phone == null || this.email === null || !this.validEmail(this.email) || !this.validPhone(this.phone)) {
+            if (this.name == null || this.phone == null || this.email === null || !this.validEmail(this.email) || !this.validPhone(this.phone)) {
         return
       }
       IMP.request_pay({ // param
         pg: "inicis",
         pay_method: "card",
-        merchant_uid: "52033-33sd230d4",
-        name: "당근 10kg",
-        amount: 1004,
-        buyer_email: "Iamport@chai.finance",
-        buyer_name: "포트원 기술지원팀",
-        
+        merchant_uid: "335eggwe4-86gdsffyui",
+        name: this.GetAcco.ACCO_NAME,
+        amount: this.GetAcco.ACCO_PRICE,
+        buyer_email: this.email,
+        buyer_name: this.name,
+
       }, rsp => { // callback
         if (rsp.success) {
           this.submitForm();
+
           location.href = "/reservation_info"
           // 결제 성공 시 로직,
 
         } else {
+          this.$router.go(-3);
           alert("결제에 실패했습니다");
+
+
           // 결제 실패 시 로직,
 
         }
@@ -202,29 +208,36 @@ export default {
     },
 
     submitForm() {//입력한 값들 서브밋.
-        const formData = {
-                    
-          totalprice: this.totalPrice,
-          reservationid: this.reservationid
-                   
-        };
-  
-  
-        axios.post('/payment', formData)//서브밋한 값들을 받아서 서버에 전달.
-          .then(response => {
-            if (response.data.message) {
-              alert(response.data.message);
-              
-            } else {
-              alert('결제에 실패했습니다.');
-              console.log(formData);
-            }
-          })
-          .catch(error => {
-            console.error('결제 실패', error);
-            alert('결제 실패');
-          });
-      },
+      const formData = {
+        totalprice: this.GetAcco.ACCO_PRICE,
+        reservationid: this.GetAcco.RESERVATION_ID,
+        reservation_status: "결제완료",
+        check_in: this.check_in,
+        check_out: this.check_out,
+        userno: this.userno,
+        accoid: this.accoid,
+        RESERVATION_ID: this.RESERVATION_ID,
+        ACCO_NAME: this.ACCO_NAME
+      };
+
+
+
+      axios.post('/payment', formData)//서브밋한 값들을 받아서 서버에 전달.
+        .then(response => {
+          if (response.data.message) {
+            alert(response.data.message);
+            
+            
+          } else {
+            alert('결제에 실패했습니다.');
+            console.log(formData);
+          }
+        })
+        .catch(error => {
+          console.error('결제 실패', error);
+          alert('결제 실패');
+        });
+    },
 
 
   }
