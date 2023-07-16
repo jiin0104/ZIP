@@ -12,7 +12,8 @@ const passportConfig = require('./passport');
 const mysql = require("mysql2");
 const app = express();
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
+const KEY = "token_key" // jwt 시크릿 키
 
 // 쿠키 설정. 쿠키사용 보류
 app.use(
@@ -145,10 +146,10 @@ app.post("/apirole/:alias", async (request, res) => {
 
 //로그인 라우터. 웹페이지'/login'에서 인증로직 처리.
 app.post("/api/login", (req, res) => {
-  const saveData = req.body; // 데이터 추출
+  const userData = req.body; // 데이터 추출
   // 변수 할당
-  const userId = saveData.userId;
-  const userPw = saveData.userPw;
+  const userId = userData.userId;
+  const userPw = userData.userPw;
   // 쿼리문 생성
   const query = "SELECT * FROM users WHERE USER_ID = ? AND USER_PASSWORD = ?";
 
@@ -174,7 +175,7 @@ app.post("/api/login", (req, res) => {
         // 로그인 성공
 
         // 토큰 생성
-        const token = jwt.sign({ userId }, { expiresIn: "1h" });
+        let token = jwt.sign({ userId }, { expiresIn: "1h" }, KEY); // 토큰 만료 1시간
 
         res.status(200).json({ token }); // 토큰 반환
       } else {

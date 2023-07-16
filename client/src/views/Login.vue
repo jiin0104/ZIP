@@ -14,7 +14,7 @@
                 type="email"
                 name="username"
                 placeholder="이메일을 입력하세요"
-                v-model="saveData.userId"
+                v-model="userId"
                 required
               />
             </div>
@@ -29,7 +29,7 @@
                 type="password"
                 name="pass"
                 placeholder="비밀번호를 입력하세요"
-                v-model="saveData.userPw"
+                v-model="userPw"
                 required
               />
             </div>
@@ -115,10 +115,8 @@ export default {
   name: "naverLogin",
   data() {
     return {
-      saveData: {
-        userId: "",
-        userPw: "",
-      },
+      userId: null,
+      userPw: null,
       naverLogin: null,
     };
   },
@@ -175,13 +173,13 @@ export default {
 
   methods: {
     loginSubmit() {
-      let saveData = {};
-      saveData.userId = this.userId;
-      saveData.userPw = this.userPw;
+      let userData = {};
+      userData.userId = this.userId;
+      userData.userPw = this.userPw;
 
       try {
         this.$axios
-          .post("/api/login", JSON.stringify(saveData), {
+          .post("/api/login", JSON.stringify(userData), {
             headers: {
               "Content-Type": `application/json`,
             },
