@@ -14,17 +14,18 @@ const app = express();
 const bcrypt = require("bcrypt");
 
 // 쿠키 설정. 쿠키사용 보류
-// app.use(
-//   session({
-//     secret: "secret code",
-//     resave: false,
-//     saveUninitialized: false,
-//     cookie: {
-//       secure: false,
-//       maxAge: 1000 * 60 * 60, //쿠키 유효시간 1시간
-//     },
-//   })
-// );
+app.use(
+  session({
+    // session 처리 방법
+    secret: "secret code", // session에 대한 key(secret code)
+    resave: false, // resave: request 요청이 왔을 때, session에 수정사항이 생기지 않더라도, 다시 저장하는 기능
+    saveUninitialized: false, // saveUninitialied: session에 저장할 내역이 없더라도, session을 항상 재저장을 하는 기능
+    cookie: {
+      secure: false,
+      maxAge: 1000 * 60 * 60, // 쿠기 유효시간 (1시간)
+    },
+  })
+);
 
 // passport 모듈 연결
 // passportConfig();

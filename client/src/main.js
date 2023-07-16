@@ -1,10 +1,10 @@
 //각종 js 파일을 병합해서 app에 적용 시키는 파일
 
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
-import mixins from './mixins'
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router';
+import store from './store';
+import mixins from './mixins';
 
 
 const app = createApp(App);
