@@ -8,12 +8,12 @@ const fs = require("fs");
 const path = require("path");
 const dotenv = require("dotenv");
 const passport = require("passport"); //로그인 로직할 때 필요
-const passportConfig = require('./passport');
+const passportConfig = require("./passport");
 const mysql = require("mysql2");
 const app = express();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const KEY = "token_key" // jwt 시크릿 키
+const KEY = "token_key"; // jwt 시크릿 키
 
 // 쿠키 설정. 쿠키사용 보류
 app.use(
@@ -42,6 +42,7 @@ app.use(
 //post 방식으로 클라이언트가 요청하는 본문에 있는 value를 넘겨받고 req.body 객체로 만들어주는 미들웨어.
 //넘겨받은 value들은 DB로 전송
 app.use(express.urlencoded({ extended: true }));
+//이건 제이슨 형태로
 app.use(express.json());
 
 //cosnt를 줘버리면 sql이 고정값을 가져서 쿼리문 여러 개 못 씀.
@@ -58,7 +59,7 @@ fs.watchFile(__dirname + "/sql.js", (curr, prev) => {
 const dbPool = mysql.createPool({
   host: "127.0.0.1",
   user: "root",
-  password: "root",
+  password: "1234",
   database: "project",
   connectionLimit: 100, //연결할 수 있는 최대 수 100
 });
@@ -171,7 +172,11 @@ app.post("/api/login", (req, res) => {
       }
 
       // 결과 확인
-      if (results.length > 0 && results[0].USER_ID === userId && results[0].USER_PASSWORD === userPw) {
+      if (
+        results.length > 0 &&
+        results[0].USER_ID === userId &&
+        results[0].USER_PASSWORD === userPw
+      ) {
         // 로그인 성공
 
         // 토큰 생성
@@ -180,7 +185,9 @@ app.post("/api/login", (req, res) => {
         res.status(200).json({ token }); // 토큰 반환
       } else {
         // 로그인 실패
-        res.status(401).json({ error: "잘못된 사용자 ID 또는 비밀번호입니다." });
+        res
+          .status(401)
+          .json({ error: "잘못된 사용자 ID 또는 비밀번호입니다." });
       }
     });
   });
@@ -353,6 +360,24 @@ app.post("/checkNickname", (req, res) => {
   });
 });
 
+//전화번호를 받아서 아이디 찾기.
+app.post("/findId", async (req, res) => {
+  try {
+    const { phoneNumber } = req.body;
+    const query = "SELECT USER_ID FROM users WHERE USER_TEL = ?"; // 전화번호로 아이디 조회
+    const result = await req.db(query, [phoneNumber]);
+
+    if (result.length > 0) {
+      const id = result[0].USER_ID;
+      res.send({ id }); // 아이디를 응답으로 전송
+    } else {
+      res.status(404).send({ error: "가입된 아이디가 없습니다." }); // 일치하는 아이디가 없을 경우 404 상태와 함께 에러 응답
+    }
+  } catch (err) {
+    res.status(500).send({ error: "DB access error" });
+  }
+});
+
 // 정보 수정 API 엔드포인트
 app.post("/my_update", (req, res) => {
   //db연결을 사용해서 작업
@@ -383,7 +408,6 @@ app.post("/my_update", (req, res) => {
     });
   });
 });
-
 
 // 예약 생성 API 엔드포인트
 app.post("/acco_detail", (req, res) => {
@@ -416,16 +440,6 @@ app.post("/acco_detail", (req, res) => {
   });
 });
 
-
-
-
-
-
-
-
-
-
-
 // 결제 API 엔드포인트
 app.post("/payment", (req, res) => {
   //db연결을 사용해서 작업
@@ -435,7 +449,7 @@ app.post("/payment", (req, res) => {
       return res.status(500).json({ error: "db연결에 실패했습니다." });
     }
 
-    const { totalprice, reservationid} = req.body;
+    const { totalprice, reservationid } = req.body;
 
     // 결제 정보 저장
     const insertPaymentSql =
@@ -458,7 +472,6 @@ app.post("/payment", (req, res) => {
   });
 });
 
-
 // 예약 상태 바꾸는 로직
 app.post("/reservation_info", (req, res) => {
   //db연결을 사용해서 작업
@@ -468,7 +481,7 @@ app.post("/reservation_info", (req, res) => {
       return res.status(500).json({ error: "db연결에 실패했습니다." });
     }
 
-    const {RESERVATION_STATUS} = req.body;
+    const { RESERVATION_STATUS } = req.body;
 
     // 중복된 이메일이 없을 경우 회원 정보 저장
     const updateResSql =
@@ -489,9 +502,6 @@ app.post("/reservation_info", (req, res) => {
     });
   });
 });
-
-
-
 
 // 서버 실행
 app.listen(3000, () => {
