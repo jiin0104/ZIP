@@ -15,6 +15,11 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const KEY = "token_key"; // jwt 시크릿 키
 
+app.use('/', express.static( path.join(__dirname, './public') ));
+app.get('/', (req, res)=>{
+  res.sendFile(path.join(__dirname, './public/index.html'))
+})
+
 // 쿠키 설정. 쿠키사용 보류
 app.use(
   session({
@@ -59,7 +64,7 @@ fs.watchFile(__dirname + "/sql.js", (curr, prev) => {
 const dbPool = mysql.createPool({
   host: "127.0.0.1",
   user: "root",
-  password: "1234",
+  password: "alscjf1254@",
   database: "project",
   connectionLimit: 100, //연결할 수 있는 최대 수 100
 });
@@ -146,6 +151,43 @@ app.post("/apirole/:alias", async (request, res) => {
 });
 
 //로그인 라우터. 웹페이지'/login'에서 인증로직 처리.
+app.post('/api/login', function(request, response) {
+  const loginUser = request.body;
+  console.log(loginUser.userId);
+  console.log(loginUser.userId);
+
+  const query = "SELECT * FROM users WHERE USER_ID = ?";
+
+  dbPool.query(query, [loginUser.userId], function(error, results, fields) {
+      if (results.length <= 0){
+          return response.status(200).json({
+              message: 'undefined_id'
+          })
+      }
+      else {
+          dbPool.query(query, [loginUser.userId], function(error, results, fields){
+              console.log(results);
+              if(results[0].USER_PASSWORD == loginUser.userPw){
+                  // ID에 저장된 pw 값과 입력한 pw값이 동일한 경우
+                
+                      return response.status(200).json({
+                          message: results[0].USER_NO
+                
+                  })
+              }
+              else {
+                  // 비밀번호 불일치
+                  return response.status(200).json({
+                      message: 'incorrect_pw'
+                  })
+              }
+          })
+      }
+  })
+})
+
+
+/*
 app.post("/api/login", (req, res) => {
   const userData = req.body; // 데이터 추출
   // 변수 할당
@@ -180,9 +222,9 @@ app.post("/api/login", (req, res) => {
         // 로그인 성공
 
         // 토큰 생성
-        let token = jwt.sign({ userId }, { expiresIn: "1h" }, KEY); // 토큰 만료 1시간
+        //let token = jwt.sign({ userId }, { expiresIn: "1h" }, KEY); // 토큰 만료 1시간
 
-        res.status(200).json({ token }); // 토큰 반환
+        res.status(200).json({ results }); // 토큰 반환
       } else {
         // 로그인 실패
         res
@@ -192,6 +234,7 @@ app.post("/api/login", (req, res) => {
     });
   });
 });
+*/
 
 app.post("/api/kakaoLogin", async (request, res) => {
   // client에서 server쪽으로 axios post방식으로 login api 가져오기
@@ -243,8 +286,9 @@ app.post("/api/logout", async (request, res) => {
 //(프론트단에 추가한 액시오스 설정도 같이 볼 것)
 
 let corsOption = {
-  origin: "http://localhost:8080",
+  origin: "http://localhost:8080", // 접근 권한 부여 도메인
   credentials: true, //true로 하면 설정한 내용을 response 헤더에 추가 해줌.
+  optionsSuccessStatus: 200, //응답 상태 200으로 설정
 };
 
 app.use(cors(corsOption)); //CORS 미들웨어

@@ -22,7 +22,7 @@
       <div class="menuWrap">
         <ul class="menu">
           <li class="dorne-signin-btn">
-            <a><RouterLink to='/Login'>로그인</RouterLink></a>
+            <a><RouterLink to='/login'>로그인</RouterLink></a>
           </li>
         </ul>
       </div>
