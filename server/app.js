@@ -380,7 +380,7 @@ app.post("/findId", async (req, res) => {
     if (result.length > 0) {
       const id = result[0][0].USER_ID;
       res.json({ id }); // 아이디를 응답으로 전송
-      console.log({ id });//id객체에 가져온 db값 넣어지는 거 확인 됐음.
+      console.log({ id }); //id객체에 가져온 db값 넣어지는 거 확인 됐음.
     } else {
       res.status(404).json({ error: "가입된 아이디가 없습니다." }); // 일차하는 아이디가 없을 경우 에러 전송
     }
