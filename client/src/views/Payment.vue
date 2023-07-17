@@ -47,28 +47,32 @@
 
 
 
-            <b>예약 날짜를 선택해 주세요</b><br>
+            <b>예약 날짜를 선택후 확인을 눌러주세요</b><br><br>
             <div class="date">
-              <span>From:</span>
+              <span>체크인 &nbsp;&nbsp;&nbsp;&nbsp;날짜 :</span>
               <font-awesome-icon icon="fa-solid fa-calendar-days" transform="down-2.5 right-20"
                 style="z-index: 1; cursor: default" @click="clickCalIcon('dp2From')" />
 
               <Datepicker v-model="dp2From" :ref="inputs.dp2From" class="datepicker" :locale="locale" :weekStartsOn="0"
                 :inputFormat="inputFormat" @focus="setOldValue($event.target.value)"
-                @update:modelValue="validateFromTo('from', 'dp2From', 'dp2To', 'check_in')" style="text-align:center"/>
-                </div><br>
-                <div class="date">
+                :disabledDates="{ predicate: isTodayOver }"
+                @update:modelValue="validateFromTo('from', 'dp2From', 'dp2To', 'check_in')"
+                style="text-align:center; width: 130px; border: 1px solid gray;" id="input_date1" />
+            </div><br><br>
 
-
-              <span style="margin-left: 20px">To:</span>
+            <div class="date">
+              <span>체크아웃 날짜 :</span>
               <font-awesome-icon icon="fa-solid fa-calendar-days" transform="down-2.5 right-20"
                 style="z-index: 1; cursor: default" @click="clickCalIcon('dp2To')" />
 
               <Datepicker v-model="dp2To" :ref="inputs.dp2To" class="datepicker" :locale="locale" :weekStartsOn="0"
                 :inputFormat="inputFormat" @focus="setOldValue($event.target.value)"
-                @update:modelValue="validateFromTo('to', 'dp2From', 'dp2To')" style="text-align:center"/>
-                
-            </div>
+                :disabledDates="{ predicate: isTodayOver }" @update:modelValue="validateFromTo('to', 'dp2From', 'dp2To')"
+                style="text-align:center; width: 130px; border: 1px solid gray;" id="input_date2" />
+            </div><br><br>
+            <input id="input_submit" type="submit" @click="input()" value="확인" style="border: 1px solid gray; font-size: 17px; width: 46px; text-align: center; float: right;">
+            <br><br><br>
+            
 
 
 
@@ -100,16 +104,16 @@
             <strong data-v-33033856="">숙소이름</strong>
             {{ GetAcco.ACCO_NAME }}
           </p>
-          <p data-v-33033856=""><strong data-v-33033856="">체크인</strong>{{ check_in }}
+          <p data-v-33033856=""><strong data-v-33033856="">체크인</strong>{{ d1y }}
           </p>
-          <p data-v-33033856=""><strong data-v-33033856="">체크아웃</strong>{{ dp2To }}
+          <p data-v-33033856=""><strong data-v-33033856="">체크아웃</strong>{{ d2y }}
           </p>
         </section>
         <section class="total_price_pc" data-v-33033856="">
           <p data-v-33033856="">
             <strong data-v-33033856="">
               <b data-v-33033856="">총 결제 금액</b>(VAT포함)</strong>
-            <span class="in_price" data-v-33033856="" @input="onChange($event)">{{ totalprice }} {{ getCurrencyFormat(totalPrice * GetAcco.ACCO_PRICE) }}원</span>
+            <span class="in_price" data-v-33033856="" @input="onChange($event)">{{ $currencyFormat(totalPrice) }}원</span>
           </p>
           <ul data-v-33033856="">
             <li data-v-33033856="">해당 객실가는 세금, 봉사료가 포함된 금액입니다</li>
@@ -129,7 +133,7 @@
 
 <script>
 
-
+// import moment from 'moment';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
@@ -157,14 +161,14 @@ export default defineComponent({
     // dp2
     const now = new Date();
     const dp2 = ref(new Date());
-    const dp2From = ref(new Date(now.setDate(now.getDate() - 7)));
-    const dp2To = ref(new Date(now.setDate(now.getDate() + 14)));
+    const dp2From = ref(new Date(now.setDate(now.getDate())));
+    const dp2To = ref(new Date(now.setDate(now.getDate() + 1)));
     const check_in = dp2From;
     const check_out = ref(dayjs(dp2To).format('YYYY년 MM월 DD일 ddd요일'));
     // [from, to]'s value before changing value
     let oldVal = '';
 
-    
+
 
     // refs
     // const datepicker1 = ref(null);
@@ -175,7 +179,7 @@ export default defineComponent({
       const dp = inputs[refId].value;
       // console.log(dp);
       dp.inputRef.focus();
-      
+
     };
     const getCalValue = (refId) => {
       // console.log(refId);
@@ -220,7 +224,7 @@ export default defineComponent({
       }, 10);
     };
     const isTodayOver = (date) => {
-      return date > new Date();
+      return date < new Date();
     };
 
     return {
@@ -239,6 +243,7 @@ export default defineComponent({
       isTodayOver,
       check_in,
       check_out,
+
     };
   },
 
@@ -250,33 +255,52 @@ export default defineComponent({
       name: null,
       email: null,
       phone: null,
-      total: 1,
+      
       fromD: new Date(this.dp2From),
       toD: new Date(this.dp2To),
-      totalPrice: 0,
+      totalPrice: 99999999,
       RESERVATION_ID: this.$route.query.RESERVATION_ID,
       GetAcco: {},
       accoid: this.$route.query.ACCO_ID, // 예시
       userno: this.$route.query.USER_NO,
-      
+      d1y: 0,
+      d2y: 0,
+
       // check_in: 0, // 예시
       // check_out: 0, // 예시
-      
+
     }
   },
   created() {
     this.ACCO_ID = this.$route.query.ACCO_ID;
     this.RESERVATION_ID = this.$route.query.RESERVATION_ID;
     this.Acco();
-    this.totalPrice = Math.ceil((this.toD.getTime() - this.fromD.getTime()) / (1000 * 3600 * 24));
-    
-    // this.check_in = ref(dayjs(this.dp2From).format('YYYY년 MM월 DD일 ddd요일'));
-    // this.check_out = ref(dayjs(this.dp2To).format('YYYY년 MM월 DD일 ddd요일'));
   },
+
+ 
+
   methods: {
-    onchange(event){
-  console.log(event.target.value)
-},
+    input: function () {
+      this.dday1 = document.querySelector("#input_date1").value;
+      console.log(this.dday1);
+      this.dday2 = document.querySelector("#input_date2").value;
+      console.log(this.dday2);
+      this.sum1 = Date.parse(this.dday1);
+      this.sum2 = Date.parse(this.dday2);
+      console.log(this.sum1);
+      console.log(this.sum2);
+      this.sumtotal = (this.sum2 - this.sum1) / 3600 / 1000 / 24;
+      this.totalPrice = this.sumtotal * this.GetAcco.ACCO_PRICE;
+      console.log(this.sumtotal);
+      this.d1 = dayjs(this.sum1);
+      this.d1y = this.d1.format('YYYY년 MM월 DD일 ddd요일');
+      this.d2 = dayjs(this.sum2);
+      this.d2y = this.d2.format('YYYY년 MM월 DD일 ddd요일');
+      console.log(this.d1y);
+      console.log(this.d2y);
+      console.log(this.totalPrice);
+      return this.d1y, this.d2y;
+    },
 
     async Acco() {
       let GetAcco = await this.$api("/api/GetReservation", { param: [this.ACCO_ID] });
@@ -361,7 +385,7 @@ export default defineComponent({
 
     submitForm() {//입력한 값들 서브밋.
       const formData = {
-        totalprice: this.GetAcco.ACCO_PRICE,
+        totalPrice: this.GetAcco.ACCO_PRICE,
         reservationid: this.GetAcco.RESERVATION_ID,
         reservation_status: "결제완료",
         check_in: this.check_in,
@@ -419,5 +443,4 @@ a {
   height: 20px;
   color: red;
   font-weight: 700;
-}
-</style>
+}</style>
