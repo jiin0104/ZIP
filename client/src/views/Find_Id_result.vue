@@ -15,7 +15,7 @@
               <li>
                 <strong>
                   <label>아이디 : </label>
-                  <span>(찾은 아이디 표시, 로직구현 필요)</span>
+                  <span>{{id}}</span>
                 </strong>
               </li>
             </ul>

@@ -58,7 +58,7 @@ fs.watchFile(__dirname + "/sql.js", (curr, prev) => {
 const dbPool = mysql.createPool({
   host: "127.0.0.1",
   user: "root",
-  password: "root",
+  password: "1234",
   database: "project",
   connectionLimit: 100, //연결할 수 있는 최대 수 100
 });
@@ -352,6 +352,27 @@ app.post("/checkNickname", (req, res) => {
     }
   });
 });
+
+
+//전화번호를 받아서 아이디 찾기.
+app.post("/findId", async (req, res) => {
+  try {
+    const { phoneNumber } = req.body;
+    const query = "SELECT USER_ID FROM users WHERE USER_TEL = ?"; // 전화번호로 아이디 조회
+    const result = await req.db(query, [phoneNumber]);
+
+    if (result.length > 0) {
+      const id = result[0].USER_ID;
+      res.send({ id }); // 아이디를 응답으로 전송
+    }  else {
+      res.status(404).json({ error: "가입된 아이디가 없습니다." }); // 일치하는 아이디가 없을 경우 404 상태와 함께 에러 응답
+    }
+  } catch (err) {
+    res.status(500).json({ error: "DB access error" });
+  }
+});
+
+
 
 // 정보 수정 API 엔드포인트
 app.post("/my_update", (req, res) => {
