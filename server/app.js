@@ -15,10 +15,10 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const KEY = "token_key"; // jwt 시크릿 키
 
-app.use('/', express.static( path.join(__dirname, './public') ));
-app.get('/', (req, res)=>{
-  res.sendFile(path.join(__dirname, './public/index.html'))
-})
+app.use("/", express.static(path.join(__dirname, "./public")));
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "./public/index.html"));
+});
 
 // 쿠키 설정. 쿠키사용 보류
 app.use(
@@ -51,20 +51,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //cosnt를 줘버리면 sql이 고정값을 가져서 쿼리문 여러 개 못 씀.
-let sql = require("./sql.js");
+// let sql = require("./sql.js");
 
 //우리가 쿼리 수정했을 때 바로바로 내역 볼 수 있게.
-fs.watchFile(__dirname + "/sql.js", (curr, prev) => {
-  console.log("sql 변경시 재시작 없이 반영되도록 함.");
-  delete require.cache[require.resolve("./sql.js")];
-  sql = require("./sql.js");
-});
+// fs.watchFile(__dirname + "/sql.js", (curr, prev) => {
+//   console.log("sql 변경시 재시작 없이 반영되도록 함.");
+//   delete require.cache[require.resolve("./sql.js")];
+//   sql = require("./sql.js");
+// });
 
 //연결하는 db
 const dbPool = mysql.createPool({
   host: "127.0.0.1",
   user: "root",
-  password: "alscjf1254@",
+  password: "@k41292001",
   database: "project",
   connectionLimit: 100, //연결할 수 있는 최대 수 100
 });
@@ -151,41 +151,41 @@ app.post("/apirole/:alias", async (request, res) => {
 });
 
 //로그인 라우터. 웹페이지'/login'에서 인증로직 처리.
-app.post('/api/login', function(request, response) {
+app.post("/api/login", function (request, response) {
   const loginUser = request.body;
   console.log(loginUser.userId);
   console.log(loginUser.userId);
 
   const query = "SELECT * FROM users WHERE USER_ID = ?";
 
-  dbPool.query(query, [loginUser.userId], function(error, results, fields) {
-      if (results.length <= 0){
-          return response.status(200).json({
-              message: 'undefined_id'
-          })
-      }
-      else {
-          dbPool.query(query, [loginUser.userId], function(error, results, fields){
-              console.log(results);
-              if(results[0].USER_PASSWORD == loginUser.userPw){
-                  // ID에 저장된 pw 값과 입력한 pw값이 동일한 경우
-                
-                      return response.status(200).json({
-                          message: results[0].USER_NO
-                
-                  })
-              }
-              else {
-                  // 비밀번호 불일치
-                  return response.status(200).json({
-                      message: 'incorrect_pw'
-                  })
-              }
-          })
-      }
-  })
-})
+  dbPool.query(query, [loginUser.userId], function (error, results, fields) {
+    if (results.length <= 0) {
+      return response.status(200).json({
+        message: "undefined_id",
+      });
+    } else {
+      dbPool.query(
+        query,
+        [loginUser.userId],
+        function (error, results, fields) {
+          console.log(results);
+          if (results[0].USER_PASSWORD == loginUser.userPw) {
+            // ID에 저장된 pw 값과 입력한 pw값이 동일한 경우
 
+            return response.status(200).json({
+              message: results[0].USER_NO,
+            });
+          } else {
+            // 비밀번호 불일치
+            return response.status(200).json({
+              message: "incorrect_pw",
+            });
+          }
+        }
+      );
+    }
+  });
+});
 
 /*
 app.post("/api/login", (req, res) => {
@@ -424,7 +424,7 @@ app.post("/findId", async (req, res) => {
     if (result.length > 0) {
       const id = result[0][0].USER_ID;
       res.json({ id }); // 아이디를 응답으로 전송
-      console.log({ id });//id객체에 가져온 db값 넣어지는 거 확인 됐음.
+      console.log({ id }); //id객체에 가져온 db값 넣어지는 거 확인 됐음.
     } else {
       res.status(404).json({ error: "가입된 아이디가 없습니다." }); // 일차하는 아이디가 없을 경우 에러 전송
     }
