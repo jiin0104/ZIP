@@ -5,8 +5,7 @@
       <div class="underline-idresult"></div>
     </div>
     <div class="description-idresult">
-      <p class="p-idresult" v-if="id">{{ id }}</p>
-      <p class="p-idresult" v-else>가입된 아이디가 없습니다.</p>
+      <p class="p-idresult">회원님의 아이디 목록입니다.</p>
     </div>
     <div class="form-container-idresult">
       <form>
@@ -16,7 +15,10 @@
               <li>
                 <strong>
                   <label>아이디 : </label>
-                  <span>{{ id }}</span>
+                  <div class="description-idresult">
+                    <p class="p-idresult" v-if="id !== ''">{{ id }}</p>
+                    <p class="p-idresult" v-else>가입된 아이디가 없습니다.</p>
+                  </div>
                 </strong>
               </li>
             </ul>
@@ -42,9 +44,15 @@
 
 <script>
 export default {
-  name: "find_id_result",
   data() {
-    return {};
+    return {
+      id: "", // id 값을 저장할 변수
+    };
+  },
+  created() {
+    // 라우터 파라미터에서 id 값을 받아와 변수에 할당
+    this.id = this.$route.params.id;
+    console.log('받은 id값:', this.$route.params.id);
   },
 };
 </script>

@@ -368,19 +368,19 @@ app.post("/findId", async (req, res) => {
     const query = "SELECT USER_ID FROM users WHERE USER_TEL = ?"; // 전화번호로 id를 찾는 쿼리
     const connection = await dbPool.promise().getConnection(); // getConnection()을 프로미스를 반환하는 메서드로 사용
 
-    //vue에서 받아온 파라미터 값 확인
+    //vue에서 받아온 파라미터 값 확인됐음.
     console.log({ phoneNumber });
 
     const result = await connection.query(query, [phoneNumber]); // 쿼리 실행
     connection.release(); // 사용이 완료된 연결 반납
 
-    //db에서 쿼리 이용해서 가져온 값 확인
+    //db에서 쿼리 이용해서 가져온 값 확인됐음.
     console.log(result);
 
     if (result.length > 0) {
       const id = result[0][0].USER_ID;
       res.json({ id }); // 아이디를 응답으로 전송
-      console.log({ id });
+      console.log({ id });//id객체에 가져온 db값 넣어지는 거 확인 됐음.
     } else {
       res.status(404).json({ error: "가입된 아이디가 없습니다." }); // 일차하는 아이디가 없을 경우 에러 전송
     }
