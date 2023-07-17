@@ -358,17 +358,19 @@ export default defineComponent({
       IMP.request_pay({ // param
         pg: "inicis",
         pay_method: "card",
-        merchant_uid: "335eggwe4-86gdsffyui",
+        merchant_uid: "avbcd-1234",
         name: this.GetAcco.ACCO_NAME,
-        amount: this.GetAcco.ACCO_PRICE,
+        amount: this.totalPrice,
         buyer_email: this.email,
         buyer_name: this.name,
-
+        check_in: this.d1y,
+        check_out: this.d2y,
+        reservationid: this.GetAcco.RESERVATION_ID,
       }, rsp => { // callback
         if (rsp.success) {
           this.submitForm();
 
-          location.href = "/reservation_info"
+          this.$router.push({ path: '/reservation_info'});
 
           // 결제 성공 시 로직,
 
@@ -385,15 +387,19 @@ export default defineComponent({
 
     submitForm() {//입력한 값들 서브밋.
       const formData = {
-        totalPrice: this.GetAcco.ACCO_PRICE,
+        totalPrice: this.totalPrice,
         reservationid: this.GetAcco.RESERVATION_ID,
         reservation_status: "결제완료",
-        check_in: this.check_in,
-        check_out: this.check_out,
+        check_in: this.d1y,
+        check_out: this.d2y,
         userno: this.userno,
         accoid: this.accoid,
-        RESERVATION_ID: this.RESERVATION_ID,
-        ACCO_NAME: this.ACCO_NAME
+        ACCO_NAME: this.ACCO_NAME,
+        amount: this.totalPrice,
+        dday1: this.dday1,
+        dday2: this.dday2,
+        d1y: this.d1y,
+        d2y: this.d2y
       };
 
 
@@ -402,8 +408,6 @@ export default defineComponent({
         .then(response => {
           if (response.data.message) {
             alert(response.data.message);
-
-
           } else {
             alert('결제에 실패했습니다.');
             console.log(formData);
@@ -413,6 +417,21 @@ export default defineComponent({
           console.error('결제 실패', error);
           alert('결제 실패');
         });
+
+
+       axios.post('/reservation_info', formData) 
+        .then(response => {
+          if(response.data.message){
+            alert(response.data.message);
+          } else {
+            alert('뭔가가 실패했습니다.');
+            console.log(formData);
+          }
+        })
+        .catch(error => {
+          console.error('여기 실패', error);
+          alert('여기 실패');
+        })
     },
   }
 })

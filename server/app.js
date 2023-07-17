@@ -51,20 +51,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //cosnt를 줘버리면 sql이 고정값을 가져서 쿼리문 여러 개 못 씀.
-// let sql = require("./sql.js");
+let sql = require("./sql.js");
 
 //우리가 쿼리 수정했을 때 바로바로 내역 볼 수 있게.
-// fs.watchFile(__dirname + "/sql.js", (curr, prev) => {
-//   console.log("sql 변경시 재시작 없이 반영되도록 함.");
-//   delete require.cache[require.resolve("./sql.js")];
-//   sql = require("./sql.js");
-// });
+fs.watchFile(__dirname + "/sql.js", (curr, prev) => {
+  console.log("sql 변경시 재시작 없이 반영되도록 함.");
+  delete require.cache[require.resolve("./sql.js")];
+  sql = require("./sql.js");
+});
 
 //연결하는 db
 const dbPool = mysql.createPool({
   host: "127.0.0.1",
   user: "root",
-  password: "@k41292001",
+  password: "root",
   database: "project",
   connectionLimit: 100, //연결할 수 있는 최대 수 100
 });
@@ -476,7 +476,7 @@ app.post("/acco_detail", (req, res) => {
 
     const { check_in, check_out, userno, accoid } = req.body;
 
-    // 중복된 이메일이 없을 경우 회원 정보 저장
+    
     const insertReservationSql =
       "INSERT INTO reservation (RESERVATION_CHECK_IN, RESERVATION_CHECK_OUT, USER_NO, ACCO_ID) VALUES (?, ?, ?, ?)";
     const values = [check_in, check_out, userno, accoid];
@@ -490,7 +490,7 @@ app.post("/acco_detail", (req, res) => {
           .json({ error: "예약 정보 인서트에 실패했습니다." });
       }
 
-      // 회원 가입 성공 응답
+      //  성공 응답
       res.json({ message: "예약창으로 넘어갑니다" });
     });
   });
@@ -505,13 +505,13 @@ app.post("/payment", (req, res) => {
       return res.status(500).json({ error: "db연결에 실패했습니다." });
     }
 
-    const { totalprice, reservationid } = req.body;
+    const { amount, reservationid } = req.body;
 
     // 결제 정보 저장
     const insertPaymentSql =
       "INSERT INTO payment (PAYMENT_TOTAL_PRICE, RESERVATION_ID) VALUES (?, ?)";
 
-    const values = [totalprice, reservationid];
+    const values = [amount, reservationid];
     connection.query(insertPaymentSql, values, (err, result) => {
       connection.release(); // 사용이 완료된 연결 반환
 
@@ -522,7 +522,7 @@ app.post("/payment", (req, res) => {
           .json({ error: "결제 정보 인서트에 실패했습니다." });
       }
 
-      alert("결제 성공");
+      
       res.json({ message: "결제 되셨습니다." });
     });
   });
@@ -537,12 +537,12 @@ app.post("/reservation_info", (req, res) => {
       return res.status(500).json({ error: "db연결에 실패했습니다." });
     }
 
-    const { RESERVATION_STATUS } = req.body;
+    const { reservation_status, dday1, dday2  } = req.body;
 
-    // 중복된 이메일이 없을 경우 회원 정보 저장
+    
     const updateResSql =
-      "UPDATE reservation SET RESERVATION_STATUS=? order by RESERVATION_ID desc limit 1";
-    const values = [RESERVATION_STATUS];
+      "UPDATE reservation SET RESERVATION_STATUS=?, RESERVATION_CHECK_IN=?, RESERVATION_CHECK_OUT=? order by RESERVATION_ID desc limit 1";
+    const values = [reservation_status, dday1, dday2 ];
     connection.query(updateResSql, values, (err, result) => {
       connection.release(); // 사용이 완료된 연결 반환
 
