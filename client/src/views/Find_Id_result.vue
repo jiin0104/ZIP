@@ -16,7 +16,9 @@
                 <strong>
                   <label>아이디 : </label>
                   <div class="description-idresult">
-                    <p class="p-idresult" v-if="id !== ''">받은 id값:{{  $route.params.id  }}</p>
+                    <p class="p-idresult" v-if="id !== ''">
+                      {{ $route.params.id }}
+                    </p>
                     <p class="p-idresult" v-else>가입된 아이디가 없습니다.</p>
                   </div>
                 </strong>
@@ -50,8 +52,8 @@ export default {
     };
   },
   mounted() {
-  this.id = this.$route.params.id;
-  console.log('받은 id값:', this.id);
-},
+    this.id = this.$route.params.id;
+    console.log("받은 id값:", this.id);
+  },
 };
 </script>

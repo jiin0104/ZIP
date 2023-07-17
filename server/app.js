@@ -422,11 +422,13 @@ app.post("/findId", async (req, res) => {
     console.log(result);
 
     if (result.length > 0) {
-      const id = result[0][0].USER_ID;
+      const id = result[0][0]?.USER_ID;
       res.json({ id }); // 아이디를 응답으로 전송
       console.log({ id }); //id객체에 가져온 db값 넣어지는 거 확인 됐음.
     } else {
-      res.status(404).json({ error: "가입된 아이디가 없습니다." }); // 일차하는 아이디가 없을 경우 에러 전송
+      const id = ""; // 응답이 없을 때 빈 id 값을 설정
+      res.json({ id }); // 빈 id 값을 응답으로 전송
+      console.log({ id }); // 빈 id 값이 들어오는지 확인
     }
   } catch (err) {
     res.status(500).send({ error: "DB 연결에 문제가 있습니다" });
