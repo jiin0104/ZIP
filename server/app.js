@@ -294,6 +294,7 @@ let corsOption = {
 app.use(cors(corsOption)); //CORS 미들웨어
 
 // 쿼리 요청을 보내는 부분. 에러가 발생하였을 때 콘솔에 출력해주는 소스.
+//req객체
 const req = {
   async db(alias, param = [], where = "") {
     return new Promise((resolve, reject) =>
@@ -407,18 +408,29 @@ app.post("/checkNickname", (req, res) => {
 //전화번호를 받아서 아이디 찾기.
 app.post("/findId", async (req, res) => {
   try {
-    const { phoneNumber } = req.body;
-    const query = "SELECT USER_ID FROM users WHERE USER_TEL = ?"; // 전화번호로 아이디 조회
-    const result = await req.db(query, [phoneNumber]);
+    const { phoneNumber } = req.body; //vue에서 받아온 파라미터 값
+    const query = "SELECT USER_ID FROM users WHERE USER_TEL = ?"; // 전화번호로 id를 찾는 쿼리
+    const connection = await dbPool.promise().getConnection(); // getConnection()을 프로미스를 반환하는 메서드로 사용
+
+    //vue에서 받아온 파라미터 값 확인됐음.
+    console.log({ phoneNumber });
+
+    const result = await connection.query(query, [phoneNumber]); // 쿼리 실행
+    connection.release(); // 사용이 완료된 연결 반납
+
+    //db에서 쿼리 이용해서 가져온 값 확인됐음.
+    console.log(result);
 
     if (result.length > 0) {
-      const id = result[0].USER_ID;
-      res.send({ id }); // 아이디를 응답으로 전송
+      const id = result[0][0].USER_ID;
+      res.json({ id }); // 아이디를 응답으로 전송
+      console.log({ id });//id객체에 가져온 db값 넣어지는 거 확인 됐음.
     } else {
-      res.status(404).send({ error: "가입된 아이디가 없습니다." }); // 일치하는 아이디가 없을 경우 404 상태와 함께 에러 응답
+      res.status(404).json({ error: "가입된 아이디가 없습니다." }); // 일차하는 아이디가 없을 경우 에러 전송
     }
   } catch (err) {
-    res.status(500).send({ error: "DB access error" });
+    res.status(500).send({ error: "DB 연결에 문제가 있습니다" });
+    console.error(err);
   }
 });
 
