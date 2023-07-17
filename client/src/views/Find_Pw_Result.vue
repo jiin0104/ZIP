@@ -14,7 +14,7 @@
             <ul class="password-list-pwresult">
               <li>
                 <strong>
-                  <label>(찾은 비밀번호 표시)</label>
+                  <label>비밀번호:{{pw}}</label>
                 </strong>
               </li>
             </ul>
@@ -36,7 +36,6 @@
 
 <script>
 export default {
-  name: "find_pw_result",
   data() {
     return {};
   },

@@ -51,7 +51,21 @@
             <div class="group">
               <br />
               <label for="user" class="label">아이디(이메일)</label>
-              <input id="user" type="text" class="input" v-model="email" />
+              <input
+                id="user"
+                type="text"
+                class="input"
+                v-model="email"
+                placeholder="인증 이메일을 받을 이메일을 입력하세요"
+              />
+              <input
+                type="submit"
+                class="button"
+                value="인증 이메일 발송"
+                href="#"
+                style="text-align: center"
+                @click="sendemail()"
+              />
             </div>
             <div class="group">
               <label for="pass" class="label">인증번호</label>
@@ -70,6 +84,7 @@
                 value="비밀번호 찾기"
                 href="#"
                 style="text-align: center"
+                @click="findPw()"
               />
             </div>
             <div class="hr"></div>
@@ -89,6 +104,7 @@
 
 <script>
 import axios from "axios";
+// import nodemailer from "nodemailer";
 
 export default {
   data() {
@@ -124,10 +140,9 @@ export default {
         console.error(error);
       }
     },
+    sendemail() {},
 
-    // findPw() {
-
-    // },
+    findPw() {},
   },
 };
 </script>
