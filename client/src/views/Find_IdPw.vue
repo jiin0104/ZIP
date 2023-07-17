@@ -73,7 +73,7 @@ export default {
           this.id = id;
           this.errorMessage = "";
           this.$router.push({ name: "find_id_result", params: { id } }); // 아이디가 있는 경우 find_id_result 페이지로 리다이렉트
-          // console.log(id); //정상적으로 서버에서 id값 받아오고 있는 거 확인 했음.
+          console.log(id); //정상적으로 서버에서 id값 받아오고 있는 거 확인 했음.
         } else {
           this.id = "";
           this.errorMessage = "가입된 아이디가 없습니다.";
