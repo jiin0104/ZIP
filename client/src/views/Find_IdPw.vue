@@ -8,14 +8,14 @@
         <!-- 아이디,비번찾기 div -->
         <div class="findid-form">
           <!-- 아이디 찾기 폼 -->
-          <div class="findid-htm">
+          <div class="findid-htm" id="findidform">
             <div class="group">
               <br />
               <label for="user" class="label">전화번호</label>
-              <input id="user" type="text" class="input" />
+              <input id="user" type="text" class="input" v-model="phoneNumber" />
             </div>
             <div class="group">
-              <input type="submit" class="button" value="아이디 찾기" href="#"  onclick="findId()" style="text-align: center;"/>
+              <input type="submit" class="button" value="아이디 찾기" href="#" @click="findId()" style="text-align: center;" />
             </div>
             <div class="hr"></div>
             <div class="foot-lnk">
@@ -34,7 +34,8 @@
               <input id="pass" type="password" class="input" data-type="password" />
             </div>
             <div class="group">
-              <input type="submit" class="button" value="비밀번호 찾기" href="#" onclick="alert('아이디와 인증번호를 확인해주세요')" style="text-align: center;"/>
+              <input type="submit" class="button" value="비밀번호 찾기" href="#" onclick="alert('아이디와 인증번호를 확인해주세요')"
+                style="text-align: center;" />
             </div>
             <div class="hr"></div>
             <div class="foot-lnk">
@@ -53,6 +54,8 @@
 import axios from 'axios';
 
 export default {
+
+  el: "findidform",
   data() {
     return {
       phoneNumber: "",
@@ -78,7 +81,10 @@ export default {
         .catch((error) => {
           console.error(error);
         });
-        
+
+    },
+    findPW() {
+
     },
   },
 };
