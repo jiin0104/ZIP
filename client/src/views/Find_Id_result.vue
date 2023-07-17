@@ -52,7 +52,7 @@ export default {
   created() {
     // 라우터 파라미터에서 id 값을 받아와 변수에 할당
     this.id = this.$route.params.id;
-    console.log('받은 id값:', this.$route.params.id);
+    console.log("받은 id값:", this.$route.params.id);
   },
 };
 </script>
