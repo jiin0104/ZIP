@@ -16,7 +16,9 @@
                 <strong>
                   <label>아이디 : </label>
                   <div class="description-idresult">
-                    <p class="p-idresult" v-if="id !== ''">{{ id }}</p>
+                    <p class="p-idresult" v-if="id !== ''">
+                      {{ $route.params.id }}
+                    </p>
                     <p class="p-idresult" v-else>가입된 아이디가 없습니다.</p>
                   </div>
                 </strong>
@@ -49,8 +51,7 @@ export default {
       id: "", // id 값을 저장할 변수
     };
   },
-  created() {
-    // 라우터 파라미터에서 id 값을 받아와 변수에 할당
+  mounted() {
     this.id = this.$route.params.id;
     console.log('받은 id:', this.$route.params.id);
   },
