@@ -25,25 +25,25 @@
         <div class="reservation-info" style="" >
           <p>
             예약 호텔:
-            <span class="reservation-hotel"
+            <span class="reservation-hotel" style="font-family: Noto Sans KR; font-size: 18px; color: #848484;"
               >{{ reservation_info.ACCO_NAME }}</span
             >
           </p>
           <p>
             체크인 날짜:
-            <span class="reservation-date"
+            <span class="reservation-date"  style="font-family: Noto Sans KR; font-size: 18px; color: #848484;"
               >{{ reservation_info.RESERVATION_CHECK_IN }}</span
             >
           </p>
           <p>
             체크아웃 날짜:
-            <span class="reservation-date"
+            <span class="reservation-date" style="font-family: Noto Sans KR; font-size: 18px; color: #848484;"
             >{{ reservation_info.RESERVATION_CHECK_OUT }}</span
             >
           </p>
           <p>
             예약 번호:
-            <span class="reservation-number"
+            <span class="reservation-number" style="font-family: Noto Sans KR; font-size: 18px; color: #848484;"
               >{{reservation_info.RESERVATION_ID}}</span
             >
           </p>
@@ -51,11 +51,10 @@
         <br />
         <br />
         <h6>결제가 완료되었습니다</h6>
-        <h6>확인 버튼을 누르시면 예약이 확정됩니다</h6>
         <h6>즐거운 시간 보내세요!</h6>
         <br /><button
           id="infobutton"
-          style="display: inline-block"
+          style="display: inline-block; position: inherit;"
           @click="main_Link"
         >
           확인
@@ -75,6 +74,7 @@ export default {
       ACCO_ID: 0,
       RESERVATION_ID: 0,
       totalPrice:0,
+      d1y: ''
     };
   },
   created(){

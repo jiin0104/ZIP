@@ -53,7 +53,7 @@ export default {
   },
   mounted() {
     this.id = this.$route.params.id;
-    console.log("받은 id값:", this.id);
+    console.log('받은 id:', this.$route.params.id);
   },
 };
 </script>

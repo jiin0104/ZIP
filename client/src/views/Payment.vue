@@ -358,7 +358,7 @@ export default defineComponent({
       IMP.request_pay({ // param
         pg: "inicis",
         pay_method: "card",
-        merchant_uid: "avbcd-1234",
+        merchant_uid: "avggbcd-1255j4",
         name: this.GetAcco.ACCO_NAME,
         amount: this.totalPrice,
         buyer_email: this.email,

@@ -64,7 +64,7 @@ fs.watchFile(__dirname + "/sql.js", (curr, prev) => {
 const dbPool = mysql.createPool({
   host: "127.0.0.1",
   user: "root",
-  password: "root",
+  password: "1234",
   database: "project",
   connectionLimit: 100, //연결할 수 있는 최대 수 100
 });
@@ -476,7 +476,6 @@ app.post("/acco_detail", (req, res) => {
 
     const { check_in, check_out, userno, accoid } = req.body;
 
-    
     const insertReservationSql =
       "INSERT INTO reservation (RESERVATION_CHECK_IN, RESERVATION_CHECK_OUT, USER_NO, ACCO_ID) VALUES (?, ?, ?, ?)";
     const values = [check_in, check_out, userno, accoid];
@@ -522,7 +521,6 @@ app.post("/payment", (req, res) => {
           .json({ error: "결제 정보 인서트에 실패했습니다." });
       }
 
-      
       res.json({ message: "결제 되셨습니다." });
     });
   });
@@ -537,12 +535,11 @@ app.post("/reservation_info", (req, res) => {
       return res.status(500).json({ error: "db연결에 실패했습니다." });
     }
 
-    const { reservation_status, dday1, dday2  } = req.body;
+    const { reservation_status, dday1, dday2 } = req.body;
 
-    
     const updateResSql =
       "UPDATE reservation SET RESERVATION_STATUS=?, RESERVATION_CHECK_IN=?, RESERVATION_CHECK_OUT=? order by RESERVATION_ID desc limit 1";
-    const values = [reservation_status, dday1, dday2 ];
+    const values = [reservation_status, dday1, dday2];
     connection.query(updateResSql, values, (err, result) => {
       connection.release(); // 사용이 완료된 연결 반환
 

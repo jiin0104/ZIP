@@ -3,18 +3,8 @@
     <div class="find-wrap">
       <!-- 탭 변경 -->
       <div class="findid-html">
-        <input
-          id="tab-1"
-          type="radio"
-          name="tab"
-          class="findid"
-          checked
-        /><label for="tab-1" class="tab">아이디 찾기</label>
-        <input id="tab-2" type="radio" name="tab" class="findpw" /><label
-          for="tab-2"
-          class="tab"
-          >비밀번호 찾기</label
-        >
+        <input id="tab-1" type="radio" name="tab" class="findid" checked /><label for="tab-1" class="tab">아이디 찾기</label>
+        <input id="tab-2" type="radio" name="tab" class="findpw" /><label for="tab-2" class="tab">비밀번호 찾기</label>
         <!-- 아이디,비번찾기 div -->
         <div class="findid-form" id="findform">
           <!-- 아이디 찾기 폼 -->
@@ -22,28 +12,14 @@
             <div class="group">
               <br />
               <label for="user" class="label">전화번호</label>
-              <input
-                id="user"
-                type="text"
-                class="input"
-                v-model="phoneNumber"
-              />
+              <input id="user" type="text" class="input" v-model="phoneNumber" />
             </div>
             <div class="group">
-              <input
-                type="submit"
-                class="button"
-                value="아이디 찾기"
-                href="#"
-                @click="findId()"
-                style="text-align: center"
-              />
+              <input type="submit" class="button" value="아이디 찾기" href="#" @click="findId()" style="text-align: center" />
             </div>
             <div class="hr"></div>
             <div class="foot-lnk">
-              <RouterLink to="/signup"
-                ><span>아직 회원이 아니세요?</span></RouterLink
-              >
+              <RouterLink to="/signup"><span>아직 회원이 아니세요?</span></RouterLink>
             </div>
           </div>
           <!-- 비밀번호 찾기 폼 -->
@@ -51,47 +27,20 @@
             <div class="group">
               <br />
               <label for="user" class="label">아이디(이메일)</label>
-              <input
-                id="user"
-                type="text"
-                class="input"
-                v-model="email"
-                placeholder="인증 이메일을 받을 이메일을 입력하세요"
-              />
-              <input
-                type="submit"
-                class="button"
-                value="인증 이메일 발송"
-                href="#"
-                style="text-align: center"
-                @click="sendemail()"
-              />
+              <input id="user" type="text" class="input" v-model="email" placeholder="인증 이메일을 받을 이메일을 입력하세요" />
+              <input type="submit" class="button" value="인증 이메일 발송" href="#" style="text-align: center"
+                @click="sendemail()" />
             </div>
             <div class="group">
               <label for="pass" class="label">인증번호</label>
-              <input
-                id="pass"
-                type="password"
-                class="input"
-                data-type="password"
-                v-model="password"
-              />
+              <input id="pass" type="password" class="input" data-type="password" v-model="password" />
             </div>
             <div class="group">
-              <input
-                type="submit"
-                class="button"
-                value="비밀번호 찾기"
-                href="#"
-                style="text-align: center"
-                @click="findPw()"
-              />
+              <input type="submit" class="button" value="비밀번호 찾기" href="#" style="text-align: center" @click="findPw()" />
             </div>
             <div class="hr"></div>
             <div class="foot-lnk">
-              <RouterLink to="/signup"
-                ><span>아직 회원이 아니세요?</span></RouterLink
-              >
+              <RouterLink to="/signup"><span>아직 회원이 아니세요?</span></RouterLink>
             </div>
           </div>
         </div>
@@ -104,7 +53,7 @@
 
 <script>
 import axios from "axios";
-// import nodemailer from "nodemailer";
+
 
 export default {
   data() {
@@ -140,9 +89,13 @@ export default {
         console.error(error);
       }
     },
-    sendemail() {},
 
-    findPw() {},
+    sendemail() {
+  
+},
+
+
+    findPw() { },
   },
 };
 </script>
