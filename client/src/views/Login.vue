@@ -30,6 +30,7 @@
                 name="pass"
                 placeholder="비밀번호를 입력하세요"
                 v-model="userPw"
+                autocomplete="off"
                 required
               />
             </div>
@@ -46,7 +47,7 @@
               <div class="wrap-login100-form-btn">
                 <div class="login100-form-bgbtn"></div>
 
-                <button class="login100-form-btn" @click="loginSubmit">
+                <button class="login100-form-btn" @click="login">
                   <a style="text-decoration: none" href="#">
                     <p
                       style="margin-top: 15px; color: white; text-align: center"
@@ -123,7 +124,7 @@ export default {
   mounted() {
     this.naverLogin = new window.naver.LoginWithNaverId({
       clientId: "8NWAD60RgqNbWdmXePhg", // 네이버 앱 키
-      callbackUrl: "http://localhost:8080/login", // 콜백 url
+      callbackUrl: "http://localhost:3000/login", // 콜백 url
       isPopup: true, // 팝업으로 띄우기
       loginButton: {
         color: "green",
@@ -166,22 +167,51 @@ export default {
   },
 
   computed: {
-    user() {
-      return this.$store.state.user; // user 정보가 바뀔 때마다 자동으로 user() 갱신
-    },
+
   },
 
   methods: {
-    loginSubmit() {
+  login(){
+    axios({
+      url:"/api/login",
+      method:"POST",
+      data:{
+        userId: this.userId,
+        userPw: this.userPw
+      },
+    })
+    .then(res => {
+      console.log(res.data.message);
+      if(res.data.message == 'undefined_id') {
+        alert("아이디 혹은 비밀번호가 맞지 않습니다.")
+      }
+      else if (res.data.message == 'incorrect_pw') {
+        alert("아이디 혹은 비밀번호가 맞지 않습니다.")
+      }
+      else {
+        this.$store.commit("localUser", { userId: this.userId, userNo: res.data.message })
+          alert("로그인 성공!")
+          this.$router.push("/"); // 메인 컴포넌트 이동
+          this.$store.state.isLogin = true // isLogin 상태 변환
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  },
+
+    /*
+    async loginSubmit() {
       let userData = {}; // userData 객체 생성, 사용자 입력 값 할당
       userData.userId = this.userId; // 사용자가 입력한 아이디
       userData.userPw = this.userPw; // 사용자가 입력한 비밀번호
 
+      console.log(userData);
+
       try {
         // this.$axios.post로 로그인 요청을 전송함
-        this.$axios
-           // userData객체를 JSON 문자열로 변환하여 전송
-          .post("/api/login", JSON.stringify(userData), {
+        // userData객체를 JSON 문자열로 변환하여 전송
+        await this.$api("/api/login", JSON.stringify(userData), { 
             headers: {
               "Content-Type": `application/json`, // 요청 헤더에 Content-type을 application/json으로 설정함
             },
@@ -189,7 +219,7 @@ export default {
           .then((res) => { // 서버 응답이 성공하면 로그인 처리 수행
             if (res.status === 200) {
               // 로그인 성공시 처리해줘야할 부분
-              this.$store.commit("login", res.data); // 로그인 상태 저장하는 mutaion 호출
+              this.$store.commit("login", res.data); // 로그인 상태 저장하는 mutation 호출
               this.$router.push("/"); // 메인 컴포넌트 이동
               this.$store.state.isLogin = true // isLogin 상태 변환
               alert("로그인 성공!");
@@ -199,6 +229,7 @@ export default {
         console.error(error);
       }
     },
+    */
 
     // 카카오 간편 로그인
     kakaoLogin() {

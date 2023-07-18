@@ -15,6 +15,11 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const KEY = "token_key"; // jwt 시크릿 키
 
+app.use("/", express.static(path.join(__dirname, "./public")));
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "./public/index.html"));
+});
+
 // 쿠키 설정. 쿠키사용 보류
 app.use(
   session({
@@ -59,7 +64,7 @@ fs.watchFile(__dirname + "/sql.js", (curr, prev) => {
 const dbPool = mysql.createPool({
   host: "127.0.0.1",
   user: "root",
-  password: "1234",
+  password: "root",
   database: "project",
   connectionLimit: 100, //연결할 수 있는 최대 수 100
 });
@@ -146,6 +151,43 @@ app.post("/apirole/:alias", async (request, res) => {
 });
 
 //로그인 라우터. 웹페이지'/login'에서 인증로직 처리.
+app.post("/api/login", function (request, response) {
+  const loginUser = request.body;
+  console.log(loginUser.userId);
+  console.log(loginUser.userId);
+
+  const query = "SELECT * FROM users WHERE USER_ID = ?";
+
+  dbPool.query(query, [loginUser.userId], function (error, results, fields) {
+    if (results.length <= 0) {
+      return response.status(200).json({
+        message: "undefined_id",
+      });
+    } else {
+      dbPool.query(
+        query,
+        [loginUser.userId],
+        function (error, results, fields) {
+          console.log(results);
+          if (results[0].USER_PASSWORD == loginUser.userPw) {
+            // ID에 저장된 pw 값과 입력한 pw값이 동일한 경우
+
+            return response.status(200).json({
+              message: results[0].USER_NO,
+            });
+          } else {
+            // 비밀번호 불일치
+            return response.status(200).json({
+              message: "incorrect_pw",
+            });
+          }
+        }
+      );
+    }
+  });
+});
+
+/*
 app.post("/api/login", (req, res) => {
   const userData = req.body; // 데이터 추출
   // 변수 할당
@@ -180,9 +222,9 @@ app.post("/api/login", (req, res) => {
         // 로그인 성공
 
         // 토큰 생성
-        let token = jwt.sign({ userId }, { expiresIn: "1h" }, KEY); // 토큰 만료 1시간
+        //let token = jwt.sign({ userId }, { expiresIn: "1h" }, KEY); // 토큰 만료 1시간
 
-        res.status(200).json({ token }); // 토큰 반환
+        res.status(200).json({ results }); // 토큰 반환
       } else {
         // 로그인 실패
         res
@@ -192,6 +234,7 @@ app.post("/api/login", (req, res) => {
     });
   });
 });
+*/
 
 app.post("/api/kakaoLogin", async (request, res) => {
   // client에서 server쪽으로 axios post방식으로 login api 가져오기
@@ -243,8 +286,9 @@ app.post("/api/logout", async (request, res) => {
 //(프론트단에 추가한 액시오스 설정도 같이 볼 것)
 
 let corsOption = {
-  origin: "http://localhost:8080",
+  origin: "http://localhost:8080", // 접근 권한 부여 도메인
   credentials: true, //true로 하면 설정한 내용을 response 헤더에 추가 해줌.
+  optionsSuccessStatus: 200, //응답 상태 200으로 설정
 };
 
 app.use(cors(corsOption)); //CORS 미들웨어
@@ -378,11 +422,13 @@ app.post("/findId", async (req, res) => {
     console.log(result);
 
     if (result.length > 0) {
-      const id = result[0][0].USER_ID;
+      const id = result[0][0]?.USER_ID;
       res.json({ id }); // 아이디를 응답으로 전송
       console.log({ id }); //id객체에 가져온 db값 넣어지는 거 확인 됐음.
     } else {
-      res.status(404).json({ error: "가입된 아이디가 없습니다." }); // 일차하는 아이디가 없을 경우 에러 전송
+      const id = ""; // 응답이 없을 때 빈 id 값을 설정
+      res.json({ id }); // 빈 id 값을 응답으로 전송
+      console.log({ id }); // 빈 id 값이 들어오는지 확인
     }
   } catch (err) {
     res.status(500).send({ error: "DB 연결에 문제가 있습니다" });
@@ -432,7 +478,7 @@ app.post("/acco_detail", (req, res) => {
 
     const { check_in, check_out, userno, accoid } = req.body;
 
-    // 중복된 이메일이 없을 경우 회원 정보 저장
+    
     const insertReservationSql =
       "INSERT INTO reservation (RESERVATION_CHECK_IN, RESERVATION_CHECK_OUT, USER_NO, ACCO_ID) VALUES (?, ?, ?, ?)";
     const values = [check_in, check_out, userno, accoid];
@@ -446,7 +492,7 @@ app.post("/acco_detail", (req, res) => {
           .json({ error: "예약 정보 인서트에 실패했습니다." });
       }
 
-      // 회원 가입 성공 응답
+      //  성공 응답
       res.json({ message: "예약창으로 넘어갑니다" });
     });
   });
@@ -461,13 +507,13 @@ app.post("/payment", (req, res) => {
       return res.status(500).json({ error: "db연결에 실패했습니다." });
     }
 
-    const { totalprice, reservationid } = req.body;
+    const { amount, reservationid } = req.body;
 
     // 결제 정보 저장
     const insertPaymentSql =
       "INSERT INTO payment (PAYMENT_TOTAL_PRICE, RESERVATION_ID) VALUES (?, ?)";
 
-    const values = [totalprice, reservationid];
+    const values = [amount, reservationid];
     connection.query(insertPaymentSql, values, (err, result) => {
       connection.release(); // 사용이 완료된 연결 반환
 
@@ -478,7 +524,7 @@ app.post("/payment", (req, res) => {
           .json({ error: "결제 정보 인서트에 실패했습니다." });
       }
 
-      alert("결제 성공");
+      
       res.json({ message: "결제 되셨습니다." });
     });
   });
@@ -493,12 +539,12 @@ app.post("/reservation_info", (req, res) => {
       return res.status(500).json({ error: "db연결에 실패했습니다." });
     }
 
-    const { RESERVATION_STATUS } = req.body;
+    const { reservation_status, dday1, dday2  } = req.body;
 
-    // 중복된 이메일이 없을 경우 회원 정보 저장
+    
     const updateResSql =
-      "UPDATE reservation SET RESERVATION_STATUS=? order by RESERVATION_ID desc limit 1";
-    const values = [RESERVATION_STATUS];
+      "UPDATE reservation SET RESERVATION_STATUS=?, RESERVATION_CHECK_IN=?, RESERVATION_CHECK_OUT=? order by RESERVATION_ID desc limit 1";
+    const values = [reservation_status, dday1, dday2 ];
     connection.query(updateResSql, values, (err, result) => {
       connection.release(); // 사용이 완료된 연결 반환
 

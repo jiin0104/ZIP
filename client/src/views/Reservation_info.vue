@@ -38,7 +38,7 @@
           <p>
             체크아웃 날짜:
             <span class="reservation-date"
-              >{{ reservation_info.RESERVATION_CHECK_OUT }}</span
+            >{{ reservation_info.RESERVATION_CHECK_OUT }}</span
             >
           </p>
           <p>
@@ -94,7 +94,9 @@ export default {
 
     main_Link() {
       const formData = {
-        RESERVATION_STATUS: '결제완료',
+        check_in: this.check_in,
+        check_out: this.d2y,
+        reservation_status: '결제완료',
       };
       axios.post('/reservation_info', formData)
       .then(response => {
