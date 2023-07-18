@@ -109,7 +109,6 @@
 </style>
 
 <script>
-import { mapState } from 'vuex';
 import axios from "axios";
 axios.defaults.baseURL = 'http://localhost:3000'; //서버주소
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
@@ -171,7 +170,7 @@ export default {
   },
 
   computed: {
-    ...mapState(['isLogin'])
+
   },
 
   methods: {
