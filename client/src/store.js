@@ -3,7 +3,7 @@
 import { createStore } from "vuex";
 //싱글페이지 구조에서 새로고침 안해도 페이지가 렌딩되게 하는 모듈
 //vuex의 state에 저장된 값을 그대로 리턴해주는 원리
-import persistedstate from "vuex-persistedstate";
+import createPersistedState from "vuex-persistedstate";
 
 const store = createStore({
   state() {
@@ -38,10 +38,9 @@ const store = createStore({
       state.isLoginError = true
     },
   },
+
   plugins: [
-    persistedstate({
-      paths: ['user']
-    })
+    createPersistedState()
   ]
 });
 

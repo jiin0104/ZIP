@@ -3,7 +3,7 @@
     <div class="limiter">
       <div class="container-login100">
         <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-          <form class="login100-form validate-form">
+          <form class="login100-form validate-form" @submit.prevent="" >
             <div
               class="wrap-input100 validate-input m-b-23"
               data-validate="Username is required"
@@ -109,7 +109,11 @@
 </style>
 
 <script>
+import { mapState } from 'vuex';
 import axios from "axios";
+axios.defaults.baseURL = 'http://localhost:3000'; //서버주소
+axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
+axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 
 export default {
   //네이버 로그인
@@ -167,19 +171,18 @@ export default {
   },
 
   computed: {
-
+    ...mapState(['isLogin'])
   },
 
   methods: {
   login(){
     axios({
-      url:"http://localhost:3000/api/login",
+      url:"/api/login",
       method: 'POST',
       data:{
         userId: this.userId,
         userPw: this.userPw
       },
-      
     })
     .then(res => {
       console.log(res.data.message);
@@ -193,9 +196,8 @@ export default {
       else {
         this.$store.commit("localUser", { userId: this.userId, userNo: res.data.message })
           alert("로그인 성공!")
-          this.$router.push("/"); // 메인 컴포넌트 이동
+          this.$router.push({path:'/'}); // 메인 컴포넌트 이동
           this.$store.state.isLogin = true // isLogin 상태 변환
-          
       }
     })
     .catch(err => {

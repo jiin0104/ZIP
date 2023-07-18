@@ -34,6 +34,17 @@ app.use(
   })
 );
 
+//cors 오류 해결 코드. 후에 cors 모듈을 이용하지 않고 해결할 방법 찾아볼 것
+//(프론트단에 추가한 액시오스 설정도 같이 볼 것)
+
+let corsOption = {
+  origin: "http://localhost:8080", // 접근 권한 부여 도메인
+  credentials: true, //true로 하면 설정한 내용을 response 헤더에 추가 해줌.
+  optionsSuccessStatus: 200, //응답 상태 200으로 설정
+};
+
+app.use(cors(corsOption)); //CORS 미들웨어
+
 // passport 모듈 연결
 // passportConfig();
 // req객체에 passport설정 대입하는 미들웨어
@@ -64,7 +75,7 @@ fs.watchFile(__dirname + "/sql.js", (curr, prev) => {
 const dbPool = mysql.createPool({
   host: "127.0.0.1",
   user: "root",
-  password: "1234",
+  password: "alscjf1254@",
   database: "project",
   connectionLimit: 100, //연결할 수 있는 최대 수 100
 });
@@ -280,16 +291,7 @@ app.post("/api/logout", async (request, res) => {
 //   })(req, res);
 // });
 
-//cors 오류 해결 코드. 후에 cors 모듈을 이용하지 않고 해결할 방법 찾아볼 것
-//(프론트단에 추가한 액시오스 설정도 같이 볼 것)
 
-let corsOption = {
-  origin: "http://localhost:8080", // 접근 권한 부여 도메인
-  credentials: true, //true로 하면 설정한 내용을 response 헤더에 추가 해줌.
-  optionsSuccessStatus: 200, //응답 상태 200으로 설정
-};
-
-app.use(cors(corsOption)); //CORS 미들웨어
 
 // 쿼리 요청을 보내는 부분. 에러가 발생하였을 때 콘솔에 출력해주는 소스.
 //req객체
