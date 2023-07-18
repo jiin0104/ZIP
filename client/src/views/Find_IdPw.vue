@@ -53,7 +53,7 @@
 
 <script>
 import axios from "axios";
-import nodemailer from "nodemailer";
+
 
 export default {
   data() {
@@ -91,36 +91,7 @@ export default {
     },
 
     sendemail() {
-  // 인증 이메일을 보낼 이메일 주소
-  const toEmail = this.email;
-
-  // 인증 이메일 내용
-  const emailContent = {
-    from: "cjsdn6466@naver.com", // 발신자 이메일 주소
-    to: toEmail,
-    subject: "인증 이메일",
-    text: "인증 이메일 테스트.", // 이메일 본문
-  };
-
-  // SMTP 전송 설정
-  const transporter = nodemailer.createTransport({
-    host: "smtp.naver.com",
-    port: 465,
-    secure: true,
-    auth: {
-      user: "cjsdn6466@naver.com", // 발신자 이메일 주소
-      pass: "", // 발신자 이메일 비밀번호
-    },
-  });
-
-  // 이메일 전송
-  transporter.sendMail(emailContent, (error, info) => {
-    if (error) {
-      console.error("이메일 전송 실패:", error);
-    } else {
-      console.log("이메일 전송 완료:", info.response);
-    }
-  });
+  
 },
 
 
