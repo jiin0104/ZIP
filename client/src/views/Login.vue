@@ -36,10 +36,10 @@
             </div>
 
             <div class="text-right p-t-8 p-b-31">
-              <a href="#" style="text-decoration: none">
-                <RouterLink to="Find_IdPw">
-                  <p style="text-align: right" link="">아이디/비밀번호 찾기</p>
-                </RouterLink>
+              <a style="text-decoration: none">
+                <p style="text-align: right" link="" href="#">
+                    <RouterLink to="Find_IdPw">아이디/비밀번호 찾기</RouterLink>
+                </p>
               </a>
             </div>
 
@@ -124,7 +124,7 @@ export default {
   mounted() {
     this.naverLogin = new window.naver.LoginWithNaverId({
       clientId: "8NWAD60RgqNbWdmXePhg", // 네이버 앱 키
-      callbackUrl: "http://localhost:3000/login", // 콜백 url
+      callbackUrl: "http://localhost:3000/", // 콜백 url
       isPopup: true, // 팝업으로 띄우기
       loginButton: {
         color: "green",
@@ -173,15 +173,17 @@ export default {
   methods: {
   login(){
     axios({
-      url:"/api/login",
-      method:"POST",
+      url:"http://localhost:3000/api/login",
+      method: 'POST',
       data:{
         userId: this.userId,
         userPw: this.userPw
       },
+      
     })
     .then(res => {
       console.log(res.data.message);
+      // 서버에서 받아오는 로그인 정보
       if(res.data.message == 'undefined_id') {
         alert("아이디 혹은 비밀번호가 맞지 않습니다.")
       }
@@ -193,10 +195,12 @@ export default {
           alert("로그인 성공!")
           this.$router.push("/"); // 메인 컴포넌트 이동
           this.$store.state.isLogin = true // isLogin 상태 변환
+          
       }
     })
     .catch(err => {
       console.log(err);
+      alert("아이디 및 비밀번호를 입력해주세요.")
     })
   },
 

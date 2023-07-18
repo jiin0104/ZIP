@@ -47,7 +47,7 @@ app.use(
 //post 방식으로 클라이언트가 요청하는 본문에 있는 value를 넘겨받고 req.body 객체로 만들어주는 미들웨어.
 //넘겨받은 value들은 DB로 전송
 app.use(express.urlencoded({ extended: true }));
-//이건 제이슨 형태로
+//이건 제이슨 형태로ol
 app.use(express.json());
 
 //cosnt를 줘버리면 sql이 고정값을 가져서 쿼리문 여러 개 못 씀.
@@ -154,26 +154,24 @@ app.post("/apirole/:alias", async (request, res) => {
 app.post("/api/login", function (request, response) {
   const loginUser = request.body;
   console.log(loginUser.userId);
-  console.log(loginUser.userId);
+  console.log(loginUser.userPw);
 
   const query = "SELECT * FROM users WHERE USER_ID = ?";
 
   dbPool.query(query, [loginUser.userId], function (error, results, fields) {
+    console.log(results.length );
     if (results.length <= 0) {
       return response.status(200).json({
         message: "undefined_id",
       });
     } else {
-      dbPool.query(
-        query,
-        [loginUser.userId],
-        function (error, results, fields) {
-          console.log(results);
+      dbPool.query( query, [loginUser.userId], function (error, results, fields) {
+        console.log(results);
           if (results[0].USER_PASSWORD == loginUser.userPw) {
             // ID에 저장된 pw 값과 입력한 pw값이 동일한 경우
 
             return response.status(200).json({
-              message: results[0].USER_NO,
+              message: results[0].USER_NO
             });
           } else {
             // 비밀번호 불일치
