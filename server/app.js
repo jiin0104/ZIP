@@ -75,7 +75,7 @@ fs.watchFile(__dirname + "/sql.js", (curr, prev) => {
 const dbPool = mysql.createPool({
   host: "127.0.0.1",
   user: "root",
-  password: "alscjf1254@",
+  password: "root",
   database: "project",
   connectionLimit: 100, //연결할 수 있는 최대 수 100
 });
@@ -196,60 +196,11 @@ app.post("/api/login", function (request, response) {
   });
 });
 
-/*
-app.post("/api/login", (req, res) => {
-  const userData = req.body; // 데이터 추출
-  // 변수 할당
-  const userId = userData.userId;
-  const userPw = userData.userPw;
-  // 쿼리문 생성
-  const query = "SELECT * FROM users WHERE USER_ID = ? AND USER_PASSWORD = ?";
-
-  dbPool.getConnection((err, connection) => {
-    if (err) {
-      console.error("DB 연결을 가져오는 중 오류 발생:", err);
-      res.status(500).json({ error: "로그인 처리 중 오류가 발생했습니다." });
-      return;
-    }
-
-    // 쿼리 실행
-    connection.query(query, [userId, userPw], (error, results) => {
-      connection.release(); // 연결 반환
-
-      if (error) {
-        console.error("쿼리 실행 중 오류 발생:", error);
-        res.status(500).json({ error: "로그인 처리 중 오류가 발생했습니다." });
-        return;
-      }
-
-      // 결과 확인
-      if (
-        results.length > 0 &&
-        results[0].USER_ID === userId &&
-        results[0].USER_PASSWORD === userPw
-      ) {
-        // 로그인 성공
-
-        // 토큰 생성
-        //let token = jwt.sign({ userId }, { expiresIn: "1h" }, KEY); // 토큰 만료 1시간
-
-        res.status(200).json({ results }); // 토큰 반환
-      } else {
-        // 로그인 실패
-        res
-          .status(401)
-          .json({ error: "잘못된 사용자 ID 또는 비밀번호입니다." });
-      }
-    });
-  });
-});
-*/
-
 app.post("/api/kakaoLogin", async (request, res) => {
   // client에서 server쪽으로 axios post방식으로 login api 가져오기
   // res.send('ok');
   try {
-    await req.db("signUp", request.body.param); // signUp sql 호출하고, request시 body에 파라미터도 함께 들어오도록 설정
+    await req.db("SignUp", request.body.param); // signUp sql 호출하고, request시 body에 파라미터도 함께 들어오도록 설정
     if (request.body.param.length > 0) {
       for (let key in request.body.param[0])
         request.session[key] = request.body.param[0][key]; // 받아온 파리미터의 첫번째 인자를 key값에 넣어줌
@@ -271,27 +222,6 @@ app.post("/api/logout", async (request, res) => {
   request.session.destroy(); // session 없애기
   res.send("ok");
 });
-
-// 네이버 라우트. 검토 필요
-// router.get("/login/naver", passport.authenticate("naver"));
-
-//위에서 네이버 서버 로그인이 되면, 네이버 redirect url 설정에 따라 이쪽 라우터로 오게 된다.
-// router.get("/login/naver/callback", function (req, res, next) {
-
-//passport 로그인 전략에 의해 naverStrategy로 가서 계정 정보와 DB를 비교해서 회원가입시키거나 로그인 처리하게 한다.
-//   passport.authenticate("naver", function (err, user) {
-//     console.log("passport.authenticate(naver)실행");
-//     if (!user) {
-//       return res.redirect("http://localhost:3000/login");
-//     }
-//     req.logIn(user, function (err) {
-//       console.log("naver/callback user : ", user);
-//       return res.redirect("http://localhost:3000/");
-//     });
-//   })(req, res);
-// });
-
-
 
 // 쿼리 요청을 보내는 부분. 에러가 발생하였을 때 콘솔에 출력해주는 소스.
 //req객체

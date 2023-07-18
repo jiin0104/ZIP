@@ -189,6 +189,16 @@ button:hover {
   left: -100%;
 }
 
+.login100-form-bgbtn2 {
+  position: absolute;
+  z-index: -1;
+  width: 300%;
+  height: 100%;
+  background: #F7E600;
+  top: 0;
+  left: -100%;
+}
+
 .login100-form-btn {
   font-family: Noto Sans KR;
   font-size: 16px;
