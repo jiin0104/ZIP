@@ -14,7 +14,7 @@
             <ul class="password-list-pwresult">
               <li>
                 <strong>
-                  <label>비밀번호:{{pw}}</label>
+                  <label>비밀번호:{{ pw }}</label>
                 </strong>
               </li>
             </ul>
