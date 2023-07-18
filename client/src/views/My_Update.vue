@@ -26,10 +26,10 @@
             <div style="position: relative; left: 30%">
               <div class="field2" id="sign">
                 <b label for="nickname">닉네임</b><br />
-                <input type="text" id="nickname" role="textbox" placeholder="닉네임을 입력해 주세요." name="nickname"
-                  v-model="nickname" />
+                <input type="text" id="nickname" role="textbox" name="nickname" v-model="nickname" />
                 <input type="button" id="crosscheck" value="중복 확인" @click="validateNickname"><br />
               </div>
+
               <br>
               <div class="field2">
                 <b label for="password">비밀번호</b><br />
@@ -87,15 +87,22 @@ export default {
   data() {
     return {
       errors: [],
-      phone: null,
       nickname: null,
       password: null,
       passwordCheck: null,
+      phone: null,
       zonecode: null,
       roadAddress: null,
-      detailAddress: null
+      detailAddress: null,
     };
   },
+
+  //화면 열리면 진행시킬 함수
+  created() {
+    this.Get_User_Info();
+    this.USER_NO = this.$route.query.USER_NO;
+  },
+
   methods: {
     Mypage_Link() {
       this.$router.push({ path: "/mypage" });
@@ -108,6 +115,21 @@ export default {
     },
     My_Delete_Link() {
       this.$router.push({ path: "/my_delete" });
+    },
+
+
+    //로그인한 유저의 정보 가져오는 함수
+    //유저 정보를 가져와 쓸수 있게 객체로 만들었다.
+    async Get_User_Info() {
+      let userlist = await this.$api("/api/userlist", { param: [this.USER_NO] });
+      this.userlist = userlist[0];
+      this.nickname = this.userlist.user_nickname;
+      this.password = this.userlist.user_password;
+      this.passwordCheck = this.userlist.user_password;
+      this.phone = this.userlist.user_tel;
+      this.roadAddress = this.userlist.user_address1;
+      this.detailAddress = this.userlist.user_address2;
+
     },
 
     checkForm(e) {
@@ -176,7 +198,8 @@ export default {
     },
 
 
-    submitForm() {//입력한 값들 서브밋.
+    //입력한 값들 서브밋
+    submitForm() {
       const formData = {
         nickname: this.nickname,
         password: this.password,
@@ -185,47 +208,25 @@ export default {
         address2: this.detailAddress
       };
 
-
-      axios.post('/my_update', formData)//서브밋한 값들을 받아서 서버에 전달.
+      //서브밋한 값들을 받아서 서버에 전달.
+      axios.post('/my_update', formData)
         .then(response => {
           if (response.data.message) {
             alert(response.data.message);
-            // 가입 완료 후 로그인 페이지로 리다이렉트
             location.href = "/mypage";
 
           } else {
-            alert('회원 등록에 실패했습니다.');
+            alert('회원 정보 수정에 실패했습니다.');
             console.log(formData);
           }
         })
         .catch(error => {
-          console.error('회원등록 실패', error);
-          alert('회원등록 실패. 확인 후 다시 시도해 주세요');
+          console.error('회원 정보 수정 실패', error);
+          alert('회원 정보 수정 실패. 확인 후 다시 시도해 주세요');
         });
     },
 
-    validateEmail() {
-      const email = this.email;
-      if (!email) {
-        alert("이메일 항목을 작성해주세요");
-        return;
-      }
-
-      axios.post('/checkEmail', { email })
-        .then(response => {
-          if (response.data.exists) {
-            alert("이미 존재하는 이메일입니다.");
-          } else {
-            alert("사용 가능한 이메일입니다.");
-          }
-        })
-        .catch(error => {
-          console.error('이메일 중복 확인 실패', error);
-          alert('이메일 중복 확인에 실패했습니다.');
-        });
-    },
-
-
+    //닉네임 중복 확인
     validateNickname() {
       const nickname = this.nickname;
       if (!nickname) {
@@ -247,8 +248,8 @@ export default {
         });
     },
 
-
-    openPostcode() {//주소찾기 로직
+    //주소 찾기 로직
+    openPostcode() {
       new window.daum.Postcode({
         oncomplete: (data) => {
           this.zonecode = data.zonecode;
