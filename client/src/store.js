@@ -1,10 +1,9 @@
 // Vuex 어플리케이션의 모든 컴포넌트들에 대한 중앙 집중식 저장소의 역할 및 관리 를 담당. 여기선 로그인을 통해 바당온 회원 테이블를 저장
 //데이터를 Store라는 곳을 통해서 관리하고 프로젝트에 존재하는 모든 컴포넌트들이 이 Store를 사용하는 것
 import { createStore } from "vuex";
-import router from './router'
 //싱글페이지 구조에서 새로고침 안해도 페이지가 렌딩되게 하는 모듈
 //vuex의 state에 저장된 값을 그대로 리턴해주는 원리
-import persistedstate from "vuex-persistedstate";
+import createPersistedState from "vuex-persistedstate";
 
 const store = createStore({
   state() {
@@ -13,7 +12,7 @@ const store = createStore({
       user: null,
       userId: '',
       userPw: '',
-      token: '',
+      userNo: '',
       isLogin: false,
       isLoginError: false
     };
@@ -22,10 +21,10 @@ const store = createStore({
     //Mutation을 통해서만 State를 변경. 함수작성. Mutations에 접근하는 것은 Component의 Methods 영역내에서 가능. 기본 접근 방법: this.$store.commit('경로명/함수명')
     
     // 저장된 유저 정보와 불러온 유저 정보가 일치하는지 확인
-    login: function (state, payload) {
-      state.userId = payload.userId
-      state.userPw = payload.userPw
-      state.token = payload.token // 여기서 토큰은 로그인 성공 시에 백엔드에서 줘야할 토큰
+    localUser(state, payload) {
+      state.userId = payload.userId;
+      state.userPw = payload.userPw;
+      state.userNo = payload.userNo;
     },
     user(state, data) {
       state.user = data;
@@ -38,21 +37,10 @@ const store = createStore({
       state.isLogin = false
       state.isLoginError = true
     },
-    // 다른 페이지로 이동할 때 로그인 되어있는 사용자만 접근할 수 있는 페이지라면 페이지 이동 시에 체크해주는 기능
-    loginCheck: function (state) {
-      if (!state.token) {
-        router.push({
-          name: 'login'
-        }).catch(error => {
-          console.log(error)
-        })
-      }
-    }
   },
+
   plugins: [
-    persistedstate({
-      paths: ['user']
-    })
+    createPersistedState()
   ]
 });
 

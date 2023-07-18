@@ -5,7 +5,7 @@
       <div class="underline-idresult"></div>
     </div>
     <div class="description-idresult">
-      <p class="p-idresult">고객님의 정보와 일치하는 아이디 목록입니다.</p>
+      <p class="p-idresult">회원님의 아이디 목록입니다.</p>
     </div>
     <div class="form-container-idresult">
       <form>
@@ -15,7 +15,12 @@
               <li>
                 <strong>
                   <label>아이디 : </label>
-                  <span>(찾은 아이디 표시, 로직구현 필요)</span>
+                  <div class="description-idresult">
+                    <p class="p-idresult" v-if="id !== ''">
+                      {{ $route.params.id }}
+                    </p>
+                    <p class="p-idresult" v-else>가입된 아이디가 없습니다.</p>
+                  </div>
                 </strong>
               </li>
             </ul>
@@ -41,9 +46,14 @@
 
 <script>
 export default {
-  name: "find_id_result",
   data() {
-    return {};
+    return {
+      id: "", // id 값을 저장할 변수
+    };
+  },
+  mounted() {
+    this.id = this.$route.params.id;
+    console.log('받은 id:', this.$route.params.id);
   },
 };
 </script>

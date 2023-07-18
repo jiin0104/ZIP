@@ -3,9 +3,9 @@ import { createRouter, createWebHistory } from "vue-router";
 import Admin_Page_Reservation from "../views/Admin_Page_Reservation.vue";
 import Admin_Page_User from "../views/Admin_Page_User.vue";
 import Admin_Product_Create from "../views/Admin_Product_Create.vue";
-import Find_Id_Result from '../views/Find_Id_Result.vue'
-import Find_IdPw from '../views/Find_IdPw.vue'
-import Find_Pw_Result from '../views/Find_Pw_Result.vue'
+import Find_Id_Result from "../views/Find_Id_Result.vue";
+import Find_IdPw from "../views/Find_IdPw.vue";
+import Find_Pw_Result from "../views/Find_Pw_Result.vue";
 import Login from "../views/Login.vue";
 import My_Delete from "../views/My_Delete.vue";
 import My_Reservation from "../views/My_Reservation.vue";
@@ -24,14 +24,14 @@ const routes = [
     path: "/",
     name: "main",
     component: Main,
-    meta: {}
+    meta: {},
   },
 
   {
     path: "/search_list",
     name: "search_list",
     component: Search_List,
-    meta: {}
+    meta: {},
   },
 
   {
@@ -39,8 +39,8 @@ const routes = [
     name: "admin_page_reservation",
     component: Admin_Page_Reservation,
     meta: {
-      roles: [ 'admin' ]
-    }
+      roles: ["admin"],
+    },
   },
 
   {
@@ -48,8 +48,8 @@ const routes = [
     name: "admin_page_user",
     component: Admin_Page_User,
     meta: {
-      roles: [ 'admin' ]
-    }
+      roles: ["admin"],
+    },
   },
 
   {
@@ -57,34 +57,34 @@ const routes = [
     name: "admin_product_create",
     component: Admin_Product_Create,
     meta: {
-      roles: [ 'admin' ]
-    }
+      roles: ["admin"],
+    },
   },
 
   {
-    path: '/find_id_result',
-    name: 'find_id_result',
-    component: Find_Id_Result
+    path: "/find_id_result/:id",
+    name: "find_id_result",
+    component: Find_Id_Result,
   },
 
   {
-    path: '/find_idpw',
-    name: 'find_idpw',
+    path: "/find_idpw",
+    name: "find_idpw",
     component: Find_IdPw,
-    meta: {}
+    meta: {},
   },
 
   {
-    path: '/find_pw_result',
-    name: 'find_pw_result',
-    component: Find_Pw_Result
+    path: "/find_pw_result",
+    name: "find_pw_result",
+    component: Find_Pw_Result,
   },
 
   {
     path: "/login",
     name: "login",
     component: Login,
-    meta: {}
+    meta: {},
   },
 
   {
@@ -92,8 +92,8 @@ const routes = [
     name: "my_delete",
     component: My_Delete,
     meta: {
-      roles: [ 'member', 'admin' ]
-    }
+      roles: ["member", "admin"],
+    },
   },
 
   {
@@ -101,8 +101,8 @@ const routes = [
     name: "my_reservation",
     component: My_Reservation,
     meta: {
-      roles: [ 'member', 'admin' ]
-    }
+      roles: ["member", "admin"],
+    },
   },
 
   {
@@ -110,8 +110,8 @@ const routes = [
     name: "my_update",
     component: My_Update,
     meta: {
-      roles: [ 'member', 'admin' ]
-    }
+      roles: ["member", "admin"],
+    },
   },
 
   {
@@ -119,8 +119,8 @@ const routes = [
     name: "mypage_pw_check",
     component: Mypage_Pw_Check,
     meta: {
-      roles: [ 'member', 'admin' ]
-    }
+      roles: ["member", "admin"],
+    },
   },
 
   {
@@ -128,8 +128,8 @@ const routes = [
     name: "mypage",
     component: Mypage,
     meta: {
-      roles: [ 'member', 'admin' ]
-    }
+      roles: ["member", "admin"],
+    },
   },
 
   {
@@ -137,8 +137,8 @@ const routes = [
     name: "payment",
     component: Payment,
     meta: {
-      roles: [ 'member', 'admin' ]
-    }
+      roles: ["member", "admin"],
+    },
   },
 
   {
@@ -146,22 +146,22 @@ const routes = [
     name: "Reservation_info",
     component: Reservation_info,
     meta: {
-      roles: [ 'member', 'admin' ]
-    }
+      roles: ["member", "admin"],
+    },
   },
 
   {
     path: "/signup",
     name: "signup",
     component: Signup,
-    meta: {}
+    meta: {},
   },
 
   {
     path: "/acco_detail",
     name: "acco_detail",
     component: Acco_Detail,
-    meta: {}
+    meta: {},
   },
 ];
 

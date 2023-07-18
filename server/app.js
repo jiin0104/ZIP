@@ -8,12 +8,17 @@ const fs = require("fs");
 const path = require("path");
 const dotenv = require("dotenv");
 const passport = require("passport"); //로그인 로직할 때 필요
-const passportConfig = require('./passport');
+const passportConfig = require("./passport");
 const mysql = require("mysql2");
 const app = express();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const KEY = "token_key" // jwt 시크릿 키
+const KEY = "token_key"; // jwt 시크릿 키
+
+app.use("/", express.static(path.join(__dirname, "./public")));
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "./public/index.html"));
+});
 
 // 쿠키 설정. 쿠키사용 보류
 app.use(
@@ -29,6 +34,17 @@ app.use(
   })
 );
 
+//cors 오류 해결 코드. 후에 cors 모듈을 이용하지 않고 해결할 방법 찾아볼 것
+//(프론트단에 추가한 액시오스 설정도 같이 볼 것)
+
+let corsOption = {
+  origin: "http://localhost:8080", // 접근 권한 부여 도메인
+  credentials: true, //true로 하면 설정한 내용을 response 헤더에 추가 해줌.
+  optionsSuccessStatus: 200, //응답 상태 200으로 설정
+};
+
+app.use(cors(corsOption)); //CORS 미들웨어
+
 // passport 모듈 연결
 // passportConfig();
 // req객체에 passport설정 대입하는 미들웨어
@@ -42,6 +58,7 @@ app.use(
 //post 방식으로 클라이언트가 요청하는 본문에 있는 value를 넘겨받고 req.body 객체로 만들어주는 미들웨어.
 //넘겨받은 value들은 DB로 전송
 app.use(express.urlencoded({ extended: true }));
+//이건 제이슨 형태로ol
 app.use(express.json());
 
 //cosnt를 줘버리면 sql이 고정값을 가져서 쿼리문 여러 개 못 씀.
@@ -58,7 +75,7 @@ fs.watchFile(__dirname + "/sql.js", (curr, prev) => {
 const dbPool = mysql.createPool({
   host: "127.0.0.1",
   user: "root",
-  password: "root",
+  password: "alscjf1254@",
   database: "project",
   connectionLimit: 100, //연결할 수 있는 최대 수 100
 });
@@ -145,6 +162,41 @@ app.post("/apirole/:alias", async (request, res) => {
 });
 
 //로그인 라우터. 웹페이지'/login'에서 인증로직 처리.
+app.post("/api/login", function (request, response) {
+  const loginUser = request.body;
+  console.log(loginUser.userId);
+  console.log(loginUser.userPw);
+
+  const query = "SELECT * FROM users WHERE USER_ID = ?";
+
+  dbPool.query(query, [loginUser.userId], function (error, results, fields) {
+    console.log(results.length );
+    if (results.length <= 0) {
+      return response.status(200).json({
+        message: "undefined_id",
+      });
+    } else {
+      dbPool.query( query, [loginUser.userId], function (error, results, fields) {
+        console.log(results);
+          if (results[0].USER_PASSWORD == loginUser.userPw) {
+            // ID에 저장된 pw 값과 입력한 pw값이 동일한 경우
+
+            return response.status(200).json({
+              message: results[0].USER_NO
+            });
+          } else {
+            // 비밀번호 불일치
+            return response.status(200).json({
+              message: "incorrect_pw",
+            });
+          }
+        }
+      );
+    }
+  });
+});
+
+/*
 app.post("/api/login", (req, res) => {
   const userData = req.body; // 데이터 추출
   // 변수 할당
@@ -171,20 +223,27 @@ app.post("/api/login", (req, res) => {
       }
 
       // 결과 확인
-      if (results.length > 0 && results[0].USER_ID === userId && results[0].USER_PASSWORD === userPw) {
+      if (
+        results.length > 0 &&
+        results[0].USER_ID === userId &&
+        results[0].USER_PASSWORD === userPw
+      ) {
         // 로그인 성공
 
         // 토큰 생성
-        let token = jwt.sign({ userId }, { expiresIn: "1h" }, KEY); // 토큰 만료 1시간
+        //let token = jwt.sign({ userId }, { expiresIn: "1h" }, KEY); // 토큰 만료 1시간
 
-        res.status(200).json({ token }); // 토큰 반환
+        res.status(200).json({ results }); // 토큰 반환
       } else {
         // 로그인 실패
-        res.status(401).json({ error: "잘못된 사용자 ID 또는 비밀번호입니다." });
+        res
+          .status(401)
+          .json({ error: "잘못된 사용자 ID 또는 비밀번호입니다." });
       }
     });
   });
 });
+*/
 
 app.post("/api/kakaoLogin", async (request, res) => {
   // client에서 server쪽으로 axios post방식으로 login api 가져오기
@@ -232,17 +291,10 @@ app.post("/api/logout", async (request, res) => {
 //   })(req, res);
 // });
 
-//cors 오류 해결 코드. 후에 cors 모듈을 이용하지 않고 해결할 방법 찾아볼 것
-//(프론트단에 추가한 액시오스 설정도 같이 볼 것)
 
-let corsOption = {
-  origin: "http://localhost:8080",
-  credentials: true, //true로 하면 설정한 내용을 response 헤더에 추가 해줌.
-};
-
-app.use(cors(corsOption)); //CORS 미들웨어
 
 // 쿼리 요청을 보내는 부분. 에러가 발생하였을 때 콘솔에 출력해주는 소스.
+//req객체
 const req = {
   async db(alias, param = [], where = "") {
     return new Promise((resolve, reject) =>
@@ -353,6 +405,37 @@ app.post("/checkNickname", (req, res) => {
   });
 });
 
+//전화번호를 받아서 아이디 찾기.
+app.post("/findId", async (req, res) => {
+  try {
+    const { phoneNumber } = req.body; //vue에서 받아온 파라미터 값
+    const query = "SELECT USER_ID FROM users WHERE USER_TEL = ?"; // 전화번호로 id를 찾는 쿼리
+    const connection = await dbPool.promise().getConnection(); // getConnection()을 프로미스를 반환하는 메서드로 사용
+
+    //vue에서 받아온 파라미터 값 확인됐음.
+    console.log({ phoneNumber });
+
+    const result = await connection.query(query, [phoneNumber]); // 쿼리 실행
+    connection.release(); // 사용이 완료된 연결 반납
+
+    //db에서 쿼리 이용해서 가져온 값 확인됐음.
+    console.log(result);
+
+    if (result.length > 0) {
+      const id = result[0][0]?.USER_ID;
+      res.json({ id }); // 아이디를 응답으로 전송
+      console.log({ id }); //id객체에 가져온 db값 넣어지는 거 확인 됐음.
+    } else {
+      const id = ""; // 응답이 없을 때 빈 id 값을 설정
+      res.json({ id }); // 빈 id 값을 응답으로 전송
+      console.log({ id }); // 빈 id 값이 들어오는지 확인
+    }
+  } catch (err) {
+    res.status(500).send({ error: "DB 연결에 문제가 있습니다" });
+    console.error(err);
+  }
+});
+
 // 정보 수정 API 엔드포인트
 app.post("/my_update", (req, res) => {
   //db연결을 사용해서 작업
@@ -384,7 +467,6 @@ app.post("/my_update", (req, res) => {
   });
 });
 
-
 // 예약 생성 API 엔드포인트
 app.post("/acco_detail", (req, res) => {
   //db연결을 사용해서 작업
@@ -396,7 +478,6 @@ app.post("/acco_detail", (req, res) => {
 
     const { check_in, check_out, userno, accoid } = req.body;
 
-    // 중복된 이메일이 없을 경우 회원 정보 저장
     const insertReservationSql =
       "INSERT INTO reservation (RESERVATION_CHECK_IN, RESERVATION_CHECK_OUT, USER_NO, ACCO_ID) VALUES (?, ?, ?, ?)";
     const values = [check_in, check_out, userno, accoid];
@@ -410,21 +491,11 @@ app.post("/acco_detail", (req, res) => {
           .json({ error: "예약 정보 인서트에 실패했습니다." });
       }
 
-      // 회원 가입 성공 응답
+      //  성공 응답
       res.json({ message: "예약창으로 넘어갑니다" });
     });
   });
 });
-
-
-
-
-
-
-
-
-
-
 
 // 결제 API 엔드포인트
 app.post("/payment", (req, res) => {
@@ -435,13 +506,13 @@ app.post("/payment", (req, res) => {
       return res.status(500).json({ error: "db연결에 실패했습니다." });
     }
 
-    const { totalprice, reservationid} = req.body;
+    const { amount, reservationid } = req.body;
 
     // 결제 정보 저장
     const insertPaymentSql =
       "INSERT INTO payment (PAYMENT_TOTAL_PRICE, RESERVATION_ID) VALUES (?, ?)";
 
-    const values = [totalprice, reservationid];
+    const values = [amount, reservationid];
     connection.query(insertPaymentSql, values, (err, result) => {
       connection.release(); // 사용이 완료된 연결 반환
 
@@ -452,12 +523,10 @@ app.post("/payment", (req, res) => {
           .json({ error: "결제 정보 인서트에 실패했습니다." });
       }
 
-      alert("결제 성공");
       res.json({ message: "결제 되셨습니다." });
     });
   });
 });
-
 
 // 예약 상태 바꾸는 로직
 app.post("/reservation_info", (req, res) => {
@@ -468,12 +537,11 @@ app.post("/reservation_info", (req, res) => {
       return res.status(500).json({ error: "db연결에 실패했습니다." });
     }
 
-    const {RESERVATION_STATUS} = req.body;
+    const { reservation_status, dday1, dday2 } = req.body;
 
-    // 중복된 이메일이 없을 경우 회원 정보 저장
     const updateResSql =
-      "UPDATE reservation SET RESERVATION_STATUS=? order by RESERVATION_ID desc limit 1";
-    const values = [RESERVATION_STATUS];
+      "UPDATE reservation SET RESERVATION_STATUS=?, RESERVATION_CHECK_IN=?, RESERVATION_CHECK_OUT=? order by RESERVATION_ID desc limit 1";
+    const values = [reservation_status, dday1, dday2];
     connection.query(updateResSql, values, (err, result) => {
       connection.release(); // 사용이 완료된 연결 반환
 
@@ -489,9 +557,6 @@ app.post("/reservation_info", (req, res) => {
     });
   });
 });
-
-
-
 
 // 서버 실행
 app.listen(3000, () => {
