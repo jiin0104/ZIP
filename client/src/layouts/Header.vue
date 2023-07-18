@@ -120,10 +120,9 @@ export default {
         // store에 담긴 유저 정보의 data를 null값으로 만듦
         this.$store.commit("user", {});
         this.$store.commit("localUser", {});
-        localStorage.clear();
         alert("로그아웃");
         this.$router.push({path:'/'}); // 로그아웃 이후 메인 페이지로 라우팅
-        this.$store.state.isLogin = false // 로그아웃 이후 헤더 게스트로 변환
+        this.$store.commit('loginOut') // 로그아웃 이후 헤더 게스트로 변환
       });
     }
   }

@@ -196,7 +196,7 @@ export default {
         this.$store.commit("localUser", { userId: this.userId, userNo: res.data.message })
           alert("로그인 성공!")
           this.$router.push({path:'/'}); // 메인 컴포넌트 이동
-          this.$store.state.isLogin = true // isLogin 상태 변환
+          this.$store.commit('loginSuccess') // isLogin 상태 변환
       }
     })
     .catch(err => {
