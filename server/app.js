@@ -447,13 +447,15 @@ app.post("/my_update", (req, res) => {
       console.error("db연결에 문제가 있음", err);
       return res.status(500).json({ error: "db연결에 실패했습니다." });
     }
-
-    const { nickname, password, phone, address1, address2 } = req.body;
-
+    
+    const { nickname, password, phone, address1, address2, ddd } = req.body;
+    
+    console.log(nickname);
+    console.log(ddd);
     // 중복된 이메일이 없을 경우 회원 정보 저장
     const updateUserSql =
-      "UPDATE users SET USER_NICKNAME=?, USER_PASSWORD=?, USER_TEL=?, USER_ADDRESS1=?, USER_ADDRESS2=? where USER_NO=1";
-    const values = [nickname, password, phone, address1, address2];
+      "UPDATE users SET USER_NICKNAME=?, USER_PASSWORD=?, USER_TEL=?, USER_ADDRESS1=?, USER_ADDRESS2=? where USER_ID=?";
+    const values = [nickname, password, phone, address1, address2, ddd];
     connection.query(updateUserSql, values, (err, result) => {
       connection.release(); // 사용이 완료된 연결 반환
 

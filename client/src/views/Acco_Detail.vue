@@ -328,7 +328,7 @@ export default {
       const formData = {
         check_in: this.check_in,
         check_out: this.check_out,
-        userno: this.userno,
+        userno: this.$store.state.userNo,
         accoid: this.accoid,
       };
 

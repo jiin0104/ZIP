@@ -202,13 +202,15 @@ export default {
 
     //입력한 값들 서브밋
     submitForm() {
+      
+      console.log(this.$store.state.userId);
       const formData = {
         nickname: this.nickname,
         password: this.password,
         phone: this.phone,
         address1: this.roadAddress,
         address2: this.detailAddress,
-        ddd: this.param[this.$store.state.userId]
+        ddd: this.$store.state.userId,
       };
 
       //서브밋한 값들을 받아서 서버에 전달.
