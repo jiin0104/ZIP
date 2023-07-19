@@ -13,8 +13,8 @@ const store = createStore({
       userId: '',
       userPw: '',
       userNo: '',
-      isLogin: false,
-      isLoginError: false
+      isLogin: '',
+      isLoginError: ''
     };
   },
   mutations: {
@@ -31,6 +31,10 @@ const store = createStore({
     },
     loginSuccess(state) {
       state.isLogin = true
+      state.isLoginError = false
+    },
+    loginOut(state) {
+      state.isLogin = false
       state.isLoginError = false
     },
     loginError(state) {

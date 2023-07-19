@@ -58,27 +58,23 @@
                 </button>
               </div>
             </div>
+            <br>
+            <div class="container-login100-form-btn">
+              <div class="wrap-login100-form-btn">
+                <div class="login100-form-bgbtn2"></div>
 
-            <div class="flex-c-m">
-              <!-- 각 버튼을 누르면 api로 작동하게 후에 백엔드 코드 짜고서 추가 -->
-              <br />
-              <!-- 네이버 로그인 -->
-              <div
-                id="naverIdLogin"
-                style="margin-right: 20px; margin-left: 2px"
-              >
-                <a
-                  href="#"
-                  class="login100-social-item bg2"
-                  style="text-decoration: none"
-                >
-                </a>
+                <button class="login100-form-btn" @click="kakaoLogin">
+                  <a style="text-decoration: none" href="#">
+                    <p
+                      style="margin-top: 15px; color: rgb(0, 0, 0); text-align: center"
+                    >
+                      <b>카카오 로그인</b>
+                    </p>
+                  </a>
+                </button>
               </div>
-              <!-- 카카오 로그인 -->
-              <a href="#" @click="kakaoLogin()">
-                <img style="width: 225px" src="./kakao_login2.png" alt="" />
-              </a>
             </div>
+
             <div class="flex-col-c p-t-155" style="text-align: right">
               <span class="txt1 p-b-17">
                 아직 탈출할 준비가 되지 않으셨다면?
@@ -99,81 +95,21 @@
 
 <style src="./Login.css"></style>
 
-<style>
-#naverIdLogin {
-  width: 250px;
-  height: 70px;
-  object-fit: cover;
-  float: left;
-}
-</style>
-
 <script>
-import { mapState } from 'vuex';
 import axios from "axios";
 axios.defaults.baseURL = 'http://localhost:3000'; //서버주소
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 
 export default {
-  //네이버 로그인
-  name: "naverLogin",
+  name: "Login",
   data() {
     return {
       userId: null,
       userPw: null,
-      naverLogin: null,
     };
   },
-  mounted() {
-    this.naverLogin = new window.naver.LoginWithNaverId({
-      clientId: "8NWAD60RgqNbWdmXePhg", // 네이버 앱 키
-      callbackUrl: "http://localhost:3000/", // 콜백 url
-      isPopup: true, // 팝업으로 띄우기
-      loginButton: {
-        color: "green",
-        height: 40,
-        type: 3,
-      },
-    });
-
-    //설정 정보 초기화하고 연동 준비
-    this.naverLogin.init();
-
-    this.naverLogin.getLoginStatus((status) => {
-      if (status) {
-        console.log(status);
-        console.log(this.naver.user);
-
-        //필수적으로 받아야할 프로필 정보가 있으면,callback처리 시점에 체크.
-        var email = this.naverLogin.user.getEmail();
-        if (email == undefined || email == null) {
-          alert("이메일은 필수 정보입니다. 정보 제공을 동의해주세요.");
-          //사용자 정보 동의를 다시 받아야하기 때문에 동의 페이지로 이동
-          this.naverLogin.reprompt();
-          return;
-        }
-      } else {
-        // console.log("callback 처리에 실패했습니다.");
-      }
-    });
-  },
-  //네이버는 회사내부의 안보규정으로 별도의 로그아웃 api를  제공하지 않음.
-  //직접 코드 짜서 토큰 삭제로 로그아웃 처리. 다만,axios를 이용해서 메소드 호출하면,cors 에러 뜸. vue.config.js에 프록시 등록해서 사용.
-  naverLogout() {
-    const accessToken = this.naverLogin.accessToken.accessToken;
-    const url = `/oauth2.0/token?grant_type=delete%client_id={8NWAD60RgqNbWdmXePhg}&client_secret={bnEH07OqTy}&access_token=${accessToken}&service_provider=NAVER`;
-    //https://nid.naver.com//oauth2.0/token?grant_type=delete%client_id={발급받은 클라이언트 아이디}&client_secret={발급받은 클라이언트 시크릿}&access_token={로그인시 발급받은 토큰}&service_provider=NAVER
-
-    axios.get(url).then((res) => {
-      console.log(res.data);
-    });
-  },
-
-  computed: {
-    ...mapState(['isLogin'])
-  },
-
+  computed: {},
   methods: {
   login(){
     axios({
@@ -197,7 +133,7 @@ export default {
         this.$store.commit("localUser", { userId: this.userId, userNo: res.data.message })
           alert("로그인 성공!")
           this.$router.push({path:'/'}); // 메인 컴포넌트 이동
-          this.$store.state.isLogin = true // isLogin 상태 변환
+          this.$store.commit('loginSuccess') // isLogin 상태 변환
       }
     })
     .catch(err => {
@@ -205,37 +141,6 @@ export default {
       alert("아이디 및 비밀번호를 입력해주세요.")
     })
   },
-
-    /*
-    async loginSubmit() {
-      let userData = {}; // userData 객체 생성, 사용자 입력 값 할당
-      userData.userId = this.userId; // 사용자가 입력한 아이디
-      userData.userPw = this.userPw; // 사용자가 입력한 비밀번호
-
-      console.log(userData);
-
-      try {
-        // this.$axios.post로 로그인 요청을 전송함
-        // userData객체를 JSON 문자열로 변환하여 전송
-        await this.$api("/api/login", JSON.stringify(userData), { 
-            headers: {
-              "Content-Type": `application/json`, // 요청 헤더에 Content-type을 application/json으로 설정함
-            },
-          })
-          .then((res) => { // 서버 응답이 성공하면 로그인 처리 수행
-            if (res.status === 200) {
-              // 로그인 성공시 처리해줘야할 부분
-              this.$store.commit("login", res.data); // 로그인 상태 저장하는 mutation 호출
-              this.$router.push("/"); // 메인 컴포넌트 이동
-              this.$store.state.isLogin = true // isLogin 상태 변환
-              alert("로그인 성공!");
-            }
-          });
-      } catch (error) {
-        console.error(error);
-      }
-    },
-    */
 
     // 카카오 간편 로그인
     kakaoLogin() {
@@ -269,8 +174,7 @@ export default {
       await this.$api("/api/kakaoLogin", {
         // 계정 정보를 kakaoLogin sql로 보냄
         param: [
-          { email: kakao_account.email, name: kakao_account.profile.nickname },
-          { name: kakao_account.profile.nickname },
+          { USER_ID: kakao_account.email, USER_NICKNAME: kakao_account.profile.nickname, USER_LOGIN_TYPE: 'kakao' }
           ]
       });
       this.$store.commit("user", kakao_account); // vuex를 이용, 상태관리하도록 store에 user 정보 갱신

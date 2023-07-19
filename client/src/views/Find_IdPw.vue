@@ -3,44 +3,95 @@
     <div class="find-wrap">
       <!-- 탭 변경 -->
       <div class="findid-html">
-        <input id="tab-1" type="radio" name="tab" class="findid" checked /><label for="tab-1" class="tab">아이디 찾기</label>
-        <input id="tab-2" type="radio" name="tab" class="findpw" /><label for="tab-2" class="tab">비밀번호 찾기</label>
+        <input
+          id="tab-1"
+          type="radio"
+          name="tab"
+          class="findid"
+          checked
+        /><label for="tab-1" class="tab">아이디 찾기</label>
+        <input id="tab-2" type="radio" name="tab" class="findpw" /><label
+          for="tab-2"
+          class="tab"
+          >비밀번호 찾기</label
+        >
         <!-- 아이디,비번찾기 div -->
         <div class="findid-form" id="findform">
           <!-- 아이디 찾기 폼 -->
           <div class="findid-htm">
             <div class="group">
               <br />
-              <label for="user" class="label">전화번호</label>
-              <input id="user" type="text" class="input" v-model="phoneNumber" />
+              <label for="user" class="label">휴대전화번호</label>
+              <input
+                id="user"
+                type="text"
+                class="input"
+                v-model="phoneNumber"
+              />
             </div>
             <div class="group">
-              <input type="submit" class="button" value="아이디 찾기" href="#" @click="findId()" style="text-align: center" />
+              <input
+                type="submit"
+                class="button"
+                value="아이디 찾기"
+                href="#"
+                @click="findId()"
+                style="text-align: center"
+              />
             </div>
             <div class="hr"></div>
             <div class="foot-lnk">
-              <RouterLink to="/signup"><span>아직 회원이 아니세요?</span></RouterLink>
+              <RouterLink to="/signup"
+                ><span>아직 회원이 아니세요?</span></RouterLink
+              >
             </div>
           </div>
           <!-- 비밀번호 찾기 폼 -->
           <div class="findpw-htm">
             <div class="group">
               <br />
-              <label for="user" class="label">아이디(이메일)</label>
-              <input id="user2" type="text" class="input" v-model="email" placeholder="인증 이메일을 받을 이메일을 입력하세요" />
-              <input type="submit" class="button" value="인증 이메일 발송" href="#" style="text-align: center"
-                @click="sendemail()" />
+              <label for="user" class="label">휴대전화번호</label>
+              <input
+                id="user2"
+                type="text"
+                class="input"
+                v-model="phoneNumber"
+                placeholder="휴대전화 번호를 입력하세요"
+              />
+              <input
+                type="submit"
+                class="button"
+                value="인증번호 받기"
+                href="#"
+                style="text-align: center"
+                @click="sendNumber()"
+              />
             </div>
             <div class="group">
               <label for="pass" class="label">인증번호</label>
-              <input id="pass" type="password" class="input" data-type="password" v-model="password" />
+              <input
+                id="pass"
+                type="password"
+                class="input"
+                data-type="password"
+                v-model="password"
+              />
             </div>
             <div class="group">
-              <input type="submit" class="button" value="비밀번호 찾기" href="#" style="text-align: center" @click="findPw()" />
+              <input
+                type="submit"
+                class="button"
+                value="비밀번호 찾기"
+                href="#"
+                style="text-align: center"
+                @click="findPw()"
+              />
             </div>
             <div class="hr"></div>
             <div class="foot-lnk">
-              <RouterLink to="/signup"><span>아직 회원이 아니세요?</span></RouterLink>
+              <RouterLink to="/signup"
+                ><span>아직 회원이 아니세요?</span></RouterLink
+              >
             </div>
           </div>
         </div>
@@ -53,7 +104,6 @@
 
 <script>
 import axios from "axios";
-
 
 export default {
   data() {
@@ -90,12 +140,31 @@ export default {
       }
     },
 
-    sendemail() {
+    sendNumber() {
+      const phoneNumber = this.phoneNumber; // 전화번호 입력 값
 
+      // 서버로의 API 요청
+      axios
+        .post("/checkPhoneNumber", { phoneNumber })
+        .then((response) => {
+          const exists = response.data.exists;
+
+          if (exists) {
+            // 전화번호가 존재하는 경우, 인증번호가 함께 응답으로 받음.
+            const verificationCode = response.data.verificationCode;
+            console.log("인증번호:", verificationCode);
+
+            // 인증번호를 이용한 추가 로직을 작성하기.
+          } else {
+            // 전화번호가 존재하지 않는 경우: 경고창 표시
+            alert("회원가입되지 않은 전화번호입니다.");
+          }
+        })
+        .catch((error) => {
+          console.error("전화번호 확인 요청에 실패했습니다.", error);
+        });
     },
-
-
-    findPw() { },
+    findPw() {},
   },
 };
 </script>
