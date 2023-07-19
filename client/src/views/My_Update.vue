@@ -94,6 +94,7 @@ export default {
       zonecode: null,
       roadAddress: null,
       detailAddress: null,
+      ddd: '',
     };
   },
 
@@ -121,7 +122,7 @@ export default {
     //로그인한 유저의 정보 가져오는 함수
     //유저 정보를 가져와 쓸수 있게 객체로 만들었다.
     async Get_User_Info() {
-      let userlist = await this.$api("/api/userlist", { param: [this.$store.state.userNo] });
+      let userlist = await this.$api("/api/userlist", { param: [this.$store.state.userId] });
       this.userlist = userlist[0];
       this.nickname = this.userlist.USER_NICKNAME;
       this.password = this.userlist.USER_PASSWORD;
@@ -129,6 +130,7 @@ export default {
       this.phone = this.userlist.USER_TEL;
       this.roadAddress = this.userlist.USER_ADDRESS1;
       this.detailAddress = this.userlist.USER_ADDRESS2;
+
     },
 
     //빈칸 있을시 나타나는 오류메세지 
@@ -205,7 +207,8 @@ export default {
         password: this.password,
         phone: this.phone,
         address1: this.roadAddress,
-        address2: this.detailAddress
+        address2: this.detailAddress,
+        ddd: this.param[this.$store.state.userId]
       };
 
       //서브밋한 값들을 받아서 서버에 전달.

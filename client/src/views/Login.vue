@@ -130,7 +130,8 @@ export default {
         alert("아이디 혹은 비밀번호가 맞지 않습니다.")
       }
       else {
-        this.$store.commit("localUser", { userId: this.userId, userNo: res.data.message })
+        // store로 유저 정보 넘김
+        this.$store.commit("localUser", { userId: this.userId, userGd: res.data.message, userNo: res.data.message1 })
           alert("로그인 성공!")
           this.$router.push({path:'/'}); // 메인 컴포넌트 이동
           this.$store.commit('loginSuccess') // isLogin 상태 변환
@@ -165,7 +166,7 @@ export default {
           this.$router.push({path:'/'}); // 메인페이지로 라우팅
           alert("로그인 성공!");
           // 로그인 상태
-          this.$store.state.isLogin = true // 헤더 로그인 상태로 변환
+          this.$store.commit('loginSuccess') // isLogin 상태 변환
         },
       });
     },

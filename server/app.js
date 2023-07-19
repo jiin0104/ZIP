@@ -86,7 +86,7 @@ fs.watchFile(__dirname + "/sql.js", (curr, prev) => {
 const dbPool = mysql.createPool({
   host: "127.0.0.1",
   user: "root",
-  password: "@k41292001",
+  password: "root",
   database: "project",
   connectionLimit: 100, //연결할 수 있는 최대 수 100
 });
@@ -196,7 +196,8 @@ app.post("/api/login", function (request, response) {
             // ID에 저장된 pw 값과 입력한 pw값이 동일한 경우
 
             return response.status(200).json({
-              message: results[0].USER_NO,
+              message: results[0].USER_GRADE,
+              message1: results[0].USER_NO
             });
           } else {
             // 비밀번호 불일치
@@ -236,6 +237,7 @@ app.post("/api/logout", async (request, res) => {
   request.session.destroy(); // session 없애기
   res.send("ok");
 });
+
 
 // 쿼리 요청을 보내는 부분. 에러가 발생하였을 때 콘솔에 출력해주는 소스.
 //req객체
