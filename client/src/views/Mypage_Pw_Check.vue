@@ -42,7 +42,7 @@
               비밀번호가 틀렸습니다
             </p>
             <div class="popup-buttons">
-              <button id="button9" onclick="hideConfirmation()">확인</button>
+              <button id="button9" @click="hideConfirmation()">확인</button>
             </div>
           </div>
         </div>
@@ -67,7 +67,7 @@ export default {
 
   methods: {
     async get_user_pw(){
-      let checkpw = await this.$api("/api/checkpw", {param:[this.USER_NO]});
+      let checkpw = await this.$api("/api/checkpw", {param:[this.$store.state.userId]});
       this.checkpw = checkpw[0];
     },
 

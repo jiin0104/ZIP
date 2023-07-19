@@ -73,7 +73,7 @@ export default {
   methods: {
     async get_user_pw() {
       // AXIOS로 통신하는 변수
-      let checkpw = await this.$api("/api/checkpw", {param:[this.USER_NO]});
+      let checkpw = await this.$api("/api/checkpw", {param:[this.$store.state.userNo]});
       this.checkpw = checkpw[0];
     },
 
@@ -106,12 +106,14 @@ export default {
       popup.style.display = "block";
     },
 
-    deleteuser(USER_NO) {
-      this.SignOut = this.$api("/api/SignOut", { param: [USER_NO] });
-
+    deleteuser() {
+      this.SignOut = this.$api("/api/SignOut", { param: [this.$store.state.userNo] });
+      this.$store.commit("user", {});
+      this.$store.commit("localUser", {});
       alert("탈퇴가 완료되었습니다!");
       this.hideConfirmation();
       location.href = "/";
+      this.$store.commit('loginOut')
     },
 
     hideConfirmation() {

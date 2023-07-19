@@ -25,17 +25,17 @@
             <div class="border border-5" style="padding: 30px; display: inline-block; position: relative; right: 75px;">
               <input aria-hidden="true" type="hidden" name="uno" />
               <p>
-                <strong>아이디:{{ userlist.user_id }}</strong>
+                <strong>아이디:{{ userlist.USER_ID }}</strong>
               </p>
               <p>
-                <strong>닉네임:{{ userlist.user_nickname }}</strong>
+                <strong>닉네임:{{ userlist.USER_NICKNAME }}</strong>
               </p>
               <p>
-                <strong>전화번호:{{ userlist.user_tel }}</strong>
+                <strong>전화번호:{{ userlist.USER_TEL }}</strong>
               </p>
               <p>
-                <strong>주소:{{ userlist.user_address1
-                }}&nbsp;&nbsp;{{ userlist.user_address2 }}</strong>
+                <strong>주소:{{ userlist.USER_ADDRESS1
+                }}&nbsp;&nbsp;{{ userlist.USER_ADDRESS2 }}</strong>
               </p>
             </div>
             <br /><br><button id="infobutton" @click="mypage_pw_check_Link" style="display: inline-block">
@@ -68,7 +68,7 @@ export default {
 
   methods: {
     async Get_User_Info() {
-      let userlist = await this.$api("/api/userlist", {});
+      let userlist = await this.$api("/api/userlist", {param:[this.$store.state.userId]});
       this.userlist = userlist[0];
     },
 
