@@ -75,7 +75,7 @@ const routes = [
   },
 
   {
-    path: "/find_pw_result",
+    path: "/find_pw_result/:pw",
     name: "find_pw_result",
     component: Find_Pw_Result,
   },

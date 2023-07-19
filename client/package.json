@@ -16,11 +16,7 @@
     "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
     "core-js": "^3.8.3",
-<<<<<<< HEAD
-    "crypto-browserify": "^3.12.0",
-=======
     "crypto-js": "^4.1.1",
->>>>>>> 29dc90a0f95a04b8ba29a3a70db6a12019e8566e
     "date-fns": "^2.30.0",
     "dayjs": "^1.11.9",
     "jquery": "^3.7.0",

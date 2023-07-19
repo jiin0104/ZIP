@@ -14,7 +14,7 @@
             <ul class="password-list-pwresult">
               <li>
                 <strong>
-                  <label>비밀번호:{{ pw }}</label>
+                  <label>비밀번호: {{ pw }}</label>
                 </strong>
               </li>
             </ul>
@@ -37,7 +37,13 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      pw: "", // 비밀번호를 저장할 변수
+    };
+  },
+  mounted() {
+    // 컴포넌트가 마운트되었을 때, 라우트 params로 받은 비밀번호를 변수에 저장
+    this.pw = this.$route.params.pw;
   },
 };
 </script>
