@@ -133,6 +133,7 @@ export default {
 
     },
 
+    //빈칸 있을시 나타나는 오류메세지 
     checkForm(e) {
       e.preventDefault();
       this.errors = [];
@@ -168,14 +169,14 @@ export default {
       }
     },
 
-
-    validPassword(password) {// 비밀번호 형식 유효성 검사 로직
+    // 비밀번호 형식 유효성 검사
+    validPassword(password) {
       var re3 = /^[A-Za-z0-9]{4,12}$/
       return re3.test(password);
     },
 
-
-    validPasswordCheck: function () {//비밀번호 일치 검사 로직
+    //비밀번호 일치 검사
+    validPasswordCheck: function () {
       let pw = document.getElementById("password").value
       let pwcheck = document.getElementById("passwordCheck").value
 
@@ -186,14 +187,14 @@ export default {
       }
     },
 
-
-    validNickname: function (nickname) {//닉네임 유효성 검사 로직
+    //닉네임 유효성 검사
+    validNickname: function (nickname) {
       var re0 = /^[A-Za-z가-힣]{1,6}$/
       return re0.test(nickname);
     },
 
-
-    validPhone(phone) {// 전화번호 유효성 검사 로직
+    // 전화번호 유효성 검사
+    validPhone(phone) {
       var re2 = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/
       return re2.test(phone);
     },
