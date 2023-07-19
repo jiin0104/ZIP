@@ -87,8 +87,6 @@ const dbPool = mysql.createPool({
   host: "127.0.0.1",
   user: "root",
   password: "alscjf1254@",
-  password: "1234",
-  password: "@k41292001",
   database: "project",
   connectionLimit: 100, //연결할 수 있는 최대 수 100
 });
@@ -198,7 +196,8 @@ app.post("/api/login", function (request, response) {
             // ID에 저장된 pw 값과 입력한 pw값이 동일한 경우
 
             return response.status(200).json({
-              message: results[0].USER_GRADE
+              message: results[0].USER_GRADE,
+              message1: results[0].USER_NO
             });
           } else {
             // 비밀번호 불일치
