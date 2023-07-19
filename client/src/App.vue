@@ -26,7 +26,7 @@ components: { Header, Footer },
 
 <style>
 #app {
-height: 1300px;
+height: 800px;
 min-height: 100%;
 position: relative;
 padding-bottom: 170px;

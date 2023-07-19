@@ -110,7 +110,7 @@
                   >
                     <div class="catagory-content">
                       <img src="img/core-img/icon-1.png" alt="" />
-                      <a href="#">
+                      <a href @click="goTohotel(ho.ACCO_TYPE)">
                         <h6>Hotels</h6>
                       </a>
                     </div>
@@ -173,11 +173,15 @@ export default {
   methods: {
     async getMainList() {
       this.mainList = await this.$api("/api/main_sql", {});
+      this.ho = await this.$api("/api/SearchAccoho", {})
       console.log(this.mainList);
     },
     goToDetail(ACCO_ID) {
       this.$router.push({ path: "/acco_detail", query: { ACCO_ID: ACCO_ID } });
     },
+    goTohotel(ACCO_TYPE){
+      this.$router.push({ path: "/search_list", query:{ ACCO_TYPE: ACCO_TYPE}})
+    }
   },
 };
 </script>

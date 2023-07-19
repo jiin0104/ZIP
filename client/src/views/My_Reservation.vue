@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- ***** Contact Area Start ***** -->
-    <div class="dorne-contact-area d-md-flex container" style="padding-top: 43px" id="contact">
+    <div class="dorne-contact-area d-md-flex container" style="padding-top: 43px; padding-bottom: 400px;" id="contact">
       <!-- 버튼부분-->
       <div style="width: 20%">
         <div class="leftsidebar" style="width: 20%; padding-top: 30%">
@@ -145,7 +145,7 @@ export default {
     //유저의 예약리스트
     async Get_Reservation_Info() {
       this.reslist = await this.$api("/api/reslist", {
-        param: [this.USER_NO], // 현재는 테스트, 나중엔 USER_NO 를 받아와야함
+        param: [this.$store.state.userNo], 
       });
     },
 
@@ -199,5 +199,4 @@ export default {
 <style>
 @import "Mypage.css";
 
-.reslistpopup {}
 </style>

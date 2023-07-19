@@ -15,7 +15,6 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const KEY = "token_key"; // jwt 시크릿 키
 const axios = require("axios");
-const crypto = require("crypto");
 
 app.use("/", express.static(path.join(__dirname, "./public")));
 app.get("/", (req, res) => {
@@ -87,7 +86,7 @@ fs.watchFile(__dirname + "/sql.js", (curr, prev) => {
 const dbPool = mysql.createPool({
   host: "127.0.0.1",
   user: "root",
-  password: "1234",
+  password: "alscjf1254@",
   database: "project",
   connectionLimit: 100, //연결할 수 있는 최대 수 100
 });
@@ -197,7 +196,8 @@ app.post("/api/login", function (request, response) {
             // ID에 저장된 pw 값과 입력한 pw값이 동일한 경우
 
             return response.status(200).json({
-              message: results[0].USER_NO,
+              message: results[0].USER_GRADE,
+              message1: results[0].USER_NO
             });
           } else {
             // 비밀번호 불일치
@@ -237,6 +237,7 @@ app.post("/api/logout", async (request, res) => {
   request.session.destroy(); // session 없애기
   res.send("ok");
 });
+
 
 // 쿼리 요청을 보내는 부분. 에러가 발생하였을 때 콘솔에 출력해주는 소스.
 //req객체
@@ -381,14 +382,14 @@ app.post("/findId", async (req, res) => {
   }
 });
 
-//전화번호 확인 후 인증번호 보내는 미들웨어.
-///checkPhoneNumber 엔드포인트
 app.post("/checkPhoneNumber", async (req, res) => {
-  const phoneNumber = req.body.phoneNumber; // 전화번호 입력 값
-  console.log(phoneNumber); //전화번호 받아오는지 콘솔에서 확인
-
   try {
-    // 전화번호를 이용하여 쿼리 실행
+    const phoneNumber = req.body.phoneNumber;
+    const serviceId = "ncp:sms:kr:266040473450:findpw"; // 네이버 SMS 서비스 ID
+    const accessKey = "0duT1ylOA5XIOuBWblte"; // 네이버 SMS 액세스 키
+    const apiURL = `https://sens.apigw.ntruss.com/sms/v2/services/${serviceId}/messages`; // API 엔드포인트 URL
+
+    //전화번호를 이용해서 쿼리 실행
     const query = "SELECT COUNT(*) AS count FROM users WHERE USER_TEL = ?";
     const connection = await dbPool.promise().getConnection();
 
@@ -396,121 +397,45 @@ app.post("/checkPhoneNumber", async (req, res) => {
     const count = result[0][0].count;
     const exists = count > 0;
 
-    console.log(result); //결과가 나오는지 콘솔에서 확인
-    console.log(count); //전화번호가 일치하는 게 있는지 없는지 확인
-    console.log(exists); // 전화번호가 존재하면 true반환
-
     if (exists) {
       // 전화번호가 존재하는 경우, 네이버 SMS API를 사용하여 인증번호 전송
-      const verificationCode = Math.floor(1000 + Math.random() * 9000); //4자리의 인증번호를 난수로 생성
-      const serviceId = "ncp:sms:kr:266040473450:findpw"; // 네이버 SMS 서비스 ID
-      const accessKey = "0duT1ylOA5XIOuBWblte"; // 네이버 SMS 액세스 키
-      const secretKey = "xrzbmK4KnV29iI4ZJ70iVHEglhYU86cnJZ19Pkm7"; // 네이버 SMS 시크릿 키
-      const apiURL = `https://sens.apigw.ntruss.com/sms/v2/services/${serviceId}/messages`; // API 엔드포인트 URL
-
-      const timeStamp = String(Date.now());
-      const signature = getSignature(
-        serviceId,
-        timeStamp,
-        accessKey,
-        secretKey
-      );
-
+      const verificationCode = Math.floor(1000 + Math.random() * 9000);
       const requestData = {
         type: "SMS",
         contentType: "COMM",
         countryCode: "82",
-        from: "01066856466",
+        from: "SENDER_PHONE_NUMBER",
         content: `인증번호: ${verificationCode}`,
-        messages: [
-          {
-            to: phoneNumber,
-            content: `인증번호: ${verificationCode}`,
-          },
-        ],
+        messages: [{ to: phoneNumber }],
       };
 
+      // API 호출을 위한 요청 헤더 설정
       const headers = {
-        accept: "application/json",
-        "content-Type": "application/json; charset=UTF-8",
-        "x-ncp-apigw-timestamp": timeStamp,
+        "Content-Type": "application/json",
         "x-ncp-iam-access-key": accessKey,
-        "x-ncp-apigw-signature-v2": signature,
       };
 
       try {
         const response = await axios.post(apiURL, requestData, { headers });
+        // 성공적으로 인증번호를 전송한 경우
         console.log("인증번호가 전송되었습니다.");
-        // 응답으로 인증번호를 반환
-        res.json({ exists: true, verificationCode });
+        res.json({ exists, verificationCode }); // 인증번호와 함께 응답 전송
       } catch (error) {
+        // 인증번호 전송 실패한 경우
         console.error("인증번호 전송에 실패했습니다.", error);
-        res.status(500).json({ error: "인증번호 전송에 실패했습니다." });
+        res.status(500).json({ error: "Internal Server Error" });
       }
     } else {
-      // 전화번호가 존재하지 않는 경우: 응답으로 전송
-      res.json({ exists: false });
+      // 전화번호가 존재하지 않는 경우: 경고창 표시
+      alert("회원가입되지 않은 전화번호입니다.");
+      res.json({ exists });
     }
 
     // 연결 해제
     connection.release();
-  } catch (error) {
-    console.error("DB 연결에 문제가 있습니다.", error);
-    res.status(500).json({ error: "DB 연결에 문제가 있습니다." });
-  }
-});
-
-function getSignature(serviceId, timeStamp, accessKey, secretKey) {
-  const method = "POST";
-  const url = `/sms/v2/services/${serviceId}/messages`;
-  const space = " ";
-  const newLine = "\n";
-
-  const buffer = [];
-  buffer.push(method);
-  buffer.push(space);
-  buffer.push(url);
-  buffer.push(newLine);
-  buffer.push(timeStamp);
-  buffer.push(newLine);
-  buffer.push(accessKey);
-
-  const message = buffer.join("");
-  const key = Buffer.from(secretKey, "utf-8");
-  const hmac = crypto.createHmac("sha256", key);
-  hmac.update(message);
-
-  const signatureKey = hmac.digest("base64");
-  return signatureKey;
-}
-
-// 비밀번호 찾기 API 엔드포인트
-app.post("/findPassword", async (req, res) => {
-  const { phoneNumber } = req.body; // 클라이언트(프론트엔드)에서 전달받은 전화번호
-
-  console.log(this.phoneNumber);
-
-  try {
-    // 전화번호를 이용하여 해당 전화번호와 일치하는 계정의 비밀번호를 데이터베이스에서 조회
-    const query = "SELECT USER_PASSWORD FROM users WHERE USER_TEL = ?";
-    const connection = await dbPool.promise().getConnection();
-    const result = await connection.query(query, [phoneNumber]);
-    connection.release();
-
-    console.log(this.result);
-
-    // 조회 결과를 확인하여 해당 전화번호에 대한 계정이 있을 경우 비밀번호를 클라이언트(프론트엔드)에 응답으로 전송
-    if (result.length > 0) {
-      const password = result[0][0].USER_PASSWORD;
-      res.json({ password });
-      console.log(this.password);
-    } else {
-      // 조회 결과가 없을 경우 (일치하는 계정이 없는 경우) 빈 비밀번호를 응답으로 전송
-      res.json({ password: "" });
-    }
-  } catch (error) {
-    console.error("비밀번호 조회에 실패했습니다.", error);
-    res.status(500).json({ error: "비밀번호 조회에 실패했습니다." });
+  } catch (err) {
+    res.status(500).send({ error: "DB 연결에 문제가 있습니다" });
+    console.error(err);
   }
 });
 
@@ -522,13 +447,15 @@ app.post("/my_update", (req, res) => {
       console.error("db연결에 문제가 있음", err);
       return res.status(500).json({ error: "db연결에 실패했습니다." });
     }
-
-    const { nickname, password, phone, address1, address2 } = req.body;
-
+    
+    const { nickname, password, phone, address1, address2, ddd } = req.body;
+    
+    console.log(nickname);
+    console.log(ddd);
     // 중복된 이메일이 없을 경우 회원 정보 저장
     const updateUserSql =
-      "UPDATE users SET USER_NICKNAME=?, USER_PASSWORD=?, USER_TEL=?, USER_ADDRESS1=?, USER_ADDRESS2=? where USER_NO=1";
-    const values = [nickname, password, phone, address1, address2];
+      "UPDATE users SET USER_NICKNAME=?, USER_PASSWORD=?, USER_TEL=?, USER_ADDRESS1=?, USER_ADDRESS2=? where USER_ID=?";
+    const values = [nickname, password, phone, address1, address2, ddd];
     connection.query(updateUserSql, values, (err, result) => {
       connection.release(); // 사용이 완료된 연결 반환
 

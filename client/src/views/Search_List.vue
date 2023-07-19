@@ -241,15 +241,16 @@ export default {
     };
   },
   created() {
+    this.ACCO_TYPE = this.$route.query.ACCO_TYPE;
     this.getSearchAcco();
     
   },
   methods: {
     async getSearchAcco() {
       this.SearchAcco = await this.$api("/api/SearchAcco", {});
-      this.SearchAccoho = await this.$api("/api/SearchAccoho", {});
-      this.SearchAccomo = await this.$api("/api/SearchAccomo", {});
-      this.SearchAccope = await this.$api("/api/SearchAccope", {});
+      this.SearchAccoho = await this.$api("/api/SearchAccoho", {param:[this.ACCO_TYPE]});
+      this.SearchAccomo = await this.$api("/api/SearchAccomo", {param:[this.ACCO_TYPE]});
+      this.SearchAccope = await this.$api("/api/SearchAccope", {param:[this.ACCO_TYPE]});
       console.log(this.SearchAcco);
     },
     
