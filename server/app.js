@@ -75,7 +75,7 @@ fs.watchFile(__dirname + "/sql.js", (curr, prev) => {
 const dbPool = mysql.createPool({
   host: "127.0.0.1",
   user: "root",
-  password: "alscjf1254@",
+  password: "1234",
   database: "project",
   connectionLimit: 100, //연결할 수 있는 최대 수 100
 });
@@ -170,19 +170,22 @@ app.post("/api/login", function (request, response) {
   const query = "SELECT * FROM users WHERE USER_ID = ?";
 
   dbPool.query(query, [loginUser.userId], function (error, results, fields) {
-    console.log(results.length );
+    console.log(results.length);
     if (results.length <= 0) {
       return response.status(200).json({
         message: "undefined_id",
       });
     } else {
-      dbPool.query( query, [loginUser.userId], function (error, results, fields) {
-        console.log(results);
+      dbPool.query(
+        query,
+        [loginUser.userId],
+        function (error, results, fields) {
+          console.log(results);
           if (results[0].USER_PASSWORD == loginUser.userPw) {
             // ID에 저장된 pw 값과 입력한 pw값이 동일한 경우
 
             return response.status(200).json({
-              message: results[0].USER_NO
+              message: results[0].USER_NO,
             });
           } else {
             // 비밀번호 불일치
@@ -290,8 +293,6 @@ app.post("/api/logout", async (request, res) => {
 //     });
 //   })(req, res);
 // });
-
-
 
 // 쿼리 요청을 보내는 부분. 에러가 발생하였을 때 콘솔에 출력해주는 소스.
 //req객체
