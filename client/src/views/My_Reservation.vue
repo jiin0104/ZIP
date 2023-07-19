@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- ***** Contact Area Start ***** -->
-    <div class="dorne-contact-area d-md-flex container" style="padding-top: 43px" id="contact">
+    <div class="dorne-contact-area d-md-flex container" style="padding-top: 43px; padding-bottom: 400px;" id="contact">
       <!-- 버튼부분-->
       <div style="width: 20%">
         <div class="leftsidebar" style="width: 20%; padding-top: 30%">
@@ -113,7 +113,7 @@ axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
 export default {
   data() {
     return {
-      USER_NO: 1, // 로그인 구현되면 로그인된 유저의 USER_NO를 넣어야함
+      USER_NO: 0, // 로그인 구현되면 로그인된 유저의 USER_NO를 넣어야함
       ACCO_ID: "",
       reslist: [],
       resmodalList: [],
@@ -145,7 +145,7 @@ export default {
     //유저의 예약리스트
     async Get_Reservation_Info() {
       this.reslist = await this.$api("/api/reslist", {
-        param: [this.$store.state.userNo], 
+        param: [this.$store.state.userNo],
       });
     },
 
