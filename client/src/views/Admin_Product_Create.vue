@@ -1,5 +1,6 @@
 <template>
   <main class="mt-3">
+    <form id="app4" @submit="checkForm3" action="/admin_product_create" method="post" novalidate="true">
     <br /><br />
     <div>
       <br />
@@ -12,7 +13,7 @@
             업체사진 등록
           </h3>
           <br />
-          <form action="" method="post" enctype="multipart/form-data">
+          <!-- <form action="" method="post" enctype="multipart/form-data">
             <div class="position-relative" style="width: 400px; height: 500px">
               <br />
               <img
@@ -30,7 +31,7 @@
                 />
               </div>
             </div>
-          </form>
+          </form> -->
         </div>
         <div class="col-md-7">
           <div class="card shadow-sm" style="width: 500px; height: 600px">
@@ -38,12 +39,7 @@
               <h5 class="card-title" id="card1" style="float: left">업체명</h5>
               <br />
               <br />
-              <input
-                type="text"
-                placeholder="업체명 입력"
-                style="border: 1px solid; float: left"
-                v-model="ACCO_NAME"
-              /><br /><br />
+              <input type="text" placeholder="업체명 입력" style="border: 1px solid; float: left" v-model="ACCO_NAME"/><br /><br />
               <h5 class="card-title" id="card1" style="float: left">
                 업체주소
               </h5>
@@ -167,14 +163,15 @@
             v-model="ACCO_DETAIL_DESCRIPTION"
           ></textarea>
           <br />
-          <button
+          <!-- <button
             type="button"
             class="save-btn1"
             style="border: none; float: right"
             @click="productInsert()"
           >
             저장
-          </button>
+          </button> -->
+          <input type="submit" id="addallow" value="생성하기">
           <br />
           <br />
           <br />
@@ -183,34 +180,30 @@
         </div>
       </div>
     </div>
+  </form>
   </main>
 </template>
 <script>
+import axios from 'axios';
+
 export default {
-  components: {},
+  
+  el: '#app4',
   data() {
     return {
-      ACCO_ID: null,
+      errors: [],
       ACCO_NAME: "",
       roadAddress: "",
       detailAddress: "",
       ACCO_TYPE: "",
-      ACCO_IMAGE: [],
-      ACCO_CREATED_DATE: "",
       ACCO_INTRODUCE_COMMENT: "",
       ACCO_DETAIL_DESCRIPTION: "",
       ACCO_ROOM: "",
       ACCO_PRICE: "",
     };
   },
-  beforeCreate() {},
-  created() {},
-  beforMount() {},
-  mounted() {},
-  beforeUpdate() {},
-  updated() {},
-  beforeUnmount() {},
-  unmounted() {},
+
+
   methods: {
     openPostcode() {
       //주소찾기 로직
@@ -228,32 +221,74 @@ export default {
     //   console.log("this.productImage", this.productImage);
     // },
 
-    productInsert() {
-      if (this.ACCO_NAME == "") {
-        return alert("숙소명은 필수 입력입니다");
+    checkForm3(e) {
+      e.preventDefault();
+      this.errors = [];
+
+      if (!this.ACCO_NAME) {
+        alert("숙소명은 필수 입력입니다");
       }
-      if (this.ACCO_TYPE == "") {
-        return alert("숙소종류는 필수 입력입니다");
+      if (!this.ACCO_TYPE) {
+        alert("숙소종류는 필수 입력입니다");
       }
-      if (this.ACCO_IMAGE == "") {
-        return alert("이미지는 필수 입력입니다");
+      // if (this.ACCO_IMAGE == "") {
+      //   return alert("이미지는 필수 입력입니다");
+      // }
+      if (!this.ACCO_ROOM) {
+        alert("객실명은 필수 입력입니다");
       }
-      if (this.ACCO_ROOM == "") {
-        return alert("객실명은 필수 입력입니다");
+      if (!this.roadAddress) {
+        alert("숙소주소는 필수 입력입니다");
       }
-      if (this.ACCO_ADDRESS1) {
-        return alert("숙소주소는 필수 입력입니다");
-      }
-      if (this.ACCO_ADDRESS2) {
-        return alert("숙소주소는 필수 입력입니다");
-      }
-      if (confirm == "정말 등록하시겠습니까") {
-        this.$api("/api/create_accommodations", {
-          param: [this.create_accommodations],
-        });
-        this.$router.push({ path: "/" });
-      }
+      // if (!this.ACCO_ADDRESS2) {
+      //   return alert("숙소주소는 필수 입력입니다");
+      // }
+      // if (confirm == "정말 등록하시겠습니까") {
+      //   this.$api("/api/create_accommodations", {
+      //     param: [this.create_accommodations],
+      //   });
+      //   this.$router.push({ path: "/" });
+      // }
+      if (this.errors.length === 0) {
+          this.productInsert();
+        }
     },
+
+    productInsert(){
+      const formData = {
+        
+        ACCO_NAME: this.ACCO_NAME,
+        roadAddress: this.roadAddress,
+        detailAddress: this.detailAddress,
+        ACCO_TYPE: this.ACCO_TYPE,
+              
+        ACCO_INTRODUCE_COMMENT: this.ACCO_INTRODUCE_COMMENT,
+        ACCO_DETAIL_DESCRIPTION: this.ACCO_DETAIL_DESCRIPTION,
+        ACCO_ROOM: this.ACCO_ROOM,
+        ACCO_PRICE: this.ACCO_PRICE,
+      };
+
+      axios.post('/admin_product_create', formData)//서브밋한 값들을 받아서 서버에 전달.
+          .then(response => {
+            if (response.data.message) {
+              alert(response.data.message);
+              // 등록 완료 후 메인 페이지로 리다이렉트
+              location.href = "/";
+            } else {
+              alert('숙소 등록에 실패했습니다.');
+              console.log(formData);
+            }
+          })
+          .catch(error => {
+            console.error('숙소등록 실패', error);
+            alert('숙소등록 실패. 확인 후 다시 시도해 주세요');
+          });
+
+
+    }
+
+
+
 
     // async getACCO_IMAGE() {
     //   this.ACCO_ID = await this.$api("/api/imageList", {
@@ -262,21 +297,21 @@ export default {
     //   console.log("this.ACCO_ID", this.ACCO_ID);
     // },
 
-    async uploadFile(files) {
-      let name = "";
-      let data = null;
-      if (files) {
-        name = files[0].name;
-        data = await this.$base64(files[0]);
-      }
-      const { error } = await this.$api(`/upload/${this.ACCO_ID}/${name}`, {
-        data,
-      });
-      if (error) {
-        return alert("이미지 업로드 실패했습니다. 다시 시도하세요");
-      }
-      alert("이미지가 업로드 되었습니다.");
-    },
+    // async uploadFile(files) {
+    //   let name = "";
+    //   let data = null;
+    //   if (files) {
+    //     name = files[0].name;
+    //     data = await this.$base64(files[0]);
+    //   }
+    //   const { error } = await this.$api(`/upload/${this.ACCO_ID}/${name}`, {
+    //     data,
+    //   });
+    //   if (error) {
+    //     return alert("이미지 업로드 실패했습니다. 다시 시도하세요");
+    //   }
+    //   alert("이미지가 업로드 되었습니다.");
+    // },
   },
 };
 </script>

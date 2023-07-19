@@ -563,6 +563,57 @@ app.post("/reservation_info", (req, res) => {
   });
 });
 
+
+
+
+app.post("/admin_product_create", (req, res) => {
+  //db연결을 사용해서 작업
+  dbPool.getConnection((err, connection) => {
+    if (err) {
+      console.error("db연결에 문제가 있음", err);
+      return res.status(500).json({ error: "db연결에 실패했습니다." });
+    }
+
+    const { ACCO_NAME, roadAddress, detailAddress, ACCO_TYPE, ACCO_INTRODUCE_COMMENT, ACCO_DETAIL_DESCRIPTION, ACCO_ROOM, ACCO_PRICE } = req.body;
+
+    // 숙소등록저장
+    const create_accommodations = "insert into accommodations(ACCO_NAME, ACCO_ADDRESS1, ACCO_ADDRESS2, ACCO_TYPE, ACCO_INTRODUCE_COMMENT, ACCO_DETAIL_DESCRIPTION,ACCO_ROOM,ACCO_PRICE) VALUES (?,?,?,?,?,?,?,?)";
+
+    const values = [
+      ACCO_NAME,
+      roadAddress,
+      detailAddress,
+      ACCO_TYPE,
+      ACCO_INTRODUCE_COMMENT,
+      ACCO_DETAIL_DESCRIPTION,
+      ACCO_ROOM,
+      ACCO_PRICE,
+    ];
+    connection.query(create_accommodations, values, (err, result) => {
+      connection.release(); // 사용이 완료된 연결 반환
+
+      if (err) {
+        console.error("등록 인서트 실패:", err);
+        return res
+          .status(500)
+          .json({ error: "상품 정보 인서트에 실패했습니다." });
+      }
+
+      res.json({ message: "등록 되셨습니다." });
+    });
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
 // 서버 실행
 app.listen(3000, () => {
   console.log("port 3000에서 서버구동");
