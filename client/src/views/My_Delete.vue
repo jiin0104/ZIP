@@ -2,7 +2,7 @@
   <v-main>
 
     <!-- ***** Contact Area Start ***** -->
-    <div class="dorne-contact-area d-md-flex container" style="padding-top: 43px" id="contact">
+    <div class="dorne-contact-area d-md-flex container" style="padding-top: 43px; padding-bottom: 140px;" id="contact">
       <!-- 버튼부분-->
       <div style="width: 20%">
         <div class="leftsidebar" style="width: 20%; padding-top: 30%">
