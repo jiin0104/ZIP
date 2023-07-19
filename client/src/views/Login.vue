@@ -131,7 +131,7 @@ export default {
       }
       else {
         // store로 유저 정보 넘김
-        this.$store.commit("localUser", { userId: this.userId, userGd: res.data.message })
+        this.$store.commit("localUser", { userId: this.userId, userGd: res.data.message, userNo: res.data.message1 })
           alert("로그인 성공!")
           this.$router.push({path:'/'}); // 메인 컴포넌트 이동
           this.$store.commit('loginSuccess') // isLogin 상태 변환

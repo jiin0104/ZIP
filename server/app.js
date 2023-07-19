@@ -86,7 +86,7 @@ fs.watchFile(__dirname + "/sql.js", (curr, prev) => {
 const dbPool = mysql.createPool({
   host: "127.0.0.1",
   user: "root",
-  password: "root",
+  password: "alscjf1254@",
   database: "project",
   connectionLimit: 100, //연결할 수 있는 최대 수 100
 });
@@ -196,7 +196,8 @@ app.post("/api/login", function (request, response) {
             // ID에 저장된 pw 값과 입력한 pw값이 동일한 경우
 
             return response.status(200).json({
-              message: results[0].USER_GRADE
+              message: results[0].USER_GRADE,
+              message1: results[0].USER_NO
             });
           } else {
             // 비밀번호 불일치
@@ -447,12 +448,12 @@ app.post("/my_update", (req, res) => {
       return res.status(500).json({ error: "db연결에 실패했습니다." });
     }
 
-    const { nickname, password, phone, address1, address2, ddd } = req.body;
+    const { nickname, password, phone, address1, address2 } = req.body;
 
     // 중복된 이메일이 없을 경우 회원 정보 저장
     const updateUserSql =
-      "UPDATE users SET USER_NICKNAME=?, USER_PASSWORD=?, USER_TEL=?, USER_ADDRESS1=?, USER_ADDRESS2=? where USER_ID=?";
-    const values = [nickname, password, phone, address1, address2, ddd];
+      "UPDATE users SET USER_NICKNAME=?, USER_PASSWORD=?, USER_TEL=?, USER_ADDRESS1=?, USER_ADDRESS2=? where USER_NO=1";
+    const values = [nickname, password, phone, address1, address2];
     connection.query(updateUserSql, values, (err, result) => {
       connection.release(); // 사용이 완료된 연결 반환
 
