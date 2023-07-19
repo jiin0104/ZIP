@@ -199,5 +199,4 @@ export default {
 <style>
 @import "Mypage.css";
 
-.reslistpopup {}
 </style>
