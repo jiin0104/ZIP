@@ -126,32 +126,5 @@ export default {
       });
     }
   }
-  // 사용자 역할을 확인하고 userRole 값을 업데이트하는 로직 필요
 }
 </script>
-
-<!-- <script>
-export default {
-  name: 'header',
-  data() {
-    return {
-      userRole: 'guest' // 사용자 역할을 저장하는 변수
-    };
-  },
-  methods: {
-    fetchUserRole() {
-      // 사용자 역할을 확인하는 API 호출
-      // ...
-
-      // API 응답에서 사용자 역할 정보 추출
-      const userRole = response.data.role;
-
-      // userRole 값을 업데이트
-      this.userRole = userRole;
-    }
-  },
-  created() {
-    this.fetchUserRole(); // 컴포넌트가 생성될 때 사용자 역할 정보 가져오기
-  }
-};
-</script> -->

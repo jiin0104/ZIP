@@ -12,7 +12,7 @@ const store = createStore({
       user: null,
       userId: '',
       userPw: '',
-      userNo: '',
+      userGd: '',
       isLogin: '',
       isLoginError: ''
     };
@@ -24,7 +24,7 @@ const store = createStore({
     localUser(state, payload) {
       state.userId = payload.userId;
       state.userPw = payload.userPw;
-      state.userNo = payload.userNo;
+      state.userGd = payload.userGd;
     },
     user(state, data) {
       state.user = data;
