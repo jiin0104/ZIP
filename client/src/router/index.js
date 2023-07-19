@@ -18,12 +18,20 @@ import Signup from "../views/Signup.vue";
 import Acco_Detail from "../views/Acco_Detail.vue";
 import Search_List from "../views/Search_List.vue";
 import Main from "../views/Main.vue";
+import test from "../views/test.vue";
 //#endregion
 const routes = [
   {
     path: "/",
     name: "main",
     component: Main,
+    meta: {},
+  },
+
+  {
+    path: "/test",
+    name: "test",
+    component: test,
     meta: {},
   },
 
@@ -75,7 +83,7 @@ const routes = [
   },
 
   {
-    path: "/find_pw_result",
+    path: "/find_pw_result/:pw",
     name: "find_pw_result",
     component: Find_Pw_Result,
   },

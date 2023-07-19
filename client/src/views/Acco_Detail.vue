@@ -159,6 +159,10 @@ th {
   border: none;
 }
 
+#map {
+  height: 250px;
+}
+
 /* .card-body {
   width: 500px;
 } */
@@ -219,7 +223,7 @@ th {
                 </div>
               </div>
             </div>
-            <div id="container" style="width: 1000px">
+            <div id="container" style="width: 1000px; padding-bottom: 400px">
               <br />
               <br />
               <div class="tab">
@@ -242,16 +246,13 @@ th {
                     </p>
                     <strong style="
               font-size: 20px;
-              margin-top: 20px; height 300px;
+              margin-top: 20px; height: 300px;
               margin-left: 30px;
               width: 300px;
             ">{{ detailList.ACCO_ROOM }}</strong>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
+                            <div>
+                  <div id="map"></div>
+                </div>
                     <br />
                     <strong style="font-size: 20px; float: right">가격 :
                       {{ getCurrencyFormat(detailList.ACCO_PRICE) }}원</strong>
@@ -301,8 +302,21 @@ export default {
       accoid: this.$route.query.ACCO_ID, // 예시
       userno: 1,      //this.$route.query.USER_NO,
       check_in: '2012-1-12', // 예시
-      check_out: '2012-3-14' // 예시
+      check_out: '2012-3-14', // 예시
     };
+  },
+
+  mounted() {
+    if (window.kakao && window.kakao.maps) {
+      this.initMap();
+    } else {
+      const script = document.createElement("script");
+      /* global kakao */
+      script.onload = () => kakao.maps.load(this.initMap);
+      script.src =
+        "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=2da1dfec1c5fbfc311dcdfc163b3a092";
+      document.head.appendChild(script);
+    }
   },
 
   created() {
@@ -347,6 +361,17 @@ export default {
           console.error('뭔가가 실패', error);
           alert('예약생성 실패. 확인 후 다시 시도해 주세요');
         });
+    },
+    initMap() {
+      const container = document.getElementById("map");
+      const options = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667),
+        level: 5,
+      };
+
+      //지도 객체를 등록합니다.
+      //지도 객체는 반응형 관리 대상이 아니므로 initMap에서 선언합니다.
+      this.map = new kakao.maps.Map(container, options);
     },
   },
 };
