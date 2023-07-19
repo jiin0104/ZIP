@@ -86,15 +86,9 @@ fs.watchFile(__dirname + "/sql.js", (curr, prev) => {
 const dbPool = mysql.createPool({
   host: "127.0.0.1",
   user: "root",
-<<<<<<< HEAD
   password: "alscjf1254@",
-=======
-<<<<<<< HEAD
   password: "1234",
-=======
   password: "@k41292001",
->>>>>>> 29dc90a0f95a04b8ba29a3a70db6a12019e8566e
->>>>>>> 4b525e355b5d696a50577d9cfec38cea3bf093e4
   database: "project",
   connectionLimit: 100, //연결할 수 있는 최대 수 100
 });
@@ -245,28 +239,7 @@ app.post("/api/logout", async (request, res) => {
   res.send("ok");
 });
 
-<<<<<<< HEAD
-// 네이버 라우트. 검토 필요
-// router.get("/login/naver", passport.authenticate("naver"));
 
-//위에서 네이버 서버 로그인이 되면, 네이버 redirect url 설정에 따라 이쪽 라우터로 오게 된다.
-// router.get("/login/naver/callback", function (req, res, next) {
-
-//passport 로그인 전략에 의해 naverStrategy로 가서 계정 정보와 DB를 비교해서 회원가입시키거나 로그인 처리하게 한다.
-//   passport.authenticate("naver", function (err, user) {
-//     console.log("passport.authenticate(naver)실행");
-//     if (!user) {
-//       return res.redirect("http://localhost:3000/login");
-//     }
-//     req.logIn(user, function (err) {
-//       console.log("naver/callback user : ", user);
-//       return res.redirect("http://localhost:3000/");
-//     });
-//   })(req, res);
-// });
-
-=======
->>>>>>> 29dc90a0f95a04b8ba29a3a70db6a12019e8566e
 // 쿼리 요청을 보내는 부분. 에러가 발생하였을 때 콘솔에 출력해주는 소스.
 //req객체
 const req = {
