@@ -145,7 +145,7 @@ export default {
     //유저의 예약리스트
     async Get_Reservation_Info() {
       this.reslist = await this.$api("/api/reslist", {
-        param: [this.$store.state.userId], 
+        param: [this.$store.state.userNo], 
       });
     },
 

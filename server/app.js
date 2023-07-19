@@ -86,7 +86,7 @@ fs.watchFile(__dirname + "/sql.js", (curr, prev) => {
 const dbPool = mysql.createPool({
   host: "127.0.0.1",
   user: "root",
-  password: "alscjf1254@",
+  password: "root",
   database: "project",
   connectionLimit: 100, //연결할 수 있는 최대 수 100
 });
