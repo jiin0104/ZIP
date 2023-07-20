@@ -123,7 +123,7 @@
               </tbody>
             </table>
           </div>
-          <nav aria-label="...">
+          <nav aria-label="..." style="margin-bottom: 400px;">
             <ul class="pagination justify-content-center">
               <li class="page-item"><a class="page-link" href="#">이전</a></li>
               <li class="page-item">
