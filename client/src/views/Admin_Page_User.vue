@@ -34,7 +34,7 @@
       <div
         class="dorne-contact-area d-md-flex container"
         id="contact"
-        style="padding-top: 43px; padding-bottom: 43px; height: auto"
+        style="padding-top: 43px; padding-bottom: 43px; height: auto; margin-left: -94px;"
       >
         <!-- 버튼부분-->
         <div style="width: 35%; padding-top: 60px">
@@ -58,9 +58,10 @@
               회원관리
             </button>
           </div>
+          
         </div>
         <!-- 여기가 오른쪽에 있는 내용 -->
-        <div style="padding-top: 54px">
+        <div style="padding-top: 54px; margin-left: 20px;">
           <!-- 리스트 상단 -->
           <div
             class="top"
@@ -77,7 +78,7 @@
 
           <div
             class="board-list"
-            style="width: 724px; margin-right: 31px; margin-bottom: 1rem"
+            style="width: 944px; margin-right: 31px; margin-bottom: 1rem"
           >
             <table>
               <thead>
@@ -85,37 +86,40 @@
                   <th>회원코드</th>
                   <th>아이디</th>
                   <th>비밀번호</th>
+                  <th>생성날짜</th>
                   <th>닉네임</th>
+                  <th>주소</th>
+                  <th>전화번호</th>
                   <th>로그인유형</th>
-                  <th>회원등급</th>
-                  <th>회원관리</th>
+                  <th>관리</th>
                 </tr>
               </thead>
               <tbody>
-                <tr :key="i" v-for="(user, i) in userList">
-                  <td>{{ user.USER_NO }}</td>
+                <tr :key="i" v-for="(user, i) in adminusers">
+                  <td id="user">{{ user.USER_NO }}</td>
                   <td>{{ user.USER_ID }}</td>
                   <td>{{ user.USER_PASSWORD }}</td>
+                  <td>{{ user.USER_CREATED_DATE }}</td>
                   <td>{{ user.USER_NICKNAME }}</td>
+                  <td>{{ user.USER_ADDRESS1 }}</td>
+                  <td>{{ user.USER_TEL }}</td>
                   <td>{{ user.USER_LOGIN_TYPE }}</td>
-                  <td>{{ user.USER_GRADE }}</td>
-                  <td>
-                    <button
-                      class="save-btn6"
-                      @click="userdel(user.USER_NICKNAME)"
-                    >
-                      삭제
-                    </button>
-                  </td>
+                  <td><button type="button" @click="showConfirmation()">삭제</button></td>
+                  <div id="popup" class="popup" style="display: none; left: 43%; top: 22%; z-index: 1;" >
+                <p class="popup-message" style="font-size: 18px">
+                  삭제 하시겠습니까?
+                </p>
+                <div class="popup-buttons">
+                  <button id="button7" @click="hideConfirmation()">취소</button>
+                </div>
+                <div class="popup-buttons">
+                  <button id="button8" @click="cancelReservation(user)">
+                    확인
+                  </button>
+                </div>
+              </div>
                 </tr>
-                <!-- <tr>
-                  <td>1001</td>
-                  <td>abc11</td>
-                  <td>12344</td>
-                  <td>집탈출1</td>
-                  <td>로컬</td>
-                  <td>관리자</td>
-                </tr> -->
+
               </tbody>
             </table>
           </div>
@@ -142,23 +146,17 @@
 </template>
 <script>
 export default {
-  name: "",
-  components: {},
+    
   data() {
     return {
-      userList: [],
+      adminusers: [],
     };
   },
-  beforeCreate() {},
+
   created() {
     this.getUserList();
   },
-  beforMount() {},
-  mounted() {},
-  beforeUpdate() {},
-  updated() {},
-  beforeUnmount() {},
-  unmounted() {},
+  
   methods: {
     userLink() {
       this.$router.push({ path: "/admin_page_user" });
@@ -166,15 +164,29 @@ export default {
     reservationLink() {
       this.$router.push({ path: "/admin_page_reservation" });
     },
+
     async getUserList() {
-      this.userList = await this.$api("/api/user_sql", {});
-      console.log(this.userList);
+      this.adminusers = await this.$api("/api/SearchUser");
     },
-    async userdel(USER_NICKNAME) {
-      if (confirm("삭제하시겠습니까?") == true) {
-        await this.$api("/api/user_sql_del", { param: [USER_NICKNAME] });
-        this.getUserList();
-      }
+
+    deleteres(user){
+      this.adminuserdel = this.$api("/api/adminuserdel", {param:[user.USER_NO]})
+    },
+    showConfirmation() {
+      var popup = document.getElementById("popup");
+      popup.style.display = "block";
+    },
+    hideConfirmation() {
+      var popup = document.getElementById("popup");
+      popup.style.display = "none";
+    },
+    cancelReservation(user) {
+      var popup = document.getElementById("popup");
+      popup.style.display = "none";
+      this.UserDelete = this.$api("/api/adminuserdel", { param: [user.USER_NO] });
+      alert("삭제되었습니다");
+      this.hideConfirmation();
+      location.href = "/admin_page_user";
     },
   },
 };

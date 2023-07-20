@@ -1,7 +1,7 @@
 <template>
   <header class="header_area" id="header">
     <!-- 회원용 헤더 내용 -->
-    <div class="header1 container h-100" v-if="isLogin">
+    <div class="header1 container h-100" v-if="isLogin && userGd === 'member'">
       <h1><a href="#" class="logo">
           <RouterLink to= />
           <img alt="Vue logo" src="@/layouts/logo.png" width="80"></RouterLink>
@@ -11,6 +11,19 @@
           <li><a @click="kakaoLogout"><RouterLink to='/'>로그아웃</RouterLink></a></li>
           <li><RouterLink to='/Mypage'>내정보</RouterLink></li>
           <li><RouterLink to='/My_Reservation'>예약내역</RouterLink></li>
+        </ul>
+      </div>
+    </div>
+        <!-- 관리자용 헤더 내용 -->
+        <div class="header1 container h-100" v-else-if="isLogin && userGd === 'admin'">
+      <h1><a href="#" class="logo">
+          <RouterLink to= /><img alt="Vue logo" src="@/layouts/logo.png" width="80"></RouterLink>
+        </a></h1>
+      <div class="menuWrap">
+        <ul class="menu">
+          <li><a @click="kakaoLogout"><RouterLink to='/'>로그아웃</RouterLink></a></li>
+          <li><RouterLink to='/Admin_Page_Reservation'>예약관리</RouterLink></li>
+          <li><RouterLink to='/Admin_Page_User'>회원관리</RouterLink></li>
         </ul>
       </div>
     </div>
@@ -27,19 +40,6 @@
         </ul>
       </div>
     </div>
-    <!-- 관리자용 헤더 내용 -->
-    <!-- <div class="header1 container h-100">
-      <h1><a href="#" class="logo">
-          <RouterLink to= /><img alt="Vue logo" src="@/layouts/logo.png" width="80"></RouterLink>
-        </a></h1>
-      <div class="menuWrap">
-        <ul class="menu">
-          <li><a @click="logout"><RouterLink to='/'>로그아웃</RouterLink></a></li>
-          <li><RouterLink to='/Admin_Page_Reservation'>예약관리</RouterLink></li>
-          <li><RouterLink to='/Admin_Page_User'>회원관리</RouterLink></li>
-        </ul>
-      </div>
-    </div> -->
   </header>
 </template>
 
@@ -111,7 +111,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['isLogin'])
+    ...mapState(['isLogin', 'userGd'])
   },
   methods: {
     kakaoLogout() {
@@ -122,7 +122,7 @@ export default {
         this.$store.commit("localUser", {});
         alert("로그아웃");
         this.$router.push({path:'/'}); // 로그아웃 이후 메인 페이지로 라우팅
-        this.$store.commit('loginOut') // 로그아웃 이후 헤더 게스트로 변환
+        this.$store.commit('logOut') // 로그아웃 이후 헤더 게스트로 변환
       });
     }
   }
