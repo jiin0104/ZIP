@@ -87,7 +87,7 @@ fs.watchFile(__dirname + "/sql.js", (curr, prev) => {
 const dbPool = mysql.createPool({
   host: "127.0.0.1",
   user: "root",
-  password: "root",
+  password: "alscjf1254@",
   database: "project",
   connectionLimit: 100, //연결할 수 있는 최대 수 100
 });
@@ -679,20 +679,6 @@ app.post("/admin_product_create", (req, res) => {
     });
   });
 });
-
-router.post('/delete', function(req, res){    // 게시글 삭제
-  db.content.destroy({            // destroy를 통해 DB에서 조건에 맞는 정보 삭제
-      
-  }).then(function(){
-      return res.status(200).json({
-          message: '글 삭제 완료!'
-      });
-  }).catch(err =>{
-      console.log(err);
-      return res.status(404).json({message: '에러뜸'});
-  })
-});
-
 
 
 
