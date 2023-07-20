@@ -100,7 +100,7 @@ const routes = [
     name: "my_delete",
     component: My_Delete,
     meta: {
-      roles: ["member", "admin"],
+      roles: [ true, "admin"],
     },
   },
 
@@ -109,7 +109,7 @@ const routes = [
     name: "my_reservation",
     component: My_Reservation,
     meta: {
-      roles: ["member", "admin"],
+      roles: [ true, "admin"],
     },
   },
 
@@ -118,7 +118,7 @@ const routes = [
     name: "my_update",
     component: My_Update,
     meta: {
-      roles: ["member", "admin"],
+      roles: [ true, "admin"],
     },
   },
 
@@ -127,7 +127,7 @@ const routes = [
     name: "mypage_pw_check",
     component: Mypage_Pw_Check,
     meta: {
-      roles: ["member", "admin"],
+      roles: [ true, "admin"],
     },
   },
 
@@ -136,7 +136,7 @@ const routes = [
     name: "mypage",
     component: Mypage,
     meta: {
-      roles: ["member", "admin"],
+      roles: [ "member", "admin"],
     },
   },
 
@@ -145,7 +145,7 @@ const routes = [
     name: "payment",
     component: Payment,
     meta: {
-      roles: ["member", "admin"],
+      roles: [ true, "admin"],
     },
   },
 
@@ -154,7 +154,7 @@ const routes = [
     name: "Reservation_info",
     component: Reservation_info,
     meta: {
-      roles: ["member", "admin"],
+      roles: [ true, "admin"],
     },
   },
 
@@ -182,12 +182,12 @@ import store from '../store'
 
 // 유저 접근 권한 설정
 router.beforeEach((to, from, next) => {
-  let roleStatus = store.state.userGd // 현 접속 계정 권한 상태
+  let roleStatus = store.state.userGd || store.state.isLogin // 현 접속 계정 권한 상태
   // 라우터 권한, 접속 계정 권한 비교
   if (to.meta.roles && !to.meta.roles.includes(roleStatus)) {
-    alert('로그인 권한이 필요합니다.')
+    alert('로컬 로그인이 필요합니다.')
     // 권한 비교 후 다르면 로그인 페이지로 이동
-    next({path: "/login"})
+    next({path: "/"})
   } else {
     // 권한 비교 후 같으면 그대로 페이지 정상 이동
     next()
