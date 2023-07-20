@@ -680,12 +680,7 @@ app.post("/admin_product_create", (req, res) => {
   });
 });
 
-<<<<<<< HEAD
-=======
 
-
-
->>>>>>> 9b499a78da648ac0aadae98eea113752d1f10242
 
 
 
