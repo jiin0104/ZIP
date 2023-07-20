@@ -30,12 +30,13 @@ const store = createStore({
     },
     user(state, data) {
       state.user = data;
+      state.userGd = 'member';
     },
     loginSuccess(state) {
       state.isLogin = true
       state.isLoginError = false
     },
-    loginOut(state) {
+    logOut(state) {
       state.isLogin = false
       state.isLoginError = false
     },
