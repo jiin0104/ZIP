@@ -64,14 +64,7 @@
             "
           >
             <h3 style="float: left">관리자페이지 예약관리</h3>
-            <div class="write-button" style="float: right">
-              <button
-                class="save-btn"
-                style="border: none; height: 30px; line-height: 0px"
-              >
-                저장
-              </button>
-            </div>
+            <div class="write-button" style="float: right"></div>
           </div>
 
           <div
@@ -163,8 +156,8 @@ export default {
     async getReservation(){
       this.adminres = await this.$api("/api/SearchRes")
     },
+    
     deleteres(res){
-
       this.adminresdel = this.$api("/api/adminresdel", {param:[res.RESERVATION_ID]})
     },
     showConfirmation() {
