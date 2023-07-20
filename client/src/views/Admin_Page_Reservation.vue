@@ -21,12 +21,12 @@
 }
 </style>
 <template>
-  <main>
+  <main style="min-height: 92%;">
     <div class="container">
       <div
         class="dorne-contact-area d-md-flex container"
         id="contact"
-        style="padding-top: 43px; padding-bottom: 43px; height: auto"
+        style="padding-top: 43px; padding-bottom: 43px; height: auto; margin-left: -94px;"
       >
         <!-- 버튼부분-->
         <div style="width: 35%; padding-top: 60px">
@@ -52,7 +52,7 @@
           </div>
         </div>
         <!-- 여기가 오른쪽에 있는 내용 -->
-        <div style="padding-top: 54px">
+        <div style="padding-top: 54px; margin-left: 20px;">
           <!-- 리스트 상단 -->
           <div
             class="top"
@@ -64,48 +64,51 @@
             "
           >
             <h3 style="float: left">관리자페이지 예약관리</h3>
-            <div class="write-button" style="float: right">
-              <button
-                class="save-btn"
-                style="border: none; height: 30px; line-height: 0px"
-              >
-                저장
-              </button>
-            </div>
+            <div class="write-button" style="float: right"></div>
           </div>
 
           <div
             class="board-list"
-            style="width: 724px; margin-right: 31px; margin-bottom: 1rem"
+            style="width: 848px; margin-right: 31px; margin-bottom: 1rem"
           >
             <table>
               <thead>
                 <tr>
-                  <th>예약번호</th>
+                  <th style="width: 70px;">예약번호</th>
                   <th>체크인날짜</th>
                   <th>체크아웃날짜</th>
-                  <th>아이디</th>
-                  <th>회원코드</th>
-                  <th>숙소명</th>
+                  <th style="width: 70px;">회원코드</th>
+                  <th style="width: 70px;">숙소코드</th>
+                  <th>결제상태</th>
+                  <th>예약 생성일</th>
+                  <th>관리</th>
                 </tr>
               </thead>
               <tbody>
-                <tr onclick="">
-                  <td>2000</td>
-                  <td>2023-05-10</td>
-                  <td>2023-05-13</td>
-                  <td>abc</td>
-                  <td>1000</td>
-                  <td>숙소명1</td>
+                <tr onclick="" :key="i" v-for="(res, i) in adminres">
+                  <td id="res">{{res.RESERVATION_ID}}</td>
+                  <td>{{res.RESERVATION_CHECK_IN }}</td>
+                  <td>{{res.RESERVATION_CHECK_OUT }}</td>
+                  <td>{{res.USER_NO }}</td>
+                  <td>{{res.ACCO_ID }}</td>
+                  <td>{{res.RESERVATION_STATUS }}</td>
+                  <td>{{res.RESERVATION_CREATE }}</td>
+                  <td><button type="button" @click="showConfirmation()">삭제</button></td>
+                  <div id="popup" class="popup" style="display: none; left: 43%; top: 22%; z-index: 1;" >
+                <p class="popup-message" style="font-size: 18px">
+                  삭제 하시겠습니까?
+                </p>
+                <div class="popup-buttons">
+                  <button id="button7" @click="hideConfirmation()">취소</button>
+                </div>
+                <div class="popup-buttons">
+                  <button id="button8" @click="cancelReservation(res)">
+                    확인
+                  </button>
+                </div>
+              </div>
                 </tr>
-                <tr onclick="location.href='#';">
-                  <td>2001</td>
-                  <td>2023-05-10</td>
-                  <td>2023-05-13</td>
-                  <td>abc11</td>
-                  <td>1001</td>
-                  <td>숙소명2</td>
-                </tr>
+                
               </tbody>
             </table>
           </div>
@@ -132,18 +135,16 @@
 </template>
 <script>
 export default {
-  components: {},
+  
   data() {
-    return {};
+    return {
+      adminres: [],
+    };
   },
-  beforeCreate() {},
-  created() {},
-  beforMount() {},
-  mounted() {},
-  beforeUpdate() {},
-  updated() {},
-  beforeUnmount() {},
-  unmounted() {},
+  
+  created() {
+    this.getReservation();
+  },
   methods: {
     userLink() {
       this.$router.push({ path: "/admin_page_user" });
@@ -151,6 +152,31 @@ export default {
     reservationLink() {
       this.$router.push({ path: "/admin_page_reservation" });
     },
+
+    async getReservation(){
+      this.adminres = await this.$api("/api/SearchRes")
+    },
+    
+    deleteres(res){
+      this.adminresdel = this.$api("/api/adminresdel", {param:[res.RESERVATION_ID]})
+    },
+    showConfirmation() {
+      var popup = document.getElementById("popup");
+      popup.style.display = "block";
+    },
+    hideConfirmation() {
+      var popup = document.getElementById("popup");
+      popup.style.display = "none";
+    },
+    cancelReservation(res) {
+      var popup = document.getElementById("popup");
+      popup.style.display = "none";
+      this.ResDelete = this.$api("/api/adminresdel", { param: [res.RESERVATION_ID] });
+      alert("삭제되었습니다");
+      this.hideConfirmation();
+      location.href = "/admin_page_reservation";
+    },
+
   },
 };
 </script>
