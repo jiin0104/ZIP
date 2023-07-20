@@ -680,18 +680,7 @@ app.post("/admin_product_create", (req, res) => {
   });
 });
 
-router.post('/delete', function(req, res){    // 게시글 삭제
-  db.content.destroy({            // destroy를 통해 DB에서 조건에 맞는 정보 삭제
-      
-  }).then(function(){
-      return res.status(200).json({
-          message: '글 삭제 완료!'
-      });
-  }).catch(err =>{
-      console.log(err);
-      return res.status(404).json({message: '에러뜸'});
-  })
-});
+
 
 
 
