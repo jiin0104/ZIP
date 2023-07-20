@@ -100,7 +100,7 @@ const routes = [
     name: "my_delete",
     component: My_Delete,
     meta: {
-      roles: [ true, "admin"],
+      roles: [ true, "member", "admin"],
     },
   },
 
@@ -109,7 +109,7 @@ const routes = [
     name: "my_reservation",
     component: My_Reservation,
     meta: {
-      roles: [ true, "admin"],
+      roles: [ true, "member", "admin"],
     },
   },
 
@@ -118,7 +118,7 @@ const routes = [
     name: "my_update",
     component: My_Update,
     meta: {
-      roles: [ true, "admin"],
+      roles: [ true, "member", "admin"],
     },
   },
 
@@ -127,7 +127,7 @@ const routes = [
     name: "mypage_pw_check",
     component: Mypage_Pw_Check,
     meta: {
-      roles: [ true, "admin"],
+      roles: [ true, "member", "admin"],
     },
   },
 
@@ -145,7 +145,7 @@ const routes = [
     name: "payment",
     component: Payment,
     meta: {
-      roles: [ true, "admin"],
+      roles: [ true, "member", "admin"],
     },
   },
 
@@ -154,7 +154,7 @@ const routes = [
     name: "Reservation_info",
     component: Reservation_info,
     meta: {
-      roles: [ true, "admin"],
+      roles: [ true, "member", "admin"],
     },
   },
 
